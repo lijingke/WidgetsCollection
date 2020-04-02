@@ -14,28 +14,6 @@
 		54C182AD2435C0BA008666E4 /* WidgetsCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182AC2435C0BA008666E4 /* WidgetsCollectionTests.swift */; };
 		54C182B82435C0BA008666E4 /* WidgetsCollectionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182B72435C0BA008666E4 /* WidgetsCollectionUITests.swift */; };
 		54C182C62435C159008666E4 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182C52435C159008666E4 /* HomepageViewController.swift */; };
-		54C183042435C374008666E4 /* URLConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182CA2435C374008666E4 /* URLConvertible.swift */; };
-		54C183052435C374008666E4 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182CB2435C374008666E4 /* DownloadTask.swift */; };
-		54C183062435C374008666E4 /* SessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182CC2435C374008666E4 /* SessionConfiguration.swift */; };
-		54C183072435C374008666E4 /* Executer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182CD2435C374008666E4 /* Executer.swift */; };
-		54C183082435C374008666E4 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182CE2435C374008666E4 /* Common.swift */; };
-		54C183092435C374008666E4 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182CF2435C374008666E4 /* Cache.swift */; };
-		54C1830A2435C374008666E4 /* TiercelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182D02435C374008666E4 /* TiercelError.swift */; };
-		54C1830B2435C374008666E4 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182D12435C374008666E4 /* SessionManager.swift */; };
-		54C1830C2435C374008666E4 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182D22435C374008666E4 /* Task.swift */; };
-		54C1830D2435C374008666E4 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182D32435C374008666E4 /* SessionDelegate.swift */; };
-		54C1830E2435C374008666E4 /* Data+Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182D52435C374008666E4 /* Data+Hash.swift */; };
-		54C1830F2435C374008666E4 /* CodingUserInfoKey+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182D62435C374008666E4 /* CodingUserInfoKey+Cache.swift */; };
-		54C183102435C374008666E4 /* Int64+TaskInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182D72435C374008666E4 /* Int64+TaskInfo.swift */; };
-		54C183112435C374008666E4 /* URLSession+ResumeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182D82435C374008666E4 /* URLSession+ResumeData.swift */; };
-		54C183122435C374008666E4 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182D92435C374008666E4 /* Array+Safe.swift */; };
-		54C183132435C374008666E4 /* UIDevice+Free.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182DA2435C374008666E4 /* UIDevice+Free.swift */; };
-		54C183142435C374008666E4 /* DispatchQueue+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182DB2435C374008666E4 /* DispatchQueue+Safe.swift */; };
-		54C183152435C374008666E4 /* String+Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182DC2435C374008666E4 /* String+Hash.swift */; };
-		54C183162435C374008666E4 /* Double+TaskInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182DD2435C374008666E4 /* Double+TaskInfo.swift */; };
-		54C183172435C374008666E4 /* OperationQueue+DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182DE2435C374008666E4 /* OperationQueue+DispatchQueue.swift */; };
-		54C183182435C374008666E4 /* ResumeDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182E12435C374008666E4 /* ResumeDataHelper.swift */; };
-		54C183192435C374008666E4 /* FileChecksumHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182E22435C374008666E4 /* FileChecksumHelper.swift */; };
 		54C1831A2435C374008666E4 /* PDFPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182E42435C374008666E4 /* PDFPreviewViewController.swift */; };
 		54C1831B2435C374008666E4 /* PDFDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182E52435C374008666E4 /* PDFDownloadViewController.swift */; };
 		54C1831C2435C374008666E4 /* PDFEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182E72435C374008666E4 /* PDFEntity.swift */; };
@@ -115,29 +93,6 @@
 		54C182B72435C0BA008666E4 /* WidgetsCollectionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsCollectionUITests.swift; sourceTree = "<group>"; };
 		54C182B92435C0BA008666E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54C182C52435C159008666E4 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
-		54C182CA2435C374008666E4 /* URLConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLConvertible.swift; sourceTree = "<group>"; };
-		54C182CB2435C374008666E4 /* DownloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
-		54C182CC2435C374008666E4 /* SessionConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionConfiguration.swift; sourceTree = "<group>"; };
-		54C182CD2435C374008666E4 /* Executer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Executer.swift; sourceTree = "<group>"; };
-		54C182CE2435C374008666E4 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
-		54C182CF2435C374008666E4 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
-		54C182D02435C374008666E4 /* TiercelError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiercelError.swift; sourceTree = "<group>"; };
-		54C182D12435C374008666E4 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		54C182D22435C374008666E4 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		54C182D32435C374008666E4 /* SessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDelegate.swift; sourceTree = "<group>"; };
-		54C182D52435C374008666E4 /* Data+Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Hash.swift"; sourceTree = "<group>"; };
-		54C182D62435C374008666E4 /* CodingUserInfoKey+Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CodingUserInfoKey+Cache.swift"; sourceTree = "<group>"; };
-		54C182D72435C374008666E4 /* Int64+TaskInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int64+TaskInfo.swift"; sourceTree = "<group>"; };
-		54C182D82435C374008666E4 /* URLSession+ResumeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+ResumeData.swift"; sourceTree = "<group>"; };
-		54C182D92435C374008666E4 /* Array+Safe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
-		54C182DA2435C374008666E4 /* UIDevice+Free.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Free.swift"; sourceTree = "<group>"; };
-		54C182DB2435C374008666E4 /* DispatchQueue+Safe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Safe.swift"; sourceTree = "<group>"; };
-		54C182DC2435C374008666E4 /* String+Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Hash.swift"; sourceTree = "<group>"; };
-		54C182DD2435C374008666E4 /* Double+TaskInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+TaskInfo.swift"; sourceTree = "<group>"; };
-		54C182DE2435C374008666E4 /* OperationQueue+DispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OperationQueue+DispatchQueue.swift"; sourceTree = "<group>"; };
-		54C182DF2435C374008666E4 /* Tiercel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tiercel.h; sourceTree = "<group>"; };
-		54C182E12435C374008666E4 /* ResumeDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResumeDataHelper.swift; sourceTree = "<group>"; };
-		54C182E22435C374008666E4 /* FileChecksumHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileChecksumHelper.swift; sourceTree = "<group>"; };
 		54C182E42435C374008666E4 /* PDFPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPreviewViewController.swift; sourceTree = "<group>"; };
 		54C182E52435C374008666E4 /* PDFDownloadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDownloadViewController.swift; sourceTree = "<group>"; };
 		54C182E72435C374008666E4 /* PDFEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFEntity.swift; sourceTree = "<group>"; };
@@ -307,66 +262,11 @@
 		54C182C72435C374008666E4 /* Download */ = {
 			isa = PBXGroup;
 			children = (
-				54C182C82435C374008666E4 /* Tiercel */,
 				54C182E32435C374008666E4 /* Controller */,
 				54C182E62435C374008666E4 /* Model */,
 				54C182E82435C374008666E4 /* View */,
 			);
 			path = Download;
-			sourceTree = "<group>";
-		};
-		54C182C82435C374008666E4 /* Tiercel */ = {
-			isa = PBXGroup;
-			children = (
-				54C182C92435C374008666E4 /* General */,
-				54C182D42435C374008666E4 /* Extensions */,
-				54C182DF2435C374008666E4 /* Tiercel.h */,
-				54C182E02435C374008666E4 /* Utility */,
-			);
-			path = Tiercel;
-			sourceTree = "<group>";
-		};
-		54C182C92435C374008666E4 /* General */ = {
-			isa = PBXGroup;
-			children = (
-				54C182CA2435C374008666E4 /* URLConvertible.swift */,
-				54C182CB2435C374008666E4 /* DownloadTask.swift */,
-				54C182CC2435C374008666E4 /* SessionConfiguration.swift */,
-				54C182CD2435C374008666E4 /* Executer.swift */,
-				54C182CE2435C374008666E4 /* Common.swift */,
-				54C182CF2435C374008666E4 /* Cache.swift */,
-				54C182D02435C374008666E4 /* TiercelError.swift */,
-				54C182D12435C374008666E4 /* SessionManager.swift */,
-				54C182D22435C374008666E4 /* Task.swift */,
-				54C182D32435C374008666E4 /* SessionDelegate.swift */,
-			);
-			path = General;
-			sourceTree = "<group>";
-		};
-		54C182D42435C374008666E4 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				54C182D52435C374008666E4 /* Data+Hash.swift */,
-				54C182D62435C374008666E4 /* CodingUserInfoKey+Cache.swift */,
-				54C182D72435C374008666E4 /* Int64+TaskInfo.swift */,
-				54C182D82435C374008666E4 /* URLSession+ResumeData.swift */,
-				54C182D92435C374008666E4 /* Array+Safe.swift */,
-				54C182DA2435C374008666E4 /* UIDevice+Free.swift */,
-				54C182DB2435C374008666E4 /* DispatchQueue+Safe.swift */,
-				54C182DC2435C374008666E4 /* String+Hash.swift */,
-				54C182DD2435C374008666E4 /* Double+TaskInfo.swift */,
-				54C182DE2435C374008666E4 /* OperationQueue+DispatchQueue.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		54C182E02435C374008666E4 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				54C182E12435C374008666E4 /* ResumeDataHelper.swift */,
-				54C182E22435C374008666E4 /* FileChecksumHelper.swift */,
-			);
-			path = Utility;
 			sourceTree = "<group>";
 		};
 		54C182E32435C374008666E4 /* Controller */ = {
@@ -699,9 +599,6 @@
 			files = (
 				54C183432435C3A4008666E4 /* ImageViewAnimationViewController.swift in Sources */,
 				54C183302435C374008666E4 /* ChatFilterTagCell.swift in Sources */,
-				54C183052435C374008666E4 /* DownloadTask.swift in Sources */,
-				54C183162435C374008666E4 /* Double+TaskInfo.swift in Sources */,
-				54C1830F2435C374008666E4 /* CodingUserInfoKey+Cache.swift in Sources */,
 				54C183392435C391008666E4 /* CardLayout.swift in Sources */,
 				54C183552435C3B1008666E4 /* TagViewController.swift in Sources */,
 				54C1832A2435C374008666E4 /* UICollectionViewFlowLayout+Extension.swift in Sources */,
@@ -710,15 +607,11 @@
 				54C1831C2435C374008666E4 /* PDFEntity.swift in Sources */,
 				54C1835F2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift in Sources */,
 				54C183202435C374008666E4 /* PDFDownloadView.swift in Sources */,
-				54C183112435C374008666E4 /* URLSession+ResumeData.swift in Sources */,
 				54C183242435C374008666E4 /* UIView+Extension.swift in Sources */,
-				54C183092435C374008666E4 /* Cache.swift in Sources */,
 				54C1835A2435C3B1008666E4 /* LayoutAndDelegateViewController.swift in Sources */,
 				54C183582435C3B1008666E4 /* StretchyHeaderViewController.swift in Sources */,
 				54C1832B2435C374008666E4 /* tagViewModel.swift in Sources */,
 				54C183212435C374008666E4 /* PDFCollectionFooter.swift in Sources */,
-				54C1830D2435C374008666E4 /* SessionDelegate.swift in Sources */,
-				54C183172435C374008666E4 /* OperationQueue+DispatchQueue.swift in Sources */,
 				54C1835E2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift in Sources */,
 				54C1831F2435C374008666E4 /* PDFPreviewView.swift in Sources */,
 				54C183272435C374008666E4 /* ChatFilterEventProtocol.swift in Sources */,
@@ -726,15 +619,8 @@
 				54C183532435C3B1008666E4 /* ScrollViewController.swift in Sources */,
 				54C183422435C3A4008666E4 /* CGAffineTransformViewController.swift in Sources */,
 				54C183262435C374008666E4 /* Sequence+Extension.swift in Sources */,
-				54C183102435C374008666E4 /* Int64+TaskInfo.swift in Sources */,
-				54C183132435C374008666E4 /* UIDevice+Free.swift in Sources */,
 				54C1833B2435C391008666E4 /* WaterFallsLayout.swift in Sources */,
-				54C183142435C374008666E4 /* DispatchQueue+Safe.swift in Sources */,
-				54C183072435C374008666E4 /* Executer.swift in Sources */,
-				54C183152435C374008666E4 /* String+Hash.swift in Sources */,
 				54C183462435C3A4008666E4 /* DataManager.swift in Sources */,
-				54C1830C2435C374008666E4 /* Task.swift in Sources */,
-				54C183192435C374008666E4 /* FileChecksumHelper.swift in Sources */,
 				54C183232435C374008666E4 /* UIColor+Extension.swift in Sources */,
 				54C1832C2435C374008666E4 /* CommonInputCell.swift in Sources */,
 				54C1832D2435C374008666E4 /* ChatFilterView.swift in Sources */,
@@ -742,9 +628,6 @@
 				54C183312435C374008666E4 /* ChatFilterTagCollectionCell.swift in Sources */,
 				54C183222435C374008666E4 /* UIFont+Extension.swift in Sources */,
 				54C183592435C3B1008666E4 /* UIViewRefreshViewController.swift in Sources */,
-				54C1830A2435C374008666E4 /* TiercelError.swift in Sources */,
-				54C183182435C374008666E4 /* ResumeDataHelper.swift in Sources */,
-				54C183042435C374008666E4 /* URLConvertible.swift in Sources */,
 				54C182C62435C159008666E4 /* HomepageViewController.swift in Sources */,
 				54C183252435C374008666E4 /* String+Extension.swift in Sources */,
 				54C183292435C374008666E4 /* ChatSettingViewController.swift in Sources */,
@@ -754,18 +637,13 @@
 				54C183452435C3A4008666E4 /* CardLayoutViewController.swift in Sources */,
 				54C183522435C3B1008666E4 /* NotificationCenterViewController.swift in Sources */,
 				54C1831E2435C374008666E4 /* PDFInfoHeadView.swift in Sources */,
-				54C183062435C374008666E4 /* SessionConfiguration.swift in Sources */,
-				54C1830B2435C374008666E4 /* SessionManager.swift in Sources */,
 				54C1832F2435C374008666E4 /* CommonAddCell.swift in Sources */,
 				54C1831D2435C374008666E4 /* PDFCollectionCell.swift in Sources */,
 				54C183472435C3A4008666E4 /* BasicViewController.swift in Sources */,
-				54C183122435C374008666E4 /* Array+Safe.swift in Sources */,
 				54C183572435C3B1008666E4 /* WaterFallsViewController.swift in Sources */,
 				54C183282435C374008666E4 /* ChatFilterViewController.swift in Sources */,
-				54C1830E2435C374008666E4 /* Data+Hash.swift in Sources */,
 				54C183442435C3A4008666E4 /* CALayerViewController.swift in Sources */,
 				54C183542435C3B1008666E4 /* GetLocationViewController.swift in Sources */,
-				54C183082435C374008666E4 /* Common.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

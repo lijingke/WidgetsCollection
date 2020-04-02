@@ -14,9 +14,6 @@ class ImageViewAnimationViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureData()
-        
-        let person = Person(name: "ljk")
-
     }
         
     @objc fileprivate func btnAction(_ sender: UIButton) {

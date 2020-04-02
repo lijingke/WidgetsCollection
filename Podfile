@@ -8,6 +8,7 @@ target 'WidgetsCollection' do
   # Pods for WidgetsCollection
   pod 'SnapKit'
   pod 'IQKeyboardManagerSwift'
+  pod 'Tiercel'
 
   target 'WidgetsCollectionTests' do
     inherit! :search_paths
