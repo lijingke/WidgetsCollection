@@ -9,9 +9,15 @@
 import UIKit
 import Tiercel
 
+protocol PDFDownloadDelegate: NSObject {
+    func downloadCellDidClicked(_ cell: PDFCollectionCell)
+}
+
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
 class PDFDownloadView: UIView {
+    
+    weak var delegate: PDFDownloadDelegate?
     
 //    var sessionManager = appDelegate.sessionManager
     var sessionManager: SessionManager = {
@@ -27,7 +33,6 @@ class PDFDownloadView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
-        createData()
     }
     
     deinit {
@@ -40,6 +45,11 @@ class PDFDownloadView: UIView {
         collectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+    }
+    
+    func setupData(_ data: [[PDFEntity]]) {
+        dataSource = data
+        collectionView.reloadData()
     }
     
     required init?(coder: NSCoder) {
@@ -83,34 +93,10 @@ extension PDFDownloadView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PDFCollectionCell.reuseId, for: indexPath) as? PDFCollectionCell else {
             return UICollectionViewCell()
         }
-        let pdfEntity = dataSource[indexPath.section][indexPath.row]
-        let filePath = pdfEntity.filePath ?? ""
-        let task = self.sessionManager.fetchTask(filePath)
-        let hasDownload = sessionManager.cache.fileExists(fileName: task?.fileName ?? "")
-        dataSource[indexPath.section][indexPath.row].hasDownload = hasDownload
+        cell.indexPath = indexPath
         cell.entity = dataSource[indexPath.section][indexPath.row]
-        cell.tapBlock = {[weak self] () in
-            if cell.entity?.hasDownload == true {
-                let controller = self?.getFirstViewController()
-                let vc = PDFPreviewViewController()
-                vc.mainView.filePath = task?.filePath
-                vc.mainView.headInfoView.pdfInfo = pdfEntity
-                controller?.navigationController?.pushViewController(vc, animated: true)
-            }else {
-                let task = self?.sessionManager.download(cell.entity?.filePath ?? "")
-                
-                task?.progress(onMainQueue: true, { (task) in
-                    let progress = task.progress.fractionCompleted
-                    print("下载中，进度：\(progress)")
-                    cell.setProgress(progress: Float(progress))
-                }).success({ (task) in
-                    self?.collectionView.reloadData()
-                    print("下载完成")
-                }).failure({ (task) in
-                    print("下载失败")
-                })
-            }
-            
+        cell.someTapBlock = { [weak self] in
+            self?.delegate?.downloadCellDidClicked(cell)
         }
         cell.backgroundColor = .clear
         return cell
@@ -125,58 +111,5 @@ extension PDFDownloadView: UICollectionViewDataSource {
             fatalError("No Such Kind")
         }
     }
-    
-    func createData() {
-        var temArr = [PDFEntity]()
-        for i in 0...7 {
-            var entity = PDFEntity()
-            switch i {
-            case 0:
-                entity.name = "淋病诊断"
-                entity.indexInfo = "(WS 268—2019)"
-                entity.cover = "cover_lb"
-                entity.filePath = "http://dldir1.qq.com/qqfile/QQforMac/QQ_V4.2.4.dmg"
-            case 1:
-                entity.name = "梅毒诊断"
-                entity.indexInfo = "(WS 273—2018)"
-                entity.cover = "cover_md"
-                entity.filePath = "http://www.gov.cn/zhengce/pdfFile/2018_PDF.pdf"
-            case 2:
-                entity.name = "麻风病诊断"
-                entity.indexInfo = "(WS 291-2018)"
-                entity.cover = "cover_mfb"
-                entity.filePath = "http://www.gov.cn/zhengce/pdfFile/2017_PDF.pdf"
-            case 3:
-                entity.name = "软下疳诊断"
-                entity.indexInfo = "(WS_T 191-2017)"
-                entity.cover = "cover_rxg"
-                entity.filePath = "http://www.gov.cn/zhengce/pdfFile/2016_PDF.pdf"
-            case 4:
-                entity.name = "生殖器疱疹诊断"
-                entity.indexInfo = "(WS_T 236-2017)"
-                entity.cover = "cover_szqpz"
-                entity.filePath = "http://www.gov.cn/zhengce/pdfFile/2015_PDF.pdf"
-            case 5:
-                entity.name = "尖锐湿疣诊断"
-                entity.indexInfo = "(WST 235-2016)"
-                entity.cover = "cover_jrsy"
-                entity.filePath = "http://www.gov.cn/zhengce/pdfFile/2014_PDF.pdf"
-            case 6:
-                entity.name = "生殖道沙眼衣原体感染诊断"
-                entity.indexInfo = "(WS_T 513-2016)"
-                entity.cover = "cover_szdsyyyt"
-                entity.filePath = "http://www.gov.cn/zhengce/pdfFile/2013_PDF.pdf"
-            case 7:
-                entity.name = "性病性淋巴肉芽肿诊断"
-                entity.indexInfo = "(WS_T 237-2016)"
-                entity.cover = "cover_venereum"
-                entity.filePath = "http://www.gov.cn/zhengce/pdfFile/2012_PDF.pdf"
-            default:
-                break
-            }
-            temArr.append(entity)
-        }
-        dataSource = temArr.clump(by: 3)
-    }
-    
+        
 }

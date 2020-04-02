@@ -11,7 +11,9 @@ import UIKit
 class PDFCollectionCell: UICollectionViewCell {
     
     static let reuseId = "PDFCollectionCell"
-    var tapBlock:(()->())?
+    public var indexPath: IndexPath?
+    var tapBlock: (()->())?
+    var someTapBlock: (()->())?
     var entity: PDFEntity? {
         didSet {
             configureData()
@@ -34,7 +36,7 @@ class PDFCollectionCell: UICollectionViewCell {
             downView.isHidden = false
         }
         
-        tapBlock?()
+        someTapBlock?()
     }
     
     public func setProgress(progress: Float) {
