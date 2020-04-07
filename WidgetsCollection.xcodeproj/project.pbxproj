@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		012FEE795BDF44BB9D07CC34 /* Pods_WidgetsCollectionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F012B81D119305FCCD7116E9 /* Pods_WidgetsCollectionTests.framework */; };
 		3A7CBC7497EDF3ADE3A97B57 /* Pods_WidgetsCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F2F492D3EDE2C9F58FA43D5 /* Pods_WidgetsCollection.framework */; };
+		5455171F24372B48009C7378 /* GestureUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455171E24372B48009C7378 /* GestureUnlockViewController.swift */; };
+		5455172124372B87009C7378 /* GestureUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455172024372B87009C7378 /* GestureUnlockView.swift */; };
+		5455172324372E77009C7378 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455172224372E77009C7378 /* Const.swift */; };
+		545517252437301D009C7378 /* NumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545517242437301D009C7378 /* NumberButton.swift */; };
+		5455172724373975009C7378 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455172624373975009C7378 /* Tools.swift */; };
+		5455172924374448009C7378 /* HintTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455172824374448009C7378 /* HintTool.swift */; };
+		549A0094243C7A6B001FA23B /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A0093243C7A6B001FA23B /* UIViewController + Extension.swift */; };
+		549A0097243C7D2E001FA23B /* HomeDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A0096243C7D2E001FA23B /* HomeDataEntity.swift */; };
 		54C182962435C0B9008666E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182952435C0B9008666E4 /* AppDelegate.swift */; };
 		54C1829F2435C0BA008666E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54C1829E2435C0BA008666E4 /* Assets.xcassets */; };
 		54C182AD2435C0BA008666E4 /* WidgetsCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182AC2435C0BA008666E4 /* WidgetsCollectionTests.swift */; };
@@ -81,6 +89,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5455171E24372B48009C7378 /* GestureUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureUnlockViewController.swift; sourceTree = "<group>"; };
+		5455172024372B87009C7378 /* GestureUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureUnlockView.swift; sourceTree = "<group>"; };
+		5455172224372E77009C7378 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		545517242437301D009C7378 /* NumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberButton.swift; sourceTree = "<group>"; };
+		5455172624373975009C7378 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		5455172824374448009C7378 /* HintTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintTool.swift; sourceTree = "<group>"; };
+		549A0093243C7A6B001FA23B /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		549A0096243C7D2E001FA23B /* HomeDataEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataEntity.swift; sourceTree = "<group>"; };
 		54AA1175A97BE18CEA8170CF /* Pods-WidgetsCollectionUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetsCollectionUITests.debug.xcconfig"; path = "Target Support Files/Pods-WidgetsCollectionUITests/Pods-WidgetsCollectionUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		54C182922435C0B9008666E4 /* WidgetsCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WidgetsCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C182952435C0B9008666E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -187,6 +203,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5455171D24372AF5009C7378 /* GestureUnlock */ = {
+			isa = PBXGroup;
+			children = (
+				5455171E24372B48009C7378 /* GestureUnlockViewController.swift */,
+				5455172024372B87009C7378 /* GestureUnlockView.swift */,
+				545517242437301D009C7378 /* NumberButton.swift */,
+				5455172624373975009C7378 /* Tools.swift */,
+				5455172824374448009C7378 /* HintTool.swift */,
+			);
+			path = GestureUnlock;
+			sourceTree = "<group>";
+		};
+		549A0095243C7CFE001FA23B /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				549A0096243C7D2E001FA23B /* HomeDataEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		54C182892435C0B9008666E4 = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +248,7 @@
 		54C182942435C0B9008666E4 /* WidgetsCollection */ = {
 			isa = PBXGroup;
 			children = (
+				549A0095243C7CFE001FA23B /* Entity */,
 				54C182952435C0B9008666E4 /* AppDelegate.swift */,
 				54C182C52435C159008666E4 /* HomepageViewController.swift */,
 				54C1835D2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift */,
@@ -230,6 +267,7 @@
 				54C1834B2435C3B0008666E4 /* TagViewController.swift */,
 				54C1834F2435C3B1008666E4 /* UIViewRefreshViewController.swift */,
 				54C1834D2435C3B1008666E4 /* WaterFallsViewController.swift */,
+				5455171D24372AF5009C7378 /* GestureUnlock */,
 				54C182C72435C374008666E4 /* Download */,
 				54C182EE2435C374008666E4 /* Extension */,
 				54C183332435C391008666E4 /* Layout */,
@@ -237,6 +275,7 @@
 				54C1829E2435C0BA008666E4 /* Assets.xcassets */,
 				54C183622435C4CD008666E4 /* Launch Screen.storyboard */,
 				54C182A32435C0BA008666E4 /* Info.plist */,
+				5455172224372E77009C7378 /* Const.swift */,
 			);
 			path = WidgetsCollection;
 			sourceTree = "<group>";
@@ -306,6 +345,7 @@
 				54C182F12435C374008666E4 /* UIView+Extension.swift */,
 				54C182F22435C374008666E4 /* String+Extension.swift */,
 				54C182F32435C374008666E4 /* Sequence+Extension.swift */,
+				549A0093243C7A6B001FA23B /* UIViewController + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -599,25 +639,32 @@
 			files = (
 				54C183432435C3A4008666E4 /* ImageViewAnimationViewController.swift in Sources */,
 				54C183302435C374008666E4 /* ChatFilterTagCell.swift in Sources */,
+				549A0097243C7D2E001FA23B /* HomeDataEntity.swift in Sources */,
 				54C183392435C391008666E4 /* CardLayout.swift in Sources */,
+				5455172924374448009C7378 /* HintTool.swift in Sources */,
 				54C183552435C3B1008666E4 /* TagViewController.swift in Sources */,
 				54C1832A2435C374008666E4 /* UICollectionViewFlowLayout+Extension.swift in Sources */,
 				54C182962435C0B9008666E4 /* AppDelegate.swift in Sources */,
 				54C1831A2435C374008666E4 /* PDFPreviewViewController.swift in Sources */,
 				54C1831C2435C374008666E4 /* PDFEntity.swift in Sources */,
 				54C1835F2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift in Sources */,
+				549A0094243C7A6B001FA23B /* UIViewController + Extension.swift in Sources */,
+				5455172124372B87009C7378 /* GestureUnlockView.swift in Sources */,
 				54C183202435C374008666E4 /* PDFDownloadView.swift in Sources */,
 				54C183242435C374008666E4 /* UIView+Extension.swift in Sources */,
 				54C1835A2435C3B1008666E4 /* LayoutAndDelegateViewController.swift in Sources */,
+				5455171F24372B48009C7378 /* GestureUnlockViewController.swift in Sources */,
 				54C183582435C3B1008666E4 /* StretchyHeaderViewController.swift in Sources */,
 				54C1832B2435C374008666E4 /* tagViewModel.swift in Sources */,
 				54C183212435C374008666E4 /* PDFCollectionFooter.swift in Sources */,
 				54C1835E2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift in Sources */,
 				54C1831F2435C374008666E4 /* PDFPreviewView.swift in Sources */,
+				5455172324372E77009C7378 /* Const.swift in Sources */,
 				54C183272435C374008666E4 /* ChatFilterEventProtocol.swift in Sources */,
 				54C1831B2435C374008666E4 /* PDFDownloadViewController.swift in Sources */,
 				54C183532435C3B1008666E4 /* ScrollViewController.swift in Sources */,
 				54C183422435C3A4008666E4 /* CGAffineTransformViewController.swift in Sources */,
+				545517252437301D009C7378 /* NumberButton.swift in Sources */,
 				54C183262435C374008666E4 /* Sequence+Extension.swift in Sources */,
 				54C1833B2435C391008666E4 /* WaterFallsLayout.swift in Sources */,
 				54C183462435C3A4008666E4 /* DataManager.swift in Sources */,
@@ -632,6 +679,7 @@
 				54C183252435C374008666E4 /* String+Extension.swift in Sources */,
 				54C183292435C374008666E4 /* ChatSettingViewController.swift in Sources */,
 				54C1832E2435C374008666E4 /* FilterViewHeadCell.swift in Sources */,
+				5455172724373975009C7378 /* Tools.swift in Sources */,
 				54C183322435C374008666E4 /* UIImage+ Extension.swift in Sources */,
 				54C183382435C391008666E4 /* TagLayout.swift in Sources */,
 				54C183452435C3A4008666E4 /* CardLayoutViewController.swift in Sources */,

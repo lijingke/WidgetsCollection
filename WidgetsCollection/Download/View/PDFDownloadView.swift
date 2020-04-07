@@ -19,15 +19,6 @@ class PDFDownloadView: UIView {
     
     weak var delegate: PDFDownloadDelegate?
     
-//    var sessionManager = appDelegate.sessionManager
-    var sessionManager: SessionManager = {
-        var configuration = SessionConfiguration()
-        configuration.allowsCellularAccess = true
-        let manager = SessionManager("default", configuration: configuration, operationQueue: DispatchQueue(label: "com.Tiercel.SessionManager.operationQueue"))
-        return manager
-    }()
-
-    
     var dataSource: [[PDFEntity]] = [[PDFEntity]]()
     
     override init(frame: CGRect) {
@@ -35,8 +26,12 @@ class PDFDownloadView: UIView {
         configureUI()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     deinit {
-        print("leave")
+        print("View Leave")
     }
     
     fileprivate func configureUI() {
@@ -47,13 +42,9 @@ class PDFDownloadView: UIView {
         }
     }
     
-    func setupData(_ data: [[PDFEntity]]) {
+    public func setupData(_ data: [[PDFEntity]]) {
         dataSource = data
         collectionView.reloadData()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     lazy var collectionView: UICollectionView = {
@@ -93,9 +84,8 @@ extension PDFDownloadView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PDFCollectionCell.reuseId, for: indexPath) as? PDFCollectionCell else {
             return UICollectionViewCell()
         }
-        cell.indexPath = indexPath
         cell.entity = dataSource[indexPath.section][indexPath.row]
-        cell.someTapBlock = { [weak self] in
+        cell.tapBlock = { [weak self] in
             self?.delegate?.downloadCellDidClicked(cell)
         }
         cell.backgroundColor = .clear
@@ -111,5 +101,5 @@ extension PDFDownloadView: UICollectionViewDataSource {
             fatalError("No Such Kind")
         }
     }
-        
+    
 }

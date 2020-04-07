@@ -16,6 +16,7 @@ class HomepageViewController: UIViewController {
         // Do any additional setup after loading the view.
         configureNav()
         configureUI()
+        getDataSource()
     }
     
     fileprivate func configureNav() {
@@ -27,9 +28,114 @@ class HomepageViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false
     }
     
-    let headViewTitles = ["BASICS", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download"]
+    let headViewTitles = ["BASICS", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe"]
     
-    let dataSource: [[String]] = [["基础布局篇", "布局和代理篇"], ["卡片布局", "瀑布流布局", "可伸缩Header", "标签布局"], ["滚动视图"], ["CGAffineTransform", "UIView Animations - 01", "UIView Animations - 02", "UIImageView Animations"], ["CALayer"], ["SetNeedsLayout"], ["Location"], ["NotificationCenterDemo"], ["PDF Download", "XMessage"]]
+    //    let dataSource: [[String]] = [["基础布局篇", "布局和代理篇"], ["卡片布局", "瀑布流布局", "可伸缩Header", "标签布局"], ["滚动视图"], ["CGAffineTransform", "UIView Animations - 01", "UIView Animations - 02", "UIImageView Animations"], ["CALayer"], ["SetNeedsLayout"], ["Location"], ["NotificationCenterDemo"], ["PDF Download", "XMessage"], ["手势解锁"]]
+    var dataSource: [[HomeDataEntity]] = []
+    
+    
+    fileprivate func getDataSource() {
+        
+        for section in 0...headViewTitles.count {
+            switch section {
+            case 0:
+                let dictionary: [[Int : String]] = [[0 : "基础布局篇", 1 : "BasicViewController", 2 : "pop"], [0 : "布局和代理篇", 1 : "LayoutAndDelegateViewController", 2 : "pop"]]
+                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
+                    var entity = HomeDataEntity()
+                    entity.cellName = dic[0]
+                    entity.className = dic[1]
+                    entity.pushType = dic[2]
+                    return entity
+                }
+                dataSource.append(entities)
+            case 1:
+                let dictionary: [[Int : String]] = [[0 : "卡片布局", 1 : "CardLayoutViewController", 2 : "pop"], [0 : "瀑布流布局", 1 : "WaterFallsViewController", 2 : "pop"], [0 : "可伸缩Header", 1 : "StretchyHeaderViewController", 2 : "pop"], [0 : "标签布局", 1 : "TagViewController"]]
+                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
+                    var entity = HomeDataEntity()
+                    entity.cellName = dic[0]
+                    entity.className = dic[1]
+                    entity.pushType = dic[2]
+                    return entity
+                }
+                dataSource.append(entities)
+            case 2:
+                let dictionary: [[Int : String]] = [[0 : "滚动视图", 1 : "ScrollViewController"]]
+                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
+                    var entity = HomeDataEntity()
+                    entity.cellName = dic[0]
+                    entity.className = dic[1]
+                    return entity
+                }
+                dataSource.append(entities)
+            case 3:
+                let dictionary: [[Int : String]] = [[0 : "CGAffineTransform", 1 : "CGAffineTransformViewController"], [0 : "UIView Animations - 01", 1 : "AnimationsExamplesOneViewController"], [0 : "UIView Animations - 02", 1 : "AnimationsExamplesTwoViewController"], [0 : "UIImageView Animations", 1 : "ImageViewAnimationViewController"]]
+                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
+                    var entity = HomeDataEntity()
+                    entity.cellName = dic[0]
+                    entity.className = dic[1]
+                    return entity
+                }
+                dataSource.append(entities)
+            case 4:
+                let dictionary: [[Int : String]] = [[0 : "CALayer", 1 : "CALayerViewController"]]
+                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
+                    var entity = HomeDataEntity()
+                    entity.cellName = dic[0]
+                    entity.className = dic[1]
+                    return entity
+                }
+                dataSource.append(entities)
+            case 5:
+                let dictionary: [[Int : String]] = [[0 : "SetNeedsLayout", 1 : "UIViewRefreshViewController"]]
+                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
+                    var entity = HomeDataEntity()
+                    entity.cellName = dic[0]
+                    entity.className = dic[1]
+                    return entity
+                }
+                dataSource.append(entities)
+            case 6:
+                let dictionary: [[Int : String]] = [[0 : "Location", 1 : "GetLocationViewController"]]
+                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
+                    var entity = HomeDataEntity()
+                    entity.cellName = dic[0]
+                    entity.className = dic[1]
+                    return entity
+                }
+                dataSource.append(entities)
+            case 7:
+                let dictionary: [[Int : String]] = [[0 : "NotificationCenterDemo", 1 : "NotificationCenterViewController"]]
+                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
+                    var entity = HomeDataEntity()
+                    entity.cellName = dic[0]
+                    entity.className = dic[1]
+                    return entity
+                }
+                dataSource.append(entities)
+            case 8:
+                let dictionary: [[Int : String]] = [[0 : "PDF Download", 1 : "PDFDownloadViewController"], [0 : "XMessage", 1 : "ChatFilterViewController"]]
+                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
+                    var entity = HomeDataEntity()
+                    entity.cellName = dic[0]
+                    entity.className = dic[1]
+                    return entity
+                }
+                dataSource.append(entities)
+            case 9:
+                let dictionary: [[Int : String]] = [[0 : "手势解锁", 1 : "GestureUnlockViewController"]]
+                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
+                    var entity = HomeDataEntity()
+                    entity.cellName = dic[0]
+                    entity.className = dic[1]
+                    return entity
+                }
+                dataSource.append(entities)
+            default:
+                break
+            }
+        }
+        tableView.reloadData()
+    }
     
     fileprivate func configureUI() {
         view.addSubview(tableView)
@@ -57,132 +163,18 @@ extension HomepageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let title = dataSource[indexPath.section][indexPath.row]
-        
-        if indexPath.section == 0 {
-            switch indexPath.row {
-            case 0:
-                let vc = BasicViewController()
+        let entity = dataSource[indexPath.section][indexPath.row]
+        let className = entity.className ?? ""
+        if entity.pushType == "pop" {
+            if let vc = self.getVCFromString(className) {
                 DispatchQueue.main.async {[weak self] in
                     self?.present(vc, animated: true, completion: nil)
                 }
-            case 1:
-                let vc = LayoutAndDelegateViewController()
-                DispatchQueue.main.async {[weak self] in
-                    self?.present(vc, animated: true, completion: nil)
-                }
-            default:
-                break
             }
-            
-        }else if indexPath.section == 1 {
-            
-            switch indexPath.row {
-            case 0:
-                let vc = CardLayoutViewController()
-                DispatchQueue.main.async {[weak self] in
-                    self?.present(vc, animated: true, completion: nil)
-                }
-            case 1:
-                let vc = WaterFallsViewController()
-                DispatchQueue.main.async {[weak self] in
-                    self?.present(vc, animated: true, completion: nil)
-                }
-            case 2:
-                let vc = StretchyHeaderViewController()
-                DispatchQueue.main.async {[weak self] in
-                    self?.present(vc, animated: true, completion: nil)
-                }
-            case 3:
-                
-                let vc = TagViewController()
-                vc.navigationItem.title = title
+        }else {
+            if let vc = self.getVCFromString(className) {
+                vc.navigationItem.title = entity.cellName
                 navigationController?.pushViewController(vc, animated: true)
-            default:
-                break
-            }
-        }else if indexPath.section == 2 {
-            switch indexPath.row {
-            case 0:
-                let vc = ScrollViewController()
-                vc.navigationItem.title = "ScrollView"
-                self.navigationController?.pushViewController(vc, animated: true)
-            default:
-                break
-            }
-        }else if indexPath.section == 3 {
-            switch indexPath.row {
-            case 0:
-                let vc = CGAffineTransformViewController()
-                vc.navigationItem.title = "CGAffineTransform"
-                self.navigationController?.pushViewController(vc, animated: true)
-            case 1:
-                let vc = AnimationsExamplesOneViewController()
-                vc.title = title
-                self.navigationController?.pushViewController(vc, animated: true)
-            case 2:
-                let vc = AnimationsExamplesTwoViewController()
-                vc.title = title
-                self.navigationController?.pushViewController(vc, animated: true)
-            case 3:
-                let vc = ImageViewAnimationViewController()
-                vc.title = title
-                self.navigationController?.pushViewController(vc, animated: true)
-            default:
-                break
-            }
-            
-        }else if indexPath.section == 4 {
-            switch indexPath.row {
-            case 0:
-                let vc = CALayerViewController()
-                vc.title = title
-                self.navigationController?.pushViewController(vc, animated: true)
-            default:
-                break
-            }
-            
-        }else if indexPath.section == 5 {
-            switch indexPath.row {
-            case 0:
-                let vc = UIViewRefreshViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-            default:
-                break
-            }
-        }else if indexPath.section == 6 {
-            switch indexPath.row {
-            case 0:
-                let vc = GetLocationViewController()
-                vc.navigationItem.title = "GetLocationDemo"
-                navigationController?.pushViewController(vc, animated: true)
-                break
-            default:
-                break
-            }
-        }else if indexPath.section == 7 {
-            switch indexPath.row {
-            case 0:
-                let vc = NotificationCenterViewController()
-                vc.navigationItem.title = "NotificationCenterDemo"
-                navigationController?.pushViewController(vc, animated: true)
-                break
-            default:
-                break
-            }
-        }else if indexPath.section == 8 {
-            switch indexPath.row {
-            case 0:
-                let vc = PDFDownloadViewController()
-                vc.navigationItem.title = "PDF Download"
-                navigationController?.pushViewController(vc, animated: true)
-                break
-            case 1:
-                let vc = ChatFilterViewController()
-                vc.navigationItem.title = "筛选"
-                navigationController?.pushViewController(vc, animated: true)
-            default:
-                break
             }
         }
     }
@@ -200,7 +192,7 @@ extension HomepageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = dataSource[indexPath.section][indexPath.row]
+        cell.textLabel?.text = dataSource[indexPath.section][indexPath.row].cellName
         return cell
     }
     

@@ -15,6 +15,7 @@ class PDFDownloadViewController: UIViewController {
     fileprivate var sessionManager: SessionManager = {
         var configuration = SessionConfiguration()
         configuration.allowsCellularAccess = true
+        configuration.timeoutIntervalForRequest = 10
         let manager = SessionManager("default", configuration: configuration, operationQueue: DispatchQueue(label: "com.Tiercel.SessionManager.operationQueue"))
         return manager
     }()
@@ -23,6 +24,7 @@ class PDFDownloadViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         creatData()
+        addListener()
     }
     
     deinit {
@@ -118,6 +120,7 @@ extension PDFDownloadViewController {
     
 }
 
+// MARK: - PDFDownloadDelegate
 extension PDFDownloadViewController: PDFDownloadDelegate {
     func downloadCellDidClicked(_ cell: PDFCollectionCell) {
         let data = cell.entity
@@ -129,23 +132,36 @@ extension PDFDownloadViewController: PDFDownloadDelegate {
             vc.mainView.headInfoView.pdfInfo = data
             navigationController?.pushViewController(vc, animated: true)
         }else {
-            let task = sessionManager.download(data?.filePath ?? "")
-            task?.progress(onMainQueue: true, { (task) in
+            
+            let downloadTask = sessionManager.download(data?.filePath ?? "")
+            
+            downloadTask?.progress(onMainQueue: true, handler: { (task) in
                 let progress = task.progress.fractionCompleted
                 print("下载中，进度：\(progress)")
                 cell.setProgress(progress: Float(progress))
-            }).success({ [weak self] (task) in
-                let result = self?.checkHasDownload(cell.entity?.filePath ?? "")
-                if let indexPath = cell.indexPath {
-                    self?.mainView.dataSource[indexPath.section][indexPath.row].hasDownload = result
-                    cell.entity = self?.mainView.dataSource[indexPath.section][indexPath.row]
+            }).completion(handler: { [weak self] (task) in
+                if task.status == .succeeded {
+                    // 下载成功
+                    let result = self?.checkHasDownload(cell.entity?.filePath ?? "")
+                    cell.entity?.hasDownload = result
+                    print("下载完成")
+                } else {
+                    print("下载失败")
+                    // 其他状态
                 }
-                print("下载完成")
-            }).failure({ (task) in
-                print("下载失败")
             })
+            
         }
         
     }
     
+}
+
+extension PDFDownloadViewController {
+    fileprivate func addListener() {
+        NotificationCenter.default.addObserver(forName: DownloadTask.didCompleteNotification, object: nil, queue: nil) { (notification) in
+            guard let task = notification.downloadTask else { return }
+            print(task.status)
+        }
+    }
 }
