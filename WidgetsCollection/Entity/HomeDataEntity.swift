@@ -12,4 +12,10 @@ struct HomeDataEntity {
     var cellName: String?
     var className: String?
     var pushType: String? = "navi"
+    
+    init(_ dic: [Int: String]) {
+        cellName = dic[0]
+        className = dic[1]
+        pushType = dic[2]
+    }
 }

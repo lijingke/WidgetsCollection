@@ -28,107 +28,62 @@ class HomepageViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false
     }
     
-    let headViewTitles = ["BASICS", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe"]
+    var headViewTitles: [String] = []
     
-    //    let dataSource: [[String]] = [["基础布局篇", "布局和代理篇"], ["卡片布局", "瀑布流布局", "可伸缩Header", "标签布局"], ["滚动视图"], ["CGAffineTransform", "UIView Animations - 01", "UIView Animations - 02", "UIImageView Animations"], ["CALayer"], ["SetNeedsLayout"], ["Location"], ["NotificationCenterDemo"], ["PDF Download", "XMessage"], ["手势解锁"]]
     var dataSource: [[HomeDataEntity]] = []
     
-    
     fileprivate func getDataSource() {
+        
+        headViewTitles = ["Basic UI", "CollectionView Basics", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe"]
+        var dicArray: [[Int : String]] = []
         
         for section in 0...headViewTitles.count {
             switch section {
             case 0:
-                let dictionary: [[Int : String]] = [[0 : "基础布局篇", 1 : "BasicViewController", 2 : "pop"], [0 : "布局和代理篇", 1 : "LayoutAndDelegateViewController", 2 : "pop"]]
-                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
-                    var entity = HomeDataEntity()
-                    entity.cellName = dic[0]
-                    entity.className = dic[1]
-                    entity.pushType = dic[2]
-                    return entity
-                }
+                dicArray = [[0 : "Tabbar", 1 : "TabbarViewController"]]
+                let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
+                break
             case 1:
-                let dictionary: [[Int : String]] = [[0 : "卡片布局", 1 : "CardLayoutViewController", 2 : "pop"], [0 : "瀑布流布局", 1 : "WaterFallsViewController", 2 : "pop"], [0 : "可伸缩Header", 1 : "StretchyHeaderViewController", 2 : "pop"], [0 : "标签布局", 1 : "TagViewController"]]
-                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
-                    var entity = HomeDataEntity()
-                    entity.cellName = dic[0]
-                    entity.className = dic[1]
-                    entity.pushType = dic[2]
-                    return entity
-                }
+                dicArray = [[0 : "基础布局篇", 1 : "BasicViewController", 2 : "pop"], [0 : "布局和代理篇", 1 : "LayoutAndDelegateViewController", 2 : "pop"]]
+                let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 2:
-                let dictionary: [[Int : String]] = [[0 : "滚动视图", 1 : "ScrollViewController"]]
-                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
-                    var entity = HomeDataEntity()
-                    entity.cellName = dic[0]
-                    entity.className = dic[1]
-                    return entity
-                }
+                dicArray = [[0 : "卡片布局", 1 : "CardLayoutViewController", 2 : "pop"], [0 : "瀑布流布局", 1 : "WaterFallsViewController", 2 : "pop"], [0 : "可伸缩Header", 1 : "StretchyHeaderViewController", 2 : "pop"], [0 : "标签布局", 1 : "TagViewController"]]
+                let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 3:
-                let dictionary: [[Int : String]] = [[0 : "CGAffineTransform", 1 : "CGAffineTransformViewController"], [0 : "UIView Animations - 01", 1 : "AnimationsExamplesOneViewController"], [0 : "UIView Animations - 02", 1 : "AnimationsExamplesTwoViewController"], [0 : "UIImageView Animations", 1 : "ImageViewAnimationViewController"]]
-                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
-                    var entity = HomeDataEntity()
-                    entity.cellName = dic[0]
-                    entity.className = dic[1]
-                    return entity
-                }
+                dicArray = [[0 : "滚动视图", 1 : "ScrollViewController"]]
+                let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 4:
-                let dictionary: [[Int : String]] = [[0 : "CALayer", 1 : "CALayerViewController"]]
-                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
-                    var entity = HomeDataEntity()
-                    entity.cellName = dic[0]
-                    entity.className = dic[1]
-                    return entity
-                }
+                dicArray = [[0 : "CGAffineTransform", 1 : "CGAffineTransformViewController"], [0 : "UIView Animations - 01", 1 : "AnimationsExamplesOneViewController"], [0 : "UIView Animations - 02", 1 : "AnimationsExamplesTwoViewController"], [0 : "UIImageView Animations", 1 : "ImageViewAnimationViewController"]]
+                let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 5:
-                let dictionary: [[Int : String]] = [[0 : "SetNeedsLayout", 1 : "UIViewRefreshViewController"]]
-                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
-                    var entity = HomeDataEntity()
-                    entity.cellName = dic[0]
-                    entity.className = dic[1]
-                    return entity
-                }
+                dicArray = [[0 : "CALayer", 1 : "CALayerViewController"]]
+                let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 6:
-                let dictionary: [[Int : String]] = [[0 : "Location", 1 : "GetLocationViewController"]]
-                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
-                    var entity = HomeDataEntity()
-                    entity.cellName = dic[0]
-                    entity.className = dic[1]
-                    return entity
-                }
+                dicArray = [[0 : "SetNeedsLayout", 1 : "UIViewRefreshViewController"]]
+                let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 7:
-                let dictionary: [[Int : String]] = [[0 : "NotificationCenterDemo", 1 : "NotificationCenterViewController"]]
-                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
-                    var entity = HomeDataEntity()
-                    entity.cellName = dic[0]
-                    entity.className = dic[1]
-                    return entity
-                }
+                dicArray = [[0 : "Location", 1 : "GetLocationViewController"]]
+                let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 8:
-                let dictionary: [[Int : String]] = [[0 : "PDF Download", 1 : "PDFDownloadViewController"], [0 : "XMessage", 1 : "ChatFilterViewController"]]
-                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
-                    var entity = HomeDataEntity()
-                    entity.cellName = dic[0]
-                    entity.className = dic[1]
-                    return entity
-                }
+                dicArray = [[0 : "NotificationCenterDemo", 1 : "NotificationCenterViewController"]]
+                let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 9:
-                let dictionary: [[Int : String]] = [[0 : "手势解锁", 1 : "GestureUnlockViewController"]]
-                let entities = dictionary.compactMap { (dic) -> HomeDataEntity? in
-                    var entity = HomeDataEntity()
-                    entity.cellName = dic[0]
-                    entity.className = dic[1]
-                    return entity
-                }
+                dicArray = [[0 : "PDF Download", 1 : "PDFDownloadViewController"], [0 : "XMessage", 1 : "ChatFilterViewController"]]
+                let entities = dicArray.compactMap{HomeDataEntity($0)}
+                dataSource.append(entities)
+            case 10:
+                dicArray = [[0 : "手势解锁", 1 : "GestureUnlockViewController"]]
+                
+                let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             default:
                 break
