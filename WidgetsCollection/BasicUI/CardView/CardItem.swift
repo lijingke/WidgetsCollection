@@ -69,6 +69,7 @@ class CardItem: UIView {
     }
     
     @objc private func panGesture(_ pan: UIPanGestureRecognizer) {
+        guard isPan else { return }
         if pan.state == .changed {
             let movePoint = pan.translation(in: self)
             isRight = movePoint.x > 0
