@@ -15,10 +15,14 @@
 		545517252437301D009C7378 /* NumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545517242437301D009C7378 /* NumberButton.swift */; };
 		5455172724373975009C7378 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455172624373975009C7378 /* Tools.swift */; };
 		5455172924374448009C7378 /* HintTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455172824374448009C7378 /* HintTool.swift */; };
-		546970EF243D6BCC00F2DB95 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546970EE243D6BCC00F2DB95 /* TabbarViewController.swift */; };
 		546970F1243D6C3100F2DB95 /* TabbarSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546970F0243D6C3100F2DB95 /* TabbarSubViewController.swift */; };
+		546970F3243D7C1E00F2DB95 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */; };
 		549A0094243C7A6B001FA23B /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A0093243C7A6B001FA23B /* UIViewController + Extension.swift */; };
 		549A0097243C7D2E001FA23B /* HomeDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A0096243C7D2E001FA23B /* HomeDataEntity.swift */; };
+		54B4D05E243DC39500F629D8 /* DrawableCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B4D05D243DC39500F629D8 /* DrawableCardViewController.swift */; };
+		54B4D061243DD19300F629D8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B4D060243DD19300F629D8 /* CardView.swift */; };
+		54B4D063243DD2D900F629D8 /* CardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B4D062243DD2D900F629D8 /* CardItem.swift */; };
+		54B4D065243DDFFF00F629D8 /* ImageCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B4D064243DDFFF00F629D8 /* ImageCardItem.swift */; };
 		54C182962435C0B9008666E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182952435C0B9008666E4 /* AppDelegate.swift */; };
 		54C1829F2435C0BA008666E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54C1829E2435C0BA008666E4 /* Assets.xcassets */; };
 		54C182AD2435C0BA008666E4 /* WidgetsCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C182AC2435C0BA008666E4 /* WidgetsCollectionTests.swift */; };
@@ -70,6 +74,13 @@
 		54C1835E2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1835C2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift */; };
 		54C1835F2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1835D2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift */; };
 		54C183632435C4CD008666E4 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C183622435C4CD008666E4 /* Launch Screen.storyboard */; };
+		54C90E39243ED6EC00D058CC /* AccessControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C90E38243ED6EC00D058CC /* AccessControl.swift */; };
+		54F18DC3243EC0FE00AB81A1 /* img_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F18DBD243EC0FE00AB81A1 /* img_04.png */; };
+		54F18DC4243EC0FE00AB81A1 /* img_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F18DBE243EC0FE00AB81A1 /* img_05.png */; };
+		54F18DC5243EC0FE00AB81A1 /* img_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F18DBF243EC0FE00AB81A1 /* img_02.png */; };
+		54F18DC6243EC0FE00AB81A1 /* img_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F18DC0243EC0FE00AB81A1 /* img_03.png */; };
+		54F18DC7243EC0FE00AB81A1 /* img_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F18DC1243EC0FE00AB81A1 /* img_01.png */; };
+		54F18DC8243EC0FE00AB81A1 /* img_00.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F18DC2243EC0FE00AB81A1 /* img_00.png */; };
 		78BA85FEC855485A4A230463 /* Pods_WidgetsCollectionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CBF11391E2BE566A34B7082 /* Pods_WidgetsCollectionUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,11 +108,15 @@
 		545517242437301D009C7378 /* NumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberButton.swift; sourceTree = "<group>"; };
 		5455172624373975009C7378 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		5455172824374448009C7378 /* HintTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintTool.swift; sourceTree = "<group>"; };
-		546970EE243D6BCC00F2DB95 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		546970F0243D6C3100F2DB95 /* TabbarSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarSubViewController.swift; sourceTree = "<group>"; };
+		546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
 		549A0093243C7A6B001FA23B /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		549A0096243C7D2E001FA23B /* HomeDataEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataEntity.swift; sourceTree = "<group>"; };
 		54AA1175A97BE18CEA8170CF /* Pods-WidgetsCollectionUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetsCollectionUITests.debug.xcconfig"; path = "Target Support Files/Pods-WidgetsCollectionUITests/Pods-WidgetsCollectionUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		54B4D05D243DC39500F629D8 /* DrawableCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableCardViewController.swift; sourceTree = "<group>"; };
+		54B4D060243DD19300F629D8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		54B4D062243DD2D900F629D8 /* CardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItem.swift; sourceTree = "<group>"; };
+		54B4D064243DDFFF00F629D8 /* ImageCardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardItem.swift; sourceTree = "<group>"; };
 		54C182922435C0B9008666E4 /* WidgetsCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WidgetsCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C182952435C0B9008666E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54C1829E2435C0BA008666E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -159,6 +174,13 @@
 		54C1835C2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationsExamplesTwoViewController.swift; sourceTree = "<group>"; };
 		54C1835D2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationsExamplesOneViewController.swift; sourceTree = "<group>"; };
 		54C183622435C4CD008666E4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		54C90E38243ED6EC00D058CC /* AccessControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessControl.swift; sourceTree = "<group>"; };
+		54F18DBD243EC0FE00AB81A1 /* img_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_04.png; sourceTree = "<group>"; };
+		54F18DBE243EC0FE00AB81A1 /* img_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_05.png; sourceTree = "<group>"; };
+		54F18DBF243EC0FE00AB81A1 /* img_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_02.png; sourceTree = "<group>"; };
+		54F18DC0243EC0FE00AB81A1 /* img_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_03.png; sourceTree = "<group>"; };
+		54F18DC1243EC0FE00AB81A1 /* img_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_01.png; sourceTree = "<group>"; };
+		54F18DC2243EC0FE00AB81A1 /* img_00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_00.png; sourceTree = "<group>"; };
 		6F2F492D3EDE2C9F58FA43D5 /* Pods_WidgetsCollection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WidgetsCollection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		700DB073F4783A344D871ECF /* Pods-WidgetsCollectionUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetsCollectionUITests.release.xcconfig"; path = "Target Support Files/Pods-WidgetsCollectionUITests/Pods-WidgetsCollectionUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8CBF11391E2BE566A34B7082 /* Pods_WidgetsCollectionUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WidgetsCollectionUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,8 +244,10 @@
 		546970ED243D6BC000F2DB95 /* BasicUI */ = {
 			isa = PBXGroup;
 			children = (
-				546970EE243D6BCC00F2DB95 /* TabbarViewController.swift */,
+				546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */,
 				546970F0243D6C3100F2DB95 /* TabbarSubViewController.swift */,
+				54B4D05D243DC39500F629D8 /* DrawableCardViewController.swift */,
+				54B4D05F243DD18800F629D8 /* CardView */,
 			);
 			path = BasicUI;
 			sourceTree = "<group>";
@@ -234,6 +258,16 @@
 				549A0096243C7D2E001FA23B /* HomeDataEntity.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		54B4D05F243DD18800F629D8 /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				54B4D062243DD2D900F629D8 /* CardItem.swift */,
+				54B4D060243DD19300F629D8 /* CardView.swift */,
+				54B4D064243DDFFF00F629D8 /* ImageCardItem.swift */,
+			);
+			path = CardView;
 			sourceTree = "<group>";
 		};
 		54C182892435C0B9008666E4 = {
@@ -261,6 +295,7 @@
 		54C182942435C0B9008666E4 /* WidgetsCollection */ = {
 			isa = PBXGroup;
 			children = (
+				54F18DBC243EC0FE00AB81A1 /* Resource */,
 				549A0095243C7CFE001FA23B /* Entity */,
 				54C182952435C0B9008666E4 /* AppDelegate.swift */,
 				54C182C52435C159008666E4 /* HomepageViewController.swift */,
@@ -280,6 +315,7 @@
 				54C1834B2435C3B0008666E4 /* TagViewController.swift */,
 				54C1834F2435C3B1008666E4 /* UIViewRefreshViewController.swift */,
 				54C1834D2435C3B1008666E4 /* WaterFallsViewController.swift */,
+				54C90E38243ED6EC00D058CC /* AccessControl.swift */,
 				546970ED243D6BC000F2DB95 /* BasicUI */,
 				5455171D24372AF5009C7378 /* GestureUnlock */,
 				54C182C72435C374008666E4 /* Download */,
@@ -418,6 +454,19 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
+		54F18DBC243EC0FE00AB81A1 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				54F18DC2243EC0FE00AB81A1 /* img_00.png */,
+				54F18DC1243EC0FE00AB81A1 /* img_01.png */,
+				54F18DBF243EC0FE00AB81A1 /* img_02.png */,
+				54F18DC0243EC0FE00AB81A1 /* img_03.png */,
+				54F18DBD243EC0FE00AB81A1 /* img_04.png */,
+				54F18DBE243EC0FE00AB81A1 /* img_05.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		BF4D08A01B260C335C906A3E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,6 +589,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				54C183632435C4CD008666E4 /* Launch Screen.storyboard in Resources */,
+				54F18DC8243EC0FE00AB81A1 /* img_00.png in Resources */,
+				54F18DC5243EC0FE00AB81A1 /* img_02.png in Resources */,
+				54F18DC6243EC0FE00AB81A1 /* img_03.png in Resources */,
+				54F18DC7243EC0FE00AB81A1 /* img_01.png in Resources */,
+				54F18DC3243EC0FE00AB81A1 /* img_04.png in Resources */,
+				54F18DC4243EC0FE00AB81A1 /* img_05.png in Resources */,
 				54C1829F2435C0BA008666E4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -653,7 +708,10 @@
 			files = (
 				54C183432435C3A4008666E4 /* ImageViewAnimationViewController.swift in Sources */,
 				54C183302435C374008666E4 /* ChatFilterTagCell.swift in Sources */,
+				54B4D063243DD2D900F629D8 /* CardItem.swift in Sources */,
+				54B4D065243DDFFF00F629D8 /* ImageCardItem.swift in Sources */,
 				549A0097243C7D2E001FA23B /* HomeDataEntity.swift in Sources */,
+				54C90E39243ED6EC00D058CC /* AccessControl.swift in Sources */,
 				54C183392435C391008666E4 /* CardLayout.swift in Sources */,
 				5455172924374448009C7378 /* HintTool.swift in Sources */,
 				54C183552435C3B1008666E4 /* TagViewController.swift in Sources */,
@@ -661,13 +719,13 @@
 				54C182962435C0B9008666E4 /* AppDelegate.swift in Sources */,
 				54C1831A2435C374008666E4 /* PDFPreviewViewController.swift in Sources */,
 				54C1831C2435C374008666E4 /* PDFEntity.swift in Sources */,
+				54B4D05E243DC39500F629D8 /* DrawableCardViewController.swift in Sources */,
 				54C1835F2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift in Sources */,
 				549A0094243C7A6B001FA23B /* UIViewController + Extension.swift in Sources */,
 				5455172124372B87009C7378 /* GestureUnlockView.swift in Sources */,
 				54C183202435C374008666E4 /* PDFDownloadView.swift in Sources */,
 				54C183242435C374008666E4 /* UIView+Extension.swift in Sources */,
 				54C1835A2435C3B1008666E4 /* LayoutAndDelegateViewController.swift in Sources */,
-				546970EF243D6BCC00F2DB95 /* TabbarViewController.swift in Sources */,
 				5455171F24372B48009C7378 /* GestureUnlockViewController.swift in Sources */,
 				54C183582435C3B1008666E4 /* StretchyHeaderViewController.swift in Sources */,
 				54C1832B2435C374008666E4 /* tagViewModel.swift in Sources */,
@@ -701,10 +759,12 @@
 				54C183522435C3B1008666E4 /* NotificationCenterViewController.swift in Sources */,
 				54C1831E2435C374008666E4 /* PDFInfoHeadView.swift in Sources */,
 				54C1832F2435C374008666E4 /* CommonAddCell.swift in Sources */,
+				54B4D061243DD19300F629D8 /* CardView.swift in Sources */,
 				546970F1243D6C3100F2DB95 /* TabbarSubViewController.swift in Sources */,
 				54C1831D2435C374008666E4 /* PDFCollectionCell.swift in Sources */,
 				54C183472435C3A4008666E4 /* BasicViewController.swift in Sources */,
 				54C183572435C3B1008666E4 /* WaterFallsViewController.swift in Sources */,
+				546970F3243D7C1E00F2DB95 /* MainTabbarController.swift in Sources */,
 				54C183282435C374008666E4 /* ChatFilterViewController.swift in Sources */,
 				54C183442435C3A4008666E4 /* CALayerViewController.swift in Sources */,
 				54C183542435C3B1008666E4 /* GetLocationViewController.swift in Sources */,

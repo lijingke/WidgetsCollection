@@ -34,54 +34,54 @@ class HomepageViewController: UIViewController {
     
     fileprivate func getDataSource() {
         
-        headViewTitles = ["Basic UI", "CollectionView Basics", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe"]
-        var dicArray: [[Int : String]] = []
+        headViewTitles = ["UI Components", "CollectionView Basics", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe"]
+        var dicArray: [[CellInfoEnum : String]] = []
         
         for section in 0...headViewTitles.count {
             switch section {
             case 0:
-                dicArray = [[0 : "Tabbar", 1 : "TabbarViewController"]]
+                dicArray = [[.cellName : "Tabbar", .className : "MainTabbarController"], [.cellName : "DrawableCard", .className : "DrawableCardViewController"]]
                 let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
                 break
             case 1:
-                dicArray = [[0 : "基础布局篇", 1 : "BasicViewController", 2 : "pop"], [0 : "布局和代理篇", 1 : "LayoutAndDelegateViewController", 2 : "pop"]]
+                dicArray = [[.cellName : "基础布局篇", .className : "BasicViewController", .pushType : "pop"], [.cellName : "布局和代理篇", .className : "LayoutAndDelegateViewController", .pushType : "pop"]]
                 let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 2:
-                dicArray = [[0 : "卡片布局", 1 : "CardLayoutViewController", 2 : "pop"], [0 : "瀑布流布局", 1 : "WaterFallsViewController", 2 : "pop"], [0 : "可伸缩Header", 1 : "StretchyHeaderViewController", 2 : "pop"], [0 : "标签布局", 1 : "TagViewController"]]
+                dicArray = [[.cellName : "卡片布局", .className : "CardLayoutViewController", .pushType : "pop"], [.cellName : "瀑布流布局", .className : "WaterFallsViewController", .pushType : "pop"], [.cellName : "可伸缩Header", .className : "StretchyHeaderViewController", .pushType : "pop"], [.cellName : "标签布局", .className : "TagViewController"]]
                 let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 3:
-                dicArray = [[0 : "滚动视图", 1 : "ScrollViewController"]]
+                dicArray = [[.cellName : "滚动视图", .className : "ScrollViewController"]]
                 let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 4:
-                dicArray = [[0 : "CGAffineTransform", 1 : "CGAffineTransformViewController"], [0 : "UIView Animations - 01", 1 : "AnimationsExamplesOneViewController"], [0 : "UIView Animations - 02", 1 : "AnimationsExamplesTwoViewController"], [0 : "UIImageView Animations", 1 : "ImageViewAnimationViewController"]]
+                dicArray = [[.cellName : "CGAffineTransform", .className : "CGAffineTransformViewController"], [.cellName : "UIView Animations - 01", .className : "AnimationsExamplesOneViewController"], [.cellName : "UIView Animations - 02", .className : "AnimationsExamplesTwoViewController"], [.cellName : "UIImageView Animations", .className : "ImageViewAnimationViewController"]]
                 let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 5:
-                dicArray = [[0 : "CALayer", 1 : "CALayerViewController"]]
+                dicArray = [[.cellName : "CALayer", .className : "CALayerViewController"]]
                 let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 6:
-                dicArray = [[0 : "SetNeedsLayout", 1 : "UIViewRefreshViewController"]]
+                dicArray = [[.cellName : "SetNeedsLayout", .className : "UIViewRefreshViewController"]]
                 let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 7:
-                dicArray = [[0 : "Location", 1 : "GetLocationViewController"]]
+                dicArray = [[.cellName : "Location", .className : "GetLocationViewController"]]
                 let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 8:
-                dicArray = [[0 : "NotificationCenterDemo", 1 : "NotificationCenterViewController"]]
+                dicArray = [[.cellName : "NotificationCenterDemo", .className : "NotificationCenterViewController"]]
                 let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 9:
-                dicArray = [[0 : "PDF Download", 1 : "PDFDownloadViewController"], [0 : "XMessage", 1 : "ChatFilterViewController"]]
+                dicArray = [[.cellName : "PDF Download", .className : "PDFDownloadViewController"], [.cellName : "XMessage", .className : "ChatFilterViewController"]]
                 let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
             case 10:
-                dicArray = [[0 : "手势解锁", 1 : "GestureUnlockViewController"]]
+                dicArray = [[.cellName : "手势解锁", .className : "GestureUnlockViewController"]]
                 
                 let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)

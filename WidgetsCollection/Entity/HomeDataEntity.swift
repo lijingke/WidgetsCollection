@@ -8,14 +8,20 @@
 
 import Foundation
 
+enum CellInfoEnum {
+    case cellName
+    case className
+    case pushType
+}
+
 struct HomeDataEntity {
     var cellName: String?
     var className: String?
     var pushType: String? = "navi"
     
-    init(_ dic: [Int: String]) {
-        cellName = dic[0]
-        className = dic[1]
-        pushType = dic[2]
+    init(_ dic: [CellInfoEnum: String]) {
+        cellName = dic[.cellName]
+        className = dic[.className]
+        pushType = dic[.pushType]
     }
 }
