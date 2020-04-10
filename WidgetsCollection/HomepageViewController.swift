@@ -40,7 +40,7 @@ class HomepageViewController: UIViewController {
         for section in 0...headViewTitles.count {
             switch section {
             case 0:
-                dicArray = [[.cellName : "Tabbar", .className : "MainTabbarController"], [.cellName : "DrawableCard", .className : "DrawableCardViewController"]]
+                dicArray = [[.cellName : "Tabbar", .className : "MainTabbarController"], [.cellName : "DrawableCard", .className : "DrawableCardViewController"], [.cellName : "TisprCardStack", .className : "TisprCardStackViewController"]]
                 let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
                 break

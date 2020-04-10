@@ -6,9 +6,10 @@ target 'WidgetsCollection' do
   use_frameworks!
 
   # Pods for WidgetsCollection
+  pod 'Tiercel'
   pod 'SnapKit'
   pod 'IQKeyboardManagerSwift'
-  pod 'Tiercel'
+  pod 'Reveal-SDK', :configurations => ['Debug']
 
   target 'WidgetsCollectionTests' do
     inherit! :search_paths

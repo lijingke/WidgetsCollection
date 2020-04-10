@@ -11,74 +11,17 @@ import UIKit
 class DrawableCardViewController: UIViewController {
     
     let count = 6
-    var cardView: CardView!
+//    var cardView: CardView!
     var startButton: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
-        addCardView()
+//        addCardView()
         view.bringSubviewToFront(reloadBtn)
     }
-    
-    fileprivate func setupUI() {
-        view.addSubview(revokeBtn)
-        view.addSubview(skipBtn)
-        view.addSubview(reloadBtn)
         
-        revokeBtn.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(10)
-            make.left.equalToSuperview().offset(10)
-        }
-        
-        skipBtn.snp.makeConstraints { (make) in
-            make.top.equalTo(revokeBtn)
-            make.right.equalToSuperview().offset(-10)
-        }
-        
-        reloadBtn.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
-        }
-        
-        
-        view.addSubview(autoReloadSwitch)
-        view.addSubview(overlapSwitch)
-        view.addSubview(skipAnimateSwitch)
-        
-        view.addSubview(autoReloadLabel)
-        view.addSubview(overlapLabel)
-        view.addSubview(animateLabel)
-        
-        autoReloadSwitch.snp.makeConstraints { (make) in
-            make.centerY.equalTo(overlapSwitch)
-            make.left.equalTo(revokeBtn)
-        }
-        
-        autoReloadLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(autoReloadSwitch)
-            make.top.equalTo(autoReloadSwitch.snp.bottom)
-        }
-        
-        overlapSwitch.snp.makeConstraints { (make) in
-            make.top.equalTo(revokeBtn.snp.bottom)
-            make.centerX.equalToSuperview()
-        }
-        overlapLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(overlapSwitch.snp.bottom)
-            make.centerX.equalTo(overlapSwitch)
-        }
-        
-        skipAnimateSwitch.snp.makeConstraints { (make) in
-            make.centerY.equalTo(overlapSwitch)
-            make.right.equalTo(skipBtn)
-        }
-        animateLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(skipAnimateSwitch.snp.bottom)
-            make.centerX.equalTo(skipAnimateSwitch)
-        }
-    }
-    
     // MARK: - 懒加载
     
     lazy var revokeBtn: UIButton = {
@@ -155,17 +98,83 @@ class DrawableCardViewController: UIViewController {
         return label
     }()
     
-    fileprivate func addCardView() {
-        cardView = CardView(frame: CGRect(x: 0, y: 0, width: 300, height: 500))
-        cardView.center = view.center
-        view.addSubview(cardView)
-        cardView.delegate = self
-        cardView.dataSource = self
-        cardView.reloadData()
-    }
+    lazy var cardView: CardView = {
+        let view = CardView(frame: CGRect(x: 0, y: 0, width: 300, height: 500))
+        view.center = self.view.center
+        view.delegate = self
+        view.dataSource = self
+        return view
+    }()
     
 }
 
+// MARK: - UI
+extension DrawableCardViewController {
+        
+    fileprivate func setupUI() {
+        view.addSubview(revokeBtn)
+        view.addSubview(skipBtn)
+        view.addSubview(reloadBtn)
+        
+        revokeBtn.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(10)
+            make.left.equalToSuperview().offset(10)
+        }
+        
+        skipBtn.snp.makeConstraints { (make) in
+            make.top.equalTo(revokeBtn)
+            make.right.equalToSuperview().offset(-10)
+        }
+        
+        reloadBtn.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
+        
+        
+        view.addSubview(autoReloadSwitch)
+        view.addSubview(overlapSwitch)
+        view.addSubview(skipAnimateSwitch)
+        
+        view.addSubview(autoReloadLabel)
+        view.addSubview(overlapLabel)
+        view.addSubview(animateLabel)
+        
+        autoReloadSwitch.snp.makeConstraints { (make) in
+            make.centerY.equalTo(overlapSwitch)
+            make.left.equalTo(revokeBtn)
+        }
+        
+        autoReloadLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(autoReloadSwitch)
+            make.top.equalTo(autoReloadSwitch.snp.bottom)
+        }
+        
+        overlapSwitch.snp.makeConstraints { (make) in
+            make.top.equalTo(revokeBtn.snp.bottom)
+            make.centerX.equalToSuperview()
+        }
+        overlapLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(overlapSwitch.snp.bottom)
+            make.centerX.equalTo(overlapSwitch)
+        }
+        
+        skipAnimateSwitch.snp.makeConstraints { (make) in
+            make.centerY.equalTo(overlapSwitch)
+            make.right.equalTo(skipBtn)
+        }
+        animateLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(skipAnimateSwitch.snp.bottom)
+            make.centerX.equalTo(skipAnimateSwitch)
+        }
+        
+        view.addSubview(cardView)
+        cardView.reloadData()
+
+    }
+
+}
+
+// MARK: - Event
 extension DrawableCardViewController {
     @objc private func btnAction(_ sender: UIButton) {
         switch sender.tag {
