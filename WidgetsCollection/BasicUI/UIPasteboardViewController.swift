@@ -39,11 +39,34 @@ class UIPasteboardViewController: UIViewController {
         view.addConstraint(NSLayoutConstraint(item: textView, attribute: .centerX, relatedBy: .equal, toItem: titleLabel, attribute: .centerX, multiplier: 1, constant: 0))
         view.addConstraint(NSLayoutConstraint(item: textView, attribute: .top, relatedBy: .equal, toItem: pasteBtn, attribute: .bottom, multiplier: 1, constant: 30))
         
+        view.addSubview(defaultImgView)
+        view.addSubview(copyImgView)
+        
+        
+        let width = (kScreenWidth - 30 * 3) / 2
+        let height = width * 1.5
+        defaultImgView.snp.makeConstraints { (make) in
+            make.top.equalTo(textView.snp.bottom).offset(30)
+            make.left.equalToSuperview().offset(30)
+            make.size.equalTo(CGSize(width: width, height: height))
+        }
+        
+        copyImgView.snp.makeConstraints { (make) in
+            make.top.size.equalTo(defaultImgView)
+            make.right.equalToSuperview().offset(-30)
+        }
+        
     }
     
     @objc private func btnAction() {
         UIPasteboard.general.string = titleLabel.text
-        textView.becomeFirstResponder()
+        
+        let alertVC = UIAlertController(title: nil, message: "复制成功！", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "好的", style: .default) { [weak self] (action) in
+            self?.textView.becomeFirstResponder()
+        }
+        alertVC.addAction(okAction)
+        present(alertVC, animated: true, completion: nil)
     }
     
     lazy var titleLabel: UICopyLabel = {
@@ -65,6 +88,22 @@ class UIPasteboardViewController: UIViewController {
     lazy var textView: UITextView = {
         let view = UITextView()
         view.delegate = self
+        return view
+    }()
+    
+    lazy var defaultImgView: UICopyImageView = {
+        let view = UICopyImageView(frame: .zero)
+        view.image = #imageLiteral(resourceName: "Van Gogh_Starry Night")
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    lazy var copyImgView: UICopyImageView = {
+        let view = UICopyImageView(frame: .zero)
+        view.backgroundColor = .white
+        view.contentMode = .scaleAspectFit
+        view.clipsToBounds = true
         return view
     }()
 }
