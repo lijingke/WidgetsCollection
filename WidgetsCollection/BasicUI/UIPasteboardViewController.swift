@@ -27,6 +27,8 @@ class UIPasteboardViewController: UIViewController {
 
         view.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0))
         view.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: .top, multiplier: 2, constant: 30))
+        view.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1, constant: 30))
+        view.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1, constant: -30))
         
         view.addConstraint(NSLayoutConstraint(item: pasteBtn, attribute: .centerX, relatedBy: .equal, toItem: titleLabel, attribute: .centerX, multiplier: 1, constant: 0))
         view.addConstraint(NSLayoutConstraint(item: pasteBtn, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 30))
@@ -44,9 +46,11 @@ class UIPasteboardViewController: UIViewController {
         textView.becomeFirstResponder()
     }
     
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "点击下方的复制按钮，会将这段话复制到剪贴板中"
+    lazy var titleLabel: UICopyLabel = {
+        let label = UICopyLabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.text = "点击下方的复制按钮或是长按这段话，会将这段话复制到剪贴板中"
         return label
     }()
     
