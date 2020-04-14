@@ -51,7 +51,7 @@ class TisprCardStackViewController: CardStackViewController {
         setupNavBar()
         
         collectionView.register(TisprCardStackDemoViewCell.self, forCellWithReuseIdentifier: Constans.cellIdentifier)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .purple
         delegate = self
         datasource = self
         
@@ -60,7 +60,10 @@ class TisprCardStackViewController: CardStackViewController {
         setCardSize(size)
     }
     
-    
+}
+
+// MARK: - UI
+extension TisprCardStackViewController {
     private func setupNavBar() {
         let backBtn = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .done, target: self, action: #selector(backAction))
         let trashBtn = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashAction))
@@ -73,9 +76,9 @@ class TisprCardStackViewController: CardStackViewController {
         
         navigationItem.title = ""
     }
-    
 }
 
+// MARK: - CardStackDelegate
 extension TisprCardStackViewController: CardStackDelegate {
     func cardDidChangeState(_ cardIndex: Int) {
         // Method to obverse card postion changes
@@ -83,7 +86,7 @@ extension TisprCardStackViewController: CardStackDelegate {
     
     
 }
-
+// MARK: - CardStackDatasource
 extension TisprCardStackViewController: CardStackDatasource {
     func numberOfCards(in cardStack: CardStackView) -> Int {
         return countOfCards

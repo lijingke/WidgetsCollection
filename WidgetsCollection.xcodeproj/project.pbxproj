@@ -19,6 +19,7 @@
 		546970F3243D7C1E00F2DB95 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */; };
 		549A0094243C7A6B001FA23B /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A0093243C7A6B001FA23B /* UIViewController + Extension.swift */; };
 		549A0097243C7D2E001FA23B /* HomeDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A0096243C7D2E001FA23B /* HomeDataEntity.swift */; };
+		549D7FF2244591A5000F234C /* UIPasteboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549D7FF1244591A5000F234C /* UIPasteboardViewController.swift */; };
 		54B4D05E243DC39500F629D8 /* DrawableCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B4D05D243DC39500F629D8 /* DrawableCardViewController.swift */; };
 		54B4D061243DD19300F629D8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B4D060243DD19300F629D8 /* CardView.swift */; };
 		54B4D063243DD2D900F629D8 /* CardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B4D062243DD2D900F629D8 /* CardItem.swift */; };
@@ -116,6 +117,7 @@
 		546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
 		549A0093243C7A6B001FA23B /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		549A0096243C7D2E001FA23B /* HomeDataEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataEntity.swift; sourceTree = "<group>"; };
+		549D7FF1244591A5000F234C /* UIPasteboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPasteboardViewController.swift; sourceTree = "<group>"; };
 		54AA1175A97BE18CEA8170CF /* Pods-WidgetsCollectionUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetsCollectionUITests.debug.xcconfig"; path = "Target Support Files/Pods-WidgetsCollectionUITests/Pods-WidgetsCollectionUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		54B4D05D243DC39500F629D8 /* DrawableCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableCardViewController.swift; sourceTree = "<group>"; };
 		54B4D060243DD19300F629D8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -252,11 +254,12 @@
 		546970ED243D6BC000F2DB95 /* BasicUI */ = {
 			isa = PBXGroup;
 			children = (
+				54B4D05D243DC39500F629D8 /* DrawableCardViewController.swift */,
 				546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */,
 				546970F0243D6C3100F2DB95 /* TabbarSubViewController.swift */,
-				54B4D05D243DC39500F629D8 /* DrawableCardViewController.swift */,
 				54E7F9CE243F283E004E6B73 /* TisprCardStackViewController.swift */,
-				54FD4FBA24402D0D006CD484 /* TisprCardStackDemoViewCell.swift */,
+				549D7FF1244591A5000F234C /* UIPasteboardViewController.swift */,
+				549D7FF324459206000F234C /* View */,
 				54B4D05F243DD18800F629D8 /* CardView */,
 				54E7F9D0243F2AC3004E6B73 /* TisprCardStack */,
 			);
@@ -269,6 +272,14 @@
 				549A0096243C7D2E001FA23B /* HomeDataEntity.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		549D7FF324459206000F234C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				54FD4FBA24402D0D006CD484 /* TisprCardStackDemoViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		54B4D05F243DD18800F629D8 /* CardView */ = {
@@ -468,8 +479,8 @@
 		54E7F9D0243F2AC3004E6B73 /* TisprCardStack */ = {
 			isa = PBXGroup;
 			children = (
-				54E7F9D5243F2B61004E6B73 /* CardStackViewController.swift */,
 				54E7F9D7243F2B79004E6B73 /* TisprCardStackViewLayout.swift */,
+				54E7F9D5243F2B61004E6B73 /* CardStackViewController.swift */,
 			);
 			path = TisprCardStack;
 			sourceTree = "<group>";
@@ -731,6 +742,7 @@
 				54B4D063243DD2D900F629D8 /* CardItem.swift in Sources */,
 				54B4D065243DDFFF00F629D8 /* ImageCardItem.swift in Sources */,
 				549A0097243C7D2E001FA23B /* HomeDataEntity.swift in Sources */,
+				549D7FF2244591A5000F234C /* UIPasteboardViewController.swift in Sources */,
 				54C90E39243ED6EC00D058CC /* AccessControl.swift in Sources */,
 				54FD4FBB24402D0D006CD484 /* TisprCardStackDemoViewCell.swift in Sources */,
 				54E7F9D8243F2B79004E6B73 /* TisprCardStackViewLayout.swift in Sources */,
