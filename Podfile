@@ -10,6 +10,7 @@ target 'WidgetsCollection' do
   pod 'SnapKit'
   pod 'IQKeyboardManagerSwift'
   pod 'Reveal-SDK', :configurations => ['Debug']
+  pod 'TZImagePickerController'
 
   target 'WidgetsCollectionTests' do
     inherit! :search_paths

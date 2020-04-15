@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="jgr-7G-PSA" customClass="ConfigureView" customModule="WidgetsCollection" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thR-Ey-lsg" userLabel="ContentView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="552"/>
+                    <subviews>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kLw-EC-pIn" userLabel="showTakePhotoBtnSwitch">
+                            <rect key="frame" x="345" y="13.5" width="51" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="49" id="nJv-Om-dbr"/>
+                            </constraints>
+                        </switch>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ofx-WX-dqC" userLabel="sortAscendingSwitch">
+                            <rect key="frame" x="345" y="51.5" width="51" height="31"/>
+                        </switch>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PuA-vJ-COS" userLabel="allowPickingVideoSwitch">
+                            <rect key="frame" x="345" y="89.5" width="51" height="31"/>
+                        </switch>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqy-Lz-yMA" userLabel="allowPickingOriginalPhotoSwitch">
+                            <rect key="frame" x="345" y="127.5" width="51" height="31"/>
+                        </switch>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rsw-f9-b53" userLabel="allowPickingImageSwitch">
+                            <rect key="frame" x="345" y="165.5" width="51" height="31"/>
+                        </switch>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mC7-AA-Qu9" userLabel="allowPickingGifSwitch">
+                            <rect key="frame" x="345" y="203.5" width="51" height="31"/>
+                        </switch>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4k-fV-xZS" userLabel="showSheetSwitch">
+                            <rect key="frame" x="345" y="241.5" width="51" height="31"/>
+                        </switch>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V4K-Oc-ekK" userLabel="allowCropSwitch">
+                            <rect key="frame" x="345" y="355.5" width="51" height="31"/>
+                        </switch>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tkx-mh-f5c" userLabel="allowPickingMuitlpleVideoSwitch">
+                            <rect key="frame" x="345" y="393.5" width="51" height="31"/>
+                        </switch>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YSL-gA-2Gk" userLabel="needCircleCropSwitch">
+                            <rect key="frame" x="345" y="431.5" width="51" height="31"/>
+                        </switch>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5B-aZ-vAD" userLabel="showTakeVideoBtnSwitch">
+                            <rect key="frame" x="345" y="469.5" width="51" height="31"/>
+                        </switch>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="允许拍照" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEb-99-Ig6">
+                            <rect key="frame" x="10" y="20" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="照片按修改时间升序排列" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDo-y1-T8d">
+                            <rect key="frame" x="10" y="58" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="允许选择视频" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4yv-fJ-dTw">
+                            <rect key="frame" x="10" y="96" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="允许选择照片原图" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EhI-1N-CgJ">
+                            <rect key="frame" x="10" y="134" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="允许选择照片" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBP-eS-0eR">
+                            <rect key="frame" x="10" y="172" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="允许选择Gif图片" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTS-Jp-ABL">
+                            <rect key="frame" x="10" y="210" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="把拍照/拍视频按钮放在外面" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aci-om-bB2">
+                            <rect key="frame" x="10" y="248" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="照片最大可选张数" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rnJ-xd-H0X">
+                            <rect key="frame" x="10" y="286" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每行展示照片张数" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyR-Bp-2Vn">
+                            <rect key="frame" x="10" y="324" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单选模式下允许裁剪" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2u8-Vm-Td8">
+                            <rect key="frame" x="10" y="362" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="允许多选视频/GIF/图片" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21t-zF-PI5">
+                            <rect key="frame" x="10" y="400" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用圆形裁剪框" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xY-yg-i8Q">
+                            <rect key="frame" x="10" y="438" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="允许拍视频" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="288-6D-zvB">
+                            <rect key="frame" x="10" y="476" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="右上角显示图片选中序号" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ML-P9-YSD">
+                            <rect key="frame" x="10" y="514" width="305" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NRO-z8-To5" userLabel="maxCountTF">
+                            <rect key="frame" x="345" y="278" width="64" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YTz-Xc-7BA" userLabel="columnNumberTF">
+                            <rect key="frame" x="345" y="316" width="64" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h36-VX-Dkh" userLabel="showSelectedIndexSwitch">
+                            <rect key="frame" x="345" y="507.5" width="51" height="31"/>
+                        </switch>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="NDo-y1-T8d" firstAttribute="trailing" secondItem="sEb-99-Ig6" secondAttribute="trailing" id="0iU-68-zFR"/>
+                        <constraint firstItem="NRO-z8-To5" firstAttribute="centerY" secondItem="rnJ-xd-H0X" secondAttribute="centerY" id="4TL-oC-kM9"/>
+                        <constraint firstItem="lyR-Bp-2Vn" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="7Y4-6F-gBk"/>
+                        <constraint firstItem="Rsw-f9-b53" firstAttribute="centerY" secondItem="nBP-eS-0eR" secondAttribute="centerY" id="ANh-m2-9bH"/>
+                        <constraint firstItem="NDo-y1-T8d" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="BFb-ZM-Fcc"/>
+                        <constraint firstItem="EhI-1N-CgJ" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="BKB-Za-W9f"/>
+                        <constraint firstItem="2u8-Vm-Td8" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="BQt-Gi-7F6"/>
+                        <constraint firstItem="tTS-Jp-ABL" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="BaP-ss-wLA"/>
+                        <constraint firstItem="PuA-vJ-COS" firstAttribute="leading" secondItem="ofx-WX-dqC" secondAttribute="leading" id="Cog-sK-miK"/>
+                        <constraint firstItem="c4k-fV-xZS" firstAttribute="centerY" secondItem="aci-om-bB2" secondAttribute="centerY" id="DTt-1U-h76"/>
+                        <constraint firstItem="h36-VX-Dkh" firstAttribute="centerY" secondItem="8ML-P9-YSD" secondAttribute="centerY" id="DXw-aN-3E0"/>
+                        <constraint firstItem="8xY-yg-i8Q" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="GUa-5G-OSr"/>
+                        <constraint firstItem="288-6D-zvB" firstAttribute="top" secondItem="8xY-yg-i8Q" secondAttribute="bottom" constant="20" id="HTc-dV-oab"/>
+                        <constraint firstItem="4yv-fJ-dTw" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="HYH-Vm-t5S"/>
+                        <constraint firstItem="rnJ-xd-H0X" firstAttribute="trailing" secondItem="aci-om-bB2" secondAttribute="trailing" id="KOc-52-FhJ"/>
+                        <constraint firstItem="aci-om-bB2" firstAttribute="trailing" secondItem="tTS-Jp-ABL" secondAttribute="trailing" id="M6l-vU-bqC"/>
+                        <constraint firstItem="mC7-AA-Qu9" firstAttribute="centerY" secondItem="tTS-Jp-ABL" secondAttribute="centerY" id="MY7-Uc-Rff"/>
+                        <constraint firstAttribute="bottom" secondItem="8ML-P9-YSD" secondAttribute="bottom" constant="20" id="Nau-eB-Urc"/>
+                        <constraint firstItem="2u8-Vm-Td8" firstAttribute="trailing" secondItem="lyR-Bp-2Vn" secondAttribute="trailing" id="Nfv-3K-Ffx"/>
+                        <constraint firstItem="lyR-Bp-2Vn" firstAttribute="trailing" secondItem="rnJ-xd-H0X" secondAttribute="trailing" id="Ocz-BC-KYd"/>
+                        <constraint firstAttribute="trailing" secondItem="kLw-EC-pIn" secondAttribute="trailing" constant="20" id="Om0-Mz-G3N"/>
+                        <constraint firstItem="2u8-Vm-Td8" firstAttribute="top" secondItem="lyR-Bp-2Vn" secondAttribute="bottom" constant="20" id="RMI-My-3Oe"/>
+                        <constraint firstItem="sEb-99-Ig6" firstAttribute="trailing" secondItem="kLw-EC-pIn" secondAttribute="leading" constant="-30" id="RuO-lO-X6P"/>
+                        <constraint firstItem="ofx-WX-dqC" firstAttribute="centerY" secondItem="NDo-y1-T8d" secondAttribute="centerY" id="SUo-A1-prd"/>
+                        <constraint firstItem="nBP-eS-0eR" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="Scn-Ha-lfy"/>
+                        <constraint firstItem="aci-om-bB2" firstAttribute="top" secondItem="tTS-Jp-ABL" secondAttribute="bottom" constant="20" id="Szm-es-ek1"/>
+                        <constraint firstItem="4yv-fJ-dTw" firstAttribute="trailing" secondItem="NDo-y1-T8d" secondAttribute="trailing" id="Tt3-Ua-xhj"/>
+                        <constraint firstItem="288-6D-zvB" firstAttribute="trailing" secondItem="8xY-yg-i8Q" secondAttribute="trailing" id="VVc-mx-fKk"/>
+                        <constraint firstItem="ofx-WX-dqC" firstAttribute="leading" secondItem="kLw-EC-pIn" secondAttribute="leading" id="Wbu-mS-efE"/>
+                        <constraint firstAttribute="trailing" secondItem="NRO-z8-To5" secondAttribute="trailing" constant="5" id="YBv-04-gQR"/>
+                        <constraint firstItem="rnJ-xd-H0X" firstAttribute="top" secondItem="aci-om-bB2" secondAttribute="bottom" constant="20" id="Z9p-ov-zkM"/>
+                        <constraint firstItem="fqy-Lz-yMA" firstAttribute="centerY" secondItem="EhI-1N-CgJ" secondAttribute="centerY" id="aZj-aO-H3G"/>
+                        <constraint firstItem="rnJ-xd-H0X" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="b7O-6g-BQc"/>
+                        <constraint firstItem="sEb-99-Ig6" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="bIK-EE-9zC"/>
+                        <constraint firstItem="YTz-Xc-7BA" firstAttribute="leading" secondItem="NRO-z8-To5" secondAttribute="leading" id="c81-zB-fCc"/>
+                        <constraint firstItem="aci-om-bB2" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="cSO-mF-RFx"/>
+                        <constraint firstItem="8xY-yg-i8Q" firstAttribute="top" secondItem="21t-zF-PI5" secondAttribute="bottom" constant="20" id="cu9-4D-W72"/>
+                        <constraint firstItem="4yv-fJ-dTw" firstAttribute="top" secondItem="NDo-y1-T8d" secondAttribute="bottom" constant="20" id="d8I-an-zhN"/>
+                        <constraint firstItem="YTz-Xc-7BA" firstAttribute="centerY" secondItem="lyR-Bp-2Vn" secondAttribute="centerY" id="doS-k9-RXd"/>
+                        <constraint firstItem="YSL-gA-2Gk" firstAttribute="centerY" secondItem="8xY-yg-i8Q" secondAttribute="centerY" id="elO-0o-nzY"/>
+                        <constraint firstItem="NDo-y1-T8d" firstAttribute="top" secondItem="sEb-99-Ig6" secondAttribute="bottom" constant="20" id="enJ-IG-3jk"/>
+                        <constraint firstItem="A5B-aZ-vAD" firstAttribute="leading" secondItem="YSL-gA-2Gk" secondAttribute="leading" id="gAc-Tp-4R6"/>
+                        <constraint firstItem="c4k-fV-xZS" firstAttribute="leading" secondItem="mC7-AA-Qu9" secondAttribute="leading" id="gPE-Iz-GI9"/>
+                        <constraint firstItem="8ML-P9-YSD" firstAttribute="top" secondItem="288-6D-zvB" secondAttribute="bottom" constant="20" id="gR8-Mv-PSH"/>
+                        <constraint firstItem="lyR-Bp-2Vn" firstAttribute="top" secondItem="rnJ-xd-H0X" secondAttribute="bottom" constant="20" id="goS-gw-skF"/>
+                        <constraint firstItem="8ML-P9-YSD" firstAttribute="trailing" secondItem="288-6D-zvB" secondAttribute="trailing" id="hiz-Bd-bXX"/>
+                        <constraint firstItem="mC7-AA-Qu9" firstAttribute="leading" secondItem="Rsw-f9-b53" secondAttribute="leading" id="hmI-A9-mi2"/>
+                        <constraint firstItem="tTS-Jp-ABL" firstAttribute="trailing" secondItem="nBP-eS-0eR" secondAttribute="trailing" id="hrC-Kl-4il"/>
+                        <constraint firstItem="288-6D-zvB" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="iNL-1T-guK"/>
+                        <constraint firstItem="sEb-99-Ig6" firstAttribute="top" secondItem="thR-Ey-lsg" secondAttribute="top" constant="20" id="iON-n2-UB3"/>
+                        <constraint firstItem="YSL-gA-2Gk" firstAttribute="leading" secondItem="Tkx-mh-f5c" secondAttribute="leading" id="mJn-9N-zFq"/>
+                        <constraint firstItem="Rsw-f9-b53" firstAttribute="leading" secondItem="fqy-Lz-yMA" secondAttribute="leading" id="mKP-NB-z8s"/>
+                        <constraint firstItem="8xY-yg-i8Q" firstAttribute="trailing" secondItem="21t-zF-PI5" secondAttribute="trailing" id="mKd-jk-Clh"/>
+                        <constraint firstItem="21t-zF-PI5" firstAttribute="top" secondItem="2u8-Vm-Td8" secondAttribute="bottom" constant="20" id="mU2-IA-xSU"/>
+                        <constraint firstItem="PuA-vJ-COS" firstAttribute="centerY" secondItem="4yv-fJ-dTw" secondAttribute="centerY" id="mkH-X7-dOD"/>
+                        <constraint firstItem="8ML-P9-YSD" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="nRe-c2-NWN"/>
+                        <constraint firstItem="h36-VX-Dkh" firstAttribute="leading" secondItem="A5B-aZ-vAD" secondAttribute="leading" id="nbf-YS-cZv"/>
+                        <constraint firstItem="EhI-1N-CgJ" firstAttribute="trailing" secondItem="4yv-fJ-dTw" secondAttribute="trailing" id="pK8-ea-ggu"/>
+                        <constraint firstItem="nBP-eS-0eR" firstAttribute="trailing" secondItem="EhI-1N-CgJ" secondAttribute="trailing" id="s8y-Jz-Cjy"/>
+                        <constraint firstItem="nBP-eS-0eR" firstAttribute="top" secondItem="EhI-1N-CgJ" secondAttribute="bottom" constant="20" id="spV-DL-7Fp"/>
+                        <constraint firstItem="21t-zF-PI5" firstAttribute="trailing" secondItem="2u8-Vm-Td8" secondAttribute="trailing" id="syu-LB-iqi"/>
+                        <constraint firstItem="Tkx-mh-f5c" firstAttribute="centerY" secondItem="21t-zF-PI5" secondAttribute="centerY" id="tSa-LZ-Oaz"/>
+                        <constraint firstItem="Tkx-mh-f5c" firstAttribute="leading" secondItem="V4K-Oc-ekK" secondAttribute="leading" id="td6-d6-6bX"/>
+                        <constraint firstItem="fqy-Lz-yMA" firstAttribute="leading" secondItem="PuA-vJ-COS" secondAttribute="leading" id="uYt-ZS-Wab"/>
+                        <constraint firstItem="YTz-Xc-7BA" firstAttribute="width" secondItem="NRO-z8-To5" secondAttribute="width" id="uZI-e8-2xf"/>
+                        <constraint firstItem="kLw-EC-pIn" firstAttribute="centerY" secondItem="sEb-99-Ig6" secondAttribute="centerY" id="ufz-Bg-4qa"/>
+                        <constraint firstItem="V4K-Oc-ekK" firstAttribute="centerY" secondItem="2u8-Vm-Td8" secondAttribute="centerY" id="wDd-9c-2R4"/>
+                        <constraint firstItem="V4K-Oc-ekK" firstAttribute="leading" secondItem="c4k-fV-xZS" secondAttribute="leading" id="wqQ-0L-KgH"/>
+                        <constraint firstItem="NRO-z8-To5" firstAttribute="leading" secondItem="c4k-fV-xZS" secondAttribute="leading" id="xHD-sZ-QlW"/>
+                        <constraint firstItem="21t-zF-PI5" firstAttribute="leading" secondItem="thR-Ey-lsg" secondAttribute="leading" constant="10" id="xHZ-nW-Pvu"/>
+                        <constraint firstItem="A5B-aZ-vAD" firstAttribute="centerY" secondItem="288-6D-zvB" secondAttribute="centerY" id="xlp-jC-n6c"/>
+                        <constraint firstItem="tTS-Jp-ABL" firstAttribute="top" secondItem="nBP-eS-0eR" secondAttribute="bottom" constant="20" id="xzn-TL-anV"/>
+                        <constraint firstItem="EhI-1N-CgJ" firstAttribute="top" secondItem="4yv-fJ-dTw" secondAttribute="bottom" constant="20" id="zgx-6d-OPt"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="thR-Ey-lsg" firstAttribute="width" secondItem="Vdn-pS-MMm" secondAttribute="width" id="GZc-2b-cMT"/>
+                <constraint firstItem="thR-Ey-lsg" firstAttribute="bottom" secondItem="3NY-m4-zql" secondAttribute="bottom" id="Us5-d3-JNu"/>
+                <constraint firstItem="thR-Ey-lsg" firstAttribute="leading" secondItem="3NY-m4-zql" secondAttribute="leading" id="WQN-is-soJ"/>
+                <constraint firstItem="thR-Ey-lsg" firstAttribute="top" secondItem="3NY-m4-zql" secondAttribute="top" id="kwi-Df-iNS"/>
+                <constraint firstItem="thR-Ey-lsg" firstAttribute="trailing" secondItem="3NY-m4-zql" secondAttribute="trailing" id="o0a-cY-oyH"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="4Nr-Pq-Gpb"/>
+            <viewLayoutGuide key="contentLayoutGuide" id="3NY-m4-zql"/>
+            <viewLayoutGuide key="frameLayoutGuide" id="Vdn-pS-MMm"/>
+            <connections>
+                <outlet property="allowCropSwitch" destination="V4K-Oc-ekK" id="itK-bj-PCQ"/>
+                <outlet property="allowPickingGifSwitch" destination="mC7-AA-Qu9" id="klX-w8-x7a"/>
+                <outlet property="allowPickingImageSwitch" destination="Rsw-f9-b53" id="buT-XZ-iTo"/>
+                <outlet property="allowPickingMuitlpleVideoSwitch" destination="Tkx-mh-f5c" id="UEa-bo-nAq"/>
+                <outlet property="allowPickingOriginalPhotoSwitch" destination="fqy-Lz-yMA" id="BBx-5e-pQX"/>
+                <outlet property="allowPickingVideoSwitch" destination="PuA-vJ-COS" id="ob1-ep-YVT"/>
+                <outlet property="columnNumberTF" destination="YTz-Xc-7BA" id="ca5-o2-KxN"/>
+                <outlet property="maxCountTF" destination="NRO-z8-To5" id="1xy-lV-fcp"/>
+                <outlet property="needCircleCropSwitch" destination="YSL-gA-2Gk" id="XwW-1a-tPi"/>
+                <outlet property="showSelectedIndexSwitch" destination="h36-VX-Dkh" id="ffS-Ud-lFr"/>
+                <outlet property="showSheetSwitch" destination="c4k-fV-xZS" id="aCw-wI-B5x"/>
+                <outlet property="showTakePhotoBtnSwitch" destination="kLw-EC-pIn" id="nCy-jl-qUI"/>
+                <outlet property="showTakeVideoBtnSwitch" destination="A5B-aZ-vAD" id="PTp-3U-OsF"/>
+                <outlet property="sortAscendingSwitch" destination="ofx-WX-dqC" id="BPm-WH-3mg"/>
+            </connections>
+            <point key="canvasLocation" x="874" y="269"/>
+        </scrollView>
+    </objects>
+</document>
