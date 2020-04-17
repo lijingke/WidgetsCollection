@@ -32,11 +32,13 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>CollectionViewDemo请求在使用时获取您的位置</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>CollectionViewDemo请求获取相册</string>
+	<string>CollectionViewDemo请求访问相册以选择照片</string>
 	<key>NSCameraUsageDescription</key>
-	<string>CollectionViewDemo请求使用您的相机</string>
+	<string>CollectionViewDemo请求使用您的相机以拍照</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>CollectionViewDemo请求添加图片到您的相册中</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>CollectionViewDemo请求访问麦克风以录像</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>

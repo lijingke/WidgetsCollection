@@ -22,7 +22,7 @@ class ImagePickerView: UIView {
     public var selectedPhotos: [UIImage] = []
     public var selectedAssets: [PHAsset] = []
     
-    private var isSelectedOringinalPhoto: Bool = true
+    private var isSelectedOringinalPhoto: Bool = false
     private var itemWH: CGFloat!
     private var margin: CGFloat!
     private var location: CLLocation!
@@ -40,23 +40,23 @@ class ImagePickerView: UIView {
     /// 是否允许选择Gif图片
     public var allowPickingGif: Bool = true
     /// 把照片/拍视频按钮放在外面
-    public var showSheet: Bool = true
+    public var showSheet: Bool = false
     /// 照片最大可选张数
     public var maxCount: Int = 9
     /// 每行展示照片张数
     public var columnNumber: Int = 4
     /// 单选模式下是否允许裁剪
-    public var allowCrop: Bool = true
+    public var allowCrop: Bool = false
     /// 是否允许多选视频/GIF/图片
-    public var allowPickingMuitlpleVideo: Bool = true
+    public var allowPickingMuitlpleVideo: Bool = false
     /// 是否使用圆形裁剪框
-    public var needCircleCrop: Bool = true
+    public var needCircleCrop: Bool = false
     /// 是否允许拍视频
     public var showTakeVideoBtn: Bool = true
     /// 是否在右上角显示图片选中序号
     public var showSelectedIndex: Bool = true
     
-    public var subView: ConfigureView!
+    public var confScrollView: ConfigureView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -120,10 +120,12 @@ class ImagePickerView: UIView {
             make.width.equalToSuperview().multipliedBy(0.5)
             make.height.equalToSuperview().multipliedBy(0.7)
         }
-        self.subView = subView
+        self.confScrollView = subView
         self.showTakePhotoBtn = subView.showSheetSwitch.isOn
         
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapAction)))
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        gesture.delegate = self
+        view.addGestureRecognizer(gesture)
         view.backgroundColor = UIColor.init(displayP3Red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5)
         return view
     }()
@@ -218,6 +220,18 @@ extension ImagePickerView: UICollectionViewDelegate {
     }
 }
 
+extension ImagePickerView: UIGestureRecognizerDelegate {
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        let point = gestureRecognizer.location(in: configureView)
+        if confScrollView.frame.contains(point) {
+            return false
+        } else {
+            return true
+        }
+    }
+}
+
+
 // MARK: - TZImagePickerController
 
 extension ImagePickerView {
@@ -228,7 +242,7 @@ extension ImagePickerView {
         }
         let imagePickerVC = TZImagePickerController(maxImagesCount: maxCount, columnNumber: columnNumber, delegate: self, pushPhotoPickerVc: true)
         
-        // 五类个性化设置，这些参数都可以不传，此时会走默认设置
+        // MARK: 五类个性化设置，这些参数都可以不传，此时会走默认设置
         
         imagePickerVC?.isSelectOriginalPhoto = isSelectedOringinalPhoto
         
@@ -251,6 +265,23 @@ extension ImagePickerView {
         
         // 2. 在这里设置imagePickerVc的外观
         
+//        imagePickerVC?.navigationBar.barTintColor = .green
+//        imagePickerVC?.oKButtonTitleColorDisabled = .lightGray
+//        imagePickerVC?.oKButtonTitleColorNormal = .green
+//        imagePickerVC?.navigationBar.isTranslucent = false
+        
+        imagePickerVC?.iconThemeColor = UIColor(red: 31 / 255.0, green: 185 / 255.0, blue: 34 / 255.0, alpha: 1.0)
+        imagePickerVC?.showPhotoCannotSelectLayer = true
+        imagePickerVC?.cannotSelectLayerColor = UIColor.white.withAlphaComponent(0.8)
+        imagePickerVC?.photoPickerPageUIConfigBlock = { (collectionView, bottomToolBar, previewButtom, originalPhotoButton, originalPhotoLabel, doneButton, numberImageView, numberLabel, divideLine) in
+            doneButton?.setTitleColor(.red, for: .normal)
+        }
+        
+//        imagePickerVC?.assetCellDidSetModelBlock = { (cell, imageView, selectImageView, indexLabel, bottomView, timeLength, videoImgView) in
+//            cell?.contentView.clipsToBounds = true
+//            cell?.contentView.layer.cornerRadius = (cell?.contentView.width ?? 0.0) * 0.5
+//        }
+        
         // 3. 设置是否可以选择视频/图片/原图
         imagePickerVC?.allowPickingVideo = allowPickingVideo
         imagePickerVC?.allowPickingImage = allowPickingImage
@@ -262,7 +293,13 @@ extension ImagePickerView {
         // 4. 照片排列按修改时间升序
         imagePickerVC?.sortAscendingByModificationDate = sortAscending
         
-        // 5.
+//        imagePickerVC?.minImagesCount = 3
+//        imagePickerVC?.alwaysEnableDoneBtn = true
+//
+//        imagePickerVC?.minPhotoWidthSelectable = 3000
+//        imagePickerVC?.minPhotoHeightSelectable = 2000
+        
+        // 5. 单选模式,maxImagesCount为1时才生效
         imagePickerVC?.showSelectBtn = false
         imagePickerVC?.allowCrop = allowCrop
         imagePickerVC?.needCircleCrop = needCircleCrop
@@ -274,6 +311,23 @@ extension ImagePickerView {
         imagePickerVC?.cropRect = CGRect(x: left, y: top, width: widthHeight, height: widthHeight)
         imagePickerVC?.scaleAspectFillCrop = true
         
+        // 设置横屏下的裁剪尺寸
+        imagePickerVC?.cropRectLandscape = CGRect(x: (self.height - widthHeight) / 2, y: left, width: widthHeight, height: widthHeight)
+        imagePickerVC?.cropViewSettingBlock = { (cropView) in
+            cropView?.layer.borderColor = UIColor.red.cgColor
+            cropView?.layer.borderWidth = 2.0
+        }
+        
+        // 是否允许预览
+        imagePickerVC?.allowPreview = false
+        
+        imagePickerVC?.navLeftBarButtonSettingBlock = { (leftButton) in
+            leftButton?.setImage(UIImage(systemName: "trash.fill"), for: .normal)
+            leftButton?.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 20)
+        }
+        imagePickerVC?.delegate = self
+        
+        // StatusBarStyly
         imagePickerVC?.statusBarStyle = .lightContent
         
         // 设置是否显示图片序号
@@ -285,10 +339,32 @@ extension ImagePickerView {
 //        TZPhotoPreviewView *view, UIImageView *imageView, NSData *gifData, NSDictionary *info
         // 自定义gif播放方案
         TZImagePickerConfig.sharedInstance()?.gifImagePlayBlock = { (view, imageView, gifData, info) in
-//            let animatedImage =
-            
+            let animatedImage = FLAnimatedImage(animatedGIFData: gifData)
+            var animatedImageView: FLAnimatedImageView?
+            for subview in imageView?.subviews ?? []{
+                if subview.isKind(of: FLAnimatedImageView.self) {
+                    animatedImageView = subview as? FLAnimatedImageView
+                    animatedImageView?.frame = imageView?.bounds ?? CGRect.zero
+                    animatedImageView?.animatedImage = nil
+                }
+            }
+            if animatedImageView == nil {
+                animatedImageView = FLAnimatedImageView(frame: imageView?.bounds ?? CGRect.zero)
+                animatedImageView?.runLoopMode = RunLoop.Mode.default.rawValue
+                imageView?.addSubview(animatedImageView!)
+            }
+            animatedImageView?.animatedImage = animatedImage
         }
         
+        // 设置首选语言
+//        imagePickerVC?.preferredLanguage = "en"
+        
+        // 设置languageBundle以使用其他语言
+//        imagePickerVC?.languageBundle = Bundle(path: Bundle.main.path(forResource: "tz-ru", ofType: "lproj") ?? "")
+        
+        // MARK: 到这里结束
+        
+        // 你可以通过block或者代理，来得到用户选择的照片.
         imagePickerVC?.didFinishPickingPhotosHandle = { ( photos, assets, isSelectOriginalPhoto) in
             
         }
@@ -366,6 +442,11 @@ extension ImagePickerView {
             print("模拟器中无法打开照相机,请在真机中使用")
         }
     }
+}
+
+// MARK: - UINavigationControllerDelegate
+extension ImagePickerView: UINavigationControllerDelegate {
+    
 }
 
 // MARK: - UICollectionViewDataSource

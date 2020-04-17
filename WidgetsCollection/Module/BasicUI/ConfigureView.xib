@@ -34,19 +34,19 @@
                         <switch opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rsw-f9-b53" userLabel="allowPickingImageSwitch">
                             <rect key="frame" x="345" y="165.5" width="51" height="31"/>
                         </switch>
-                        <switch opaque="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mC7-AA-Qu9" userLabel="allowPickingGifSwitch">
+                        <switch opaque="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mC7-AA-Qu9" userLabel="allowPickingGifSwitch">
                             <rect key="frame" x="345" y="203.5" width="51" height="31"/>
                         </switch>
-                        <switch opaque="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4k-fV-xZS" userLabel="showSheetSwitch">
+                        <switch opaque="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="c4k-fV-xZS" userLabel="showSheetSwitch">
                             <rect key="frame" x="345" y="241.5" width="51" height="31"/>
                         </switch>
-                        <switch opaque="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V4K-Oc-ekK" userLabel="allowCropSwitch">
+                        <switch opaque="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="V4K-Oc-ekK" userLabel="allowCropSwitch">
                             <rect key="frame" x="345" y="355.5" width="51" height="31"/>
                         </switch>
-                        <switch opaque="NO" tag="8" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tkx-mh-f5c" userLabel="allowPickingMuitlpleVideoSwitch">
+                        <switch opaque="NO" tag="8" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Tkx-mh-f5c" userLabel="allowPickingMuitlpleVideoSwitch">
                             <rect key="frame" x="345" y="393.5" width="51" height="31"/>
                         </switch>
-                        <switch opaque="NO" tag="9" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YSL-gA-2Gk" userLabel="needCircleCropSwitch">
+                        <switch opaque="NO" tag="9" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YSL-gA-2Gk" userLabel="needCircleCropSwitch">
                             <rect key="frame" x="345" y="431.5" width="51" height="31"/>
                         </switch>
                         <switch opaque="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5B-aZ-vAD" userLabel="showTakeVideoBtnSwitch">

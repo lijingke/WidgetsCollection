@@ -30,7 +30,7 @@ class ConfigureView: UIScrollView {
     
     @IBOutlet weak var maxCountTF: UITextField!
     
-    @IBOutlet weak var columnNumberTF: UITextField!
+    @IBOutlet @objc dynamic weak var columnNumberTF: UITextField!
     
     @IBOutlet weak var allowCropSwitch: UISwitch!
     
@@ -43,9 +43,23 @@ class ConfigureView: UIScrollView {
     @IBOutlet weak var showSelectedIndexSwitch: UISwitch!
     
     weak var eventDelegate: ConfigureViewDelegate?
+    
+    var observation: NSKeyValueObservation?
+    
+    @objc dynamic var name: String?
         
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        maxCountTF.text = "9"
+        columnNumberTF.text = "4"
+        
+//        maxCountTF.addObserver(self, forKeyPath: "text", options: [.old, .new], context: nil)
+        
+        observation = maxCountTF.observe(\.text, options: [.old, .new], changeHandler: { (ob, changed) in
+            print(ob)
+            print(changed)
+        })
         
         for subView in subviews[0].subviews {
             
@@ -53,12 +67,85 @@ class ConfigureView: UIScrollView {
                 view.addTarget(self, action: #selector(switchAction(sender:)), for: .valueChanged)
             }
             if let view = subView as? UITextField {
-                view.addTarget(self, action: #selector(textFieldAction(sender:)), for: .valueChanged)
+                view.addTarget(self, action: #selector(textFieldAction(sender:)), for: .editingChanged)
             }
         }
     }
         
+//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        if let change = change {
+//            if let oldValue = change[.oldKey] as? String {
+//                print("old Value:\(oldValue)")
+//            }
+//            if let newValue = change[.newKey] as? String {
+//                print("new Value:\(newValue)")
+//            }
+//        }
+//
+//    }
+    
     @objc private func switchAction(sender: UISwitch) {
+        if sender == showTakePhotoBtnSwitch && sender.isOn {
+            allowPickingImageSwitch.setOn(true, animated: true)
+        }
+        
+        if sender == showTakeVideoBtnSwitch && sender.isOn {
+            allowPickingVideoSwitch.setOn(true, animated: true)
+        }
+        
+        if sender == showSheetSwitch && sender.isOn {
+            allowPickingImageSwitch.setOn(true, animated: true)
+        }
+        
+        if sender == allowPickingOriginalPhotoSwitch && sender.isOn {
+            allowPickingImageSwitch.setOn(true, animated: true)
+            needCircleCropSwitch.setOn(false, animated: true)
+            allowCropSwitch.setOn(false, animated: true)
+        }
+        
+        if sender == allowPickingImageSwitch && sender.isOn {
+            allowPickingOriginalPhotoSwitch.setOn(true, animated: true)
+            allowPickingVideoSwitch.setOn(true, animated: true)
+            allowPickingGifSwitch.setOn(true, animated: true)
+        }
+        
+        if sender == allowPickingGifSwitch {
+            if sender.isOn {
+                allowPickingImageSwitch.setOn(true, animated: true)
+            } else {
+                allowPickingMuitlpleVideoSwitch.setOn(false, animated: true)
+            }
+        }
+        
+        if sender == allowPickingVideoSwitch && !sender.isOn {
+            allowPickingImageSwitch.setOn(true, animated: true)
+            if !self.allowPickingGifSwitch.isOn {
+                allowPickingMuitlpleVideoSwitch.setOn(true, animated: true)
+            }
+        }
+        
+        if sender == allowCropSwitch {
+            if sender.isOn {
+                maxCountTF.text = "1"
+                // 手动给textField赋值不会触发UIControl事件，所以要么用KVO要么手动调方法
+                textFieldAction(sender: maxCountTF)
+                allowPickingOriginalPhotoSwitch.setOn(false, animated: true)
+            } else {
+                if maxCountTF.text == "1" {
+                    maxCountTF.text = "9"
+                    // 同上
+                    textFieldAction(sender: maxCountTF)
+                }
+                needCircleCropSwitch.setOn(false, animated: true)
+            }
+        }
+        
+        if sender == needCircleCropSwitch && sender.isOn {
+            allowCropSwitch.setOn(true, animated: true)
+            maxCountTF.text = "1"
+            allowPickingOriginalPhotoSwitch.setOn(false, animated: true)
+        }
+        
         eventDelegate?.valueChanged(sender: sender)
     }
     
