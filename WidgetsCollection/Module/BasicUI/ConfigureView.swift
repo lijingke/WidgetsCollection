@@ -54,6 +54,7 @@ class ConfigureView: UIScrollView {
         maxCountTF.text = "9"
         columnNumberTF.text = "4"
         
+        // 对maxCountTF添加观察者
 //        maxCountTF.addObserver(self, forKeyPath: "text", options: [.old, .new], context: nil)
         
         observation = maxCountTF.observe(\.text, options: [.old, .new], changeHandler: { (ob, changed) in
@@ -67,11 +68,12 @@ class ConfigureView: UIScrollView {
                 view.addTarget(self, action: #selector(switchAction(sender:)), for: .valueChanged)
             }
             if let view = subView as? UITextField {
+                view.delegate = self
                 view.addTarget(self, action: #selector(textFieldAction(sender:)), for: .editingChanged)
             }
         }
     }
-        
+        // KVO方法
 //    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 //        if let change = change {
 //            if let oldValue = change[.oldKey] as? String {
@@ -133,7 +135,6 @@ class ConfigureView: UIScrollView {
             } else {
                 if maxCountTF.text == "1" {
                     maxCountTF.text = "9"
-                    // 同上
                     textFieldAction(sender: maxCountTF)
                 }
                 needCircleCropSwitch.setOn(false, animated: true)
@@ -143,6 +144,7 @@ class ConfigureView: UIScrollView {
         if sender == needCircleCropSwitch && sender.isOn {
             allowCropSwitch.setOn(true, animated: true)
             maxCountTF.text = "1"
+            textFieldAction(sender: maxCountTF)
             allowPickingOriginalPhotoSwitch.setOn(false, animated: true)
         }
         
@@ -153,4 +155,11 @@ class ConfigureView: UIScrollView {
         eventDelegate?.valueChanged(sender: sender)
     }
     
+}
+
+extension ConfigureView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

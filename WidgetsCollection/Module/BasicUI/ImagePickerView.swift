@@ -301,31 +301,31 @@ extension ImagePickerView {
         
         // 5. 单选模式,maxImagesCount为1时才生效
         imagePickerVC?.showSelectBtn = false
-        imagePickerVC?.allowCrop = allowCrop
+        imagePickerVC?.allowCrop = true
         imagePickerVC?.needCircleCrop = needCircleCrop
         
         // 设置竖屏下的裁剪尺寸
         let left: CGFloat = 30
         let widthHeight = self.width - 2 * left
-        let top = (self.width - widthHeight) / 2
+        let top = (kscreenHeight - widthHeight) / 2
         imagePickerVC?.cropRect = CGRect(x: left, y: top, width: widthHeight, height: widthHeight)
         imagePickerVC?.scaleAspectFillCrop = true
         
         // 设置横屏下的裁剪尺寸
-        imagePickerVC?.cropRectLandscape = CGRect(x: (self.height - widthHeight) / 2, y: left, width: widthHeight, height: widthHeight)
-        imagePickerVC?.cropViewSettingBlock = { (cropView) in
-            cropView?.layer.borderColor = UIColor.red.cgColor
-            cropView?.layer.borderWidth = 2.0
-        }
+//        imagePickerVC?.cropRectLandscape = CGRect(x: (self.height - widthHeight) / 2, y: left, width: widthHeight, height: widthHeight)
+//        imagePickerVC?.cropViewSettingBlock = { (cropView) in
+//            cropView?.layer.borderColor = UIColor.red.cgColor
+//            cropView?.layer.borderWidth = 2.0
+//        }
         
         // 是否允许预览
-        imagePickerVC?.allowPreview = false
+//        imagePickerVC?.allowPreview = false
         
-        imagePickerVC?.navLeftBarButtonSettingBlock = { (leftButton) in
-            leftButton?.setImage(UIImage(systemName: "trash.fill"), for: .normal)
-            leftButton?.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 20)
-        }
-        imagePickerVC?.delegate = self
+//        imagePickerVC?.navLeftBarButtonSettingBlock = { (leftButton) in
+//            leftButton?.setImage(UIImage(systemName: "trash.fill"), for: .normal)
+//            leftButton?.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 20)
+//        }
+//        imagePickerVC?.delegate = self
         
         // StatusBarStyly
         imagePickerVC?.statusBarStyle = .lightContent
