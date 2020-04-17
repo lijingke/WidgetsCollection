@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		012FEE795BDF44BB9D07CC34 /* Pods_WidgetsCollectionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F012B81D119305FCCD7116E9 /* Pods_WidgetsCollectionTests.framework */; };
 		3A7CBC7497EDF3ADE3A97B57 /* Pods_WidgetsCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F2F492D3EDE2C9F58FA43D5 /* Pods_WidgetsCollection.framework */; };
+		540C32402448495400A597E1 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540C323F2448495400A597E1 /* Array+Extension.swift */; };
+		5451E91524494DB600601BC9 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451E91124494DB600601BC9 /* FLAnimatedImage.m */; };
+		5451E91624494DB600601BC9 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451E91224494DB600601BC9 /* FLAnimatedImageView.m */; };
 		5455171F24372B48009C7378 /* GestureUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455171E24372B48009C7378 /* GestureUnlockViewController.swift */; };
 		5455172124372B87009C7378 /* GestureUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455172024372B87009C7378 /* GestureUnlockView.swift */; };
 		5455172324372E77009C7378 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455172224372E77009C7378 /* Const.swift */; };
@@ -17,6 +20,10 @@
 		5455172924374448009C7378 /* HintTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455172824374448009C7378 /* HintTool.swift */; };
 		546970F1243D6C3100F2DB95 /* TabbarSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546970F0243D6C3100F2DB95 /* TabbarSubViewController.swift */; };
 		546970F3243D7C1E00F2DB95 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */; };
+		547C1DB72447F9BD0043F511 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547C1DB62447F9BD0043F511 /* ImagePickerView.swift */; };
+		547C1DBC2447FB200043F511 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 547C1DBB2447FB200043F511 /* LxGridViewFlowLayout.m */; };
+		547C1DBF2447FC130043F511 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 547C1DBD2447FC120043F511 /* TZTestCell.m */; };
+		548270BB2447197F00EA22B7 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548270BA2447197F00EA22B7 /* OtherViewController.swift */; };
 		548C49042446E594000478AA /* ConfigureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548C49032446E593000478AA /* ConfigureView.swift */; };
 		548C49082446E5BD000478AA /* ConfigureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 548C49072446E5BD000478AA /* ConfigureView.xib */; };
 		549A0094243C7A6B001FA23B /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A0093243C7A6B001FA23B /* UIViewController + Extension.swift */; };
@@ -112,6 +119,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		540C323F2448495400A597E1 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		5451E91124494DB600601BC9 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		5451E91224494DB600601BC9 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
+		5451E91324494DB600601BC9 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		5451E91424494DB600601BC9 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
 		5455171E24372B48009C7378 /* GestureUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureUnlockViewController.swift; sourceTree = "<group>"; };
 		5455172024372B87009C7378 /* GestureUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureUnlockView.swift; sourceTree = "<group>"; };
 		5455172224372E77009C7378 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
@@ -120,6 +132,13 @@
 		5455172824374448009C7378 /* HintTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintTool.swift; sourceTree = "<group>"; };
 		546970F0243D6C3100F2DB95 /* TabbarSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarSubViewController.swift; sourceTree = "<group>"; };
 		546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
+		547C1DB62447F9BD0043F511 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		547C1DB92447FB200043F511 /* WidgetsCollection-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WidgetsCollection-Bridging-Header.h"; sourceTree = "<group>"; };
+		547C1DBA2447FB200043F511 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
+		547C1DBB2447FB200043F511 /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
+		547C1DBD2447FC120043F511 /* TZTestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZTestCell.m; sourceTree = "<group>"; };
+		547C1DBE2447FC130043F511 /* TZTestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZTestCell.h; sourceTree = "<group>"; };
+		548270BA2447197F00EA22B7 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		548C49032446E593000478AA /* ConfigureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureView.swift; sourceTree = "<group>"; };
 		548C49072446E5BD000478AA /* ConfigureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigureView.xib; sourceTree = "<group>"; };
 		549A0093243C7A6B001FA23B /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
@@ -249,6 +268,50 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5451E90F24494D7800601BC9 /* ThirdPartyFramework */ = {
+			isa = PBXGroup;
+			children = (
+				5451E91024494DB600601BC9 /* FLAnimatedImage */,
+			);
+			path = ThirdPartyFramework;
+			sourceTree = "<group>";
+		};
+		5451E91024494DB600601BC9 /* FLAnimatedImage */ = {
+			isa = PBXGroup;
+			children = (
+				5451E91124494DB600601BC9 /* FLAnimatedImage.m */,
+				5451E91224494DB600601BC9 /* FLAnimatedImageView.m */,
+				5451E91324494DB600601BC9 /* FLAnimatedImage.h */,
+				5451E91424494DB600601BC9 /* FLAnimatedImageView.h */,
+			);
+			path = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
+		5451E91724494E7E00601BC9 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				54C1835D2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift */,
+				54C1835C2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift */,
+				54C183412435C3A4008666E4 /* BasicViewController.swift */,
+				54C1833E2435C3A3008666E4 /* CALayerViewController.swift */,
+				54C1833F2435C3A4008666E4 /* CardLayoutViewController.swift */,
+				54C1833C2435C3A3008666E4 /* CGAffineTransformViewController.swift */,
+				54C1834A2435C3B0008666E4 /* GetLocationViewController.swift */,
+				54C182C52435C159008666E4 /* HomepageViewController.swift */,
+				54C1833D2435C3A3008666E4 /* ImageViewAnimationViewController.swift */,
+				54C183502435C3B1008666E4 /* LayoutAndDelegateViewController.swift */,
+				54C183482435C3B0008666E4 /* NotificationCenterViewController.swift */,
+				54C183492435C3B0008666E4 /* ScrollViewController.swift */,
+				54C1834E2435C3B1008666E4 /* StretchyHeaderViewController.swift */,
+				54C1834B2435C3B0008666E4 /* TagViewController.swift */,
+				54C1834F2435C3B1008666E4 /* UIViewRefreshViewController.swift */,
+				54C1834D2435C3B1008666E4 /* WaterFallsViewController.swift */,
+				546970ED243D6BC000F2DB95 /* BasicUI */,
+				54C182C72435C374008666E4 /* Download */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
 		5455171D24372AF5009C7378 /* GestureUnlock */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,21 +327,36 @@
 		546970ED243D6BC000F2DB95 /* BasicUI */ = {
 			isa = PBXGroup;
 			children = (
-				54B4D05D243DC39500F629D8 /* DrawableCardViewController.swift */,
-				546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */,
-				546970F0243D6C3100F2DB95 /* TabbarSubViewController.swift */,
-				54E7F9CE243F283E004E6B73 /* TisprCardStackViewController.swift */,
-				549D7FF1244591A5000F234C /* UIPasteboardViewController.swift */,
-				54F08D4524459E72002A09A2 /* UICopyLabel.swift */,
-				54F08D472445A2FE002A09A2 /* UICopyImageView.swift */,
-				54F08D492445BA0A002A09A2 /* ImagePickerViewController.swift */,
 				548C49032446E593000478AA /* ConfigureView.swift */,
 				548C49072446E5BD000478AA /* ConfigureView.xib */,
-				549D7FF324459206000F234C /* View */,
+				54B4D05D243DC39500F629D8 /* DrawableCardViewController.swift */,
+				547C1DB62447F9BD0043F511 /* ImagePickerView.swift */,
+				54F08D492445BA0A002A09A2 /* ImagePickerViewController.swift */,
+				546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */,
+				548270BA2447197F00EA22B7 /* OtherViewController.swift */,
+				546970F0243D6C3100F2DB95 /* TabbarSubViewController.swift */,
+				54E7F9CE243F283E004E6B73 /* TisprCardStackViewController.swift */,
+				54F08D472445A2FE002A09A2 /* UICopyImageView.swift */,
+				54F08D4524459E72002A09A2 /* UICopyLabel.swift */,
+				549D7FF1244591A5000F234C /* UIPasteboardViewController.swift */,
 				54B4D05F243DD18800F629D8 /* CardView */,
+				547C1DB82447FB110043F511 /* Layout */,
 				54E7F9D0243F2AC3004E6B73 /* TisprCardStack */,
+				549D7FF324459206000F234C /* View */,
 			);
 			path = BasicUI;
+			sourceTree = "<group>";
+		};
+		547C1DB82447FB110043F511 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				547C1DBA2447FB200043F511 /* LxGridViewFlowLayout.h */,
+				547C1DBB2447FB200043F511 /* LxGridViewFlowLayout.m */,
+				547C1DBE2447FC130043F511 /* TZTestCell.h */,
+				547C1DBD2447FC120043F511 /* TZTestCell.m */,
+				547C1DB92447FB200043F511 /* WidgetsCollection-Bridging-Header.h */,
+			);
+			path = Layout;
 			sourceTree = "<group>";
 		};
 		549A0095243C7CFE001FA23B /* Entity */ = {
@@ -332,37 +410,21 @@
 		54C182942435C0B9008666E4 /* WidgetsCollection */ = {
 			isa = PBXGroup;
 			children = (
-				54F18DBC243EC0FE00AB81A1 /* Resource */,
-				549A0095243C7CFE001FA23B /* Entity */,
 				54C182952435C0B9008666E4 /* AppDelegate.swift */,
-				54C182C52435C159008666E4 /* HomepageViewController.swift */,
-				54C1835D2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift */,
-				54C1835C2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift */,
-				54C183412435C3A4008666E4 /* BasicViewController.swift */,
-				54C1833E2435C3A3008666E4 /* CALayerViewController.swift */,
-				54C1833F2435C3A4008666E4 /* CardLayoutViewController.swift */,
-				54C1833C2435C3A3008666E4 /* CGAffineTransformViewController.swift */,
-				54C183402435C3A4008666E4 /* DataManager.swift */,
-				54C1834A2435C3B0008666E4 /* GetLocationViewController.swift */,
-				54C1833D2435C3A3008666E4 /* ImageViewAnimationViewController.swift */,
-				54C183502435C3B1008666E4 /* LayoutAndDelegateViewController.swift */,
-				54C183482435C3B0008666E4 /* NotificationCenterViewController.swift */,
-				54C183492435C3B0008666E4 /* ScrollViewController.swift */,
-				54C1834E2435C3B1008666E4 /* StretchyHeaderViewController.swift */,
-				54C1834B2435C3B0008666E4 /* TagViewController.swift */,
-				54C1834F2435C3B1008666E4 /* UIViewRefreshViewController.swift */,
-				54C1834D2435C3B1008666E4 /* WaterFallsViewController.swift */,
 				54C90E38243ED6EC00D058CC /* AccessControl.swift */,
-				546970ED243D6BC000F2DB95 /* BasicUI */,
-				5455171D24372AF5009C7378 /* GestureUnlock */,
-				54C182C72435C374008666E4 /* Download */,
+				5455172224372E77009C7378 /* Const.swift */,
+				54C183402435C3A4008666E4 /* DataManager.swift */,
+				5451E91724494E7E00601BC9 /* Module */,
+				549A0095243C7CFE001FA23B /* Entity */,
 				54C182EE2435C374008666E4 /* Extension */,
+				5455171D24372AF5009C7378 /* GestureUnlock */,
+				54C182A32435C0BA008666E4 /* Info.plist */,
+				54C183622435C4CD008666E4 /* Launch Screen.storyboard */,
 				54C183332435C391008666E4 /* Layout */,
+				54F18DBC243EC0FE00AB81A1 /* Resource */,
+				5451E90F24494D7800601BC9 /* ThirdPartyFramework */,
 				54C182F42435C374008666E4 /* Xmsg */,
 				54C1829E2435C0BA008666E4 /* Assets.xcassets */,
-				54C183622435C4CD008666E4 /* Launch Screen.storyboard */,
-				54C182A32435C0BA008666E4 /* Info.plist */,
-				5455172224372E77009C7378 /* Const.swift */,
 			);
 			path = WidgetsCollection;
 			sourceTree = "<group>";
@@ -398,8 +460,8 @@
 		54C182E32435C374008666E4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				54C182E42435C374008666E4 /* PDFPreviewViewController.swift */,
 				54C182E52435C374008666E4 /* PDFDownloadViewController.swift */,
+				54C182E42435C374008666E4 /* PDFPreviewViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -416,10 +478,10 @@
 			isa = PBXGroup;
 			children = (
 				54C182E92435C374008666E4 /* PDFCollectionCell.swift */,
+				54C182ED2435C374008666E4 /* PDFCollectionFooter.swift */,
+				54C182EC2435C374008666E4 /* PDFDownloadView.swift */,
 				54C182EA2435C374008666E4 /* PDFInfoHeadView.swift */,
 				54C182EB2435C374008666E4 /* PDFPreviewView.swift */,
-				54C182EC2435C374008666E4 /* PDFDownloadView.swift */,
-				54C182ED2435C374008666E4 /* PDFCollectionFooter.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -433,6 +495,7 @@
 				54C182F22435C374008666E4 /* String+Extension.swift */,
 				54C182F32435C374008666E4 /* Sequence+Extension.swift */,
 				549A0093243C7A6B001FA23B /* UIViewController + Extension.swift */,
+				540C323F2448495400A597E1 /* Array+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -598,6 +661,7 @@
 				TargetAttributes = {
 					54C182912435C0B9008666E4 = {
 						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
 					};
 					54C182A72435C0BA008666E4 = {
 						CreatedOnToolsVersion = 11.4;
@@ -754,6 +818,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54C183432435C3A4008666E4 /* ImageViewAnimationViewController.swift in Sources */,
+				5451E91524494DB600601BC9 /* FLAnimatedImage.m in Sources */,
 				54C183302435C374008666E4 /* ChatFilterTagCell.swift in Sources */,
 				54B4D063243DD2D900F629D8 /* CardItem.swift in Sources */,
 				54B4D065243DDFFF00F629D8 /* ImageCardItem.swift in Sources */,
@@ -763,7 +828,9 @@
 				54C90E39243ED6EC00D058CC /* AccessControl.swift in Sources */,
 				54FD4FBB24402D0D006CD484 /* TisprCardStackDemoViewCell.swift in Sources */,
 				54E7F9D8243F2B79004E6B73 /* TisprCardStackViewLayout.swift in Sources */,
+				5451E91624494DB600601BC9 /* FLAnimatedImageView.m in Sources */,
 				54F08D4624459E72002A09A2 /* UICopyLabel.swift in Sources */,
+				540C32402448495400A597E1 /* Array+Extension.swift in Sources */,
 				54C183392435C391008666E4 /* CardLayout.swift in Sources */,
 				5455172924374448009C7378 /* HintTool.swift in Sources */,
 				54C183552435C3B1008666E4 /* TagViewController.swift in Sources */,
@@ -771,6 +838,7 @@
 				54C182962435C0B9008666E4 /* AppDelegate.swift in Sources */,
 				54C1831A2435C374008666E4 /* PDFPreviewViewController.swift in Sources */,
 				54C1831C2435C374008666E4 /* PDFEntity.swift in Sources */,
+				547C1DBC2447FB200043F511 /* LxGridViewFlowLayout.m in Sources */,
 				54B4D05E243DC39500F629D8 /* DrawableCardViewController.swift in Sources */,
 				54C1835F2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift in Sources */,
 				549A0094243C7A6B001FA23B /* UIViewController + Extension.swift in Sources */,
@@ -783,6 +851,8 @@
 				54C183582435C3B1008666E4 /* StretchyHeaderViewController.swift in Sources */,
 				54C1832B2435C374008666E4 /* tagViewModel.swift in Sources */,
 				54C183212435C374008666E4 /* PDFCollectionFooter.swift in Sources */,
+				547C1DB72447F9BD0043F511 /* ImagePickerView.swift in Sources */,
+				548270BB2447197F00EA22B7 /* OtherViewController.swift in Sources */,
 				54C1835E2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift in Sources */,
 				54C1831F2435C374008666E4 /* PDFPreviewView.swift in Sources */,
 				5455172324372E77009C7378 /* Const.swift in Sources */,
@@ -815,6 +885,7 @@
 				54C1832F2435C374008666E4 /* CommonAddCell.swift in Sources */,
 				54B4D061243DD19300F629D8 /* CardView.swift in Sources */,
 				546970F1243D6C3100F2DB95 /* TabbarSubViewController.swift in Sources */,
+				547C1DBF2447FC130043F511 /* TZTestCell.m in Sources */,
 				54C1831D2435C374008666E4 /* PDFCollectionCell.swift in Sources */,
 				54C183472435C3A4008666E4 /* BasicViewController.swift in Sources */,
 				54C183572435C3B1008666E4 /* WaterFallsViewController.swift in Sources */,
@@ -978,6 +1049,7 @@
 			baseConfigurationReference = C23E03D03A0D3837D6F9B5A9 /* Pods-WidgetsCollection.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3DBBG7HCTM;
 				INFOPLIST_FILE = WidgetsCollection/Info.plist;
@@ -987,6 +1059,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.WidgetsCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WidgetsCollection/BasicUI/Layout/WidgetsCollection-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -997,6 +1071,7 @@
 			baseConfigurationReference = AF95A402CD553B079FC0FC2A /* Pods-WidgetsCollection.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3DBBG7HCTM;
 				INFOPLIST_FILE = WidgetsCollection/Info.plist;
@@ -1006,6 +1081,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.WidgetsCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WidgetsCollection/BasicUI/Layout/WidgetsCollection-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

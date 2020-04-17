@@ -11,14 +11,13 @@ import UIKit
 class DrawableCardViewController: UIViewController {
     
     let count = 6
-//    var cardView: CardView!
+
     var startButton: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
-//        addCardView()
         view.bringSubviewToFront(reloadBtn)
     }
         

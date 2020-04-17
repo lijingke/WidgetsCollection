@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ConfigureViewDelegate: NSObjectProtocol {
+    func valueChanged<T>(sender: T)
+}
+
 class ConfigureView: UIScrollView {
     
     @IBOutlet weak var showTakePhotoBtnSwitch: UISwitch!
@@ -38,8 +42,28 @@ class ConfigureView: UIScrollView {
     
     @IBOutlet weak var showSelectedIndexSwitch: UISwitch!
     
+    weak var eventDelegate: ConfigureViewDelegate?
+        
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        for subView in subviews[0].subviews {
+            
+            if let view = subView as? UISwitch {
+                view.addTarget(self, action: #selector(switchAction(sender:)), for: .valueChanged)
+            }
+            if let view = subView as? UITextField {
+                view.addTarget(self, action: #selector(textFieldAction(sender:)), for: .valueChanged)
+            }
+        }
+    }
+        
+    @objc private func switchAction(sender: UISwitch) {
+        eventDelegate?.valueChanged(sender: sender)
+    }
+    
+    @objc private func textFieldAction(sender: UITextField) {
+        eventDelegate?.valueChanged(sender: sender)
     }
     
 }
