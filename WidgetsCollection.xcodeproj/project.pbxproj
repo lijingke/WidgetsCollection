@@ -361,7 +361,6 @@
 				547C1DBB2447FB200043F511 /* LxGridViewFlowLayout.m */,
 				547C1DBE2447FC130043F511 /* TZTestCell.h */,
 				547C1DBD2447FC120043F511 /* TZTestCell.m */,
-				547C1DB92447FB200043F511 /* WidgetsCollection-Bridging-Header.h */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -427,6 +426,7 @@
 				54C182F42435C374008666E4 /* Xmsg */,
 				5451E90F24494D7800601BC9 /* ThirdPartyFramework */,
 				54F18DBC243EC0FE00AB81A1 /* Resource */,
+				547C1DB92447FB200043F511 /* WidgetsCollection-Bridging-Header.h */,
 				54C182A32435C0BA008666E4 /* Info.plist */,
 				54C183622435C4CD008666E4 /* Launch Screen.storyboard */,
 				54C1829E2435C0BA008666E4 /* Assets.xcassets */,
@@ -1063,7 +1063,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.WidgetsCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "WidgetsCollection/BasicUI/Layout/WidgetsCollection-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "WidgetsCollection/WidgetsCollection-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1085,7 +1085,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.WidgetsCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "WidgetsCollection/BasicUI/Layout/WidgetsCollection-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "WidgetsCollection/WidgetsCollection-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
