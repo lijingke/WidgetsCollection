@@ -84,7 +84,6 @@
 		54C1835E2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1835C2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift */; };
 		54C1835F2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1835D2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift */; };
 		54C183632435C4CD008666E4 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C183622435C4CD008666E4 /* Launch Screen.storyboard */; };
-		54C90E39243ED6EC00D058CC /* AccessControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C90E38243ED6EC00D058CC /* AccessControl.swift */; };
 		54E7F9CF243F283E004E6B73 /* TisprCardStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E7F9CE243F283E004E6B73 /* TisprCardStackViewController.swift */; };
 		54E7F9D6243F2B61004E6B73 /* CardStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E7F9D5243F2B61004E6B73 /* CardStackViewController.swift */; };
 		54E7F9D8243F2B79004E6B73 /* TisprCardStackViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E7F9D7243F2B79004E6B73 /* TisprCardStackViewLayout.swift */; };
@@ -206,7 +205,6 @@
 		54C1835C2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationsExamplesTwoViewController.swift; sourceTree = "<group>"; };
 		54C1835D2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationsExamplesOneViewController.swift; sourceTree = "<group>"; };
 		54C183622435C4CD008666E4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		54C90E38243ED6EC00D058CC /* AccessControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessControl.swift; sourceTree = "<group>"; };
 		54E7F9CE243F283E004E6B73 /* TisprCardStackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TisprCardStackViewController.swift; sourceTree = "<group>"; };
 		54E7F9D5243F2B61004E6B73 /* CardStackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackViewController.swift; sourceTree = "<group>"; };
 		54E7F9D7243F2B79004E6B73 /* TisprCardStackViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TisprCardStackViewLayout.swift; sourceTree = "<group>"; };
@@ -279,10 +277,10 @@
 		5451E91024494DB600601BC9 /* FLAnimatedImage */ = {
 			isa = PBXGroup;
 			children = (
-				5451E91124494DB600601BC9 /* FLAnimatedImage.m */,
-				5451E91224494DB600601BC9 /* FLAnimatedImageView.m */,
 				5451E91324494DB600601BC9 /* FLAnimatedImage.h */,
+				5451E91124494DB600601BC9 /* FLAnimatedImage.m */,
 				5451E91424494DB600601BC9 /* FLAnimatedImageView.h */,
+				5451E91224494DB600601BC9 /* FLAnimatedImageView.m */,
 			);
 			path = FLAnimatedImage;
 			sourceTree = "<group>";
@@ -312,14 +310,23 @@
 			path = Module;
 			sourceTree = "<group>";
 		};
+		5451E918244950AD00601BC9 /* BasicComponents */ = {
+			isa = PBXGroup;
+			children = (
+				5455172224372E77009C7378 /* Const.swift */,
+				54C183402435C3A4008666E4 /* DataManager.swift */,
+			);
+			path = BasicComponents;
+			sourceTree = "<group>";
+		};
 		5455171D24372AF5009C7378 /* GestureUnlock */ = {
 			isa = PBXGroup;
 			children = (
-				5455171E24372B48009C7378 /* GestureUnlockViewController.swift */,
 				5455172024372B87009C7378 /* GestureUnlockView.swift */,
+				5455171E24372B48009C7378 /* GestureUnlockViewController.swift */,
+				5455172824374448009C7378 /* HintTool.swift */,
 				545517242437301D009C7378 /* NumberButton.swift */,
 				5455172624373975009C7378 /* Tools.swift */,
-				5455172824374448009C7378 /* HintTool.swift */,
 			);
 			path = GestureUnlock;
 			sourceTree = "<group>";
@@ -411,19 +418,17 @@
 			isa = PBXGroup;
 			children = (
 				54C182952435C0B9008666E4 /* AppDelegate.swift */,
-				54C90E38243ED6EC00D058CC /* AccessControl.swift */,
-				5455172224372E77009C7378 /* Const.swift */,
-				54C183402435C3A4008666E4 /* DataManager.swift */,
+				5451E918244950AD00601BC9 /* BasicComponents */,
 				5451E91724494E7E00601BC9 /* Module */,
 				549A0095243C7CFE001FA23B /* Entity */,
 				54C182EE2435C374008666E4 /* Extension */,
 				5455171D24372AF5009C7378 /* GestureUnlock */,
+				54C183332435C391008666E4 /* Layout */,
+				54C182F42435C374008666E4 /* Xmsg */,
+				5451E90F24494D7800601BC9 /* ThirdPartyFramework */,
+				54F18DBC243EC0FE00AB81A1 /* Resource */,
 				54C182A32435C0BA008666E4 /* Info.plist */,
 				54C183622435C4CD008666E4 /* Launch Screen.storyboard */,
-				54C183332435C391008666E4 /* Layout */,
-				54F18DBC243EC0FE00AB81A1 /* Resource */,
-				5451E90F24494D7800601BC9 /* ThirdPartyFramework */,
-				54C182F42435C374008666E4 /* Xmsg */,
 				54C1829E2435C0BA008666E4 /* Assets.xcassets */,
 			);
 			path = WidgetsCollection;
@@ -489,13 +494,13 @@
 		54C182EE2435C374008666E4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				54C182EF2435C374008666E4 /* UIFont+Extension.swift */,
-				54C182F02435C374008666E4 /* UIColor+Extension.swift */,
-				54C182F12435C374008666E4 /* UIView+Extension.swift */,
-				54C182F22435C374008666E4 /* String+Extension.swift */,
-				54C182F32435C374008666E4 /* Sequence+Extension.swift */,
-				549A0093243C7A6B001FA23B /* UIViewController + Extension.swift */,
 				540C323F2448495400A597E1 /* Array+Extension.swift */,
+				54C182F32435C374008666E4 /* Sequence+Extension.swift */,
+				54C182F22435C374008666E4 /* String+Extension.swift */,
+				54C182F02435C374008666E4 /* UIColor+Extension.swift */,
+				54C182EF2435C374008666E4 /* UIFont+Extension.swift */,
+				54C182F12435C374008666E4 /* UIView+Extension.swift */,
+				549A0093243C7A6B001FA23B /* UIViewController + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -504,11 +509,11 @@
 			isa = PBXGroup;
 			children = (
 				54C182F52435C374008666E4 /* ChatFilterEventProtocol.swift */,
-				54C182F62435C374008666E4 /* Controller */,
 				54C182F92435C374008666E4 /* UICollectionViewFlowLayout+Extension.swift */,
+				54C183032435C374008666E4 /* UIImage+ Extension.swift */,
 				54C182FA2435C374008666E4 /* Model */,
 				54C182FC2435C374008666E4 /* View */,
-				54C183032435C374008666E4 /* UIImage+ Extension.swift */,
+				54C182F62435C374008666E4 /* Controller */,
 			);
 			path = Xmsg;
 			sourceTree = "<group>";
@@ -546,9 +551,9 @@
 		54C183332435C391008666E4 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				54C183342435C391008666E4 /* TagLayout.swift */,
 				54C183352435C391008666E4 /* CardLayout.swift */,
 				54C183362435C391008666E4 /* StretchyLayout.swift */,
+				54C183342435C391008666E4 /* TagLayout.swift */,
 				54C183372435C391008666E4 /* WaterFallsLayout.swift */,
 			);
 			path = Layout;
@@ -825,7 +830,6 @@
 				549A0097243C7D2E001FA23B /* HomeDataEntity.swift in Sources */,
 				549D7FF2244591A5000F234C /* UIPasteboardViewController.swift in Sources */,
 				54F08D4A2445BA0A002A09A2 /* ImagePickerViewController.swift in Sources */,
-				54C90E39243ED6EC00D058CC /* AccessControl.swift in Sources */,
 				54FD4FBB24402D0D006CD484 /* TisprCardStackDemoViewCell.swift in Sources */,
 				54E7F9D8243F2B79004E6B73 /* TisprCardStackViewLayout.swift in Sources */,
 				5451E91624494DB600601BC9 /* FLAnimatedImageView.m in Sources */,
