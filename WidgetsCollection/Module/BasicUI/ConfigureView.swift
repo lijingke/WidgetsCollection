@@ -105,10 +105,10 @@ class ConfigureView: UIScrollView {
             allowCropSwitch.setOn(false, animated: true)
         }
         
-        if sender == allowPickingImageSwitch && sender.isOn {
-            allowPickingOriginalPhotoSwitch.setOn(true, animated: true)
+        if sender == allowPickingImageSwitch && !sender.isOn {
+            allowPickingOriginalPhotoSwitch.setOn(false, animated: true)
             allowPickingVideoSwitch.setOn(true, animated: true)
-            allowPickingGifSwitch.setOn(true, animated: true)
+            allowPickingGifSwitch.setOn(false, animated: true)
         }
         
         if sender == allowPickingGifSwitch {

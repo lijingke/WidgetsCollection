@@ -25,6 +25,7 @@ class ImagePickerView: UIView {
     private var isSelectedOringinalPhoto: Bool = false
     private var itemWH: CGFloat!
     private var margin: CGFloat!
+    private var numberOfColumns: CGFloat!
     private var location: CLLocation!
     
     /// 是否允许拍照
@@ -38,7 +39,7 @@ class ImagePickerView: UIView {
     /// 是否允许选择照片
     public var allowPickingImage: Bool = true
     /// 是否允许选择Gif图片
-    public var allowPickingGif: Bool = true
+    public var allowPickingGif: Bool = false
     /// 把照片/拍视频按钮放在外面
     public var showSheet: Bool = false
     /// 照片最大可选张数
@@ -73,11 +74,16 @@ class ImagePickerView: UIView {
 //        DispatchQueue.main.asyncAfter(deadline: .now() + Double(Int64(0.01 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
 //
 //        }
-//        
+//
+        
         let layout = collectionView.collectionViewLayout as! LxGridViewFlowLayout
+        
         self.margin = 4
-        let width = self.width - 2 * self.margin - 4
-        self.itemWH = width / 3 - self.margin
+        self.numberOfColumns = 5
+
+        let space = self.width - (numberOfColumns + 1) * margin
+        self.itemWH =  space / numberOfColumns
+        
         layout.itemSize = CGSize(width: itemWH, height: itemWH)
         layout.minimumInteritemSpacing = margin
         layout.minimumLineSpacing = margin
@@ -141,9 +147,7 @@ extension ImagePickerView {
 
 // MARK: - UICollectionViewDelegate
 extension ImagePickerView: UICollectionViewDelegate {
-    
-    
-    
+        
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
         if indexPath.item == selectedPhotos.count {
@@ -301,7 +305,7 @@ extension ImagePickerView {
         
         // 5. 单选模式,maxImagesCount为1时才生效
         imagePickerVC?.showSelectBtn = false
-        imagePickerVC?.allowCrop = true
+        imagePickerVC?.allowCrop = allowCrop
         imagePickerVC?.needCircleCrop = needCircleCrop
         
         // 设置竖屏下的裁剪尺寸
@@ -321,13 +325,14 @@ extension ImagePickerView {
         // 是否允许预览
 //        imagePickerVC?.allowPreview = false
         
+        // 修改返回按钮
 //        imagePickerVC?.navLeftBarButtonSettingBlock = { (leftButton) in
 //            leftButton?.setImage(UIImage(systemName: "trash.fill"), for: .normal)
 //            leftButton?.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 20)
 //        }
 //        imagePickerVC?.delegate = self
         
-        // StatusBarStyly
+        // StatusBarStyle
         imagePickerVC?.statusBarStyle = .lightContent
         
         // 设置是否显示图片序号
