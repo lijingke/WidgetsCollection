@@ -80,7 +80,7 @@ extension ImagePickerViewController {
     }
     
     fileprivate func modalPush() {
-        let vc = OtherViewController()
+        let vc = ChooseConfigureViewController()
         navigationController?.pushViewController(vc, animated: true)
         let nav = UINavigationController(rootViewController: vc)
         nav.isNavigationBarHidden = true

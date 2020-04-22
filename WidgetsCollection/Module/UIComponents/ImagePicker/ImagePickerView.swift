@@ -157,6 +157,79 @@ extension ImagePickerView {
     }
 }
 
+// MARK: - UICollectionViewDataSource
+extension ImagePickerView: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if section == 0 {
+            return hasUploadData.count
+        } else {
+            if selectedPhotos.count >= chooseConf.maxCount {
+                return selectedPhotos.count
+            }
+            if !chooseConf.allowPickingMuitlpleVideo {
+                for item in selectedAssets {
+                    if item.mediaType == PHAssetMediaType.video {
+                        return selectedPhotos.count
+                    }
+                }
+            }
+            return selectedPhotos.count + 1
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if indexPath.section == 0 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WebImageCollectionViewCell.reuseId, for: indexPath) as? WebImageCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            let model = hasUploadData[indexPath.item]
+            let url = model?.url ?? ""
+            let data = try? Data(contentsOf: Bundle.main.url(forResource: "loading", withExtension: "gif")!)
+            let gifImage = UIImage.sd_image(with: data)
+            cell.imageView.sd_setImage(with: URL(string: url), placeholderImage: gifImage)
+            return cell
+        }
+        
+        if indexPath.section == 1 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TZTestCell", for: indexPath) as? TZTestCell else {
+                return UICollectionViewCell()
+            }
+            cell.videoImageView.isHidden = true
+            
+            if indexPath.item == selectedPhotos.count {
+                cell.imageView.image = UIImage(named: "AlbumAddBtn")
+                cell.deleteBtn.isHidden = true
+                cell.gifLable.isHidden = true
+            } else {
+                cell.imageView.image = selectedPhotos[indexPath.item]
+                cell.asset = selectedAssets[indexPath.item]
+                cell.deleteBtn.isHidden = false
+            }
+            
+            if !chooseConf.allowPickingGif {
+                cell.gifLable.isHidden = true
+            }
+            
+            cell.deleteBtn.tag = indexPath.item
+            cell.deleteBtn.addTarget(self, action: #selector(deleteBtnAction(_:)), for: .touchUpInside)
+            
+            return cell
+            
+        }
+        
+        return UICollectionViewCell()
+        
+    }
+    
+}
+
 // MARK: - UICollectionViewDelegate
 extension ImagePickerView: UICollectionViewDelegate {
     
@@ -252,6 +325,7 @@ extension ImagePickerView: UICollectionViewDelegate {
     
 }
 
+// MARK: - UIGestureRecognizer代理方法
 extension ImagePickerView: UIGestureRecognizerDelegate {
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         let point = gestureRecognizer.location(in: configureView)
@@ -264,8 +338,7 @@ extension ImagePickerView: UIGestureRecognizerDelegate {
 }
 
 
-// MARK: - TZImagePickerController
-
+// MARK: - 推出图片选择器
 extension ImagePickerView {
     
     private func pushTZImagePickerController() {
@@ -477,85 +550,7 @@ extension ImagePickerView {
     }
 }
 
-// MARK: - UINavigationControllerDelegate
-extension ImagePickerView: UINavigationControllerDelegate {
-    
-}
-
-// MARK: - UICollectionViewDataSource
-extension ImagePickerView: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        if section == 0 {
-            return hasUploadData.count
-        } else {
-            if selectedPhotos.count >= chooseConf.maxCount {
-                return selectedPhotos.count
-            }
-            if !chooseConf.allowPickingMuitlpleVideo {
-                for item in selectedAssets {
-                    if item.mediaType == PHAssetMediaType.video {
-                        return selectedPhotos.count
-                    }
-                }
-            }
-            return selectedPhotos.count + 1
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if indexPath.section == 0 {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WebImageCollectionViewCell.reuseId, for: indexPath) as? WebImageCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-            let model = hasUploadData[indexPath.item]
-            let url = model?.url ?? ""
-            let data = try? Data(contentsOf: Bundle.main.url(forResource: "loading", withExtension: "gif")!)
-            let gifImage = UIImage.sd_image(with: data)
-            cell.imageView.sd_setImage(with: URL(string: url), placeholderImage: gifImage)
-            return cell
-        }
-        
-        if indexPath.section == 1 {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TZTestCell", for: indexPath) as? TZTestCell else {
-                return UICollectionViewCell()
-            }
-            cell.videoImageView.isHidden = true
-            
-            if indexPath.item == selectedPhotos.count {
-                cell.imageView.image = UIImage(named: "AlbumAddBtn")
-                cell.deleteBtn.isHidden = true
-                cell.gifLable.isHidden = true
-            } else {
-                cell.imageView.image = selectedPhotos[indexPath.item]
-                cell.asset = selectedAssets[indexPath.item]
-                cell.deleteBtn.isHidden = false
-            }
-            
-            if !chooseConf.allowPickingGif {
-                cell.gifLable.isHidden = true
-            }
-            
-            cell.deleteBtn.tag = indexPath.item
-            cell.deleteBtn.addTarget(self, action: #selector(deleteBtnAction(_:)), for: .touchUpInside)
-            
-            return cell
-            
-        }
-        
-        return UICollectionViewCell()
-        
-    }
-    
-}
-
-// MARK: - LxGridViewDataSource
+// MARK: - LxGridViewDataSource，长按排序相关代码
 extension ImagePickerView: LxGridViewDataSource {
     
     /// 以下三个方法为长按排序相关代码
@@ -603,6 +598,7 @@ extension ImagePickerView {
     }
 }
 
+// MARK: - 调试信息
 extension ImagePickerView {
     private func printAssetsName(_ assets: [PHAsset]) {
         for item in assets {
@@ -611,7 +607,7 @@ extension ImagePickerView {
     }
 }
 
-// MARK: - UIImagePickerControllerDelegate
+// MARK: - UIImagePickerController代理方法
 extension ImagePickerView: UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -685,7 +681,7 @@ extension ImagePickerView: UIImagePickerControllerDelegate {
     }
 }
 
-// MARK: - TZImagePickerControllerDelegate
+// MARK: - TZImagePickerController代理方法
 extension ImagePickerView: TZImagePickerControllerDelegate {
     
     /// 用户点击了取消
