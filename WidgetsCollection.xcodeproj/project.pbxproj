@@ -27,6 +27,7 @@
 		546970F3243D7C1E00F2DB95 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */; };
 		5478FEA2244FE16500208D15 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5478FEA1244FE16500208D15 /* loading.gif */; };
 		5478FEA4244FE35C00208D15 /* WebImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5478FEA3244FE35B00208D15 /* WebImageCollectionViewCell.swift */; };
+		5478FEA6244FF4F700208D15 /* ImageChooseConf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5478FEA5244FF4F700208D15 /* ImageChooseConf.swift */; };
 		547C1DB72447F9BD0043F511 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547C1DB62447F9BD0043F511 /* ImagePickerView.swift */; };
 		547C1DBC2447FB200043F511 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 547C1DBB2447FB200043F511 /* LxGridViewFlowLayout.m */; };
 		547C1DBF2447FC130043F511 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 547C1DBD2447FC120043F511 /* TZTestCell.m */; };
@@ -146,6 +147,7 @@
 		546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
 		5478FEA1244FE16500208D15 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		5478FEA3244FE35B00208D15 /* WebImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		5478FEA5244FF4F700208D15 /* ImageChooseConf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageChooseConf.swift; sourceTree = "<group>"; };
 		547C1DB62447F9BD0043F511 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		547C1DB92447FB200043F511 /* WidgetsCollection-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WidgetsCollection-Bridging-Header.h"; sourceTree = "<group>"; };
 		547C1DBA2447FB200043F511 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 		546970ED243D6BC000F2DB95 /* BasicUI */ = {
 			isa = PBXGroup;
 			children = (
+				5478FEA5244FF4F700208D15 /* ImageChooseConf.swift */,
 				548C49032446E593000478AA /* ConfigureView.swift */,
 				548C49072446E5BD000478AA /* ConfigureView.xib */,
 				54B4D05D243DC39500F629D8 /* DrawableCardViewController.swift */,
@@ -933,6 +936,7 @@
 				54C183452435C3A4008666E4 /* CardLayoutViewController.swift in Sources */,
 				54C183522435C3B1008666E4 /* NotificationCenterViewController.swift in Sources */,
 				54C1831E2435C374008666E4 /* PDFInfoHeadView.swift in Sources */,
+				5478FEA6244FF4F700208D15 /* ImageChooseConf.swift in Sources */,
 				54C1832F2435C374008666E4 /* CommonAddCell.swift in Sources */,
 				54B4D061243DD19300F629D8 /* CardView.swift in Sources */,
 				546970F1243D6C3100F2DB95 /* TabbarSubViewController.swift in Sources */,

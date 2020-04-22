@@ -93,6 +93,7 @@ class TagViewController: UIViewController {
     }()
 }
 
+// MARK: - UICollectionViewDataSource
 extension TagViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -111,6 +112,7 @@ extension TagViewController: UICollectionViewDataSource {
 
 }
 
+// MARK: - UICollectionViewDelegate
 extension TagViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
       switch kind {

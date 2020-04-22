@@ -19,51 +19,43 @@ protocol ImagePickerViewDelegate: NSObjectProtocol {
 
 class ImagePickerView: UIView {
     
+    // MARK: Property
     weak var delegate:ImagePickerViewDelegate?
-    
+    /// 从相册中选择的图片
     public var selectedPhotos: [UIImage] = []
+    /// 从相册中选择的图片PHAsset
     public var selectedAssets: [PHAsset] = []
-    
-    public var hasUploadData: [UploadHistoryModel?] = []
-    
+    /// 从SM.MS图床下载的数据
+    public var hasUploadData: [UploadHistoryModel?] = [] {
+        didSet {
+            if hasUploadData.count > 0 {
+                headSize = CGSize(width: width, height: 50)
+            } else {
+                headSize = CGSize(width: width, height: 0)
+            }
+            layoutSubviews()
+        }
+    }
+    /// 是否选择的原图
     private var isSelectedOringinalPhoto: Bool = false
+    /// CollectionViewCell尺寸
     private var itemWH: CGFloat!
+    /// CollectionViewCell边距
     private var margin: CGFloat!
+    /// CollectionView的列数
     private var numberOfColumns: CGFloat!
+    /// 定位信息
     private var location: CLLocation!
+    /// 图片选择后上传操作队列
     private var operationQueue: OperationQueue?
-    
-    /// 是否允许拍照
-    public var showTakePhotoBtn: Bool = true
-    /// 照片是否按修改时间升序排列
-    public var sortAscending: Bool = true
-    /// 是否允许选择视频
-    public var allowPickingVideo: Bool = true
-    /// 是否允许选择照片原图
-    public var allowPickingOriginalPhoto: Bool = true
-    /// 是否允许选择照片
-    public var allowPickingImage: Bool = true
-    /// 是否允许选择Gif图片
-    public var allowPickingGif: Bool = false
-    /// 把照片/拍视频按钮放在外面
-    public var showSheet: Bool = false
-    /// 照片最大可选张数
-    public var maxCount: Int = 9
-    /// 每行展示照片张数
-    public var columnNumber: Int = 4
-    /// 单选模式下是否允许裁剪
-    public var allowCrop: Bool = false
-    /// 是否允许多选视频/GIF/图片
-    public var allowPickingMuitlpleVideo: Bool = false
-    /// 是否使用圆形裁剪框
-    public var needCircleCrop: Bool = false
-    /// 是否允许拍视频
-    public var showTakeVideoBtn: Bool = true
-    /// 是否在右上角显示图片选中序号
-    public var showSelectedIndex: Bool = true
-    
+    /// CollectionViewHead尺寸
+    private var headSize: CGSize = CGSize(width: 0, height: 0)
+    /// 选择图片的配置信息
+    private var chooseConf = ImageChooseConf()
+    /// 选择图片的配置菜单
     public var confScrollView: ConfigureView!
     
+    // MARK: Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -92,15 +84,10 @@ class ImagePickerView: UIView {
         layout.itemSize = CGSize(width: itemWH, height: itemWH)
         layout.minimumInteritemSpacing = margin
         layout.minimumLineSpacing = margin
+        layout.headerReferenceSize = headSize
     }
-    
-    private func setupUI() {
-        addSubview(collectionView)
-        collectionView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
-    }
-    
+        
+    // MARK: Lazy Get
     lazy var collectionView: UICollectionView = {
         let layout = LxGridViewFlowLayout()
         
@@ -112,6 +99,8 @@ class ImagePickerView: UIView {
         view.dataSource = self
         view.keyboardDismissMode = .onDrag
         view.register(TZTestCell.self, forCellWithReuseIdentifier: "TZTestCell")
+        view.register(WebImageCollectionViewCell.self, forCellWithReuseIdentifier: WebImageCollectionViewCell.reuseId)
+        view.register(collectionHead.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionHead.reuseID)
         return view
     }()
     
@@ -132,7 +121,7 @@ class ImagePickerView: UIView {
             make.height.equalToSuperview().multipliedBy(0.7)
         }
         self.confScrollView = subView
-        self.showTakePhotoBtn = subView.showSheetSwitch.isOn
+        self.chooseConf.showTakePhotoBtn = subView.showSheetSwitch.isOn
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         gesture.delegate = self
@@ -141,6 +130,19 @@ class ImagePickerView: UIView {
         return view
     }()
     
+    
+}
+
+// MARK: - Setup Data && UI
+extension ImagePickerView {
+    
+    private func setupUI() {
+        addSubview(collectionView)
+        collectionView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+    }
+
     public func setupData(_ models: [UploadHistoryModel?]) {
         self.hasUploadData = models
         collectionView.reloadData()
@@ -148,7 +150,7 @@ class ImagePickerView: UIView {
     
 }
 
-// MARK: -
+// MARK: - TapAction
 extension ImagePickerView {
     @objc func tapAction() {
         configureView.removeFromSuperview()
@@ -165,11 +167,11 @@ extension ImagePickerView: UICollectionViewDelegate {
         }
         
         if indexPath.item == selectedPhotos.count {
-            if showSheet {
+            if chooseConf.showSheet {
                 var takePhotoTitle = "拍照"
-                if showTakeVideoBtn && showTakePhotoBtn {
+                if chooseConf.showTakeVideoBtn && chooseConf.showTakePhotoBtn {
                     takePhotoTitle = "相机"
-                } else if showTakeVideoBtn {
+                } else if chooseConf.showTakeVideoBtn {
                     takePhotoTitle = "拍摄"
                 }
                 
@@ -203,13 +205,13 @@ extension ImagePickerView: UICollectionViewDelegate {
             isVideo = asset.mediaType == PHAssetMediaType.video
             let filename = asset.value(forKey: "filename") as? String ?? ""
             
-            if filename.contains("GIF") && allowPickingGif && !allowPickingMuitlpleVideo {
+            if filename.contains("GIF") && chooseConf.allowPickingGif && !chooseConf.allowPickingMuitlpleVideo {
                 let vc = TZGifPhotoPreviewController()
                 let model = TZAssetModel(asset: asset, type: TZAssetModelMediaTypePhotoGif, timeLength: "")
                 vc.model = model
                 vc.modalPresentationStyle = .fullScreen
                 self.getViewController().present(vc, animated: true, completion: nil)
-            } else if isVideo && !allowPickingMuitlpleVideo { // 预览视频
+            } else if isVideo && !chooseConf.allowPickingMuitlpleVideo { // 预览视频
                 let vc = TZVideoPlayerController()
                 let model = TZAssetModel(asset: asset, type: TZAssetModelMediaTypeVideo, timeLength: "")
                 vc.model = model
@@ -219,11 +221,11 @@ extension ImagePickerView: UICollectionViewDelegate {
                 let photoArray = selectedPhotos.array2NSMutableArray()
                 let assetsArray = selectedAssets.array2NSMutableArray()
                 let imagePickerVC = TZImagePickerController(selectedAssets: assetsArray, selectedPhotos: photoArray, index: indexPath.item)
-                imagePickerVC?.maxImagesCount = maxCount
-                imagePickerVC?.allowPickingGif = allowPickingGif
-                imagePickerVC?.allowPickingOriginalPhoto = allowPickingOriginalPhoto
-                imagePickerVC?.allowPickingMultipleVideo = self.allowPickingMuitlpleVideo
-                imagePickerVC?.showSelectedIndex = showSelectedIndex
+                imagePickerVC?.maxImagesCount = chooseConf.maxCount
+                imagePickerVC?.allowPickingGif = chooseConf.allowPickingGif
+                imagePickerVC?.allowPickingOriginalPhoto = chooseConf.allowPickingOriginalPhoto
+                imagePickerVC?.allowPickingMultipleVideo = chooseConf.allowPickingMuitlpleVideo
+                imagePickerVC?.showSelectedIndex = chooseConf.showSelectedIndex
                 imagePickerVC?.isSelectOriginalPhoto = isSelectedOringinalPhoto
                 imagePickerVC?.modalPresentationStyle = .fullScreen
                 imagePickerVC?.didFinishPickingPhotosHandle = { (photos, assets, isSelectedOriginalPhoto) in
@@ -236,6 +238,18 @@ extension ImagePickerView: UICollectionViewDelegate {
             }
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: collectionHead.reuseID, for: indexPath) as! collectionHead
+            view.titleLabel.text = "Head \(indexPath.section)"
+            return view
+        default:
+            fatalError("No Such Kind")
+        }
+    }
+    
 }
 
 extension ImagePickerView: UIGestureRecognizerDelegate {
@@ -255,24 +269,24 @@ extension ImagePickerView: UIGestureRecognizerDelegate {
 extension ImagePickerView {
     
     private func pushTZImagePickerController() {
-        if maxCount <= 0 {
+        if chooseConf.maxCount <= 0 {
             return
         }
-        let imagePickerVC = TZImagePickerController(maxImagesCount: maxCount, columnNumber: columnNumber, delegate: self, pushPhotoPickerVc: true)
+        let imagePickerVC = TZImagePickerController(maxImagesCount: chooseConf.maxCount, columnNumber: chooseConf.columnNumber, delegate: self, pushPhotoPickerVc: true)
         
         // MARK: 五类个性化设置，这些参数都可以不传，此时会走默认设置
         
         imagePickerVC?.isSelectOriginalPhoto = isSelectedOringinalPhoto
         
-        if self.maxCount > 1 {
+        if chooseConf.maxCount > 1 {
             // 1.设置目前已经选中的图片数组
             imagePickerVC?.selectedAssets = selectedAssets.array2NSMutableArray() // 目前已经选中的图片数组
         }
         
         // 在内部显示拍照按钮
-        imagePickerVC?.allowTakePicture = showTakePhotoBtn
+        imagePickerVC?.allowTakePicture = chooseConf.showTakePhotoBtn
         // 在内部显示拍视频按钮
-        imagePickerVC?.allowTakeVideo = showTakeVideoBtn
+        imagePickerVC?.allowTakeVideo = chooseConf.showTakeVideoBtn
         // 视频最大拍摄时间
         imagePickerVC?.videoMaximumDuration = 10
         imagePickerVC?.uiImagePickerControllerSettingBlock = { (imagePickerController) in
@@ -301,15 +315,15 @@ extension ImagePickerView {
         //        }
         
         // 3. 设置是否可以选择视频/图片/原图
-        imagePickerVC?.allowPickingVideo = allowPickingVideo
-        imagePickerVC?.allowPickingImage = allowPickingImage
-        imagePickerVC?.allowPickingOriginalPhoto = allowPickingOriginalPhoto
-        imagePickerVC?.allowPickingGif = allowPickingGif
+        imagePickerVC?.allowPickingVideo = chooseConf.allowPickingVideo
+        imagePickerVC?.allowPickingImage = chooseConf.allowPickingImage
+        imagePickerVC?.allowPickingOriginalPhoto = chooseConf.allowPickingOriginalPhoto
+        imagePickerVC?.allowPickingGif = chooseConf.allowPickingGif
         // 是否可以多选视频
-        imagePickerVC?.allowPickingMultipleVideo = allowPickingMuitlpleVideo
+        imagePickerVC?.allowPickingMultipleVideo = chooseConf.allowPickingMuitlpleVideo
         
         // 4. 照片排列按修改时间升序
-        imagePickerVC?.sortAscendingByModificationDate = sortAscending
+        imagePickerVC?.sortAscendingByModificationDate = chooseConf.sortAscending
         
         //        imagePickerVC?.minImagesCount = 3
         //        imagePickerVC?.alwaysEnableDoneBtn = true
@@ -319,8 +333,8 @@ extension ImagePickerView {
         
         // 5. 单选模式,maxImagesCount为1时才生效
         imagePickerVC?.showSelectBtn = false
-        imagePickerVC?.allowCrop = allowCrop
-        imagePickerVC?.needCircleCrop = needCircleCrop
+        imagePickerVC?.allowCrop = chooseConf.allowCrop
+        imagePickerVC?.needCircleCrop = chooseConf.needCircleCrop
         
         // 设置竖屏下的裁剪尺寸
         let left: CGFloat = 30
@@ -350,7 +364,7 @@ extension ImagePickerView {
         imagePickerVC?.statusBarStyle = .lightContent
         
         // 设置是否显示图片序号
-        imagePickerVC?.showSelectedIndex = showSelectedIndex
+        imagePickerVC?.showSelectedIndex = chooseConf.showSelectedIndex
         
         // 设置拍照时是否需要定位，仅对选择器内部拍照有效，外部拍照的，请拷贝demo时手动把pushImagePickerController里定位方法的调用删掉
         //        imagePickerVC?.allowCameraLocation = false
@@ -447,10 +461,10 @@ extension ImagePickerView {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             imagePickerVC.sourceType = sourceType
             var mediaTypes: [String] = []
-            if showTakeVideoBtn {
+            if chooseConf.showTakeVideoBtn {
                 mediaTypes.append(kUTTypeMovie as String)
             }
-            if showTakePhotoBtn {
+            if chooseConf.showTakePhotoBtn {
                 mediaTypes.append(kUTTypeImage as String)
             }
             if mediaTypes.count != 0 {
@@ -480,10 +494,10 @@ extension ImagePickerView: UICollectionViewDataSource {
         if section == 0 {
             return hasUploadData.count
         } else {
-            if selectedPhotos.count >= maxCount {
+            if selectedPhotos.count >= chooseConf.maxCount {
                 return selectedPhotos.count
             }
-            if !allowPickingMuitlpleVideo {
+            if !chooseConf.allowPickingMuitlpleVideo {
                 for item in selectedAssets {
                     if item.mediaType == PHAssetMediaType.video {
                         return selectedPhotos.count
@@ -495,38 +509,48 @@ extension ImagePickerView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TZTestCell", for: indexPath) as? TZTestCell else {
-            return UICollectionViewCell()
-        }
-        cell.videoImageView.isHidden = true
         
         if indexPath.section == 0 {
-            cell.deleteBtn.isHidden = true
-            cell.gifLable.isHidden = true
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WebImageCollectionViewCell.reuseId, for: indexPath) as? WebImageCollectionViewCell else {
+                return UICollectionViewCell()
+            }
             let model = hasUploadData[indexPath.item]
             let url = model?.url ?? ""
-            cell.imageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "loading.gif"))
+            let data = try? Data(contentsOf: Bundle.main.url(forResource: "loading", withExtension: "gif")!)
+            let gifImage = UIImage.sd_image(with: data)
+            cell.imageView.sd_setImage(with: URL(string: url), placeholderImage: gifImage)
             return cell
         }
         
-        if indexPath.item == selectedPhotos.count {
-            cell.imageView.image = UIImage(named: "AlbumAddBtn")
-            cell.deleteBtn.isHidden = true
-            cell.gifLable.isHidden = true
-        } else {
-            cell.imageView.image = selectedPhotos[indexPath.item]
-            cell.asset = selectedAssets[indexPath.item]
-            cell.deleteBtn.isHidden = false
+        if indexPath.section == 1 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TZTestCell", for: indexPath) as? TZTestCell else {
+                return UICollectionViewCell()
+            }
+            cell.videoImageView.isHidden = true
+            
+            if indexPath.item == selectedPhotos.count {
+                cell.imageView.image = UIImage(named: "AlbumAddBtn")
+                cell.deleteBtn.isHidden = true
+                cell.gifLable.isHidden = true
+            } else {
+                cell.imageView.image = selectedPhotos[indexPath.item]
+                cell.asset = selectedAssets[indexPath.item]
+                cell.deleteBtn.isHidden = false
+            }
+            
+            if !chooseConf.allowPickingGif {
+                cell.gifLable.isHidden = true
+            }
+            
+            cell.deleteBtn.tag = indexPath.item
+            cell.deleteBtn.addTarget(self, action: #selector(deleteBtnAction(_:)), for: .touchUpInside)
+            
+            return cell
+            
         }
         
-        if !self.allowPickingGif {
-            cell.gifLable.isHidden = true
-        }
+        return UICollectionViewCell()
         
-        cell.deleteBtn.tag = indexPath.item
-        cell.deleteBtn.addTarget(self, action: #selector(deleteBtnAction(_:)), for: .touchUpInside)
-        
-        return cell
     }
     
 }
@@ -594,7 +618,7 @@ extension ImagePickerView: UIImagePickerControllerDelegate {
         picker.dismiss(animated: true, completion: nil)
         let type = info[UIImagePickerController.InfoKey.mediaType] as? String
         let tzImagePickerVC = TZImagePickerController(maxImagesCount: 1, delegate: self)
-        tzImagePickerVC?.sortAscendingByModificationDate = sortAscending
+        tzImagePickerVC?.sortAscendingByModificationDate = chooseConf.sortAscending
         tzImagePickerVC?.showProgressHUD()
         if type == "public.image" {
             let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
@@ -606,13 +630,13 @@ extension ImagePickerView: UIImagePickerControllerDelegate {
                     print("图片保存失败\(String(describing: error?.localizedDescription))")
                 } else {
                     let assesModel = TZImageManager.default()?.createModel(with: asset)
-                    if self.allowCrop {
+                    if self.chooseConf.allowCrop {
                         // 允许裁剪，去裁剪
                         let imagePicker = TZImagePickerController(cropTypeWith: asset, photo: image) { (cropImage, asset) in
                             self.refreshCollectionViewWithAddedAsset(asset: asset ?? PHAsset(), image: cropImage ?? UIImage())
                         }
                         imagePicker?.allowPickingImage = true
-                        imagePicker?.needCircleCrop = self.needCircleCrop
+                        imagePicker?.needCircleCrop = self.chooseConf.needCircleCrop
                         imagePicker?.circleCropRadius = 100
                         if let vc = imagePicker {
                             self.getViewController().present(vc, animated: true, completion: nil)
@@ -778,29 +802,29 @@ extension ImagePickerView: ConfigureViewDelegate {
         if let view = sender.self as? UISwitch {
             switch view.tag {
             case 0:
-                showTakePhotoBtn = view.isOn
+                chooseConf.showTakePhotoBtn = view.isOn
             case 1:
-                sortAscending = view.isOn
+                chooseConf.sortAscending = view.isOn
             case 2:
-                allowPickingVideo = view.isOn
+                chooseConf.allowPickingVideo = view.isOn
             case 3:
-                allowPickingOriginalPhoto = view.isOn
+                chooseConf.allowPickingOriginalPhoto = view.isOn
             case 4:
-                allowPickingImage = view.isOn
+                chooseConf.allowPickingImage = view.isOn
             case 5:
-                allowPickingGif = view.isOn
+                chooseConf.allowPickingGif = view.isOn
             case 6:
-                showSheet = view.isOn
+                chooseConf.showSheet = view.isOn
             case 7:
-                allowCrop = view.isOn
+                chooseConf.allowCrop = view.isOn
             case 8:
-                allowPickingMuitlpleVideo = view.isOn
+                chooseConf.allowPickingMuitlpleVideo = view.isOn
             case 9:
-                needCircleCrop = view.isOn
+                chooseConf.needCircleCrop = view.isOn
             case 10:
-                showTakeVideoBtn = view.isOn
+                chooseConf.showTakeVideoBtn = view.isOn
             case 11:
-                showSelectedIndex = view.isOn
+                chooseConf.showSelectedIndex = view.isOn
             default:
                 break
             }
@@ -808,9 +832,9 @@ extension ImagePickerView: ConfigureViewDelegate {
         if let view = sender.self as? UITextField {
             print(view)
             if view.tag == 0 {
-                maxCount = Int(view.text ?? "") ?? 9
+                chooseConf.maxCount = Int(view.text ?? "") ?? 9
             }else if view.tag == 1 {
-                columnNumber = Int(view.text ?? "") ?? 4
+                chooseConf.columnNumber = Int(view.text ?? "") ?? 4
             }
         }
         print("Changed")
