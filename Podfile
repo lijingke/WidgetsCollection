@@ -6,11 +6,16 @@ target 'WidgetsCollection' do
   use_frameworks!
 
   # Pods for WidgetsCollection
-  pod 'Tiercel'
-  pod 'SnapKit'
+  pod 'Alamofire'
   pod 'IQKeyboardManagerSwift'
   pod 'Reveal-SDK', :configurations => ['Debug']
+  pod 'SnapKit'
+  pod 'Tiercel'
   pod 'TZImagePickerController'
+  pod 'HandyJSON'
+  pod 'SDWebImage'
+  pod 'MBProgressHUD'
+  pod 'MJRefresh'
 
   target 'WidgetsCollectionTests' do
     inherit! :search_paths

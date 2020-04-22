@@ -10,6 +10,8 @@ import UIKit
 import Photos
 import TZImagePickerController
 import MobileCoreServices
+import SDWebImage
+import MBProgressHUD
 
 protocol ImagePickerViewDelegate: NSObjectProtocol {
     func didClickSettingBtn()
@@ -22,11 +24,14 @@ class ImagePickerView: UIView {
     public var selectedPhotos: [UIImage] = []
     public var selectedAssets: [PHAsset] = []
     
+    public var hasUploadData: [UploadHistoryModel?] = []
+    
     private var isSelectedOringinalPhoto: Bool = false
     private var itemWH: CGFloat!
     private var margin: CGFloat!
     private var numberOfColumns: CGFloat!
     private var location: CLLocation!
+    private var operationQueue: OperationQueue?
     
     /// 是否允许拍照
     public var showTakePhotoBtn: Bool = true
@@ -70,17 +75,17 @@ class ImagePickerView: UIView {
     
     override func layoutSubviews() {
         superview?.layoutSubviews()
-//        let contentSizeH = 14 * 35 + 20
-//        DispatchQueue.main.asyncAfter(deadline: .now() + Double(Int64(0.01 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
-//
-//        }
-//
+        //        let contentSizeH = 14 * 35 + 20
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + Double(Int64(0.01 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
+        //
+        //        }
+        //
         
         let layout = collectionView.collectionViewLayout as! LxGridViewFlowLayout
         
         self.margin = 4
-        self.numberOfColumns = 5
-
+        self.numberOfColumns = 4
+        
         let space = self.width - (numberOfColumns + 1) * margin
         self.itemWH =  space / numberOfColumns
         
@@ -136,6 +141,11 @@ class ImagePickerView: UIView {
         return view
     }()
     
+    public func setupData(_ models: [UploadHistoryModel?]) {
+        self.hasUploadData = models
+        collectionView.reloadData()
+    }
+    
 }
 
 // MARK: -
@@ -147,9 +157,13 @@ extension ImagePickerView {
 
 // MARK: - UICollectionViewDelegate
 extension ImagePickerView: UICollectionViewDelegate {
-        
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if indexPath.section == 0 {
+            return
+        }
+        
         if indexPath.item == selectedPhotos.count {
             if showSheet {
                 var takePhotoTitle = "拍照"
@@ -264,15 +278,15 @@ extension ImagePickerView {
         imagePickerVC?.uiImagePickerControllerSettingBlock = { (imagePickerController) in
             imagePickerController?.videoQuality = .typeHigh
         }
-//        imagePickerVC?.photoWidth = 1600
-//        imagePickerVC?.photoPreviewMaxWidth = 1600
+        //        imagePickerVC?.photoWidth = 1600
+        //        imagePickerVC?.photoPreviewMaxWidth = 1600
         
         // 2. 在这里设置imagePickerVc的外观
         
-//        imagePickerVC?.navigationBar.barTintColor = .green
-//        imagePickerVC?.oKButtonTitleColorDisabled = .lightGray
-//        imagePickerVC?.oKButtonTitleColorNormal = .green
-//        imagePickerVC?.navigationBar.isTranslucent = false
+        //        imagePickerVC?.navigationBar.barTintColor = .green
+        //        imagePickerVC?.oKButtonTitleColorDisabled = .lightGray
+        //        imagePickerVC?.oKButtonTitleColorNormal = .green
+        //        imagePickerVC?.navigationBar.isTranslucent = false
         
         imagePickerVC?.iconThemeColor = UIColor(red: 31 / 255.0, green: 185 / 255.0, blue: 34 / 255.0, alpha: 1.0)
         imagePickerVC?.showPhotoCannotSelectLayer = true
@@ -281,10 +295,10 @@ extension ImagePickerView {
             doneButton?.setTitleColor(.red, for: .normal)
         }
         
-//        imagePickerVC?.assetCellDidSetModelBlock = { (cell, imageView, selectImageView, indexLabel, bottomView, timeLength, videoImgView) in
-//            cell?.contentView.clipsToBounds = true
-//            cell?.contentView.layer.cornerRadius = (cell?.contentView.width ?? 0.0) * 0.5
-//        }
+        //        imagePickerVC?.assetCellDidSetModelBlock = { (cell, imageView, selectImageView, indexLabel, bottomView, timeLength, videoImgView) in
+        //            cell?.contentView.clipsToBounds = true
+        //            cell?.contentView.layer.cornerRadius = (cell?.contentView.width ?? 0.0) * 0.5
+        //        }
         
         // 3. 设置是否可以选择视频/图片/原图
         imagePickerVC?.allowPickingVideo = allowPickingVideo
@@ -297,11 +311,11 @@ extension ImagePickerView {
         // 4. 照片排列按修改时间升序
         imagePickerVC?.sortAscendingByModificationDate = sortAscending
         
-//        imagePickerVC?.minImagesCount = 3
-//        imagePickerVC?.alwaysEnableDoneBtn = true
-//
-//        imagePickerVC?.minPhotoWidthSelectable = 3000
-//        imagePickerVC?.minPhotoHeightSelectable = 2000
+        //        imagePickerVC?.minImagesCount = 3
+        //        imagePickerVC?.alwaysEnableDoneBtn = true
+        //
+        //        imagePickerVC?.minPhotoWidthSelectable = 3000
+        //        imagePickerVC?.minPhotoHeightSelectable = 2000
         
         // 5. 单选模式,maxImagesCount为1时才生效
         imagePickerVC?.showSelectBtn = false
@@ -316,21 +330,21 @@ extension ImagePickerView {
         imagePickerVC?.scaleAspectFillCrop = true
         
         // 设置横屏下的裁剪尺寸
-//        imagePickerVC?.cropRectLandscape = CGRect(x: (self.height - widthHeight) / 2, y: left, width: widthHeight, height: widthHeight)
-//        imagePickerVC?.cropViewSettingBlock = { (cropView) in
-//            cropView?.layer.borderColor = UIColor.red.cgColor
-//            cropView?.layer.borderWidth = 2.0
-//        }
+        //        imagePickerVC?.cropRectLandscape = CGRect(x: (self.height - widthHeight) / 2, y: left, width: widthHeight, height: widthHeight)
+        //        imagePickerVC?.cropViewSettingBlock = { (cropView) in
+        //            cropView?.layer.borderColor = UIColor.red.cgColor
+        //            cropView?.layer.borderWidth = 2.0
+        //        }
         
         // 是否允许预览
-//        imagePickerVC?.allowPreview = false
+        //        imagePickerVC?.allowPreview = false
         
         // 修改返回按钮
-//        imagePickerVC?.navLeftBarButtonSettingBlock = { (leftButton) in
-//            leftButton?.setImage(UIImage(systemName: "trash.fill"), for: .normal)
-//            leftButton?.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 20)
-//        }
-//        imagePickerVC?.delegate = self
+        //        imagePickerVC?.navLeftBarButtonSettingBlock = { (leftButton) in
+        //            leftButton?.setImage(UIImage(systemName: "trash.fill"), for: .normal)
+        //            leftButton?.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 20)
+        //        }
+        //        imagePickerVC?.delegate = self
         
         // StatusBarStyle
         imagePickerVC?.statusBarStyle = .lightContent
@@ -339,9 +353,9 @@ extension ImagePickerView {
         imagePickerVC?.showSelectedIndex = showSelectedIndex
         
         // 设置拍照时是否需要定位，仅对选择器内部拍照有效，外部拍照的，请拷贝demo时手动把pushImagePickerController里定位方法的调用删掉
-//        imagePickerVC?.allowCameraLocation = false
+        //        imagePickerVC?.allowCameraLocation = false
         
-//        TZPhotoPreviewView *view, UIImageView *imageView, NSData *gifData, NSDictionary *info
+        //        TZPhotoPreviewView *view, UIImageView *imageView, NSData *gifData, NSDictionary *info
         // 自定义gif播放方案
         TZImagePickerConfig.sharedInstance()?.gifImagePlayBlock = { (view, imageView, gifData, info) in
             let animatedImage = FLAnimatedImage(animatedGIFData: gifData)
@@ -362,10 +376,10 @@ extension ImagePickerView {
         }
         
         // 设置首选语言
-//        imagePickerVC?.preferredLanguage = "en"
+        //        imagePickerVC?.preferredLanguage = "en"
         
         // 设置languageBundle以使用其他语言
-//        imagePickerVC?.languageBundle = Bundle(path: Bundle.main.path(forResource: "tz-ru", ofType: "lproj") ?? "")
+        //        imagePickerVC?.languageBundle = Bundle(path: Bundle.main.path(forResource: "tz-ru", ofType: "lproj") ?? "")
         
         // MARK: 到这里结束
         
@@ -457,18 +471,27 @@ extension ImagePickerView: UINavigationControllerDelegate {
 // MARK: - UICollectionViewDataSource
 extension ImagePickerView: UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if selectedPhotos.count >= maxCount {
-            return selectedPhotos.count
-        }
-        if !allowPickingMuitlpleVideo {
-            for item in selectedAssets {
-                if item.mediaType == PHAssetMediaType.video {
-                    return selectedPhotos.count
+        
+        if section == 0 {
+            return hasUploadData.count
+        } else {
+            if selectedPhotos.count >= maxCount {
+                return selectedPhotos.count
+            }
+            if !allowPickingMuitlpleVideo {
+                for item in selectedAssets {
+                    if item.mediaType == PHAssetMediaType.video {
+                        return selectedPhotos.count
+                    }
                 }
             }
+            return selectedPhotos.count + 1
         }
-        return selectedPhotos.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -476,6 +499,15 @@ extension ImagePickerView: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.videoImageView.isHidden = true
+        
+        if indexPath.section == 0 {
+            cell.deleteBtn.isHidden = true
+            cell.gifLable.isHidden = true
+            let model = hasUploadData[indexPath.item]
+            let url = model?.url ?? ""
+            cell.imageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "loading.gif"))
+            return cell
+        }
         
         if indexPath.item == selectedPhotos.count {
             cell.imageView.image = UIImage(named: "AlbumAddBtn")
@@ -505,9 +537,12 @@ extension ImagePickerView: LxGridViewDataSource {
     /// 以下三个方法为长按排序相关代码
     
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return false
+        }
         return indexPath.item < selectedPhotos.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView!, itemAt sourceIndexPath: IndexPath!, canMoveTo destinationIndexPath: IndexPath!) -> Bool {
         return sourceIndexPath.item < selectedPhotos.count && destinationIndexPath.item < selectedPhotos.count
     }
@@ -564,7 +599,7 @@ extension ImagePickerView: UIImagePickerControllerDelegate {
         if type == "public.image" {
             let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
             let meta = info[UIImagePickerController.InfoKey.mediaType] as? [AnyHashable : Any]
-                        
+            
             TZImageManager.default()?.savePhoto(with: image, meta: meta, location: self.location, completion: { (asset, error) in
                 tzImagePickerVC?.hideProgressHUD()
                 if error != nil {
@@ -654,8 +689,31 @@ extension ImagePickerView: TZImagePickerControllerDelegate {
             print("Location is \(String(describing: phAsset.location?.description))")
         }
         // 3.获取原图的示例，用队列限制最大并发为1，避免内存暴增
+        self.operationQueue = OperationQueue()
+        self.operationQueue?.maxConcurrentOperationCount = 1
         
-        //todo: 上传图片
+        for i in 0..<assets.count {
+            let asset = assets[i] as! PHAsset
+            
+            let operation = ImageUploadOperation(asset: asset, completion: { (photo, info, isDegraded) in
+                if isDegraded {
+                    return
+                }
+                let name = asset.description
+                // MARK: 图片上传
+                MBProgressHUD.showAdded(to: self, animated: true)
+                SMImageManager.shared.uploadImage(photo, fileName: name) { () in
+                    if let vc = self.getViewController() as? ImagePickerViewController {
+                        vc.request()
+                        MBProgressHUD.hide(for: self, animated: true)
+                    }
+                }
+                print("图片获取&&上传完成")
+            }) { (progress, error, stop, info) in
+                print("获取原图进度：\(progress)")
+            }
+            self.operationQueue?.addOperation(operation)
+        }
     }
     
     /// 如果用户选择了一个视频且allowPickingMultipleVideo是NO，下面的代理方法会被执行
@@ -683,11 +741,34 @@ extension ImagePickerView: TZImagePickerControllerDelegate {
     
     /// 决定相册显示与否
     func isAlbumCanSelect(_ albumName: String!, result: PHFetchResult<AnyObject>!) -> Bool {
+        //        if albumName == "个人收藏" {
+        //            return false
+        //        }
+        //        if albumName == "Wheel" {
+        //            return false
+        //        }
+        //        if albumName == "视频" {
+        //            return false
+        //        }
         return true
     }
     
     /// 决定asset显示与否
     func isAssetCanSelect(_ asset: PHAsset!) -> Bool {
+        
+        //        switch asset.mediaType {
+        //        case .video:
+        //            let duration = asset.duration
+        //            print(duration)
+        //        case .image:
+        //            return asset.pixelWidth < 3000 || asset.pixelHeight < 3000
+        //        case .audio:
+        //            return false
+        //        case .unknown:
+        //            return false
+        //        default:
+        //            break
+        //        }
         return true
     }
 }
@@ -733,6 +814,6 @@ extension ImagePickerView: ConfigureViewDelegate {
             }
         }
         print("Changed")
-     }
-
+    }
+    
 }

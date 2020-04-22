@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import Alamofire
 import TZImagePickerController
+import MBProgressHUD
 
 class ImagePickerViewController: UIViewController {
     
@@ -15,6 +17,7 @@ class ImagePickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        request()
     }
         
     // MARK: - 懒加载
@@ -59,7 +62,7 @@ extension ImagePickerViewController {
 extension ImagePickerViewController {
     
     @objc private func addPhoto() {
-        pushTZImagePickerController()
+        // do something
     }
     
     @objc private func settingAction() {
@@ -85,18 +88,18 @@ extension ImagePickerViewController {
         nav.modalTransitionStyle = .crossDissolve
         present(nav, animated: true, completion: nil)
     }
-    
-    private func pushTZImagePickerController() {
-        let pickerVC = TZImagePickerController()
-        pickerVC.pickerDelegate = self
-        pickerVC.showSelectedIndex = true
-        present(pickerVC, animated: true, completion: nil)
-    }
+
 }
 
-// MARK: - TZImagePickerControllerDelegate
-extension ImagePickerViewController: TZImagePickerControllerDelegate {
-    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool) {
-        print(photos.description)
+// MARK: - Request
+extension ImagePickerViewController {
+    public func request() {
+//        SMImageManager.shared.getToken()
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        SMImageManager.shared.getUploadHistory { (models) in            self.mainView.setupData(models)
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
+        SMImageManager.shared.getUserInfo()
+//        SMImageManager.shared.uploadImage(UIImage(), fileName: "")
     }
 }

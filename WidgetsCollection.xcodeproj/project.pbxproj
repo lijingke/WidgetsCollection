@@ -10,8 +10,13 @@
 		012FEE795BDF44BB9D07CC34 /* Pods_WidgetsCollectionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F012B81D119305FCCD7116E9 /* Pods_WidgetsCollectionTests.framework */; };
 		3A7CBC7497EDF3ADE3A97B57 /* Pods_WidgetsCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F2F492D3EDE2C9F58FA43D5 /* Pods_WidgetsCollection.framework */; };
 		540C32402448495400A597E1 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540C323F2448495400A597E1 /* Array+Extension.swift */; };
+		542B982D244ECF5C008B01B4 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542B982C244ECF5C008B01B4 /* Utils.swift */; };
+		542B982F244ECF7D008B01B4 /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542B982E244ECF7D008B01B4 /* Json.swift */; };
+		542B9831244EE15D008B01B4 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542B9830244EE15D008B01B4 /* UserInfoModel.swift */; };
+		542B9835244EE1DC008B01B4 /* UploadHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542B9834244EE1DC008B01B4 /* UploadHistoryModel.swift */; };
 		5451E91524494DB600601BC9 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451E91124494DB600601BC9 /* FLAnimatedImage.m */; };
 		5451E91624494DB600601BC9 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5451E91224494DB600601BC9 /* FLAnimatedImageView.m */; };
+		5452067B244D869100882B3B /* ImageUploadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5452067A244D869100882B3B /* ImageUploadOperation.swift */; };
 		5455171F24372B48009C7378 /* GestureUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455171E24372B48009C7378 /* GestureUnlockViewController.swift */; };
 		5455172124372B87009C7378 /* GestureUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455172024372B87009C7378 /* GestureUnlockView.swift */; };
 		5455172324372E77009C7378 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455172224372E77009C7378 /* Const.swift */; };
@@ -20,6 +25,8 @@
 		5455172924374448009C7378 /* HintTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455172824374448009C7378 /* HintTool.swift */; };
 		546970F1243D6C3100F2DB95 /* TabbarSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546970F0243D6C3100F2DB95 /* TabbarSubViewController.swift */; };
 		546970F3243D7C1E00F2DB95 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */; };
+		5478FEA2244FE16500208D15 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5478FEA1244FE16500208D15 /* loading.gif */; };
+		5478FEA4244FE35C00208D15 /* WebImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5478FEA3244FE35B00208D15 /* WebImageCollectionViewCell.swift */; };
 		547C1DB72447F9BD0043F511 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547C1DB62447F9BD0043F511 /* ImagePickerView.swift */; };
 		547C1DBC2447FB200043F511 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 547C1DBB2447FB200043F511 /* LxGridViewFlowLayout.m */; };
 		547C1DBF2447FC130043F511 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 547C1DBD2447FC120043F511 /* TZTestCell.m */; };
@@ -84,6 +91,7 @@
 		54C1835E2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1835C2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift */; };
 		54C1835F2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1835D2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift */; };
 		54C183632435C4CD008666E4 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C183622435C4CD008666E4 /* Launch Screen.storyboard */; };
+		54CD4B29244DA6E3004CD1D0 /* SMImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CD4B28244DA6E3004CD1D0 /* SMImageManager.swift */; };
 		54E7F9CF243F283E004E6B73 /* TisprCardStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E7F9CE243F283E004E6B73 /* TisprCardStackViewController.swift */; };
 		54E7F9D6243F2B61004E6B73 /* CardStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E7F9D5243F2B61004E6B73 /* CardStackViewController.swift */; };
 		54E7F9D8243F2B79004E6B73 /* TisprCardStackViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E7F9D7243F2B79004E6B73 /* TisprCardStackViewLayout.swift */; };
@@ -119,10 +127,15 @@
 
 /* Begin PBXFileReference section */
 		540C323F2448495400A597E1 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		542B982C244ECF5C008B01B4 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		542B982E244ECF7D008B01B4 /* Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
+		542B9830244EE15D008B01B4 /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
+		542B9834244EE1DC008B01B4 /* UploadHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadHistoryModel.swift; sourceTree = "<group>"; };
 		5451E91124494DB600601BC9 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
 		5451E91224494DB600601BC9 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
 		5451E91324494DB600601BC9 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
 		5451E91424494DB600601BC9 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		5452067A244D869100882B3B /* ImageUploadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadOperation.swift; sourceTree = "<group>"; };
 		5455171E24372B48009C7378 /* GestureUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureUnlockViewController.swift; sourceTree = "<group>"; };
 		5455172024372B87009C7378 /* GestureUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureUnlockView.swift; sourceTree = "<group>"; };
 		5455172224372E77009C7378 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
@@ -131,6 +144,8 @@
 		5455172824374448009C7378 /* HintTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintTool.swift; sourceTree = "<group>"; };
 		546970F0243D6C3100F2DB95 /* TabbarSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarSubViewController.swift; sourceTree = "<group>"; };
 		546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
+		5478FEA1244FE16500208D15 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
+		5478FEA3244FE35B00208D15 /* WebImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		547C1DB62447F9BD0043F511 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		547C1DB92447FB200043F511 /* WidgetsCollection-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WidgetsCollection-Bridging-Header.h"; sourceTree = "<group>"; };
 		547C1DBA2447FB200043F511 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
@@ -205,6 +220,7 @@
 		54C1835C2435C3BA008666E4 /* AnimationsExamplesTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationsExamplesTwoViewController.swift; sourceTree = "<group>"; };
 		54C1835D2435C3BA008666E4 /* AnimationsExamplesOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationsExamplesOneViewController.swift; sourceTree = "<group>"; };
 		54C183622435C4CD008666E4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		54CD4B28244DA6E3004CD1D0 /* SMImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMImageManager.swift; sourceTree = "<group>"; };
 		54E7F9CE243F283E004E6B73 /* TisprCardStackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TisprCardStackViewController.swift; sourceTree = "<group>"; };
 		54E7F9D5243F2B61004E6B73 /* CardStackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackViewController.swift; sourceTree = "<group>"; };
 		54E7F9D7243F2B79004E6B73 /* TisprCardStackViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TisprCardStackViewLayout.swift; sourceTree = "<group>"; };
@@ -266,6 +282,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		542B9828244EC7F4008B01B4 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				542B9830244EE15D008B01B4 /* UserInfoModel.swift */,
+				542B9834244EE1DC008B01B4 /* UploadHistoryModel.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		542B982B244ECF3A008B01B4 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				542B982C244ECF5C008B01B4 /* Utils.swift */,
+				542B982E244ECF7D008B01B4 /* Json.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		5451E90F24494D7800601BC9 /* ThirdPartyFramework */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +349,8 @@
 			children = (
 				5455172224372E77009C7378 /* Const.swift */,
 				54C183402435C3A4008666E4 /* DataManager.swift */,
+				5452067A244D869100882B3B /* ImageUploadOperation.swift */,
+				54CD4B28244DA6E3004CD1D0 /* SMImageManager.swift */,
 			);
 			path = BasicComponents;
 			sourceTree = "<group>";
@@ -339,6 +375,7 @@
 				54B4D05D243DC39500F629D8 /* DrawableCardViewController.swift */,
 				54F08D492445BA0A002A09A2 /* ImagePickerViewController.swift */,
 				547C1DB62447F9BD0043F511 /* ImagePickerView.swift */,
+				5478FEA3244FE35B00208D15 /* WebImageCollectionViewCell.swift */,
 				546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */,
 				548270BA2447197F00EA22B7 /* OtherViewController.swift */,
 				546970F0243D6C3100F2DB95 /* TabbarSubViewController.swift */,
@@ -417,6 +454,8 @@
 			isa = PBXGroup;
 			children = (
 				54C182952435C0B9008666E4 /* AppDelegate.swift */,
+				542B982B244ECF3A008B01B4 /* Tools */,
+				542B9828244EC7F4008B01B4 /* DataModel */,
 				5451E918244950AD00601BC9 /* BasicComponents */,
 				5451E91724494E7E00601BC9 /* Module */,
 				549A0095243C7CFE001FA23B /* Entity */,
@@ -571,6 +610,7 @@
 		54F18DBC243EC0FE00AB81A1 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				5478FEA1244FE16500208D15 /* loading.gif */,
 				54F18DC2243EC0FE00AB81A1 /* img_00.png */,
 				54F18DC1243EC0FE00AB81A1 /* img_01.png */,
 				54F18DBF243EC0FE00AB81A1 /* img_02.png */,
@@ -710,6 +750,7 @@
 				54F18DC6243EC0FE00AB81A1 /* img_03.png in Resources */,
 				54F18DC7243EC0FE00AB81A1 /* img_01.png in Resources */,
 				54F18DC3243EC0FE00AB81A1 /* img_04.png in Resources */,
+				5478FEA2244FE16500208D15 /* loading.gif in Resources */,
 				54F18DC4243EC0FE00AB81A1 /* img_05.png in Resources */,
 				54C1829F2435C0BA008666E4 /* Assets.xcassets in Resources */,
 			);
@@ -828,6 +869,7 @@
 				54B4D063243DD2D900F629D8 /* CardItem.swift in Sources */,
 				54B4D065243DDFFF00F629D8 /* ImageCardItem.swift in Sources */,
 				549A0097243C7D2E001FA23B /* HomeDataEntity.swift in Sources */,
+				542B9831244EE15D008B01B4 /* UserInfoModel.swift in Sources */,
 				549D7FF2244591A5000F234C /* UIPasteboardViewController.swift in Sources */,
 				54F08D4A2445BA0A002A09A2 /* ImagePickerViewController.swift in Sources */,
 				54FD4FBB24402D0D006CD484 /* TisprCardStackDemoViewCell.swift in Sources */,
@@ -850,6 +892,7 @@
 				54C183202435C374008666E4 /* PDFDownloadView.swift in Sources */,
 				54C183242435C374008666E4 /* UIView+Extension.swift in Sources */,
 				54C1835A2435C3B1008666E4 /* LayoutAndDelegateViewController.swift in Sources */,
+				542B982D244ECF5C008B01B4 /* Utils.swift in Sources */,
 				5455171F24372B48009C7378 /* GestureUnlockViewController.swift in Sources */,
 				548C49042446E594000478AA /* ConfigureView.swift in Sources */,
 				54C183582435C3B1008666E4 /* StretchyHeaderViewController.swift in Sources */,
@@ -861,6 +904,7 @@
 				54C1831F2435C374008666E4 /* PDFPreviewView.swift in Sources */,
 				5455172324372E77009C7378 /* Const.swift in Sources */,
 				54C183272435C374008666E4 /* ChatFilterEventProtocol.swift in Sources */,
+				5452067B244D869100882B3B /* ImageUploadOperation.swift in Sources */,
 				54C1831B2435C374008666E4 /* PDFDownloadViewController.swift in Sources */,
 				54C183532435C3B1008666E4 /* ScrollViewController.swift in Sources */,
 				54C183422435C3A4008666E4 /* CGAffineTransformViewController.swift in Sources */,
@@ -874,15 +918,18 @@
 				54C1833A2435C391008666E4 /* StretchyLayout.swift in Sources */,
 				54E7F9D6243F2B61004E6B73 /* CardStackViewController.swift in Sources */,
 				54C183312435C374008666E4 /* ChatFilterTagCollectionCell.swift in Sources */,
+				542B982F244ECF7D008B01B4 /* Json.swift in Sources */,
 				54C183222435C374008666E4 /* UIFont+Extension.swift in Sources */,
 				54C183592435C3B1008666E4 /* UIViewRefreshViewController.swift in Sources */,
 				54C182C62435C159008666E4 /* HomepageViewController.swift in Sources */,
+				54CD4B29244DA6E3004CD1D0 /* SMImageManager.swift in Sources */,
 				54C183252435C374008666E4 /* String+Extension.swift in Sources */,
 				54C183292435C374008666E4 /* ChatSettingViewController.swift in Sources */,
 				54C1832E2435C374008666E4 /* FilterViewHeadCell.swift in Sources */,
 				5455172724373975009C7378 /* Tools.swift in Sources */,
 				54C183322435C374008666E4 /* UIImage+ Extension.swift in Sources */,
 				54C183382435C391008666E4 /* TagLayout.swift in Sources */,
+				5478FEA4244FE35C00208D15 /* WebImageCollectionViewCell.swift in Sources */,
 				54C183452435C3A4008666E4 /* CardLayoutViewController.swift in Sources */,
 				54C183522435C3B1008666E4 /* NotificationCenterViewController.swift in Sources */,
 				54C1831E2435C374008666E4 /* PDFInfoHeadView.swift in Sources */,
@@ -894,6 +941,7 @@
 				54C183472435C3A4008666E4 /* BasicViewController.swift in Sources */,
 				54C183572435C3B1008666E4 /* WaterFallsViewController.swift in Sources */,
 				546970F3243D7C1E00F2DB95 /* MainTabbarController.swift in Sources */,
+				542B9835244EE1DC008B01B4 /* UploadHistoryModel.swift in Sources */,
 				54C183282435C374008666E4 /* ChatFilterViewController.swift in Sources */,
 				54F08D482445A2FE002A09A2 /* UICopyImageView.swift in Sources */,
 				54C183442435C3A4008666E4 /* CALayerViewController.swift in Sources */,

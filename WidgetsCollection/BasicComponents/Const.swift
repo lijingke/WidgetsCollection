@@ -8,14 +8,22 @@
 
 import UIKit
 
+// MARK: - Color
 let ColorOfBlueColor = "#3DA3E1"
 let ColorOfBlackColor = "#000000"
 let ColorOfWaveBlueColor = "#44B7FC"
 let ColorOfWaveBlackColor = "#4F4F4F"
 
-//MARK: - 坐标
+// MARK: - 坐标
 let kScreenWidth = UIScreen.main.bounds.width
 let kscreenHeight = UIScreen.main.bounds.height
 
-// Mark: - 项目相关
+// MARK: - 项目相关
 let projectName = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String ?? ""
+
+// MARK: - Net
+let SMDomainURL = "https://sm.ms/api/v2/"
+let TokenAPI = "token"
+let UploadHistoryAPI = "upload_history"
+let ProfileAPI = "profile"
+let UploadAPI = "upload"
