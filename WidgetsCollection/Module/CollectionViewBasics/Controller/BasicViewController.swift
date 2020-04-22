@@ -34,8 +34,8 @@ class BasicViewController: UIViewController {
         collection.dataSource = self
         collection.delegate = self
         collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "reuseID")
-        collection.register(collectionHead.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionHead.reuseID)
-        collection.register(CollectionFoot.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: CollectionFoot.reuseID)
+        collection.register(CollectionLabelHeadView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionLabelHeadView.reuseID)
+        collection.register(CollectionLabelFootView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: CollectionLabelFootView.reuseID)
         return collection
     }()
     
@@ -70,12 +70,12 @@ extension BasicViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: collectionHead.reuseID, for: indexPath) as! collectionHead
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionLabelHeadView.reuseID, for: indexPath) as! CollectionLabelHeadView
             view.titleLabel.text = "Head \(indexPath.section)"
             return view
             
         case UICollectionView.elementKindSectionFooter:
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionFoot.reuseID, for: indexPath) as! CollectionFoot
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionLabelFootView.reuseID, for: indexPath) as! CollectionLabelFootView
             view.titleLabel.text = "Foot \(indexPath.section)"
             return view
             
@@ -85,57 +85,4 @@ extension BasicViewController: UICollectionViewDataSource {
     }
     
     
-}
-
-class collectionHead: UICollectionReusableView {
-    static let reuseID = "headView"
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configurationUI()
-    }
-    
-    fileprivate func configurationUI() {
-        backgroundColor = .white
-        addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(20)
-            make.centerY.equalToSuperview()
-        }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
-}
-
-class CollectionFoot: UICollectionReusableView {
-    static let reuseID = "footView"
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configurationUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    fileprivate func configurationUI() {
-        addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-20)
-        }
-    }
-    
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
-
 }

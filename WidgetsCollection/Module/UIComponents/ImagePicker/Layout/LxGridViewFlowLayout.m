@@ -4,8 +4,8 @@
 //
 
 #import "LxGridViewFlowLayout.h"
-#import "TZTestCell.h"
 #import "UIView+Layout.h"
+#import "WidgetsCollection-Swift.h"
 
 #define stringify   __STRING
 
@@ -191,19 +191,22 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
             }
             
             UICollectionViewCell *sourceCollectionViewCell = [self.collectionView cellForItemAtIndexPath:_movingItemIndexPath];
-            TZTestCell *sourceCell = (TZTestCell *)sourceCollectionViewCell;
+//            TZTestCell *sourceCell = (TZTestCell *)sourceCollectionViewCell;
+            UploadImageCell *sourceCell = (UploadImageCell *)sourceCollectionViewCell;
             
             _beingMovedPromptView = [[UIView alloc]initWithFrame:CGRectOffset(sourceCollectionViewCell.frame, -10, -10)];
             _beingMovedPromptView.tz_width += 20;
             _beingMovedPromptView.tz_height += 20;
             
             sourceCollectionViewCell.highlighted = YES;
-            UIView * highlightedSnapshotView = [sourceCell snapshotView];
+            UIView * highlightedSnapshotView = [sourceCell getSnapShotView];
+//            UIView *highlightedSnapshotView = sourceCell.snapShotView;
             highlightedSnapshotView.frame = _beingMovedPromptView.bounds;
             highlightedSnapshotView.alpha = 1;
 
             sourceCollectionViewCell.highlighted = NO;
-            UIView * snapshotView = [sourceCell snapshotView];
+            UIView * snapshotView = [sourceCell getSnapShotView];
+//            UIView *snapshotView = sourceCell.snapShotView;
             snapshotView.frame = _beingMovedPromptView.bounds;
             snapshotView.alpha = 0;
             

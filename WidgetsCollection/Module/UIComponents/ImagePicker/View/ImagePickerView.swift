@@ -26,16 +26,7 @@ class ImagePickerView: UIView {
     /// 从相册中选择的图片PHAsset
     public var selectedAssets: [PHAsset] = []
     /// 从SM.MS图床下载的数据
-    public var hasUploadData: [UploadHistoryModel?] = [] {
-        didSet {
-            if hasUploadData.count > 0 {
-                headSize = CGSize(width: width, height: 50)
-            } else {
-                headSize = CGSize(width: width, height: 0)
-            }
-            layoutSubviews()
-        }
-    }
+    public var uploadHistoryData: [UploadHistoryModel?] = []
     /// 是否选择的原图
     private var isSelectedOringinalPhoto: Bool = false
     /// CollectionViewCell尺寸
@@ -48,8 +39,6 @@ class ImagePickerView: UIView {
     private var location: CLLocation!
     /// 图片选择后上传操作队列
     private var operationQueue: OperationQueue?
-    /// CollectionViewHead尺寸
-    private var headSize: CGSize = CGSize(width: 0, height: 0)
     /// 选择图片的配置信息
     private var chooseConf = ImageChooseConf()
     /// 选择图片的配置菜单
@@ -67,24 +56,15 @@ class ImagePickerView: UIView {
     
     override func layoutSubviews() {
         superview?.layoutSubviews()
-        //        let contentSizeH = 14 * 35 + 20
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + Double(Int64(0.01 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
-        //
-        //        }
-        //
-        
         let layout = collectionView.collectionViewLayout as! LxGridViewFlowLayout
-        
         self.margin = 4
         self.numberOfColumns = 4
         
         let space = self.width - (numberOfColumns + 1) * margin
         self.itemWH =  space / numberOfColumns
-        
         layout.itemSize = CGSize(width: itemWH, height: itemWH)
         layout.minimumInteritemSpacing = margin
         layout.minimumLineSpacing = margin
-        layout.headerReferenceSize = headSize
     }
         
     // MARK: Lazy Get
@@ -98,9 +78,9 @@ class ImagePickerView: UIView {
         view.delegate = self
         view.dataSource = self
         view.keyboardDismissMode = .onDrag
-        view.register(TZTestCell.self, forCellWithReuseIdentifier: "TZTestCell")
         view.register(WebImageCollectionViewCell.self, forCellWithReuseIdentifier: WebImageCollectionViewCell.reuseId)
-        view.register(collectionHead.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionHead.reuseID)
+        view.register(CollectionLabelHeadView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionLabelHeadView.reuseID)
+        view.register(UploadImageCell.self, forCellWithReuseIdentifier: UploadImageCell.identifier)
         return view
     }()
     
@@ -144,7 +124,7 @@ extension ImagePickerView {
     }
 
     public func setupData(_ models: [UploadHistoryModel?]) {
-        self.hasUploadData = models
+        self.uploadHistoryData = models
         collectionView.reloadData()
     }
     
@@ -155,174 +135,6 @@ extension ImagePickerView {
     @objc func tapAction() {
         configureView.removeFromSuperview()
     }
-}
-
-// MARK: - UICollectionViewDataSource
-extension ImagePickerView: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        if section == 0 {
-            return hasUploadData.count
-        } else {
-            if selectedPhotos.count >= chooseConf.maxCount {
-                return selectedPhotos.count
-            }
-            if !chooseConf.allowPickingMuitlpleVideo {
-                for item in selectedAssets {
-                    if item.mediaType == PHAssetMediaType.video {
-                        return selectedPhotos.count
-                    }
-                }
-            }
-            return selectedPhotos.count + 1
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if indexPath.section == 0 {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WebImageCollectionViewCell.reuseId, for: indexPath) as? WebImageCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-            let model = hasUploadData[indexPath.item]
-            let url = model?.url ?? ""
-            let data = try? Data(contentsOf: Bundle.main.url(forResource: "loading", withExtension: "gif")!)
-            let gifImage = UIImage.sd_image(with: data)
-            cell.imageView.sd_setImage(with: URL(string: url), placeholderImage: gifImage)
-            return cell
-        }
-        
-        if indexPath.section == 1 {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TZTestCell", for: indexPath) as? TZTestCell else {
-                return UICollectionViewCell()
-            }
-            cell.videoImageView.isHidden = true
-            
-            if indexPath.item == selectedPhotos.count {
-                cell.imageView.image = UIImage(named: "AlbumAddBtn")
-                cell.deleteBtn.isHidden = true
-                cell.gifLable.isHidden = true
-            } else {
-                cell.imageView.image = selectedPhotos[indexPath.item]
-                cell.asset = selectedAssets[indexPath.item]
-                cell.deleteBtn.isHidden = false
-            }
-            
-            if !chooseConf.allowPickingGif {
-                cell.gifLable.isHidden = true
-            }
-            
-            cell.deleteBtn.tag = indexPath.item
-            cell.deleteBtn.addTarget(self, action: #selector(deleteBtnAction(_:)), for: .touchUpInside)
-            
-            return cell
-            
-        }
-        
-        return UICollectionViewCell()
-        
-    }
-    
-}
-
-// MARK: - UICollectionViewDelegate
-extension ImagePickerView: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if indexPath.section == 0 {
-            return
-        }
-        
-        if indexPath.item == selectedPhotos.count {
-            if chooseConf.showSheet {
-                var takePhotoTitle = "拍照"
-                if chooseConf.showTakeVideoBtn && chooseConf.showTakePhotoBtn {
-                    takePhotoTitle = "相机"
-                } else if chooseConf.showTakeVideoBtn {
-                    takePhotoTitle = "拍摄"
-                }
-                
-                let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                let takePhotoAction = UIAlertAction(title: takePhotoTitle, style: .default) { (action) in
-                    self.takePhoto()
-                }
-                alertVC.addAction(takePhotoAction)
-                let imagePickerAction = UIAlertAction(title: "去相册选择", style: .default) { (action) in
-                    self.pushTZImagePickerController()
-                }
-                alertVC.addAction(imagePickerAction)
-                let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-                alertVC.addAction(cancelAction)
-                
-                let popover = alertVC.popoverPresentationController
-                let cell = collectionView.cellForItem(at: indexPath)
-                if popover != nil {
-                    popover?.sourceView = cell
-                    popover?.sourceRect = cell?.bounds ?? CGRect.zero
-                    popover?.permittedArrowDirections = .any
-                }
-                let vc = self.getViewController()
-                vc.present(alertVC, animated: true, completion: nil)
-            } else {
-                self.pushTZImagePickerController()
-            }
-        } else { // preview photos or video
-            let asset = selectedAssets[indexPath.item]
-            var isVideo = false
-            isVideo = asset.mediaType == PHAssetMediaType.video
-            let filename = asset.value(forKey: "filename") as? String ?? ""
-            
-            if filename.contains("GIF") && chooseConf.allowPickingGif && !chooseConf.allowPickingMuitlpleVideo {
-                let vc = TZGifPhotoPreviewController()
-                let model = TZAssetModel(asset: asset, type: TZAssetModelMediaTypePhotoGif, timeLength: "")
-                vc.model = model
-                vc.modalPresentationStyle = .fullScreen
-                self.getViewController().present(vc, animated: true, completion: nil)
-            } else if isVideo && !chooseConf.allowPickingMuitlpleVideo { // 预览视频
-                let vc = TZVideoPlayerController()
-                let model = TZAssetModel(asset: asset, type: TZAssetModelMediaTypeVideo, timeLength: "")
-                vc.model = model
-                vc.modalPresentationStyle = .fullScreen
-                self.getViewController().present(vc, animated: true, completion: nil)
-            } else { // 预览照片
-                let photoArray = selectedPhotos.array2NSMutableArray()
-                let assetsArray = selectedAssets.array2NSMutableArray()
-                let imagePickerVC = TZImagePickerController(selectedAssets: assetsArray, selectedPhotos: photoArray, index: indexPath.item)
-                imagePickerVC?.maxImagesCount = chooseConf.maxCount
-                imagePickerVC?.allowPickingGif = chooseConf.allowPickingGif
-                imagePickerVC?.allowPickingOriginalPhoto = chooseConf.allowPickingOriginalPhoto
-                imagePickerVC?.allowPickingMultipleVideo = chooseConf.allowPickingMuitlpleVideo
-                imagePickerVC?.showSelectedIndex = chooseConf.showSelectedIndex
-                imagePickerVC?.isSelectOriginalPhoto = isSelectedOringinalPhoto
-                imagePickerVC?.modalPresentationStyle = .fullScreen
-                imagePickerVC?.didFinishPickingPhotosHandle = { (photos, assets, isSelectedOriginalPhoto) in
-                    self.selectedPhotos = photos ?? []
-                    self.selectedAssets = assets as? [PHAsset] ?? []
-                    self.isSelectedOringinalPhoto = isSelectedOriginalPhoto
-                    self.collectionView.reloadData()
-                }
-                self.getViewController().present(imagePickerVC!, animated: true, completion: nil)
-            }
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: collectionHead.reuseID, for: indexPath) as! collectionHead
-            view.titleLabel.text = "Head \(indexPath.section)"
-            return view
-        default:
-            fatalError("No Such Kind")
-        }
-    }
-    
 }
 
 // MARK: - UIGestureRecognizer代理方法
@@ -721,13 +533,13 @@ extension ImagePickerView: TZImagePickerControllerDelegate {
                 }
                 let name = asset.description
                 // MARK: 图片上传
-                MBProgressHUD.showAdded(to: self, animated: true)
-                SMImageManager.shared.uploadImage(photo, fileName: name) { () in
-                    if let vc = self.getViewController() as? ImagePickerViewController {
-                        vc.request()
-                        MBProgressHUD.hide(for: self, animated: true)
-                    }
-                }
+//                MBProgressHUD.showAdded(to: self, animated: true)
+//                SMImageManager.shared.uploadImage(photo, fileName: name) { () in
+//                    if let vc = self.getViewController() as? ImagePickerViewController {
+//                        vc.request()
+//                        MBProgressHUD.hide(for: self, animated: true)
+//                    }
+//                }
                 print("图片获取&&上传完成")
             }) { (progress, error, stop, info) in
                 print("获取原图进度：\(progress)")
@@ -837,3 +649,188 @@ extension ImagePickerView: ConfigureViewDelegate {
     }
     
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension ImagePickerView: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return uploadHistoryData.count > 0 ? CGSize(width: width, height: 50) : .zero
+        } else {
+            return CGSize(width: width, height: 50)
+        }
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension ImagePickerView: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if section == 0 {
+            return uploadHistoryData.count
+        } else {
+            if selectedPhotos.count >= chooseConf.maxCount {
+                return selectedPhotos.count
+            }
+            if !chooseConf.allowPickingMuitlpleVideo {
+                for item in selectedAssets {
+                    if item.mediaType == PHAssetMediaType.video {
+                        return selectedPhotos.count
+                    }
+                }
+            }
+            return selectedPhotos.count + 1
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if indexPath.section == 0 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WebImageCollectionViewCell.reuseId, for: indexPath) as? WebImageCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            let model = uploadHistoryData[indexPath.item]
+            let url = model?.url ?? ""
+            let data = try? Data(contentsOf: Bundle.main.url(forResource: "loading", withExtension: "gif")!)
+            let gifImage = UIImage.sd_image(with: data)
+            cell.imageView.sd_setImage(with: URL(string: url), placeholderImage: gifImage)
+            return cell
+        }
+        
+        if indexPath.section == 1 {
+//            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TZTestCell", for: indexPath) as? TZTestCell else {
+//                return UICollectionViewCell()
+//            }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UploadImageCell.identifier, for: indexPath) as? UploadImageCell else {
+                return UICollectionViewCell()
+            }
+            cell.videoImageView.isHidden = true
+            
+            if indexPath.item == selectedPhotos.count {
+                cell.imageView.image = UIImage(named: "AlbumAddBtn")
+                cell.deleteBtn.isHidden = true
+                cell.gifLabel.isHidden = true
+            } else {
+                cell.imageView.image = selectedPhotos[indexPath.item]
+                cell.asset = selectedAssets[indexPath.item]
+                cell.deleteBtn.isHidden = false
+            }
+            
+            if !chooseConf.allowPickingGif {
+                cell.gifLabel.isHidden = true
+            }
+            
+            cell.deleteBtn.tag = indexPath.item
+            cell.deleteBtn.addTarget(self, action: #selector(deleteBtnAction(_:)), for: .touchUpInside)
+            
+            return cell
+            
+        }
+        
+        return UICollectionViewCell()
+        
+    }
+    
+}
+
+// MARK: - UICollectionViewDelegate
+extension ImagePickerView: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if indexPath.section == 0 {
+            return
+        }
+        
+        if indexPath.item == selectedPhotos.count {
+            if chooseConf.showSheet {
+                var takePhotoTitle = "拍照"
+                if chooseConf.showTakeVideoBtn && chooseConf.showTakePhotoBtn {
+                    takePhotoTitle = "相机"
+                } else if chooseConf.showTakeVideoBtn {
+                    takePhotoTitle = "拍摄"
+                }
+                
+                let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                let takePhotoAction = UIAlertAction(title: takePhotoTitle, style: .default) { (action) in
+                    self.takePhoto()
+                }
+                alertVC.addAction(takePhotoAction)
+                let imagePickerAction = UIAlertAction(title: "去相册选择", style: .default) { (action) in
+                    self.pushTZImagePickerController()
+                }
+                alertVC.addAction(imagePickerAction)
+                let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+                alertVC.addAction(cancelAction)
+                
+                let popover = alertVC.popoverPresentationController
+                let cell = collectionView.cellForItem(at: indexPath)
+                if popover != nil {
+                    popover?.sourceView = cell
+                    popover?.sourceRect = cell?.bounds ?? CGRect.zero
+                    popover?.permittedArrowDirections = .any
+                }
+                let vc = self.getViewController()
+                vc.present(alertVC, animated: true, completion: nil)
+            } else {
+                self.pushTZImagePickerController()
+            }
+        } else { // preview photos or video
+            let asset = selectedAssets[indexPath.item]
+            var isVideo = false
+            isVideo = asset.mediaType == PHAssetMediaType.video
+            let filename = asset.value(forKey: "filename") as? String ?? ""
+            
+            if filename.contains("GIF") && chooseConf.allowPickingGif && !chooseConf.allowPickingMuitlpleVideo {
+                let vc = TZGifPhotoPreviewController()
+                let model = TZAssetModel(asset: asset, type: TZAssetModelMediaTypePhotoGif, timeLength: "")
+                vc.model = model
+                vc.modalPresentationStyle = .fullScreen
+                self.getViewController().present(vc, animated: true, completion: nil)
+            } else if isVideo && !chooseConf.allowPickingMuitlpleVideo { // 预览视频
+                let vc = TZVideoPlayerController()
+                let model = TZAssetModel(asset: asset, type: TZAssetModelMediaTypeVideo, timeLength: "")
+                vc.model = model
+                vc.modalPresentationStyle = .fullScreen
+                self.getViewController().present(vc, animated: true, completion: nil)
+            } else { // 预览照片
+                let photoArray = selectedPhotos.array2NSMutableArray()
+                let assetsArray = selectedAssets.array2NSMutableArray()
+                let imagePickerVC = TZImagePickerController(selectedAssets: assetsArray, selectedPhotos: photoArray, index: indexPath.item)
+                imagePickerVC?.maxImagesCount = chooseConf.maxCount
+                imagePickerVC?.allowPickingGif = chooseConf.allowPickingGif
+                imagePickerVC?.allowPickingOriginalPhoto = chooseConf.allowPickingOriginalPhoto
+                imagePickerVC?.allowPickingMultipleVideo = chooseConf.allowPickingMuitlpleVideo
+                imagePickerVC?.showSelectedIndex = chooseConf.showSelectedIndex
+                imagePickerVC?.isSelectOriginalPhoto = isSelectedOringinalPhoto
+                imagePickerVC?.modalPresentationStyle = .fullScreen
+                imagePickerVC?.didFinishPickingPhotosHandle = { (photos, assets, isSelectedOriginalPhoto) in
+                    self.selectedPhotos = photos ?? []
+                    self.selectedAssets = assets as? [PHAsset] ?? []
+                    self.isSelectedOringinalPhoto = isSelectedOriginalPhoto
+                    self.collectionView.reloadData()
+                }
+                self.getViewController().present(imagePickerVC!, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionLabelHeadView.reuseID, for: indexPath) as! CollectionLabelHeadView
+            let title = indexPath.section == 0 ? "SM.MS中已上传的图片" : "请从相册中选择图片进行上传"
+            view.titleLabel.text = title
+            return view
+        default:
+            fatalError("No Such Kind")
+        }
+    }
+    
+}
+

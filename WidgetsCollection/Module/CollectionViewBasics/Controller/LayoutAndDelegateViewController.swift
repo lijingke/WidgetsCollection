@@ -50,8 +50,8 @@ class LayoutAndDelegateViewController: UIViewController {
         collection.dataSource = self
         collection.delegate = self
         collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "reuseID")
-        collection.register(collectionHead.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionHead.reuseID)
-        collection.register(CollectionFoot.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: CollectionFoot.reuseID)
+        collection.register(CollectionLabelHeadView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionLabelHeadView.reuseID)
+        collection.register(CollectionLabelFootView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: CollectionLabelFootView.reuseID)
         return collection
     }()
     
@@ -161,12 +161,12 @@ extension LayoutAndDelegateViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: collectionHead.reuseID, for: indexPath) as! collectionHead
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionLabelHeadView.reuseID, for: indexPath) as! CollectionLabelHeadView
             view.titleLabel.text = "Head \(indexPath.section)"
             return view
             
         case UICollectionView.elementKindSectionFooter:
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionFoot.reuseID, for: indexPath) as! CollectionFoot
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionLabelFootView.reuseID, for: indexPath) as! CollectionLabelFootView
             view.titleLabel.text = "Foot \(indexPath.section)"
             return view
             
