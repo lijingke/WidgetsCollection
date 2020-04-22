@@ -12,6 +12,7 @@ import TZImagePickerController
 import MobileCoreServices
 import SDWebImage
 import MBProgressHUD
+import MJRefresh
 
 protocol ImagePickerViewDelegate: NSObjectProtocol {
     func didClickSettingBtn()
@@ -81,6 +82,14 @@ class ImagePickerView: UIView {
         view.register(WebImageCollectionViewCell.self, forCellWithReuseIdentifier: WebImageCollectionViewCell.reuseId)
         view.register(CollectionLabelHeadView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionLabelHeadView.reuseID)
         view.register(UploadImageCell.self, forCellWithReuseIdentifier: UploadImageCell.identifier)
+        
+        view.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+            print("Refresh")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                view.mj_header?.endRefreshing()
+            }
+        })
+        
         return view
     }()
     
