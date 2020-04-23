@@ -17,8 +17,8 @@ class MainTabbarController: SuperTabbarController {
     
     override func setupChildrenViewControllers() {
                         
-        addChileViewController(title: "One", image: "tab_me_normal", selectedImage: "", controller: HomepageViewController())
-        addChileViewController(title: "Two", image: "tab_work_normal", selectedImage: "", controller: TabbarSubViewController())
+        addChileViewController(title: "Home", image: "house", selectedImage: "house.fill", controller: HomepageViewController())
+        addChileViewController(title: "Setting", image: "square.grid.2x2", selectedImage: "square.grid.2x2.fill", controller: TabbarSubViewController())
         
     }
     

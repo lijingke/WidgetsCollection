@@ -16,16 +16,6 @@ class SuperTabbarController: UITabBarController {
         setupChildrenViewControllers()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    
     func setupChildrenViewControllers() {
         
     }
@@ -35,13 +25,8 @@ class SuperTabbarController: UITabBarController {
         controller.title = title
         controller.view.backgroundColor = .white
         controller.tabBarItem.title = title
-        controller.tabBarItem.image = UIImage(named: image)
-        controller.tabBarItem.selectedImage = UIImage(named: selectedImage)
-//        controller.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(backAction))
-//        
-//        let btn = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .done, target: self, action: #selector(backAction))
-//        
-//        controller.navigationItem.leftBarButtonItem = btn
+        controller.tabBarItem.image = UIImage(named: image) ?? UIImage(systemName: image)
+        controller.tabBarItem.selectedImage = UIImage(named: selectedImage) ?? UIImage(systemName: selectedImage)
         
         let naviController = SuperNavigationController(rootViewController: controller)
         addChild(naviController)
