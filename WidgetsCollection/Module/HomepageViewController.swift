@@ -40,7 +40,7 @@ class HomepageViewController: UIViewController {
         for section in 0...headViewTitles.count {
             switch section {
             case 0:
-                dicArray = [[.cellName : "Tabbar", .className : "MainTabbarController"], [.cellName : "DrawableCard", .className : "DrawableCardViewController"], [.cellName : "TisprCardStack", .className : "TisprCardStackViewController"], [.cellName : "UIPasteboard", .className : "UIPasteboardViewController"], [.cellName : "ImagePicker", .className : "ImagePickerViewController"]]
+                dicArray = [[.cellName : "Tabbar", .className : "TabbarController"], [.cellName : "DrawableCard", .className : "DrawableCardViewController"], [.cellName : "TisprCardStack", .className : "TisprCardStackViewController"], [.cellName : "UIPasteboard", .className : "UIPasteboardViewController"], [.cellName : "ImagePicker", .className : "ImagePickerViewController"]]
                 let entities = dicArray.compactMap{HomeDataEntity($0)}
                 dataSource.append(entities)
                 break
@@ -128,7 +128,7 @@ extension HomepageViewController: UITableViewDelegate {
             }
         }else {
             if let vc = self.getVCFromString(className) {
-                vc.navigationItem.title = entity.cellName
+                vc.navigationItem.title = entity.cellName                
                 navigationController?.pushViewController(vc, animated: true)
             }
         }
