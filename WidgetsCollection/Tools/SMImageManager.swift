@@ -29,7 +29,7 @@ extension SMImageManager {
         }
     }
     
-    public func getUserInfo() {
+    public func getUserInfo(_ closure: @escaping ((_ model: UserInfoModel?)->())) {
         let urlStr = SMDomainURL + ProfileAPI
         let headers: HTTPHeaders = [.authorization("uU0SeGTlcGYzasZixa5d0RNYuVv7zy0U"),.contentType("application/x-www-form-urlencoded")]
         AF.request(urlStr, method: .post, headers: headers).responseJSON { (response) in
@@ -37,10 +37,9 @@ extension SMImageManager {
             case .success(let json):
                 if let dict = json as? Dictionary<String,AnyObject>, let data = dict["data"] as? Dictionary<String,AnyObject> {
                     if let model = JSONDeserializer<UserInfoModel>.deserializeFrom(dict: data) {
-                        print(model)
+                        closure(model)
                     }
                 }
-                break
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -56,7 +55,6 @@ extension SMImageManager {
             case .success(let json):
                 if let dict = json as? Dictionary<String,AnyObject>, let data = dict["data"] as? Array<Any> {
                     if let models = JSONDeserializer<UploadHistoryModel>.deserializeModelArrayFrom(array: data) {
-                        print(models)
                         closure(models)
                     }
                 }

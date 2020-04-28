@@ -14,6 +14,13 @@ class HomepageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let time = DispatchTime.now() + 1
+        
+        XZMBProgressManager.xz_showLoadingOrdinary("Loading")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            XZMBProgressManager.xz_showHUD(withSuccess: "成功提示")
+        }
         configureNav()
         configureUI()
         getDataSource()
@@ -34,59 +41,41 @@ class HomepageViewController: UIViewController {
     
     fileprivate func getDataSource() {
         
-        headViewTitles = ["UI Components", "CollectionView Basics", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe"]
-        var dicArray: [[CellInfoEnum : String]] = []
+        headViewTitles = ["UI Components", "Toolbox", "CollectionView Basics", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe"]
         
         for section in 0...headViewTitles.count {
+            var dicArray: [[CellInfoEnum : String]] = []
             switch section {
             case 0:
                 dicArray = [[.cellName : "Tabbar", .className : "TabbarController"], [.cellName : "DrawableCard", .className : "DrawableCardViewController"], [.cellName : "TisprCardStack", .className : "TisprCardStackViewController"], [.cellName : "UIPasteboard", .className : "UIPasteboardViewController"], [.cellName : "ImagePicker", .className : "ImagePickerViewController"]]
-                let entities = dicArray.compactMap{HomeDataEntity($0)}
-                dataSource.append(entities)
-                break
             case 1:
-                dicArray = [[.cellName : "基础布局篇", .className : "BasicViewController", .pushType : "pop"], [.cellName : "布局和代理篇", .className : "LayoutAndDelegateViewController", .pushType : "pop"]]
-                let entities = dicArray.compactMap{HomeDataEntity($0)}
-                dataSource.append(entities)
+                dicArray = [[.cellName : "App Search", .className : "AppSearchViewController"]]
             case 2:
-                dicArray = [[.cellName : "卡片布局", .className : "CardLayoutViewController", .pushType : "pop"], [.cellName : "瀑布流布局", .className : "WaterFallsViewController", .pushType : "pop"], [.cellName : "可伸缩Header", .className : "StretchyHeaderViewController", .pushType : "pop"], [.cellName : "标签布局", .className : "TagViewController"]]
-                let entities = dicArray.compactMap{HomeDataEntity($0)}
-                dataSource.append(entities)
+                dicArray = [[.cellName : "基础布局篇", .className : "BasicViewController", .pushType : "pop"], [.cellName : "布局和代理篇", .className : "LayoutAndDelegateViewController", .pushType : "pop"]]
             case 3:
-                dicArray = [[.cellName : "滚动视图", .className : "ScrollViewController"]]
-                let entities = dicArray.compactMap{HomeDataEntity($0)}
-                dataSource.append(entities)
+                dicArray = [[.cellName : "卡片布局", .className : "CardLayoutViewController", .pushType : "pop"], [.cellName : "瀑布流布局", .className : "WaterFallsViewController", .pushType : "pop"], [.cellName : "可伸缩Header", .className : "StretchyHeaderViewController", .pushType : "pop"], [.cellName : "标签布局", .className : "TagViewController"]]
             case 4:
-                dicArray = [[.cellName : "CGAffineTransform", .className : "CGAffineTransformViewController"], [.cellName : "UIView Animations - 01", .className : "AnimationsExamplesOneViewController"], [.cellName : "UIView Animations - 02", .className : "AnimationsExamplesTwoViewController"], [.cellName : "UIImageView Animations", .className : "ImageViewAnimationViewController"]]
-                let entities = dicArray.compactMap{HomeDataEntity($0)}
-                dataSource.append(entities)
+                dicArray = [[.cellName : "滚动视图", .className : "ScrollViewController"]]
             case 5:
-                dicArray = [[.cellName : "CALayer", .className : "CALayerViewController"]]
-                let entities = dicArray.compactMap{HomeDataEntity($0)}
-                dataSource.append(entities)
+                dicArray = [[.cellName : "CGAffineTransform", .className : "CGAffineTransformViewController"], [.cellName : "UIView Animations - 01", .className : "AnimationsExamplesOneViewController"], [.cellName : "UIView Animations - 02", .className : "AnimationsExamplesTwoViewController"], [.cellName : "UIImageView Animations", .className : "ImageViewAnimationViewController"]]
             case 6:
-                dicArray = [[.cellName : "SetNeedsLayout", .className : "UIViewRefreshViewController"]]
-                let entities = dicArray.compactMap{HomeDataEntity($0)}
-                dataSource.append(entities)
+                dicArray = [[.cellName : "CALayer", .className : "CALayerViewController"]]
             case 7:
-                dicArray = [[.cellName : "Location", .className : "GetLocationViewController"]]
-                let entities = dicArray.compactMap{HomeDataEntity($0)}
-                dataSource.append(entities)
+                dicArray = [[.cellName : "SetNeedsLayout", .className : "UIViewRefreshViewController"]]
             case 8:
-                dicArray = [[.cellName : "NotificationCenterDemo", .className : "NotificationCenterViewController"]]
-                let entities = dicArray.compactMap{HomeDataEntity($0)}
-                dataSource.append(entities)
+                dicArray = [[.cellName : "Location", .className : "GetLocationViewController"]]
             case 9:
-                dicArray = [[.cellName : "PDF Download", .className : "PDFDownloadViewController"], [.cellName : "XMessage", .className : "ChatFilterViewController"]]
-                let entities = dicArray.compactMap{HomeDataEntity($0)}
-                dataSource.append(entities)
+                dicArray = [[.cellName : "NotificationCenterDemo", .className : "NotificationCenterViewController"]]
             case 10:
+                dicArray = [[.cellName : "PDF Download", .className : "PDFDownloadViewController"], [.cellName : "XMessage", .className : "ChatFilterViewController"]]
+            case 11:
                 dicArray = [[.cellName : "手势解锁", .className : "GestureUnlockViewController"]]
-                
-                let entities = dicArray.compactMap{HomeDataEntity($0)}
-                dataSource.append(entities)
             default:
                 break
+            }
+            let entities = dicArray.compactMap{HomeDataEntity($0)}
+            if entities.count > 0 {
+                dataSource.append(entities)
             }
         }
         tableView.reloadData()

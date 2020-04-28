@@ -12,13 +12,12 @@ class MainTabbarController: SuperTabbarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
     }
     
     override func setupChildrenViewControllers() {
                         
         addChileViewController(title: "Home", image: "house", selectedImage: "house.fill", controller: HomepageViewController())
-        addChileViewController(title: "Setting", image: "square.grid.2x2", selectedImage: "square.grid.2x2.fill", controller: TabbarSubViewController())
+        addChileViewController(title: "Setting", image: "square.grid.2x2", selectedImage: "square.grid.2x2.fill", controller: SettingViewController())
         
     }
     

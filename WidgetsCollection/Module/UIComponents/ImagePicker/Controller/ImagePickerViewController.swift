@@ -94,12 +94,9 @@ extension ImagePickerViewController {
 // MARK: - Request
 extension ImagePickerViewController {
     public func request() {
-//        SMImageManager.shared.getToken()
         MBProgressHUD.showAdded(to: self.view, animated: true)
         SMImageManager.shared.getUploadHistory { (models) in            self.mainView.setupData(models)
             MBProgressHUD.hide(for: self.view, animated: true)
         }
-        SMImageManager.shared.getUserInfo()
-//        SMImageManager.shared.uploadImage(UIImage(), fileName: "")
     }
 }
