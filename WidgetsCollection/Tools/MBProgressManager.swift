@@ -28,33 +28,33 @@ enum HUDShowStateType {
 class MBProgressManager: NSObject {
     
     // MARK: - 全都可以使用的参数
-    public var inView: UIView
-    public var animated: Bool
-    public var maskType: HUDMaskType
+    private var inView: UIView
+    private var animated: Bool
+    private var maskType: HUDMaskType
     
     // MARK: - 只有showHandleMessage可以使用的属性
     
-    var customView: UIView?
-    var customIconName: String?
-    var message: String?
-    var afterDelay: TimeInterval
-    var hudColor: UIColor?
-    var contentColor: UIColor?
-    var hudMode: MBProgressHUDMode
+    private var customView: UIView?
+    private var customIconName: String?
+    private var message: String?
+    private var afterDelay: TimeInterval
+    private var hudColor: UIColor?
+    private var contentColor: UIColor?
+    private var hudMode: MBProgressHUDMode
     
     /// 设置全局的HUD类型
-    var hudState: HUDShowStateType?
+    private var hudState: HUDShowStateType?
     /// 进度条进度
-    var progressValue: CGFloat?
+    public var progressValue: CGFloat = 0
     /// 自定义动画的持续时间
-    var animationDuration: CGFloat?
+    private var animationDuration: CGFloat?
     /// 自定义动画的图片数组
-    var imageArray: [UIImage]?
+    private var imageArray: [UIImage]?
     /// 自定义的图片名称
-    var imageStr: String?
+    private var imageStr: String?
     
     override init() {
-        inView = UIApplication.shared.windows[0]
+        self.inView = UIApplication.shared.windows[0]
         maskType = .clear
         afterDelay = 0.6
         animated = true
@@ -75,11 +75,13 @@ class MBProgressManager: NSObject {
         hud.isUserInteractionEnabled = makeObj.maskType.rawValue.boolValue
         hud.mode = makeObj.hudMode
         hud.removeFromSuperViewOnHide = true
+        hud.bezelView.blurEffectStyle = .regular
         return hud
     }
 
     
     // MARK: - 简单的显示方法
+    @discardableResult
     static func showLoadingOrdinary(_ loadingString: String) -> MBProgressHUD {
         return MBProgressManager.showHUDCustom { (make) in
             make.message(loadingString)
@@ -87,6 +89,7 @@ class MBProgressManager: NSObject {
     }
     
     // MARK: - 简单的显示方法(加在指定view上)
+    @discardableResult
     static func showLoadingOrdinary(_ loadingString: String, in inView: UIView) -> MBProgressHUD {
         return MBProgressManager.showHUDCustom { (make) in
             make.inView(inView).message(loadingString)
@@ -95,53 +98,53 @@ class MBProgressManager: NSObject {
     
 
     // MARK: - 复杂的显示方式可以用此方法自定义
+    @discardableResult
     static func showHUDCustom(_ block: @escaping ((_ make: MBProgressManager)->Void)) -> MBProgressHUD {
         let makeObj = MBProgressManager()
         block(makeObj)
         
-        var hud: MBProgressHUD!
+        var hud: MBProgressHUD?
         
         DispatchQueue.main.async {
             hud = MBProgressManager.configHUD(with: makeObj)
+            switch makeObj.hudMode {
+            case .indeterminate:
+                hud?.minSize = CGSize(width: 90, height: 100)
+            case .determinate:
+                break
+            case .determinateHorizontalBar:
+                break
+            case.annularDeterminate:
+                break
+            case .customView:
+                if makeObj.imageArray?.count ?? 0 > 0 {
+                    let image = makeObj.imageArray?.first?.withRenderingMode(.alwaysTemplate)
+                    let mainImageView = UIImageView(image: image)
+                    mainImageView.animationImages = makeObj.imageArray
+                    mainImageView.animationDuration = TimeInterval(makeObj.animationDuration ?? 0)
+                    mainImageView.animationRepeatCount = 0
+                    mainImageView.startAnimating()
+                    hud?.customView = mainImageView
+                } else if makeObj.imageStr?.count ?? 0 > 0 {
+                    hud?.customView = UIImageView(image: UIImage(named: makeObj.imageStr ?? "")?.withRenderingMode(.automatic))
+                }
+                
+                if makeObj.hudColor?.cgColor == UIColor(red: 0, green: 0, blue: 0, alpha: 0.7).cgColor {
+                    hud?.bezelView.color = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+                    hud?.contentColor = makeObj.contentColor
+                } else {
+                    hud?.bezelView.color = makeObj.hudColor
+                    hud?.contentColor = makeObj.contentColor
+                }
+                break
+            case .text:
+                break
+            default:
+                break
+            }
         }
         
-        switch makeObj.hudMode {
-        case .indeterminate:
-            hud?.minSize = CGSize(width: 90, height: 100)
-        case .determinate:
-            break
-        case .determinateHorizontalBar:
-            break
-        case.annularDeterminate:
-            break
-        case .customView:
-            if makeObj.imageArray?.count ?? 0 > 0 {
-                let image = makeObj.imageArray?.first?.withRenderingMode(.alwaysTemplate)
-                let mainImageView = UIImageView(image: image)
-                mainImageView.animationImages = makeObj.imageArray
-                mainImageView.animationDuration = TimeInterval(makeObj.animationDuration ?? 0)
-                mainImageView.animationRepeatCount = 0
-                mainImageView.startAnimating()
-                hud?.customView = mainImageView
-            } else if makeObj.imageStr?.count ?? 0 > 0 {
-                hud?.customView = UIImageView(image: UIImage(named: makeObj.imageStr ?? "")?.withRenderingMode(.automatic))
-            }
-            
-            if makeObj.hudColor?.cgColor == UIColor(red: 0, green: 0, blue: 0, alpha: 0.7).cgColor {
-                hud?.bezelView.color = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
-                hud?.contentColor = makeObj.contentColor
-            } else {
-                hud?.bezelView.color = makeObj.hudColor
-                hud?.contentColor = makeObj.contentColor
-            }
-            break
-        case .text:
-            break
-        default:
-            break
-        }
-        
-        return hud
+        return hud ?? MBProgressHUD()
     }
     
     // MARK: - 简单的改变进度条值
@@ -162,8 +165,9 @@ class MBProgressManager: NSObject {
     static func uploadProgressValue(_ block: @escaping ((_ make: MBProgressManager) -> Void)) {
         let makeObj = MBProgressManager()
         block(makeObj)
-        let hud = MBProgressHUD(view: makeObj.inView)
-        hud.progress = Float(makeObj.progressValue ?? 0)
+        let hud = MBProgressHUD.forView(makeObj.inView)
+        hud?.progress = Float(makeObj.progressValue)
+        print(hud?.progress)
     }
     
     // MARK: - 显示成功并自动消失
@@ -276,25 +280,25 @@ class MBProgressManager: NSObject {
 
 extension MBProgressManager {
     @discardableResult
-    func inView(_ view: UIView) ->  Self {
+    func inView(_ view: UIView) ->  MBProgressManager {
         self.inView = view
         return self
     }
     
     @discardableResult
-    func customView(_ view: UIView) -> Self {
+    func customView(_ view: UIView) -> MBProgressManager {
         self.customView = view
         return self
     }
     
     @discardableResult
-    func customIconName(_ name: String) -> Self {
+    func customIconName(_ name: String) -> MBProgressManager {
         self.customIconName = name
         return self
     }
     
     @discardableResult
-    func inViewType(_ inViewType: HUDInViewType) -> Self {
+    func inViewType(_ inViewType: HUDInViewType) -> MBProgressManager {
         switch inViewType {
         case .keyWindow:
             self.inView = UIApplication.shared.windows[0]
@@ -305,67 +309,75 @@ extension MBProgressManager {
     }
     
     @discardableResult
-    func animated(_ animated: Bool) -> Self {
+    func animated(_ animated: Bool) -> MBProgressManager {
         self.animated = animated
         return self
     }
     
     @discardableResult
-    func maskType(_ makeType: HUDMaskType) -> Self {
+    func maskType(_ maskType: HUDMaskType) -> MBProgressManager {
         self.maskType = maskType
         return self
     }
     
     @discardableResult
-    func afterDelay(_ afterDelay: TimeInterval) -> Self {
+    func afterDelay(_ afterDelay: TimeInterval) -> MBProgressManager {
         self.afterDelay = afterDelay
         return self
     }
     
     @discardableResult
-    func message(_ message: String) -> Self {
+    func message(_ message: String) -> MBProgressManager {
         self.message = message
         return self
     }
     
     @discardableResult
-    func hudColor(_ hudColor: UIColor) -> Self {
+    func hudColor(_ hudColor: UIColor) -> MBProgressManager {
         self.hudColor = hudColor
         return self
     }
     
     @discardableResult
-    func hudMode(_ hudMode: MBProgressHUDMode) -> Self {
+    func hudMode(_ hudMode: MBProgressHUDMode) -> MBProgressManager {
         self.hudMode = hudMode
         return self
     }
     
     @discardableResult
-    func hudState(_ hudState: HUDShowStateType) -> Self {
+    func hudState(_ hudState: HUDShowStateType) -> MBProgressManager {
         self.hudState = hudState
         return self
     }
     
     @discardableResult
-    func progressValue(_ progressValue: CGFloat) -> Self {
+    func progressValue(_ progressValue: CGFloat) -> MBProgressManager {
         self.progressValue = progressValue
         return self
     }
     
     @discardableResult
-    func animationDuration(_ animationDuration: CGFloat) -> Self {
+    func animationDuration(_ animationDuration: CGFloat) -> MBProgressManager {
         self.animationDuration = animationDuration
         return self
     }
     
     @discardableResult
-    func imageArray(_ imageArray: [UIImage]) -> Self {
-        self.imageArray = imageArray
+    func imageArray(_ imageArray: [UIImage?]) -> MBProgressManager {
+        var temp: [UIImage] = []
+        
+        for image in imageArray {
+            if let image = image {
+                temp.append(image)
+            }
+        }
+        
+        self.imageArray = temp
         return self
     }
     
     @discardableResult
-    func contentColor(_ contentColor: UIColor) -> Self {
+    func contentColor(_ contentColor: UIColor) -> MBProgressManager {
         self.contentColor = contentColor
         return self
     }

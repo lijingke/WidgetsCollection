@@ -14,13 +14,12 @@ class HomepageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        let time = DispatchTime.now() + 1
-        
-        XZMBProgressManager.xz_showLoadingOrdinary("Loading")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            XZMBProgressManager.xz_showHUD(withSuccess: "成功提示")
+                        
+        MBProgressManager.showLoadingOrdinary("Loading")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            MBProgressManager.showHUD(withSuccess: "加载成功")
         }
+        
         configureNav()
         configureUI()
         getDataSource()
@@ -47,7 +46,7 @@ class HomepageViewController: UIViewController {
             var dicArray: [[CellInfoEnum : String]] = []
             switch section {
             case 0:
-                dicArray = [[.cellName : "Tabbar", .className : "TabbarController"], [.cellName : "DrawableCard", .className : "DrawableCardViewController"], [.cellName : "TisprCardStack", .className : "TisprCardStackViewController"], [.cellName : "UIPasteboard", .className : "UIPasteboardViewController"], [.cellName : "ImagePicker", .className : "ImagePickerViewController"]]
+                dicArray = [[.cellName : "Tabbar", .className : "TabbarController"], [.cellName : "DrawableCard", .className : "DrawableCardViewController"], [.cellName : "TisprCardStack", .className : "TisprCardStackViewController"], [.cellName : "UIPasteboard", .className : "UIPasteboardViewController"], [.cellName : "ImagePicker", .className : "ImagePickerViewController"], [.cellName : "HUD Test", .className : "HUDManagerDemoViewController"]]
             case 1:
                 dicArray = [[.cellName : "App Search", .className : "AppSearchViewController"]]
             case 2:

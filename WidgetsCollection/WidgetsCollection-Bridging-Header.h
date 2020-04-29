@@ -5,4 +5,3 @@
 #import "LxGridViewFlowLayout.h"
 #import "FLAnimatedImageView.h"
 #import "FLAnimatedImage.h"
-#import "XZMBProgressManager.h"
