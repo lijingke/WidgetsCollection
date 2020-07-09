@@ -705,7 +705,7 @@ extension ImagePickerView: UICollectionViewDataSource {
             }
             let model = uploadHistoryData[indexPath.item]
             let url = model?.url ?? ""
-            let data = try? Data(contentsOf: Bundle.main.url(forResource: "loading", withExtension: "gif")!)
+            let data = try? Data(contentsOf: Bundle.main.url(forResource: "SpongeBob", withExtension: "gif")!)
             let gifImage = UIImage.sd_image(with: data)
             cell.imageView.sd_setImage(with: URL(string: url), placeholderImage: gifImage)
             return cell
@@ -742,7 +742,18 @@ extension ImagePickerView: UICollectionViewDataSource {
         }
         
         return UICollectionViewCell()
-        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionLabelHeadView.reuseID, for: indexPath) as! CollectionLabelHeadView
+            let title = indexPath.section == 0 ? "SM.MS中已上传的图片" : "请从相册中选择图片进行上传"
+            view.titleLabel.text = title
+            return view
+        default:
+            fatalError("No Such Kind")
+        }
     }
     
 }
@@ -826,18 +837,6 @@ extension ImagePickerView: UICollectionViewDelegate {
                 }
                 self.getViewController().present(imagePickerVC!, animated: true, completion: nil)
             }
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionLabelHeadView.reuseID, for: indexPath) as! CollectionLabelHeadView
-            let title = indexPath.section == 0 ? "SM.MS中已上传的图片" : "请从相册中选择图片进行上传"
-            view.titleLabel.text = title
-            return view
-        default:
-            fatalError("No Such Kind")
         }
     }
     

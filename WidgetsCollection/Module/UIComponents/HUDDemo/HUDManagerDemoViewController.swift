@@ -30,6 +30,7 @@ class HUDManagerDemoViewController: UIViewController {
         table.delegate = self
         table.dataSource = self
         table.register(UITableViewCell.self, forCellReuseIdentifier: "basicCell")
+    //        table.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNormalMagnitude))
         return table
     }()
     
@@ -149,6 +150,7 @@ extension HUDManagerDemoViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 extension HUDManagerDemoViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellData.count
     }

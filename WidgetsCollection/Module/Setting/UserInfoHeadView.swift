@@ -30,7 +30,7 @@ class UserInfoHeadView: UIView {
     
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "未填写"
+        label.text = "瓦西里的小板凳"
         label.textColor = UIColor(hex: 0x0C1832)
         label.font = UIFont.semibold(20)
         return label
@@ -38,7 +38,7 @@ class UserInfoHeadView: UIView {
     
     lazy var userMailLabel: UILabel = {
         let label = UILabel()
-        label.text = "未填写"
+        label.text = "lijingke@mail.com"
         label.textColor = UIColor(hex: 0x0C1832)
         label.font = UIFont.regular(18)
         return label

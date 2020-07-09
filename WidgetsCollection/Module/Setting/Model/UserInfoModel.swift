@@ -29,5 +29,4 @@ struct UserInfoModel: HandyJSON {
     var disk_usage_raw: Int64?
     /// 所有空间字节
     var disk_limit_raw: Int64?
-    
 }

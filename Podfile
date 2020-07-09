@@ -16,6 +16,7 @@ target 'WidgetsCollection' do
   pod 'SDWebImage'
   pod 'MBProgressHUD'
   pod 'MJRefresh'
+  pod 'WCDB.swift'	
 
   target 'WidgetsCollectionTests' do
     inherit! :search_paths

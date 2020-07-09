@@ -126,6 +126,7 @@ class MBProgressManager: NSObject {
                     mainImageView.startAnimating()
                     hud?.customView = mainImageView
                 } else if makeObj.imageStr?.count ?? 0 > 0 {
+                    
                     hud?.customView = UIImageView(image: UIImage(named: makeObj.imageStr ?? "")?.withRenderingMode(.automatic))
                 }
                 
@@ -147,7 +148,7 @@ class MBProgressManager: NSObject {
         return hud ?? MBProgressHUD()
     }
     
-    // MARK: - 简单的改变进度条值
+    // MARK: - 简单的改变进度条
     static func uploadProgressOrdinary(_ progressValue: CGFloat) {
         MBProgressManager.uploadProgressValue { (make) in
             make.progressValue(progressValue)
@@ -167,7 +168,6 @@ class MBProgressManager: NSObject {
         block(makeObj)
         let hud = MBProgressHUD.forView(makeObj.inView)
         hud?.progress = Float(makeObj.progressValue)
-        print(hud?.progress)
     }
     
     // MARK: - 显示成功并自动消失
