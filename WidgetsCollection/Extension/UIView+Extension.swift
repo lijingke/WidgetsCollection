@@ -111,3 +111,45 @@ extension UIView {
     }
     
 }
+
+/// 添加多个子视图
+public extension UIView {
+    func addSubviews(_ subviews: [UIView]) {
+        subviews.forEach { self.addSubview($0) }
+    }
+
+    func removeSubviews() {
+        subviews.forEach { $0.removeFromSuperview() }
+    }
+}
+
+/// 获取父控制器
+public extension UIView {
+    var parentViewController: UIViewController? {
+        weak var parentResponder: UIResponder? = self
+        while parentResponder != nil {
+            parentResponder = parentResponder!.next
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+        }
+        return nil
+    }
+}
+
+/// 第一响应者
+public extension UIView {
+    func firstResponder() -> UIView? {
+        var views = [UIView](arrayLiteral: self)
+        var i = 0
+        repeat {
+            let view = views[i]
+            if view.isFirstResponder {
+                return view
+            }
+            views.append(contentsOf: view.subviews)
+            i += 1
+        } while i < views.count
+        return nil
+    }
+}

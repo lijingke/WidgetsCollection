@@ -5,3 +5,4 @@
 #import "LxGridViewFlowLayout.h"
 #import "FLAnimatedImageView.h"
 #import "FLAnimatedImage.h"
+#import "UIImage+Gradient.h"

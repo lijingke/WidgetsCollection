@@ -40,13 +40,15 @@ class HomepageViewController: UIViewController {
     
     fileprivate func getDataSource() {
         
-        headViewTitles = ["Core Animation", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe"]
+        headViewTitles = ["WorkSpace", "Core Animation", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe"]
         
         for title in headViewTitles {
             var dicArray: [[CellInfoEnum : String]] = []
             switch title {
+            case "WorkSpace":
+                dicArray = [[.cellName: "RPlus", .className: "ActivateServiceViewController"]]
             case "UI Components":
-                dicArray = [[.cellName: "Tabbar", .className: "TabbarController"], [.cellName: "DrawableCard", .className: "DrawableCardViewController"], [.cellName: "TisprCardStack", .className: "TisprCardStackViewController"], [.cellName: "UIPasteboard", .className: "UIPasteboardViewController"], [.cellName: "ImagePicker", .className: "ImagePickerViewController"], [.cellName: "HUD Test", .className: "HUDManagerDemoViewController"]]
+                dicArray = [[.cellName: "Tabbar", .className: "TabbarController"], [.cellName: "DrawableCard", .className: " DrawableCardViewController"], [.cellName: "TisprCardStack", .className: "TisprCardStackViewController"], [.cellName: "UIPasteboard", .className: "UIPasteboardViewController"], [.cellName: "ImagePicker", .className: "ImagePickerViewController"], [.cellName: "HUD Test", .className: "HUDManagerDemoViewController"]]
             case "Toolbox":
                 dicArray = [[.cellName: "App Search", .className: "AppSearchViewController"]]
             case "CollectionView Basics":
