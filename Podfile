@@ -19,6 +19,7 @@ target 'WidgetsCollection' do
   pod 'WCDB.swift'
   pod 'MJRefresh'	
   pod 'SwiftyJSON'
+  pod 'R.swift'
 
   target 'WidgetsCollectionTests' do
     inherit! :search_paths
