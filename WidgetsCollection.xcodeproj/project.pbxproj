@@ -136,6 +136,7 @@
 		54F18DC6243EC0FE00AB81A1 /* img_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F18DC0243EC0FE00AB81A1 /* img_03.png */; };
 		54F18DC7243EC0FE00AB81A1 /* img_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F18DC1243EC0FE00AB81A1 /* img_01.png */; };
 		54F18DC8243EC0FE00AB81A1 /* img_00.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F18DC2243EC0FE00AB81A1 /* img_00.png */; };
+		54F21BDC272804C400AECAF1 /* AttributedStringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F21BDB272804C400AECAF1 /* AttributedStringViewController.swift */; };
 		54F3C0F5271137AA00717B20 /* ActivateServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F3C0F4271137AA00717B20 /* ActivateServiceViewController.swift */; };
 		54F3C0FA2711385300717B20 /* ActivateServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F3C0F92711385300717B20 /* ActivateServiceView.swift */; };
 		54F3C12227113CF500717B20 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F3C10127113CEC00717B20 /* UITextField+Extension.swift */; };
@@ -322,6 +323,7 @@
 		54F18DC0243EC0FE00AB81A1 /* img_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_03.png; sourceTree = "<group>"; };
 		54F18DC1243EC0FE00AB81A1 /* img_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_01.png; sourceTree = "<group>"; };
 		54F18DC2243EC0FE00AB81A1 /* img_00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_00.png; sourceTree = "<group>"; };
+		54F21BDB272804C400AECAF1 /* AttributedStringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringViewController.swift; sourceTree = "<group>"; };
 		54F3C0F4271137AA00717B20 /* ActivateServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateServiceViewController.swift; sourceTree = "<group>"; };
 		54F3C0F92711385300717B20 /* ActivateServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateServiceView.swift; sourceTree = "<group>"; };
 		54F3C10127113CEC00717B20 /* UITextField+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
@@ -1000,6 +1002,7 @@
 			children = (
 				54F3C0F4271137AA00717B20 /* ActivateServiceViewController.swift */,
 				5491FC5A2714323A00E9498F /* ProcessProgressVC.swift */,
+				54F21BDB272804C400AECAF1 /* AttributedStringViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1324,6 +1327,7 @@
 				54F3C12627113CF500717B20 /* UIImage+Gradient.m in Sources */,
 				5455172924374448009C7378 /* HintTool.swift in Sources */,
 				54C183552435C3B1008666E4 /* TagViewController.swift in Sources */,
+				54F21BDC272804C400AECAF1 /* AttributedStringViewController.swift in Sources */,
 				54C182962435C0B9008666E4 /* AppDelegate.swift in Sources */,
 				54C1831A2435C374008666E4 /* PDFPreviewViewController.swift in Sources */,
 				54578B2F245145A100726F05 /* SettingViewController.swift in Sources */,

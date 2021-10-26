@@ -20,6 +20,7 @@ target 'WidgetsCollection' do
   pod 'MJRefresh'	
   pod 'SwiftyJSON'
   pod 'R.swift'
+  pod 'ActiveLabel'
 
   target 'WidgetsCollectionTests' do
     inherit! :search_paths
