@@ -106,7 +106,7 @@ extension LotteryView {
 extension LotteryView: ZXDrawPrizeDataSource {
     /// 各项奖品图片 (二选一，优先)
     func zxDrawPrize(prizeView: ZXDrawPrizeView, imageAt index: NSInteger) -> UIImage? {
-        return UIImage(named: "\(index + 1)")!
+        return UIImage(named: "WeChat_Avatar_\(index + 1)")!
     }
     
     /// 各项奖品图片 url (二选一)

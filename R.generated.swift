@@ -88,7 +88,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
 
-  /// This `R.image` struct is generated, and contains static references to 79 images.
+  /// This `R.image` struct is generated, and contains static references to 105 images.
   struct image {
     /// Image `AlbumAddBtn`.
     static let albumAddBtn = Rswift.ImageResource(bundle: R.hostingBundle, name: "AlbumAddBtn")
@@ -114,6 +114,58 @@ struct R: Rswift.Validatable {
     static let spongeBobGif = Rswift.ImageResource(bundle: R.hostingBundle, name: "SpongeBob.gif")
     /// Image `Van Gogh_Starry Night`.
     static let vanGogh_StarryNight = Rswift.ImageResource(bundle: R.hostingBundle, name: "Van Gogh_Starry Night")
+    /// Image `WeChat_Avatar_10`.
+    static let weChat_Avatar_10 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_10")
+    /// Image `WeChat_Avatar_11`.
+    static let weChat_Avatar_11 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_11")
+    /// Image `WeChat_Avatar_12`.
+    static let weChat_Avatar_12 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_12")
+    /// Image `WeChat_Avatar_13`.
+    static let weChat_Avatar_13 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_13")
+    /// Image `WeChat_Avatar_14`.
+    static let weChat_Avatar_14 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_14")
+    /// Image `WeChat_Avatar_15`.
+    static let weChat_Avatar_15 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_15")
+    /// Image `WeChat_Avatar_16`.
+    static let weChat_Avatar_16 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_16")
+    /// Image `WeChat_Avatar_17`.
+    static let weChat_Avatar_17 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_17")
+    /// Image `WeChat_Avatar_18`.
+    static let weChat_Avatar_18 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_18")
+    /// Image `WeChat_Avatar_19`.
+    static let weChat_Avatar_19 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_19")
+    /// Image `WeChat_Avatar_1`.
+    static let weChat_Avatar_1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_1")
+    /// Image `WeChat_Avatar_20`.
+    static let weChat_Avatar_20 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_20")
+    /// Image `WeChat_Avatar_21`.
+    static let weChat_Avatar_21 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_21")
+    /// Image `WeChat_Avatar_22`.
+    static let weChat_Avatar_22 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_22")
+    /// Image `WeChat_Avatar_23`.
+    static let weChat_Avatar_23 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_23")
+    /// Image `WeChat_Avatar_24`.
+    static let weChat_Avatar_24 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_24")
+    /// Image `WeChat_Avatar_25`.
+    static let weChat_Avatar_25 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_25")
+    /// Image `WeChat_Avatar_26`.
+    static let weChat_Avatar_26 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_26")
+    /// Image `WeChat_Avatar_2`.
+    static let weChat_Avatar_2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_2")
+    /// Image `WeChat_Avatar_3`.
+    static let weChat_Avatar_3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_3")
+    /// Image `WeChat_Avatar_4`.
+    static let weChat_Avatar_4 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_4")
+    /// Image `WeChat_Avatar_5`.
+    static let weChat_Avatar_5 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_5")
+    /// Image `WeChat_Avatar_6`.
+    static let weChat_Avatar_6 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_6")
+    /// Image `WeChat_Avatar_7`.
+    static let weChat_Avatar_7 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_7")
+    /// Image `WeChat_Avatar_8`.
+    static let weChat_Avatar_8 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_8")
+    /// Image `WeChat_Avatar_9`.
+    static let weChat_Avatar_9 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_9")
     /// Image `arrow_down`.
     static let arrow_down = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_down")
     /// Image `arrow_up`.
@@ -330,6 +382,188 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "Van Gogh_Starry Night", bundle: ..., traitCollection: ...)`
     static func vanGogh_StarryNight(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.vanGogh_StarryNight, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_1", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_10", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_10(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_10, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_11", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_11(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_11, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_12", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_12(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_12, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_13", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_13(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_13, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_14", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_14(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_14, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_15", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_15(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_15, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_16", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_16(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_16, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_17", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_17(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_17, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_18", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_18(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_18, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_19", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_19(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_19, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_2", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_20", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_20(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_20, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_21", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_21(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_21, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_22", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_22(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_22, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_23", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_23(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_23, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_24", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_24(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_24, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_25", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_25(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_25, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_26", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_26(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_26, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_3", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_3, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_4", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_4, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_5", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_5(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_5, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_6", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_6(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_6, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_7", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_7(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_7, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_8", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_8(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_8, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "WeChat_Avatar_9", bundle: ..., traitCollection: ...)`
+    static func weChat_Avatar_9(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.weChat_Avatar_9, compatibleWith: traitCollection)
     }
     #endif
 
