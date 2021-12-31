@@ -46,7 +46,7 @@ class HomepageViewController: UIViewController {
             var dicArray: [[CellInfoEnum : String]] = []
             switch title {
             case "WorkSpace":
-                dicArray = [[.cellName: "RPlus", .className: "ProcessProgressVC"]]
+                dicArray = [[.cellName: "RPlus", .className: "ProcessProgressVC"], [.cellName: "富文本点击", .className: "AttributedStringViewController"]]
             case "UI Components":
                 dicArray = [[.cellName: "Tabbar", .className: "TabbarController"], [.cellName: "DrawableCard", .className: " DrawableCardViewController"], [.cellName: "TisprCardStack", .className: "TisprCardStackViewController"], [.cellName: "UIPasteboard", .className: "UIPasteboardViewController"], [.cellName: "ImagePicker", .className: "ImagePickerViewController"], [.cellName: "HUD Test", .className: "HUDManagerDemoViewController"]]
             case "Toolbox":
