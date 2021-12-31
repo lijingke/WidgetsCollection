@@ -50,7 +50,7 @@ class HomepageViewController: UIViewController {
             case "UI Components":
                 dicArray = [[.cellName: "Tabbar", .className: "TabbarController"], [.cellName: "DrawableCard", .className: " DrawableCardViewController"], [.cellName: "TisprCardStack", .className: "TisprCardStackViewController"], [.cellName: "UIPasteboard", .className: "UIPasteboardViewController"], [.cellName: "ImagePicker", .className: "ImagePickerViewController"], [.cellName: "HUD Test", .className: "HUDManagerDemoViewController"]]
             case "Toolbox":
-                dicArray = [[.cellName: "App Search", .className: "AppSearchViewController"]]
+                dicArray = [[.cellName: "App Search", .className: "AppSearchViewController"], [.cellName: "周会幸运星", .className: "LotteryViewController"]]
             case "CollectionView Basics":
                 dicArray = [[.cellName: "基础布局篇", .className: "BasicViewController", .pushType: "pop"], [.cellName: "布局和代理篇", .className: "LayoutAndDelegateViewController", .pushType: "pop"]]
             case "CUSTOM LAYOUT":
