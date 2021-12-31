@@ -20,6 +20,8 @@ class LotteryView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        avatarImage.addGestureRecognizer(tap)
     }
     
     @available(*, unavailable)
@@ -68,10 +70,19 @@ class LotteryView: UIView {
     
     lazy var avatarImage: UIImageView = {
         let view = UIImageView()
+        view.isUserInteractionEnabled = true
         return view
     }()
 }
 
+// MARK: - Event
+extension LotteryView {
+    @objc private func tapAction() {
+        fireworkController.addFireworks(count: 10, sparks: 8, around: avatarImage, sparkSize: CGSize(width: 7, height: 7), scale: 45.0, maxVectorChange: 15.0, animationDuration: 3.0, canChangeZIndex: true)
+    }
+}
+
+// MARK: - UI
 extension LotteryView {
     private func setupUI() {
         layer.contents = R.image.bg()!.cgImage
@@ -94,9 +105,9 @@ extension LotteryView {
     
     private func refreshUI(award: RPlusInfoModel) {
         titleLabel.text = "恭喜！\n2022年第一周的幸运星是："
-        avatarImage.image = UIImage(named: "\(award.userId!)")!
+        avatarImage.image = UIImage(named: "WeChat_Avatar_\(award.userId!)")!
         prizeInfoLabel.text = award.name
-//        fireworkController.addFireworks(count: 10, sparks: 8, around: prizeInfoLabel, sparkSize: CGSize(width: 7, height: 7), scale: 45.0, maxVectorChange: 15.0, animationDuration: 3.0, canChangeZIndex: true)
+        fireworkController.addFireworks(count: 10, sparks: 8, around: prizeInfoLabel, sparkSize: CGSize(width: 7, height: 7), scale: 45.0, maxVectorChange: 15.0, animationDuration: 3.0, canChangeZIndex: true)
         fireworkController.addFireworks(count: 10, sparks: 8, around: avatarImage, sparkSize: CGSize(width: 7, height: 7), scale: 45.0, maxVectorChange: 15.0, animationDuration: 3.0, canChangeZIndex: true)
     }
 }
