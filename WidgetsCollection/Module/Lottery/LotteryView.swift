@@ -22,6 +22,9 @@ class LotteryView: UIView {
         setupUI()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         avatarImage.addGestureRecognizer(tap)
+        let data = try? Data(contentsOf: Bundle.main.url(forResource: "SpongeBob", withExtension: "gif")!)
+        let gifImage = UIImage.sd_image(with: data)
+        avatarImage.image = gifImage
     }
     
     @available(*, unavailable)
@@ -93,9 +96,9 @@ extension LotteryView {
             make.centerX.equalToSuperview()
         }
         avatarImage.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.top.equalTo(titleLabel.snp.bottom).offset(30)
             make.centerX.equalToSuperview()
-            make.size.equalTo(CGSize(width: 80, height: 80))
+            make.size.equalTo(CGSize(width: 100, height: 100))
         }
         prizeInfoLabel.snp.makeConstraints { make in
             make.top.equalTo(avatarImage.snp.bottom).offset(10)
@@ -104,6 +107,12 @@ extension LotteryView {
     }
     
     private func refreshUI(award: RPlusInfoModel) {
+        avatarImage.snp.remakeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 80, height: 80))
+        }
+
         titleLabel.text = "恭喜！\n2022年第一周的幸运星是："
         avatarImage.image = UIImage(named: "WeChat_Avatar_\(award.userId!)")!
         prizeInfoLabel.text = award.name
