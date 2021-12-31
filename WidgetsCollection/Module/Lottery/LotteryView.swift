@@ -23,8 +23,7 @@ class LotteryView: UIView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         avatarImage.addGestureRecognizer(tap)
         let data = try? Data(contentsOf: Bundle.main.url(forResource: "SpongeBob", withExtension: "gif")!)
-        let gifImage = UIImage.sd_image(with: data)
-        avatarImage.image = gifImage
+        avatarImage.image = UIImage.sd_image(with: data)
     }
     
     @available(*, unavailable)

@@ -26,7 +26,7 @@ class HomepageViewController: UIViewController {
     }
     
     fileprivate func configureNav() {
-        navigationItem.title = "WidgetsCollection"
+        navigationItem.title = "瓦西里的百宝箱"
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
         
