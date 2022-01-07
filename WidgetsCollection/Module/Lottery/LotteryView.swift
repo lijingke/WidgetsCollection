@@ -112,7 +112,7 @@ extension LotteryView {
             make.size.equalTo(CGSize(width: 80, height: 80))
         }
 
-        titleLabel.text = "恭喜！\n2022年第一周的幸运星是："
+        titleLabel.text = "🎉恭喜！\n2022年第一周的幸运星是："
         avatarImage.image = UIImage(named: "WeChat_Avatar_\(award.userId!)")!
         prizeInfoLabel.text = award.name
         fireworkController.addFireworks(count: 10, sparks: 8, around: prizeInfoLabel, sparkSize: CGSize(width: 7, height: 7), scale: 45.0, maxVectorChange: 15.0, animationDuration: 3.0, canChangeZIndex: true)
