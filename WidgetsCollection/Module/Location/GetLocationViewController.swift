@@ -92,7 +92,7 @@ class GetLocationViewController: UIViewController {
     }()
     
     fileprivate func showAlert(latitude:CLLocationDegrees, longitude: CLLocationDegrees, altitude: CLLocationDistance, name: String) {
-        let alertC = UIAlertController(title: "定位成功！", message: "你的经度是:\(String(format: "%0.2f", latitude))\n你的纬度是:\(String(format: "%0.2f",                                                               longitude))\n你的海拔是:\(String(format: "%0.2f", altitude))\n\n你的位置是:\(name)", preferredStyle: .alert)
+        let alertC = UIAlertController(title: "定位成功！", message: "你的纬度是:\(String(format: "%0.6f", latitude))\n你的经度是:\(String(format: "%0.6f",                                                               longitude))\n你的海拔是:\(String(format: "%0.2f", altitude))\n\n你的位置是:\(name)", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "确定", style: .default, handler: nil)
         alertC.addAction(okAction)
         present(alertC, animated: true, completion: nil)
