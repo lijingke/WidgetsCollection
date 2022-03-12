@@ -1209,6 +1209,7 @@
 				54C1828F2435C0B9008666E4 /* Frameworks */,
 				54C182902435C0B9008666E4 /* Resources */,
 				74628385803D41C20EE3AF3C /* [CP] Embed Pods Frameworks */,
+				54251DCD27DC4758002A7B52 /* Build Version */,
 			);
 			buildRules = (
 			);
@@ -1359,6 +1360,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		54251DCD27DC4758002A7B52 /* Build Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nshortVersion=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n\nbuildNumber=`date +\"%m%d%H%M\"`\nbuildNumber=\"$buildNumber\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
 		};
 		5460A23827143C1400ECAD36 /* R.Swift */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1772,13 +1791,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4DK6QLK2RE;
+				DEVELOPMENT_TEAM = VQ64C26VZ8;
 				INFOPLIST_FILE = WidgetsCollection/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.personal.WidgetsCollection;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lijingke.WidgetsCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WidgetsCollection/WidgetsCollection-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1794,13 +1813,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4DK6QLK2RE;
+				DEVELOPMENT_TEAM = VQ64C26VZ8;
 				INFOPLIST_FILE = WidgetsCollection/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.personal.WidgetsCollection;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lijingke.WidgetsCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WidgetsCollection/WidgetsCollection-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

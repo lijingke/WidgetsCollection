@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>03121117</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -27,6 +27,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>CollectionViewDemo请求使用您的相机以拍照</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>CollectionViewDemo请求访问FaceID以解锁</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>CollectionViewDemo需要始终使用您的位置</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -39,8 +41,6 @@
 	<string>CollectionViewDemo请求添加图片到您的相册中</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>CollectionViewDemo请求访问相册以选择照片</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>CollectionViewDemo请求访问FaceID以解锁</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>
