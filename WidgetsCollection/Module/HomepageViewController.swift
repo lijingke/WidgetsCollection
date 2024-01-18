@@ -40,7 +40,7 @@ class HomepageViewController: UIViewController {
     
     fileprivate func getDataSource() {
         
-        headViewTitles = ["WorkSpace", "Core Animation", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe"]
+        headViewTitles = ["WorkSpace", "Core Animation", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
         
         for title in headViewTitles {
             var dicArray: [[CellInfoEnum : String]] = []
@@ -75,6 +75,8 @@ class HomepageViewController: UIViewController {
                 dicArray = [[.cellName: "刷新", .className: "RefreshViewController"]]
             case "Core Animation":
                 dicArray = [[.cellName: "Finish Animation", .className: "FinishAnimationViewController"]]
+            case "Health Kit":
+                dicArray = [[.cellName: "Electrocardiograms (ECG)", .className: "ECGMeasureListVC"]]
             default:
                 break
             }

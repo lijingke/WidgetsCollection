@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -146,6 +146,30 @@
 		54CE48CC277EB1AA00B248DB /* SparkViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CE48B5277EB1AA00B248DB /* SparkViewFactory.swift */; };
 		54CE48CD277EB1AA00B248DB /* FireworkSpark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CE48B6277EB1AA00B248DB /* FireworkSpark.swift */; };
 		54CE48CE277EB1AA00B248DB /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CE48B8277EB1AA00B248DB /* CGPoint+Extensions.swift */; };
+		54CEBE2C2B59075E00498136 /* ECGMeasureListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE2B2B59075E00498136 /* ECGMeasureListVC.swift */; };
+		54CEBE2E2B59078F00498136 /* ECGMeasureListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE2D2B59078F00498136 /* ECGMeasureListCell.swift */; };
+		54CEBE302B5907AB00498136 /* ECGModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE2F2B5907AB00498136 /* ECGModel.swift */; };
+		54CEBE322B5907C700498136 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE312B5907C700498136 /* DateUtil.swift */; };
+		54CEBE422B59084400498136 /* YOECGLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE352B59084400498136 /* YOECGLineView.m */; };
+		54CEBE432B59084400498136 /* YOECGChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE392B59084400498136 /* YOECGChartView.m */; };
+		54CEBE442B59084400498136 /* YOECGParamter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE3B2B59084400498136 /* YOECGParamter.m */; };
+		54CEBE452B59084400498136 /* YOTimeTextParmaramter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE402B59084400498136 /* YOTimeTextParmaramter.m */; };
+		54CEBE462B59084400498136 /* YOECGBackGroundGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE412B59084400498136 /* YOECGBackGroundGridView.m */; };
+		54CEBE482B59086F00498136 /* ECGInstructVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE472B59086F00498136 /* ECGInstructVC.swift */; };
+		54CEBE4A2B59089400498136 /* ECGInstructView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE492B59089400498136 /* ECGInstructView.swift */; };
+		54CEBE502B59093200498136 /* EMAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE4C2B59093200498136 /* EMAlertController.swift */; };
+		54CEBE512B59093200498136 /* EMAlertTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE4D2B59093200498136 /* EMAlertTextField.swift */; };
+		54CEBE522B59093200498136 /* EMAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE4E2B59093200498136 /* EMAlertAction.swift */; };
+		54CEBE532B59093200498136 /* UIColor+EMAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE4F2B59093200498136 /* UIColor+EMAlertController.swift */; };
+		54CEBE552B59096900498136 /* ECGMeasureResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE542B59096900498136 /* ECGMeasureResultView.swift */; };
+		54CEBE572B59098400498136 /* ECGOperateStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE562B59098400498136 /* ECGOperateStepView.swift */; };
+		54CEBE592B590A2B00498136 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE582B590A2B00498136 /* BaseViewController.swift */; };
+		54CEBE5B2B590AD600498136 /* LogUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE5A2B590AD600498136 /* LogUtil.swift */; };
+		54CEBE5D2B590B1F00498136 /* ECGDetitalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE5C2B590B1F00498136 /* ECGDetitalVC.swift */; };
+		54CEBE5F2B590B4900498136 /* ECGDetitalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE5E2B590B4900498136 /* ECGDetitalView.swift */; };
+		54CEBE612B590B8600498136 /* ECGChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE602B590B8600498136 /* ECGChartView.swift */; };
+		54CEBE632B590B9C00498136 /* ECGSampleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE622B590B9C00498136 /* ECGSampleDetailView.swift */; };
+		54CEBE652B590BB500498136 /* ECGSampleDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBE642B590BB500498136 /* ECGSampleDetailCell.swift */; };
 		54D42AE9271FF78A0004D1C9 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D42AE8271FF78A0004D1C9 /* Array+Extension.swift */; };
 		54E6F2602452D4B500A41EDE /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E6F25F2452D4B500A41EDE /* Loading.swift */; };
 		54E6F2652452EF5E00A41EDE /* MBProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E6F2642452EF5D00A41EDE /* MBProgressManager.swift */; };
@@ -247,6 +271,7 @@
 		546970F0243D6C3100F2DB95 /* TabbarSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarSubViewController.swift; sourceTree = "<group>"; };
 		546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
 		5473DCCA27143D480062E385 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		5474BBAA2B590EFE00F3ECFC /* WidgetsCollection.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsCollection.entitlements; sourceTree = "<group>"; };
 		5478FEA1244FE16500208D15 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		5478FEA3244FE35B00208D15 /* WebImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		5478FEA5244FF4F700208D15 /* ImageChooseConf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageChooseConf.swift; sourceTree = "<group>"; };
@@ -360,6 +385,36 @@
 		54CE48B5277EB1AA00B248DB /* SparkViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SparkViewFactory.swift; sourceTree = "<group>"; };
 		54CE48B6277EB1AA00B248DB /* FireworkSpark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireworkSpark.swift; sourceTree = "<group>"; };
 		54CE48B8277EB1AA00B248DB /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
+		54CEBE2B2B59075E00498136 /* ECGMeasureListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGMeasureListVC.swift; sourceTree = "<group>"; };
+		54CEBE2D2B59078F00498136 /* ECGMeasureListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGMeasureListCell.swift; sourceTree = "<group>"; };
+		54CEBE2F2B5907AB00498136 /* ECGModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGModel.swift; sourceTree = "<group>"; };
+		54CEBE312B5907C700498136 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		54CEBE352B59084400498136 /* YOECGLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOECGLineView.m; sourceTree = "<group>"; };
+		54CEBE362B59084400498136 /* YOECGLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOECGLineView.h; sourceTree = "<group>"; };
+		54CEBE372B59084400498136 /* YOECGHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOECGHeader.h; sourceTree = "<group>"; };
+		54CEBE382B59084400498136 /* YOECGChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOECGChartView.h; sourceTree = "<group>"; };
+		54CEBE392B59084400498136 /* YOECGChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOECGChartView.m; sourceTree = "<group>"; };
+		54CEBE3B2B59084400498136 /* YOECGParamter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOECGParamter.m; sourceTree = "<group>"; };
+		54CEBE3C2B59084400498136 /* YOECGParamter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOECGParamter.h; sourceTree = "<group>"; };
+		54CEBE3E2B59084400498136 /* YOTimeTextParmaramter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOTimeTextParmaramter.h; sourceTree = "<group>"; };
+		54CEBE3F2B59084400498136 /* YOECGBackGroundGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOECGBackGroundGridView.h; sourceTree = "<group>"; };
+		54CEBE402B59084400498136 /* YOTimeTextParmaramter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOTimeTextParmaramter.m; sourceTree = "<group>"; };
+		54CEBE412B59084400498136 /* YOECGBackGroundGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOECGBackGroundGridView.m; sourceTree = "<group>"; };
+		54CEBE472B59086F00498136 /* ECGInstructVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGInstructVC.swift; sourceTree = "<group>"; };
+		54CEBE492B59089400498136 /* ECGInstructView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGInstructView.swift; sourceTree = "<group>"; };
+		54CEBE4C2B59093200498136 /* EMAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EMAlertController.swift; sourceTree = "<group>"; };
+		54CEBE4D2B59093200498136 /* EMAlertTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EMAlertTextField.swift; sourceTree = "<group>"; };
+		54CEBE4E2B59093200498136 /* EMAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EMAlertAction.swift; sourceTree = "<group>"; };
+		54CEBE4F2B59093200498136 /* UIColor+EMAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+EMAlertController.swift"; sourceTree = "<group>"; };
+		54CEBE542B59096900498136 /* ECGMeasureResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGMeasureResultView.swift; sourceTree = "<group>"; };
+		54CEBE562B59098400498136 /* ECGOperateStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGOperateStepView.swift; sourceTree = "<group>"; };
+		54CEBE582B590A2B00498136 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		54CEBE5A2B590AD600498136 /* LogUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogUtil.swift; sourceTree = "<group>"; };
+		54CEBE5C2B590B1F00498136 /* ECGDetitalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGDetitalVC.swift; sourceTree = "<group>"; };
+		54CEBE5E2B590B4900498136 /* ECGDetitalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGDetitalView.swift; sourceTree = "<group>"; };
+		54CEBE602B590B8600498136 /* ECGChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGChartView.swift; sourceTree = "<group>"; };
+		54CEBE622B590B9C00498136 /* ECGSampleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGSampleDetailView.swift; sourceTree = "<group>"; };
+		54CEBE642B590BB500498136 /* ECGSampleDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECGSampleDetailCell.swift; sourceTree = "<group>"; };
 		54D42AE8271FF78A0004D1C9 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		54E6F25F2452D4B500A41EDE /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		54E6F2642452EF5D00A41EDE /* MBProgressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBProgressManager.swift; sourceTree = "<group>"; };
@@ -495,10 +550,13 @@
 		542B982B244ECF3A008B01B4 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				54CEBE4B2B59093200498136 /* EMAlertController */,
+				54CEBE332B59084400498136 /* YOECGChartView */,
 				54CE489D277EB1AA00B248DB /* Fireworks */,
 				5451E91024494DB600601BC9 /* FLAnimatedImage */,
 				5455172224372E77009C7378 /* Const.swift */,
 				54C183402435C3A4008666E4 /* DataManager.swift */,
+				54CEBE5A2B590AD600498136 /* LogUtil.swift */,
 				5452067A244D869100882B3B /* ImageUploadOperation.swift */,
 				542B982E244ECF7D008B01B4 /* Json.swift */,
 				54E6F25F2452D4B500A41EDE /* Loading.swift */,
@@ -506,6 +564,7 @@
 				542B982C244ECF5C008B01B4 /* Utils.swift */,
 				54E6F2642452EF5D00A41EDE /* MBProgressManager.swift */,
 				54AA064C245961EC00EA57AC /* DataBaseManager.swift */,
+				54CEBE312B5907C700498136 /* DateUtil.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -575,6 +634,7 @@
 				54C182C72435C374008666E4 /* Download */,
 				54C182F42435C374008666E4 /* Xmsg */,
 				5455171D24372AF5009C7378 /* GestureUnlock */,
+				54CEBE272B59071500498136 /* HealthKit */,
 				54EE06EB2451723E002C978A /* AppInfoModel.swift */,
 				54AA064E2459785300EA57AC /* AppSearchViewController.swift */,
 				543FD7C524F4F14700C58E86 /* SWColor.swift */,
@@ -845,6 +905,7 @@
 		54C182942435C0B9008666E4 /* WidgetsCollection */ = {
 			isa = PBXGroup;
 			children = (
+				5474BBAA2B590EFE00F3ECFC /* WidgetsCollection.entitlements */,
 				54C182952435C0B9008666E4 /* AppDelegate.swift */,
 				546970F2243D7C1E00F2DB95 /* MainTabbarController.swift */,
 				54FB3AF624513D2B0081AAC9 /* Basic */,
@@ -1096,6 +1157,102 @@
 			path = "System Extensions";
 			sourceTree = "<group>";
 		};
+		54CEBE272B59071500498136 /* HealthKit */ = {
+			isa = PBXGroup;
+			children = (
+				54CEBE2A2B59075300498136 /* Model */,
+				54CEBE292B59074E00498136 /* View */,
+				54CEBE282B59074700498136 /* Controller */,
+			);
+			path = HealthKit;
+			sourceTree = "<group>";
+		};
+		54CEBE282B59074700498136 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				54CEBE5C2B590B1F00498136 /* ECGDetitalVC.swift */,
+				54CEBE472B59086F00498136 /* ECGInstructVC.swift */,
+				54CEBE2B2B59075E00498136 /* ECGMeasureListVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		54CEBE292B59074E00498136 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				54CEBE602B590B8600498136 /* ECGChartView.swift */,
+				54CEBE5E2B590B4900498136 /* ECGDetitalView.swift */,
+				54CEBE492B59089400498136 /* ECGInstructView.swift */,
+				54CEBE2D2B59078F00498136 /* ECGMeasureListCell.swift */,
+				54CEBE542B59096900498136 /* ECGMeasureResultView.swift */,
+				54CEBE562B59098400498136 /* ECGOperateStepView.swift */,
+				54CEBE642B590BB500498136 /* ECGSampleDetailCell.swift */,
+				54CEBE622B590B9C00498136 /* ECGSampleDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		54CEBE2A2B59075300498136 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				54CEBE2F2B5907AB00498136 /* ECGModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		54CEBE332B59084400498136 /* YOECGChartView */ = {
+			isa = PBXGroup;
+			children = (
+				54CEBE342B59084400498136 /* ECGLineView */,
+				54CEBE372B59084400498136 /* YOECGHeader.h */,
+				54CEBE382B59084400498136 /* YOECGChartView.h */,
+				54CEBE392B59084400498136 /* YOECGChartView.m */,
+				54CEBE3A2B59084400498136 /* ECGParameter */,
+				54CEBE3D2B59084400498136 /* backgrounGrid */,
+			);
+			path = YOECGChartView;
+			sourceTree = "<group>";
+		};
+		54CEBE342B59084400498136 /* ECGLineView */ = {
+			isa = PBXGroup;
+			children = (
+				54CEBE352B59084400498136 /* YOECGLineView.m */,
+				54CEBE362B59084400498136 /* YOECGLineView.h */,
+			);
+			path = ECGLineView;
+			sourceTree = "<group>";
+		};
+		54CEBE3A2B59084400498136 /* ECGParameter */ = {
+			isa = PBXGroup;
+			children = (
+				54CEBE3B2B59084400498136 /* YOECGParamter.m */,
+				54CEBE3C2B59084400498136 /* YOECGParamter.h */,
+			);
+			path = ECGParameter;
+			sourceTree = "<group>";
+		};
+		54CEBE3D2B59084400498136 /* backgrounGrid */ = {
+			isa = PBXGroup;
+			children = (
+				54CEBE3E2B59084400498136 /* YOTimeTextParmaramter.h */,
+				54CEBE3F2B59084400498136 /* YOECGBackGroundGridView.h */,
+				54CEBE402B59084400498136 /* YOTimeTextParmaramter.m */,
+				54CEBE412B59084400498136 /* YOECGBackGroundGridView.m */,
+			);
+			path = backgrounGrid;
+			sourceTree = "<group>";
+		};
+		54CEBE4B2B59093200498136 /* EMAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				54CEBE4C2B59093200498136 /* EMAlertController.swift */,
+				54CEBE4D2B59093200498136 /* EMAlertTextField.swift */,
+				54CEBE4E2B59093200498136 /* EMAlertAction.swift */,
+				54CEBE4F2B59093200498136 /* UIColor+EMAlertController.swift */,
+			);
+			path = EMAlertController;
+			sourceTree = "<group>";
+		};
 		54E7F9D0243F2AC3004E6B73 /* TisprCardStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -1178,6 +1335,7 @@
 			isa = PBXGroup;
 			children = (
 				5442E70324513104003FCF5B /* SuperTabbarController.swift */,
+				54CEBE582B590A2B00498136 /* BaseViewController.swift */,
 				54FB3AF424513C890081AAC9 /* SuperNavigationController.swift */,
 			);
 			path = Basic;
@@ -1472,6 +1630,7 @@
 				54F3C14027113CF500717B20 /* NSObject+Extension.swift in Sources */,
 				54C183432435C3A4008666E4 /* ImageViewAnimationViewController.swift in Sources */,
 				5442E70624513182003FCF5B /* TabbarController.swift in Sources */,
+				54CEBE5B2B590AD600498136 /* LogUtil.swift in Sources */,
 				54CE48B9277EB1AA00B248DB /* ClassicSparkTrajectoryFactoryProtocol.swift in Sources */,
 				5451E91524494DB600601BC9 /* FLAnimatedImage.m in Sources */,
 				54C183302435C374008666E4 /* ChatFilterTagCell.swift in Sources */,
@@ -1479,6 +1638,7 @@
 				54B4D065243DDFFF00F629D8 /* ImageCardItem.swift in Sources */,
 				549A0097243C7D2E001FA23B /* HomeDataEntity.swift in Sources */,
 				54CE48BA277EB1AA00B248DB /* ClassicFireworkController.swift in Sources */,
+				54CEBE572B59098400498136 /* ECGOperateStepView.swift in Sources */,
 				542B9831244EE15D008B01B4 /* UserInfoModel.swift in Sources */,
 				549D7FF2244591A5000F234C /* UIPasteboardViewController.swift in Sources */,
 				54F08D4A2445BA0A002A09A2 /* ImagePickerViewController.swift in Sources */,
@@ -1492,6 +1652,7 @@
 				540F3E19277EA1B3003E718F /* ZXSectorModel.swift in Sources */,
 				544E47B324F4E4D0004C1885 /* FinishAnimationViewController.swift in Sources */,
 				5451E91624494DB600601BC9 /* FLAnimatedImageView.m in Sources */,
+				54CEBE612B590B8600498136 /* ECGChartView.swift in Sources */,
 				54CE48C6277EB1AA00B248DB /* SparkTrajectory.swift in Sources */,
 				54AA064F2459785300EA57AC /* AppSearchViewController.swift in Sources */,
 				54CE48C3277EB1AA00B248DB /* CircleColorSparkViewFactory.swift in Sources */,
@@ -1501,6 +1662,7 @@
 				5455172924374448009C7378 /* HintTool.swift in Sources */,
 				54C183552435C3B1008666E4 /* TagViewController.swift in Sources */,
 				54CE48BB277EB1AA00B248DB /* ClassicSparkTrajectoryFactory.swift in Sources */,
+				54CEBE592B590A2B00498136 /* BaseViewController.swift in Sources */,
 				540F3E1A277EA1B3003E718F /* ZXDrawPrizeView.swift in Sources */,
 				54CE48CD277EB1AA00B248DB /* FireworkSpark.swift in Sources */,
 				54C182962435C0B9008666E4 /* AppDelegate.swift in Sources */,
@@ -1509,6 +1671,8 @@
 				5478FEAB244FFAA300208D15 /* ChooseConfigureViewController.swift in Sources */,
 				54C1831C2435C374008666E4 /* PDFEntity.swift in Sources */,
 				54F3C12527113CF500717B20 /* UIButton+Extension.swift in Sources */,
+				54CEBE452B59084400498136 /* YOTimeTextParmaramter.m in Sources */,
+				54CEBE2E2B59078F00498136 /* ECGMeasureListCell.swift in Sources */,
 				547C1DBC2447FB200043F511 /* LxGridViewFlowLayout.m in Sources */,
 				54CE48C5277EB1AA00B248DB /* ImageSparkView.swift in Sources */,
 				54B4D05E243DC39500F629D8 /* DrawableCardViewController.swift in Sources */,
@@ -1517,6 +1681,7 @@
 				549A0094243C7A6B001FA23B /* UIViewController+Extension.swift in Sources */,
 				54CE48CB277EB1AA00B248DB /* SparkView.swift in Sources */,
 				5491FC5F2714346500E9498F /* ProcessCompletedCell.swift in Sources */,
+				54CEBE652B590BB500498136 /* ECGSampleDetailCell.swift in Sources */,
 				5400943724501D24006AD3D6 /* CollectionLabelHeadView.swift in Sources */,
 				5456441624D815BD00BEF58A /* RefreshCell.swift in Sources */,
 				54F3C12A27113CF500717B20 /* String+JSON.swift in Sources */,
@@ -1549,22 +1714,29 @@
 				54CE48C8277EB1AA00B248DB /* FireworkSparkScheduler.swift in Sources */,
 				54C1831F2435C374008666E4 /* PDFPreviewView.swift in Sources */,
 				54EE06EC2451723E002C978A /* AppInfoModel.swift in Sources */,
+				54CEBE482B59086F00498136 /* ECGInstructVC.swift in Sources */,
 				54871DF727155BF1009051EB /* ProcessModel.swift in Sources */,
 				5400943924501DE3006AD3D6 /* CollectionLabelFootView.swift in Sources */,
 				5455172324372E77009C7378 /* Const.swift in Sources */,
 				54C183272435C374008666E4 /* ChatFilterEventProtocol.swift in Sources */,
+				54CEBE422B59084400498136 /* YOECGLineView.m in Sources */,
 				54F3C0F5271137AA00717B20 /* ActivateServiceViewController.swift in Sources */,
+				54CEBE5F2B590B4900498136 /* ECGDetitalView.swift in Sources */,
 				5452067B244D869100882B3B /* ImageUploadOperation.swift in Sources */,
 				54F3C13427113CF500717B20 /* DesignStyleLayout.swift in Sources */,
 				54C1831B2435C374008666E4 /* PDFDownloadViewController.swift in Sources */,
+				54CEBE522B59093200498136 /* EMAlertAction.swift in Sources */,
 				54F3C13527113CF500717B20 /* Data+Extension.swift in Sources */,
 				54C183532435C3B1008666E4 /* ScrollViewController.swift in Sources */,
 				54F3C13127113CF500717B20 /* Dictionary+Extension.swift in Sources */,
 				54C183422435C3A4008666E4 /* CGAffineTransformViewController.swift in Sources */,
+				54CEBE4A2B59089400498136 /* ECGInstructView.swift in Sources */,
 				545517252437301D009C7378 /* NumberButton.swift in Sources */,
+				54CEBE5D2B590B1F00498136 /* ECGDetitalVC.swift in Sources */,
 				54C183262435C374008666E4 /* Sequence+Extension.swift in Sources */,
 				54CE48C0277EB1AA00B248DB /* FountainFireworkController.swift in Sources */,
 				54C1833B2435C391008666E4 /* WaterFallsLayout.swift in Sources */,
+				54CEBE302B5907AB00498136 /* ECGModel.swift in Sources */,
 				5400943B24501E48006AD3D6 /* ImagePickerHeadView.swift in Sources */,
 				54F3C13727113CF500717B20 /* Date+Extension.swift in Sources */,
 				54F3C12227113CF500717B20 /* UITextField+Extension.swift in Sources */,
@@ -1578,6 +1750,7 @@
 				54C1832C2435C374008666E4 /* CommonInputCell.swift in Sources */,
 				54C1832D2435C374008666E4 /* ChatFilterView.swift in Sources */,
 				54C1833A2435C391008666E4 /* StretchyLayout.swift in Sources */,
+				54CEBE462B59084400498136 /* YOECGBackGroundGridView.m in Sources */,
 				54F3C13B27113CF500717B20 /* UIView+Border.swift in Sources */,
 				54E7F9D6243F2B61004E6B73 /* CardStackViewController.swift in Sources */,
 				54C183312435C374008666E4 /* ChatFilterTagCollectionCell.swift in Sources */,
@@ -1586,26 +1759,33 @@
 				542B982F244ECF7D008B01B4 /* Json.swift in Sources */,
 				54CE48BC277EB1AA00B248DB /* ClassicFireworkAnimator.swift in Sources */,
 				54F3C12427113CF500717B20 /* UICollectionViewCell+Shadow.swift in Sources */,
+				54CEBE532B59093200498136 /* UIColor+EMAlertController.swift in Sources */,
 				54F3C12727113CF500717B20 /* UIScrollView+Extension.swift in Sources */,
 				5491FC63271434CC00E9498F /* ProcessInProgressCell.swift in Sources */,
 				54C183222435C374008666E4 /* UIFont+Extension.swift in Sources */,
 				548F19502457D42E009CB357 /* Int+Extension.swift in Sources */,
+				54CEBE2C2B59075E00498136 /* ECGMeasureListVC.swift in Sources */,
+				54CEBE432B59084400498136 /* YOECGChartView.m in Sources */,
 				54C183592435C3B1008666E4 /* UIViewRefreshViewController.swift in Sources */,
 				5491FC67271434FE00E9498F /* ProcessSplitCell.swift in Sources */,
 				54C182C62435C159008666E4 /* HomepageViewController.swift in Sources */,
+				54CEBE512B59093200498136 /* EMAlertTextField.swift in Sources */,
 				54E6F2652452EF5E00A41EDE /* MBProgressManager.swift in Sources */,
 				54CD4B29244DA6E3004CD1D0 /* SMImageManager.swift in Sources */,
 				54C183252435C374008666E4 /* String+Extension.swift in Sources */,
 				54CE48BF277EB1AA00B248DB /* FountainFireworkAnimator.swift in Sources */,
 				54CE489A277EA85600B248DB /* RPlusUserInfoModel.swift in Sources */,
+				54CEBE502B59093200498136 /* EMAlertController.swift in Sources */,
 				54C183292435C374008666E4 /* ChatSettingViewController.swift in Sources */,
 				54C1832E2435C374008666E4 /* FilterViewHeadCell.swift in Sources */,
 				5455172724373975009C7378 /* Tools.swift in Sources */,
 				54C183382435C391008666E4 /* TagLayout.swift in Sources */,
+				54CEBE632B590B9C00498136 /* ECGSampleDetailView.swift in Sources */,
 				5478FEA4244FE35C00208D15 /* WebImageCollectionViewCell.swift in Sources */,
 				54C183452435C3A4008666E4 /* CardLayoutViewController.swift in Sources */,
 				54C183522435C3B1008666E4 /* NotificationCenterViewController.swift in Sources */,
 				54F3C13E27113CF500717B20 /* UIAlertController+Extension.swift in Sources */,
+				54CEBE552B59096900498136 /* ECGMeasureResultView.swift in Sources */,
 				543FD7C624F4F14700C58E86 /* SWColor.swift in Sources */,
 				54CE48C2277EB1AA00B248DB /* ImageSparkViewFactory.swift in Sources */,
 				54C1831E2435C374008666E4 /* PDFInfoHeadView.swift in Sources */,
@@ -1616,11 +1796,13 @@
 				5442E70424513104003FCF5B /* SuperTabbarController.swift in Sources */,
 				54B4D061243DD19300F629D8 /* CardView.swift in Sources */,
 				546970F1243D6C3100F2DB95 /* TabbarSubViewController.swift in Sources */,
+				54CEBE442B59084400498136 /* YOECGParamter.m in Sources */,
 				54F3C13227113CF500717B20 /* UIImage+Extension.swift in Sources */,
 				54A3F38924581E780001DBE9 /* HUDManagerDemoViewController.swift in Sources */,
 				54C1831D2435C374008666E4 /* PDFCollectionCell.swift in Sources */,
 				54C183472435C3A4008666E4 /* BasicViewController.swift in Sources */,
 				54C183572435C3B1008666E4 /* WaterFallsViewController.swift in Sources */,
+				54CEBE322B5907C700498136 /* DateUtil.swift in Sources */,
 				54CE48CE277EB1AA00B248DB /* CGPoint+Extensions.swift in Sources */,
 				5473DCCB27143D480062E385 /* R.generated.swift in Sources */,
 				546970F3243D7C1E00F2DB95 /* MainTabbarController.swift in Sources */,
@@ -1720,7 +1902,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1774,7 +1956,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1790,15 +1972,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WidgetsCollection/WidgetsCollection.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VQ64C26VZ8;
 				INFOPLIST_FILE = WidgetsCollection/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lijingke.WidgetsCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WidgetsCollection/WidgetsCollection-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1812,15 +1998,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WidgetsCollection/WidgetsCollection.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VQ64C26VZ8;
 				INFOPLIST_FILE = WidgetsCollection/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lijingke.WidgetsCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WidgetsCollection/WidgetsCollection-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

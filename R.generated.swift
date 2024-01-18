@@ -88,12 +88,22 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
 
-  /// This `R.image` struct is generated, and contains static references to 105 images.
+  /// This `R.image` struct is generated, and contains static references to 110 images.
   struct image {
     /// Image `AlbumAddBtn`.
     static let albumAddBtn = Rswift.ImageResource(bundle: R.hostingBundle, name: "AlbumAddBtn")
     /// Image `Bg`.
     static let bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "Bg")
+    /// Image `ECG_Auth_Instruct`.
+    static let ecg_Auth_Instruct = Rswift.ImageResource(bundle: R.hostingBundle, name: "ECG_Auth_Instruct")
+    /// Image `ECG_HeartRate_Icon`.
+    static let ecg_HeartRate_Icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "ECG_HeartRate_Icon")
+    /// Image `ECG_Instruct`.
+    static let ecg_Instruct = Rswift.ImageResource(bundle: R.hostingBundle, name: "ECG_Instruct")
+    /// Image `ECG_Logo`.
+    static let ecg_Logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "ECG_Logo")
+    /// Image `ECG_Watch`.
+    static let ecg_Watch = Rswift.ImageResource(bundle: R.hostingBundle, name: "ECG_Watch")
     /// Image `Photo_delete`.
     static let photo_delete = Rswift.ImageResource(bundle: R.hostingBundle, name: "Photo_delete")
     /// Image `Pointer`.
@@ -312,6 +322,41 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "Bg", bundle: ..., traitCollection: ...)`
     static func bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.bg, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ECG_Auth_Instruct", bundle: ..., traitCollection: ...)`
+    static func ecg_Auth_Instruct(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ecg_Auth_Instruct, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ECG_HeartRate_Icon", bundle: ..., traitCollection: ...)`
+    static func ecg_HeartRate_Icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ecg_HeartRate_Icon, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ECG_Instruct", bundle: ..., traitCollection: ...)`
+    static func ecg_Instruct(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ecg_Instruct, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ECG_Logo", bundle: ..., traitCollection: ...)`
+    static func ecg_Logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ecg_Logo, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ECG_Watch", bundle: ..., traitCollection: ...)`
+    static func ecg_Watch(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ecg_Watch, compatibleWith: traitCollection)
     }
     #endif
 

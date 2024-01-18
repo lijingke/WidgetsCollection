@@ -17,6 +17,9 @@ let ColorOfWaveBlackColor = "#4F4F4F"
 // MARK: - 坐标
 let kScreenWidth = UIScreen.main.bounds.width
 let kscreenHeight = UIScreen.main.bounds.height
+let kStatusBarHeight = UIApplication.shared.statusBarFrame.height
+let kNaviHeight = CGFloat(44)
+let kTopHeight = kStatusBarHeight + kNaviHeight
 
 // MARK: - 项目相关
 let projectName = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String ?? ""
@@ -27,3 +30,5 @@ let TokenAPI = "token"
 let UploadHistoryAPI = "upload_history"
 let ProfileAPI = "profile"
 let UploadAPI = "upload"
+
+let kWindow = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first

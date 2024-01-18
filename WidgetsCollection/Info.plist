@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>03121117</string>
+	<string>01181551</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -29,6 +29,12 @@
 	<string>CollectionViewDemo请求使用您的相机以拍照</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>CollectionViewDemo请求访问FaceID以解锁</string>
+	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+	<string>Using healthkit data for workout session</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Using healthkit data for workout session</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Using healthkit data for workout session</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>CollectionViewDemo需要始终使用您的位置</string>
 	<key>NSLocationAlwaysUsageDescription</key>
