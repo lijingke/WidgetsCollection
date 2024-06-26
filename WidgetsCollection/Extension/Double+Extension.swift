@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension Double {
-    var cgfloat:CGFloat {
+    var cgfloat: CGFloat {
         return CGFloat(self)
     }
 }

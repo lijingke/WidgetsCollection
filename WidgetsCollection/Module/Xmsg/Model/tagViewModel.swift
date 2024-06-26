@@ -9,6 +9,6 @@
 import Foundation
 
 struct tagViewModel {
-  var title: String?
-  var isSelected: Bool?
+    var title: String?
+    var isSelected: Bool?
 }

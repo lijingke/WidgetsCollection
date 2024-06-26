@@ -24,30 +24,30 @@ class ECGInstructView: UIView {
         super.init(frame: frame)
         setupUI()
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Lazy Get
-    
+
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         return view
     }()
-    
+
     lazy var contentView: UIView = {
         let view = UIView()
         return view
     }()
-    
+
     lazy var ecgOperateImage: UIImageView = {
         let view = UIImageView()
         view.image = R.image.ecg_Instruct()
         return view
     }()
-    
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "How to Take an ECG"
@@ -55,7 +55,7 @@ class ECGInstructView: UIView {
         label.textColor = UIColor(hexString: "#2A2B2F")
         return label
     }()
-    
+
     lazy var InstructLabel: UILabel = {
         let label = UILabel()
         label.text = "Recording an ECG typically takes 30 seconds."
@@ -65,19 +65,19 @@ class ECGInstructView: UIView {
         label.textAlignment = .center
         return label
     }()
-    
+
     lazy var stepOneView: ECGOperateStepView = {
         let view = ECGOperateStepView()
         view.setupData(imageName: "ECG_Logo", des: "First, open the ECG app on your Apple Watch.")
         return view
     }()
-    
+
     lazy var stepTwoView: ECGOperateStepView = {
         let view = ECGOperateStepView()
         view.setupData(imageName: "ECG_Watch", des: "Rest your arms on a table or in your lap, and hold your finger on the Digital Crown.")
         return view
     }()
-    
+
     lazy var noteLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.regular(14)
@@ -90,7 +90,7 @@ class ECGInstructView: UIView {
         label.numberOfLines = 0
         return label
     }()
-    
+
     lazy var warnLabel: UILabel = {
         let label = UILabel()
         label.text = "After the test is complete, open R Plus Health and click the button below to get the ECG data."
@@ -99,7 +99,7 @@ class ECGInstructView: UIView {
         label.numberOfLines = 0
         return label
     }()
-    
+
     lazy var getDataBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.backgroundColor = UIColor(hexString: "#FF6770")
@@ -175,4 +175,3 @@ extension ECGInstructView {
         }
     }
 }
-

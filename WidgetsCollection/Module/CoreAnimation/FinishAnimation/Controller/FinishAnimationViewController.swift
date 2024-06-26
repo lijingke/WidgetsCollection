@@ -10,21 +10,20 @@ import Foundation
 import UIKit
 
 class FinishAnimationViewController: UIViewController {
-    
     // MARK: Property
+
     let kProgressBarHeight: CGFloat = 38
     let kProgressBarWidth: CGFloat = 150
 
     // MARK: Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         let frame = CGRect(x: (UIScreen.main.bounds.width - kProgressBarWidth) / 2, y: (UIScreen.main.bounds.height - kProgressBarHeight) / 2, width: kProgressBarWidth, height: kProgressBarHeight)
         let progressBar = ProgressBarView(frame: frame)
-        self.view.addSubview(progressBar)
+        view.addSubview(progressBar)
         progressBar.backgroundColor = SWColor.indigo
         progressBar.layer.cornerRadius = progressBar.bounds.height / 2
     }
-    
-    
 }

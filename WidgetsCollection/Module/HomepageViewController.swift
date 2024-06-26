@@ -6,44 +6,42 @@
 //  Copyright © 2020 李京珂. All rights reserved.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 class HomepageViewController: UIViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-                        
+
         MBProgressManager.showLoadingOrdinary("Loading")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             MBProgressManager.showHUD(withSuccess: "加载成功")
         }
-        
+
         configureNav()
         configureUI()
         getDataSource()
     }
-    
+
     fileprivate func configureNav() {
         navigationItem.title = "瓦西里的百宝箱"
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
-        
-        self.edgesForExtendedLayout = []
-        self.navigationController?.navigationBar.isTranslucent = false
+
+        edgesForExtendedLayout = []
+        navigationController?.navigationBar.isTranslucent = false
     }
-    
+
     var headViewTitles: [String] = []
-    
+
     var dataSource: [[HomeDataEntity]] = []
-    
+
     fileprivate func getDataSource() {
-        
         headViewTitles = ["WorkSpace", "Core Animation", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
-        
+
         for title in headViewTitles {
-            var dicArray: [[CellInfoEnum : String]] = []
+            var dicArray: [[CellInfoEnum: String]] = []
             switch title {
             case "WorkSpace":
                 dicArray = [[.cellName: "RPlus", .className: "ProcessProgressVC"], [.cellName: "富文本点击", .className: "AttributedStringViewController"]]
@@ -80,53 +78,51 @@ class HomepageViewController: UIViewController {
             default:
                 break
             }
-            let entities = dicArray.compactMap{HomeDataEntity($0)}
+            let entities = dicArray.compactMap { HomeDataEntity($0) }
             if entities.count > 0 {
                 dataSource.append(entities)
             }
-
         }
-        
+
         tableView.reloadData()
     }
-    
+
     fileprivate func configureUI() {
         view.addSubview(tableView)
-        tableView.snp.makeConstraints { (make) in
+        tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
+
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.delegate = self
         table.dataSource = self
         return table
     }()
-    
 }
 
 extension HomepageViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let head = UITableViewHeaderFooterView()
         head.textLabel?.text = headViewTitles[section]
         return head
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+
         let entity = dataSource[indexPath.section][indexPath.row]
         let className = entity.className ?? ""
         if entity.pushType == "pop" {
-            if let vc = self.getVCFromString(className) {
-                DispatchQueue.main.async {[weak self] in
+            if let vc = getVCFromString(className) {
+                DispatchQueue.main.async { [weak self] in
                     self?.present(vc, animated: true, completion: nil)
                 }
             }
-        }else {
-            if let vc = self.getVCFromString(className) {
-                vc.navigationItem.title = entity.cellName                
+        } else {
+            if let vc = getVCFromString(className) {
+                vc.navigationItem.title = entity.cellName
                 navigationController?.pushViewController(vc, animated: true)
             }
         }
@@ -134,19 +130,17 @@ extension HomepageViewController: UITableViewDelegate {
 }
 
 extension HomepageViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in _: UITableView) -> Int {
         return dataSource.count
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource[section].count
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.textLabel?.text = dataSource[indexPath.section][indexPath.row].cellName
         return cell
     }
-    
 }

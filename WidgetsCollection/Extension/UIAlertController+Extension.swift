@@ -12,12 +12,12 @@ public extension UIAlertController {
     func show() {
         UIApplication.shared.keyWindow?.rootViewController?.present(self, animated: true, completion: nil)
     }
-  
+
     /// 一个取消，确定 的默认提示消息
-    class func alert_(vc: UIViewController?, msg: String, block: @escaping (() -> ())) {
+    class func alert_(vc: UIViewController?, msg: String, block: @escaping (() -> Void)) {
         let alertVC = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
         let ok = UIAlertAction(title: "确定", style: .default) { _ in
-            
+
             block()
         }
         let cancel = UIAlertAction(title: "取消", style: .cancel) { _ in
@@ -30,7 +30,7 @@ public extension UIAlertController {
             vc?.present(vc!, animated: true, completion: nil)
         }
     }
-    
+
     /// 显示一个“知道了”提示
     class func alert_(_ msg: String?) {
         if let str = msg {

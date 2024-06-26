@@ -27,42 +27,43 @@ protocol CardViewDataSource: AnyObject {
 }
 
 extension CardViewDataSource {
-    func cardView(_ cardView: CardView, sizeForItemAt index: Int) -> CGSize {
+    func cardView(_ cardView: CardView, sizeForItemAt _: Int) -> CGSize {
         return cardView.frame.size
     }
 }
 
-fileprivate let tagMark = 100
+private let tagMark = 100
 
 class CardView: UIView {
-    
     weak var delegate: CardViewDelegate?
     weak var dataSource: CardViewDataSource?
-    
+
     /// 是否完全重叠， 默认否
     var isOverlap = false
     var isEmpty: Bool {
         return count == 0
     }
+
     private var count: Int = 0
     private var lastFrames = [Int: CGRect]()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     public func reloadData() {
         guard let dataSource = dataSource else { return }
         count = dataSource.numberOfItems(in: self)
-        for index in 0..<count {
+        for index in 0 ..< count {
             addCard(with: index)
         }
     }
-    
+
     private func addCard(with index: Int) {
         let item = creatItem(with: index)
         insertSubview(item, at: 0)
@@ -73,14 +74,14 @@ class CardView: UIView {
                 item.transform = transform
             }
         }
-        
+
         item.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:))))
-        
+
         if index == 0 {
             item.isUserInteractionEnabled = true
         }
     }
-    
+
     private func creatItem(with index: Int) -> CardItem {
         let size = itemSize(at: index)
         let item = itemView(at: index)
@@ -89,17 +90,17 @@ class CardView: UIView {
         item.frame = CGRect(x: frame.width * 0.5 - size.width * 0.5, y: frame.height * 0.5 - size.height * 0.5, width: size.width, height: size.height)
         return item
     }
-    
+
     @objc private func handleTapGesture(_ tap: UITapGestureRecognizer) {
         guard let tapView = tap.view else { return }
-        self.delegate?.didClick(cardView: self, with: tapView.tag - tagMark)
+        delegate?.didClick(cardView: self, with: tapView.tag - tagMark)
     }
-    
+
     private func itemSize(at index: Int) -> CGSize {
         guard let dataSource = dataSource, index < count else {
             return frame.size
         }
-        
+
         var size = dataSource.cardView(self, sizeForItemAt: index)
         if size.width > frame.width || size.width == 0 {
             print("warning: item.width == 0")
@@ -111,14 +112,14 @@ class CardView: UIView {
         }
         return size
     }
-    
+
     private func itemView(at index: Int) -> CardItem {
         guard let dataSource = dataSource else {
             return CardItem()
         }
         return dataSource.cardView(self, cellForItemAt: index)
     }
-    
+
     public func removeAll(animated: Bool = true) {
         for (index, item) in subviews.reversed().enumerated() {
             if let item = item as? CardItem {
@@ -132,18 +133,18 @@ class CardView: UIView {
             }
         }
     }
-    
+
     public func removeTopItem(with direction: CardDirection = .right, angle: CGFloat = 0) {
         if let item = subviews.last as? CardItem {
             item.remove(with: direction, angle: angle)
         }
     }
-    
+
     /// 返回上一张卡片.
     public func revokeCard() {
         if let topItem = subviews.last as? CardItem {
             let index = topItem.tag - tagMark - 1
-            guard index >= 0, let lastFrame = self.lastFrames[index] else {
+            guard index >= 0, let lastFrame = lastFrames[index] else {
                 print("no item to revoke")
                 return
             }
@@ -152,20 +153,19 @@ class CardView: UIView {
             item.isHidden = true
             UIView.animate(withDuration: 0.01, animations: {
                 item.transform = CGAffineTransform(translationX: lastFrame.origin.x, y: lastFrame.origin.y)
-            }) { (_) in
+            }) { _ in
                 item.isHidden = false
                 UIView.animate(withDuration: 0.25, animations: { [weak self] in
                     item.transform = CGAffineTransform.identity
                     self?.relayoutItem(isRevoke: true)
-                }) { [weak self] (_) in
+                }) { [weak self] _ in
                     guard let `self` = self else { return }
                     self.delegate?.revoke(cardView: self, item: item, with: index)
-                    
                 }
             }
         }
     }
-    
+
     private func relayoutItem(isRevoke: Bool = false) {
         for (index, item) in subviews.reversed().enumerated() {
             if index == 0 {
@@ -186,6 +186,7 @@ class CardView: UIView {
 }
 
 // MARK: - CardItemDelegate
+
 extension CardView: CardItemDelegate {
     func removeFromSuperView(item: CardItem) {
         let index = item.tag - tagMark

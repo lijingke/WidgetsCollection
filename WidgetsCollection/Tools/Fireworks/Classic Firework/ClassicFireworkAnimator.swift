@@ -1,7 +1,6 @@
 import UIKit
 
 public struct ClassicFireworkAnimator: SparkViewAnimator {
-
     public init() {}
 
     public func animate(spark: FireworkSpark, duration: TimeInterval) {
@@ -28,7 +27,7 @@ public struct ClassicFireworkAnimator: SparkViewAnimator {
         transformAnim.values = [
             NSValue(caTransform3D: fromTransform),
             NSValue(caTransform3D: byTransform),
-            NSValue(caTransform3D: toTransform)
+            NSValue(caTransform3D: toTransform),
         ]
 
         transformAnim.duration = duration
@@ -47,9 +46,9 @@ public struct ClassicFireworkAnimator: SparkViewAnimator {
         groupAnimation.animations = [positionAnim, transformAnim, opacityAnim]
         groupAnimation.duration = duration
 
-        CATransaction.setCompletionBlock({
+        CATransaction.setCompletionBlock {
             spark.sparkView.removeFromSuperview()
-        })
+        }
 
         spark.sparkView.layer.add(groupAnimation, forKey: "spark-animation")
 

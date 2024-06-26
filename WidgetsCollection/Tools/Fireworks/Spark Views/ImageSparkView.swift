@@ -1,12 +1,11 @@
 import UIKit
 
 public final class ImageSparkView: SparkView {
-
     public init(image: UIImage, size: CGSize) {
         super.init(frame: CGRect(origin: .zero, size: size))
 
-        let imageView = UIImageView(frame: self.bounds)
-        self.addSubview(imageView)
+        let imageView = UIImageView(frame: bounds)
+        addSubview(imageView)
 
         imageView.image = image
     }

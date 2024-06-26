@@ -9,11 +9,11 @@
 import Foundation
 
 protocol ChatFilterEventProtocol: NSObject {
-  func confirmAction( choosedDefultTags: [tagViewModel], customMembers: [String], customTags:[String])
-  func tagChoosed(atInsexPath: IndexPath, tag: tagViewModel)
+    func confirmAction(choosedDefultTags: [tagViewModel], customMembers: [String], customTags: [String])
+    func tagChoosed(atInsexPath: IndexPath, tag: tagViewModel)
 }
 
 extension ChatFilterEventProtocol {
-  func confirmAction( choosedDefultTags: [tagViewModel], customMembers: [String], customTags:[String]) {}
-  func tagChoosed(atInsexPath: IndexPath, tag: tagViewModel) {}
+    func confirmAction(choosedDefultTags _: [tagViewModel], customMembers _: [String], customTags _: [String]) {}
+    func tagChoosed(atInsexPath _: IndexPath, tag _: tagViewModel) {}
 }

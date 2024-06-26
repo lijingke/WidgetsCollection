@@ -28,12 +28,12 @@ class ECGDetitalVC: UIViewController {
             mainView.refreshData(model: ecgModel)
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 //        popGestureClose()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 //        popGestureOpen()

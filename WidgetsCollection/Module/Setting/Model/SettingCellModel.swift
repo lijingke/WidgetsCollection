@@ -15,7 +15,7 @@ enum SettingCellEnum {
 }
 
 struct SettingCellModel {
-    typealias typeAction = (()->())
+    typealias typeAction = () -> Void
     var title: String?
     var imageName: String?
     var tap: typeAction?

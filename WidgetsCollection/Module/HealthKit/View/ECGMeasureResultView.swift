@@ -16,98 +16,98 @@ class ECGMeasureResultView: UIView {
         super.init(frame: frame)
         setupUI()
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Lazy Get
-    
+
     lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 10
         return view
     }()
-    
+
     lazy var classificationLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(hexString: "#2A2B2F")
         label.font = UIFont.semibold(20)
         return label
     }()
-    
+
     lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(hexString: "#9599A8")
         label.font = UIFont.regular(12)
         return label
     }()
-    
+
     lazy var separatorLine: UIView = {
         let line = UIView()
         line.backgroundColor = UIColor(hexString: "#F0F1F3")
         return line
     }()
-    
+
     lazy var heartRateIcon: UIImageView = {
         let view = UIImageView()
         view.image = R.image.ecg_HeartRate_Icon()
         return view
     }()
-    
+
     lazy var averageHRLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.regular(14)
         label.textColor = UIColor(hexString: "#2A2B2F")
         return label
     }()
-    
+
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         return view
     }()
-    
+
     lazy var ecgChartView: YOECGChartView = {
         let params = YOECGParamter()
         params.voltageUnit = .volt
         params.sampleFrequency = 512
         params.positiveNum = 2
         params.negativeNum = 2
-        let view = YOECGChartView(frame: CGRect(origin: .zero, size: CGSize(width: kScreenWidth-20*2-15*2, height: CGFloat(4.0 * params.oneGridSize))), params: params)
+        let view = YOECGChartView(frame: CGRect(origin: .zero, size: CGSize(width: kScreenWidth - 20 * 2 - 15 * 2, height: CGFloat(4.0 * params.oneGridSize))), params: params)
         return view
     }()
-    
+
     lazy var horizontalSepraratorLine: UIView = {
         let line = UIView()
         line.backgroundColor = UIColor(hexString: "#F0F1F3")
         return line
     }()
-    
+
     lazy var verticalSepraratorLine: UIView = {
         let line = UIView()
         line.backgroundColor = UIColor(hexString: "#F0F1F3")
         return line
     }()
-    
+
     lazy var cancelBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.tag = 0
         btn.setTitle("Cancel", for: .normal)
         btn.setTitleColor(UIColor(hexString: "#666973"), for: .normal)
         btn.titleLabel?.font = UIFont.regular(15)
-        btn.addTarget(self, action: #selector(btnAction(sender: )), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(btnAction(sender:)), for: .touchUpInside)
         return btn
     }()
-    
+
     lazy var comfirmBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.tag = 1
         btn.setTitle("Comfirm", for: .normal)
         btn.setTitleColor(UIColor(hexString: "#FF6770"), for: .normal)
         btn.titleLabel?.font = UIFont.regular(15)
-        btn.addTarget(self, action: #selector(btnAction(sender: )), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(btnAction(sender:)), for: .touchUpInside)
         return btn
     }()
 }
@@ -139,7 +139,7 @@ extension ECGMeasureResultView {
         } else {
             averageHRLabel.text = "-- BPM Average"
         }
-        let width = CGFloat(Float(model.ecgData.count)*ecgChartView.standard.onePointWidth)
+        let width = CGFloat(Float(model.ecgData.count) * ecgChartView.standard.onePointWidth)
         var frame = ecgChartView.frame
         frame.size.width = width
         ecgChartView.frame = frame
@@ -150,7 +150,7 @@ extension ECGMeasureResultView {
         ecgChartView.gridView.isShowSecondText = false
         ecgChartView.gridView.startSecond = 0
         ecgChartView.drawStaticECGLine(model.ecgData)
-        
+
         DispatchQueue.main.async { [weak self] in
             self?.scrollView.flashScrollIndicators()
         }
@@ -221,4 +221,3 @@ extension ECGMeasureResultView {
         }
     }
 }
-

@@ -9,9 +9,7 @@
 import Foundation
 import UIKit
 
-protocol ECGDetitalViewDelegate: NSObjectProtocol {
-    
-}
+protocol ECGDetitalViewDelegate: NSObjectProtocol {}
 
 class ECGDetitalView: UIView {
     // MARK: Life Cycle
@@ -20,19 +18,19 @@ class ECGDetitalView: UIView {
         super.init(frame: frame)
         setupUI()
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Lazy Get
-    
+
     lazy var ecgChartView: ECGChartView = {
         let view = ECGChartView()
         return view
     }()
-    
+
     lazy var sampleDetailView: ECGSampleDetailView = {
         let view = ECGSampleDetailView()
         return view
@@ -40,6 +38,7 @@ class ECGDetitalView: UIView {
 }
 
 // MARK: - Data
+
 extension ECGDetitalView {
     public func refreshData(model: ECGModel) {
         ecgChartView.refresh(model: model)
@@ -48,6 +47,7 @@ extension ECGDetitalView {
 }
 
 // MARK: - UI
+
 extension ECGDetitalView {
     private func setupUI() {
         backgroundColor = UIColor(hexString: "#F6F7F8")
@@ -61,4 +61,3 @@ extension ECGDetitalView {
         }
     }
 }
-

@@ -6,14 +6,13 @@
 //  Copyright © 2019 李京珂. All rights reserved.
 //
 
-import UIKit
 import CoreLocation
+import UIKit
 
 class GetLocationViewController: UIViewController {
-    
     var currentLocation: CLLocation!
     var lock = NSLock()
-    
+
     lazy var locationManager: CLLocationManager = {
         let location = CLLocationManager()
         location.delegate = self
@@ -21,41 +20,39 @@ class GetLocationViewController: UIViewController {
         location.distanceFilter = 50
         return location
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureUI()
     }
-    
+
     fileprivate func callUserLocation() {
         locationManager.startUpdatingLocation()
         print("Start Location")
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
+
+    override func viewWillAppear(_: Bool) {}
+
     @objc fileprivate func checkLocationAuthority() {
-        openLocationServiceWithBlock { [weak self](authority) in
-            
+        openLocationServiceWithBlock { [weak self] authority in
+
             guard let weakSelf = self else {
                 return
             }
-            
+
             if authority == false {
                 if CLLocationManager.authorizationStatus() == .notDetermined {
                     self?.locationManager.requestAlwaysAuthorization()
-                }else {
+                } else {
                     let alertCon = UIAlertController(title: "获取定位失败", message: "请跳转到设置页面开启定位", preferredStyle: .alert)
-                    let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+                    let cancelAction = UIAlertAction(title: "取消", style: .cancel) { _ in
                         let callUrl = URL(string: "tel://110")
                         UIApplication.shared.open(callUrl!, options: [:], completionHandler: nil)
                     }
-                    let okAction = UIAlertAction(title: "设定", style: .default) { (action) in
+                    let okAction = UIAlertAction(title: "设定", style: .default) { _ in
                         let openUrl = URL(string: UIApplication.openSettingsURLString)
-                        UIApplication.shared.open(openUrl!, options: [:]) { (finish) in
+                        UIApplication.shared.open(openUrl!, options: [:]) { _ in
                             print("Finish")
                         }
                     }
@@ -65,23 +62,22 @@ class GetLocationViewController: UIViewController {
                         print("End")
                     }
                 }
-            }else {
+            } else {
                 self?.callUserLocation()
             }
         }
-        
     }
-    
+
     fileprivate func configureUI() {
         view.addSubview(getLocationBtn)
-        getLocationBtn.snp.makeConstraints { (make) in
+        getLocationBtn.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
         getLocationBtn.setNeedsLayout()
         getLocationBtn.layoutIfNeeded()
         getLocationBtn.layer.cornerRadius = getLocationBtn.frame.height / 2
     }
-    
+
     lazy var getLocationBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("Click Me", for: .normal)
@@ -90,39 +86,37 @@ class GetLocationViewController: UIViewController {
         btn.addTarget(self, action: #selector(checkLocationAuthority), for: .touchDown)
         return btn
     }()
-    
-    fileprivate func showAlert(latitude:CLLocationDegrees, longitude: CLLocationDegrees, altitude: CLLocationDistance, name: String) {
-        let alertC = UIAlertController(title: "定位成功！", message: "你的纬度是:\(String(format: "%0.6f", latitude))\n你的经度是:\(String(format: "%0.6f",                                                               longitude))\n你的海拔是:\(String(format: "%0.2f", altitude))\n\n你的位置是:\(name)", preferredStyle: .alert)
+
+    fileprivate func showAlert(latitude: CLLocationDegrees, longitude: CLLocationDegrees, altitude: CLLocationDistance, name: String) {
+        let alertC = UIAlertController(title: "定位成功！", message: "你的纬度是:\(String(format: "%0.6f", latitude))\n你的经度是:\(String(format: "%0.6f", longitude))\n你的海拔是:\(String(format: "%0.2f", altitude))\n\n你的位置是:\(name)", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "确定", style: .default, handler: nil)
         alertC.addAction(okAction)
         present(alertC, animated: true, completion: nil)
     }
-    
 }
 
 extension GetLocationViewController: CLLocationManagerDelegate {
-    
-    func openLocationServiceWithBlock(action: @escaping ((Bool)->())) {
+    func openLocationServiceWithBlock(action: @escaping ((Bool) -> Void)) {
         var isOpen = false
         if CLLocationManager.locationServicesEnabled() && (CLLocationManager.authorizationStatus() != .denied && CLLocationManager.authorizationStatus() != .notDetermined) {
             isOpen = true
         }
         action(isOpen)
     }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+    func locationManager(_: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 //        lock.lock()
         currentLocation = locations.last
         let latitude = currentLocation.coordinate.latitude
         let longitude = currentLocation.coordinate.longitude
         let altitude = currentLocation.altitude
-        
+
         print("定位经度为：\(latitude)")
         print("定位纬度为：\(longitude)")
         print("定位海拔为：\(altitude)")
-                
+
         let geoCoder = CLGeocoder()
-        geoCoder.reverseGeocodeLocation(currentLocation) { (placemarks, error) in
+        geoCoder.reverseGeocodeLocation(currentLocation) { placemarks, error in
             if placemarks!.count > 0 {
                 let placeMark = placemarks?.first
                 let country = placeMark?.country ?? ""
@@ -130,21 +124,21 @@ extension GetLocationViewController: CLLocationManagerDelegate {
                 let locality = placeMark?.locality ?? ""
                 let subLocality = placeMark?.subLocality ?? ""
                 let thoroughfare = placeMark?.thoroughfare ?? ""
-       
+
                 let address = country + administrativeArea + locality + subLocality + thoroughfare
-                
+
                 self.showAlert(latitude: latitude, longitude: longitude, altitude: altitude, name: address)
-            }else if error == nil && placemarks?.count == 0 {
+            } else if error == nil && placemarks?.count == 0 {
                 print("没有地址返回")
-            }else if error != nil {
+            } else if error != nil {
                 print("location error\(String(describing: error))")
             }
         }
 //        lock.unlock()
         locationManager.stopUpdatingLocation()
     }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+
+    func locationManager(_: CLLocationManager, didFailWithError error: Error) {
         print("定位出错啦！！\(error)")
     }
 }

@@ -14,6 +14,6 @@ extension NSObject {
 
     // 用于获取 cell 的 reuse identifier
     class var identifier: String {
-        return String(format: "%@_identifier", self.nameOfClass)
+        return String(format: "%@_identifier", nameOfClass)
     }
 }

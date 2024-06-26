@@ -61,7 +61,7 @@ class DateUtil: NSObject {
         let date = (calendar?.date(from: components!))!
         return Int(date.timeIntervalSince1970)
     }
-    
+
     /// 根据日期获取当天零点的时间戳
     @objc static func getUTCMorningDate(date: Date) -> Int {
         let calendar = NSCalendar(identifier: .chinese)
@@ -303,7 +303,7 @@ class DateUtil: NSObject {
         }
         return false
     }
-    
+
     @objc static func getUTCFormatStr(date: Date, formatterStr: String? = "yyyy-MM-dd HH:mm:ss") -> String {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(abbreviation: "UTC")!

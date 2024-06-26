@@ -9,29 +9,27 @@
 import UIKit
 
 class ImagePickerHeadView: UICollectionReusableView {
-    
     static let reuseID = "ImagePickerHeadView"
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     fileprivate func configurationUI() {
         addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { (make) in
+        titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-20)
         }
     }
-    
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         return label
     }()
-
 }

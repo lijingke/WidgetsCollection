@@ -7,32 +7,34 @@
 //
 
 import Foundation
-import UIKit
 import sqlcipher
+import UIKit
 
 class ProcessCompletedCell: UITableViewCell {
-    
     // MARK: Life Cycle
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Lazy Get
+
     lazy var completedIcon = UIImageView(image: R.image.processCompleted())
-    
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.regular(18)
         label.textColor = UIColor(hexString: "#2A2B2F")
         return label
     }()
-    
+
     lazy var modifyBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.titleLabel?.font = UIFont.regular(14)
@@ -45,14 +47,15 @@ class ProcessCompletedCell: UITableViewCell {
 }
 
 // MARK: - Event
+
 extension ProcessCompletedCell {
     @objc func btnAction() {
         print("btnnnnn")
     }
-    
 }
 
 // MARK: - Data
+
 extension ProcessCompletedCell {
     public func setupData(title: String?, canEdit: Bool) {
         titleLabel.text = title
@@ -61,6 +64,7 @@ extension ProcessCompletedCell {
 }
 
 // MARK: - UI
+
 extension ProcessCompletedCell {
     private func setupUI() {
         contentView.addSubviews([completedIcon, titleLabel, modifyBtn])

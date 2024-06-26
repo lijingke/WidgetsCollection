@@ -9,18 +9,18 @@
 import Foundation
 
 class SettingView: UIView {
-    
     private var dataSource: [SettingCellModel] = []
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
         table.tableHeaderView = self.headView
@@ -28,48 +28,47 @@ class SettingView: UIView {
         table.dataSource = self
         return table
     }()
-    
+
     lazy var headView: UserInfoHeadView = {
         let view = UserInfoHeadView()
-        view.size = view.systemLayoutSizeFitting(UIView .layoutFittingCompressedSize)
+        view.size = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         return view
     }()
-    
 }
 
 // MARK: - UI
+
 extension SettingView {
     private func setupUI() {
         addSubview(tableView)
         tableView.addSubview(headView)
-        tableView.snp.makeConstraints { (make) in
+        tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         tableView.setNeedsLayout()
         layoutIfNeeded()
     }
-    
+
     /// 刷新table
     /// - Parameter dataSource: 数据源
-    public func setupData(_ dataSource:[SettingCellModel]) {
+    public func setupData(_ dataSource: [SettingCellModel]) {
         self.dataSource = dataSource
         tableView.reloadData()
     }
-    
+
     public func setupUserInfo(_ model: UserInfoModel?) {
         headView.setupData(model)
     }
 }
 
 // MARK: - UITableViewDataSource
+
 extension SettingView: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return dataSource.count
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
+    func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataSource[indexPath.row]
         let cell = UITableViewCell()
         cell.textLabel?.text = "Setting"
@@ -79,12 +78,12 @@ extension SettingView: UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
-    
 }
 
 // MARK: - UITableViewDelegate
+
 extension SettingView: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = dataSource[indexPath.row]
         item.tap?()
     }

@@ -9,30 +9,23 @@
 import UIKit
 
 class ChatSettingViewController: UIViewController {
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    configureUI()
-  }
-  
-  func configureUI() {
-    view.backgroundColor = .white
-  }
-  
-  lazy var tableView: UITableView = {
-    let view = UITableView(frame: .zero, style: .grouped)    
-    return view
-  }()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureUI()
+    }
+
+    func configureUI() {
+        view.backgroundColor = .white
+    }
+
+    lazy var tableView: UITableView = {
+        let view = UITableView(frame: .zero, style: .grouped)
+        return view
+    }()
 }
 
 extension ChatSettingViewController: ChatFilterEventProtocol {
-  
-  func resetInput() {
-    
-  }
-  
-  func confirmAction() {
-    
-  }
-  
-}
+    func resetInput() {}
 
+    func confirmAction() {}
+}

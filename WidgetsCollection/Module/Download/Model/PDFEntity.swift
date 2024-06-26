@@ -19,7 +19,7 @@ struct PDFEntity {
     var readNum: String?
     /// PDF下载路径
     var filePath: String?
-    
+
     /// 是否已下载
     var hasDownload: Bool?
 }

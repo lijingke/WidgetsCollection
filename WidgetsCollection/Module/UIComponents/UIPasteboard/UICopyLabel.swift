@@ -9,22 +9,22 @@
 import UIKit
 
 class UICopyLabel: UILabel {
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         sharedInit()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func sharedInit() {
         isUserInteractionEnabled = true
         addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(showMenu(_:))))
     }
-    
-    @objc private func showMenu(_ sender: UILongPressGestureRecognizer) {
+
+    @objc private func showMenu(_: UILongPressGestureRecognizer) {
         becomeFirstResponder()
         let menu = UIMenuController.shared
         if !menu.isMenuVisible {
@@ -33,20 +33,20 @@ class UICopyLabel: UILabel {
             menu.showMenu(from: self, rect: bounds)
         }
     }
-    
+
     /// 复制
-    override func copy(_ sender: Any?) {
+    override func copy(_: Any?) {
         let board = UIPasteboard.general
         board.string = text
         let menu = UIMenuController.shared
         menu.hideMenu(from: self)
     }
-    
+
     override var canBecomeFirstResponder: Bool {
         return true
     }
-    
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+
+    override func canPerformAction(_ action: Selector, withSender _: Any?) -> Bool {
         if action == #selector(UIResponderStandardEditActions.copy(_:)) {
             return true
         }

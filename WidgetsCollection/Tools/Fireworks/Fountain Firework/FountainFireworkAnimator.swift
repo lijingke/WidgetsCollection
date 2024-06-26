@@ -1,12 +1,11 @@
 import UIKit
 
 public struct FountainFireworkAnimator: SparkViewAnimator {
-
     public init() {}
 
     public func animate(spark: FireworkSpark, duration: TimeInterval) {
         spark.sparkView.isHidden = false
-        
+
         CATransaction.begin()
 
         // Position
@@ -49,9 +48,9 @@ public struct FountainFireworkAnimator: SparkViewAnimator {
         groupAnimation.animations = [positionAnim, transformAnim, opacityAnim]
         groupAnimation.duration = duration
 
-        CATransaction.setCompletionBlock({
+        CATransaction.setCompletionBlock {
             spark.sparkView.removeFromSuperview()
-        })
+        }
 
         spark.sparkView.layer.add(groupAnimation, forKey: "spark-animation")
 

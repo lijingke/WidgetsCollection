@@ -18,7 +18,7 @@ public extension UILabel {
         attStr.addAttribute(NSAttributedString.Key(kCTFontAttributeName as String), value: myFont, range: NSRange(location: 0, length: attStr.length))
         let frameSetter = CTFramesetterCreateWithAttributedString(attStr)
         let path = CGMutablePath()
-        path.addRect(CGRect(x: 0, y: 0, width: rect.size.width, height: 100000), transform: .identity)
+        path.addRect(CGRect(x: 0, y: 0, width: rect.size.width, height: 100_000), transform: .identity)
         let frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, nil)
         let lines = CTFrameGetLines(frame) as? [AnyHashable]
         var linesArray: [AnyHashable] = []
@@ -43,14 +43,14 @@ public extension UILabel {
      */
     func contentSize() -> CGSize {
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = self.lineBreakMode
-        paragraphStyle.alignment = self.textAlignment
+        paragraphStyle.lineBreakMode = lineBreakMode
+        paragraphStyle.alignment = textAlignment
         let attributes: [NSAttributedString.Key: AnyObject] = [
-            .font: self.font,
+            .font: font,
             .paragraphStyle: paragraphStyle,
         ]
-        let contentSize: CGSize = self.text!.boundingRect(
-            with: self.frame.size,
+        let contentSize: CGSize = text!.boundingRect(
+            with: frame.size,
             options: [.usesLineFragmentOrigin, .usesFontLeading],
             attributes: attributes,
             context: nil

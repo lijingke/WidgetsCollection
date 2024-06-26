@@ -9,8 +9,8 @@
 import Foundation
 
 extension Sequence {
-    func clump(by clumpsize:Int) -> [[Element]] {
-        let slices : [[Element]] = self.reduce(into:[]) {
+    func clump(by clumpsize: Int) -> [[Element]] {
+        let slices: [[Element]] = reduce(into: []) {
             memo, cur in
             if memo.count == 0 {
                 return memo.append([cur])

@@ -1,7 +1,6 @@
 import UIKit
 
 public protocol Firework {
-
     /// Defines origin of firework.
     var origin: CGPoint { get set }
 
@@ -23,10 +22,9 @@ public protocol Firework {
     func trajectory(at index: Int) -> SparkTrajectory
 }
 
-extension Firework {
-
+public extension Firework {
     /// Helper method that return spark view and corresponding trajectory.
-    public func spark(at index: Int) -> FireworkSpark {
-        return FireworkSpark(self.sparkView(at: index), self.trajectory(at: index))
+    func spark(at index: Int) -> FireworkSpark {
+        return FireworkSpark(sparkView(at: index), trajectory(at: index))
     }
 }

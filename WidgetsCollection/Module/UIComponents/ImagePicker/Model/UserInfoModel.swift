@@ -10,7 +10,6 @@ import Foundation
 import HandyJSON
 
 struct UserInfoModel: HandyJSON {
-    
     var username: String?
     var email: String?
     var role: String?
@@ -20,5 +19,4 @@ struct UserInfoModel: HandyJSON {
     var disk_limit: String?
     var disk_usage_raw: Int64?
     var disk_limit_raw: Int64?
-    
 }

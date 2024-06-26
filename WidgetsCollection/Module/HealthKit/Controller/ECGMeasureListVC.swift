@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import HealthKit
+import UIKit
 
 class ECGMeasureListVC: UIViewController {
     // MARK: Property
@@ -68,7 +68,7 @@ extension ECGMeasureListVC {
     }
 
     private func requestData() {
-        Loading.showLoading(to: self.view)
+        Loading.showLoading(to: view)
         var counter = 0
 
         let healthKitTypes: Set = [HKObjectType.electrocardiogramType()]
@@ -108,7 +108,7 @@ extension ECGMeasureListVC {
             }
         }
     }
-    
+
     func getECGsCount(completion: @escaping (Int) -> Void) {
         var result = 0
         let earlyDate = Calendar.current.date(byAdding: .hour, value: -1, to: Date())
@@ -142,10 +142,10 @@ extension ECGMeasureListVC {
             let query = HKElectrocardiogramQuery(samples[counter] as! HKElectrocardiogram) { _, result in
 
                 switch result {
-                case .error(let error):
+                case let .error(error):
                     print("error: ", error)
 
-                case .measurement(let value):
+                case let .measurement(value):
                     let sample = (value.quantity(for: .appleWatchSimilarToLeadI)!.doubleValue(for: HKUnit.volt()), value.timeSinceSampleStart)
                     ecgSamples.append(sample)
 
@@ -164,6 +164,7 @@ extension ECGMeasureListVC {
                         ecgModel.numberOfVoltageMeasurements = currentSample.numberOfVoltageMeasurements
                         completion(ecgModel)
                     }
+
                 @unknown default:
                     break
                 }
@@ -215,11 +216,11 @@ extension ECGMeasureListVC: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 
 extension ECGMeasureListVC: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in _: UITableView) -> Int {
         return dataSource.count
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return 1
     }
 

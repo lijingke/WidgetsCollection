@@ -1,18 +1,17 @@
 import UIKit
 
 public class FountainFirework: Firework {
-
     /**
-      x   x x  x x
-         x   x x
-       x   x    x
-        x x x x
-         x x x
-          x x
-           x
-           x
-     -------------
-    **/
+       x   x x  x x
+          x   x x
+        x   x    x
+         x x x x
+          x x x
+           x x
+            x
+            x
+      -------------
+     **/
 
     public var origin: CGPoint
     public var scale: CGFloat
@@ -27,7 +26,7 @@ public class FountainFirework: Firework {
     }
 
     private var defaultTrajectoryFactory: DefaultSparkTrajectoryFactory {
-        return self.trajectoryFactory as! DefaultSparkTrajectoryFactory
+        return trajectoryFactory as! DefaultSparkTrajectoryFactory
     }
 
     public var sparkViewFactory: SparkViewFactory {
@@ -41,14 +40,14 @@ public class FountainFirework: Firework {
     }
 
     public func sparkViewFactoryData(at index: Int) -> SparkViewFactoryData {
-        return DefaultSparkViewFactoryData(size: self.sparkSize, index: index)
+        return DefaultSparkViewFactoryData(size: sparkSize, index: index)
     }
 
     public func sparkView(at index: Int) -> SparkView {
-        return self.sparkViewFactory.create(with: self.sparkViewFactoryData(at: index))
+        return sparkViewFactory.create(with: sparkViewFactoryData(at: index))
     }
 
-    public func trajectory(at index: Int) -> SparkTrajectory {
-        return self.defaultTrajectoryFactory.random().scale(by: self.scale).shift(to: self.origin)
+    public func trajectory(at _: Int) -> SparkTrajectory {
+        return defaultTrajectoryFactory.random().scale(by: scale).shift(to: origin)
     }
 }

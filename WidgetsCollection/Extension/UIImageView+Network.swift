@@ -15,24 +15,24 @@ extension UIImageView {
         let urlString = (url ?? "").removeHeadAndTailSpace
         sd_setImage(with: URL(string: urlString), placeholderImage: placeholder)
     }
-    
+
     /// 设置网络图片
     func setUrl(_ url: String?, _ place: String) {
         if url == nil || url!.count == 0 {
-            self.image = UIImage(named: place)
+            image = UIImage(named: place)
             return
         }
         let tem = url ?? ""
         let urlStr = URL(string: tem)
         sd_setImage(with: urlStr, placeholderImage: UIImage(named: place))
     }
-    
+
     /// 设置动画
     func setGif(data: NSData) {
         // 从data中读取数据: 将data转成CGImageSource对象
         guard let imageSource = CGImageSourceCreateWithData(data, nil) else { return }
         let imageCount = CGImageSourceGetCount(imageSource)
-        
+
         // 便利所有的图片
         var images = [UIImage]()
         var totalDuration: TimeInterval = 0
@@ -44,7 +44,7 @@ extension UIImageView {
                 self.image = image
             }
             images.append(image)
-            
+
             // 取出持续的时间
             guard let properties = CGImageSourceCopyPropertiesAtIndex(imageSource, i, nil) else { continue }
             guard let gifDict = (properties as NSDictionary)[kCGImagePropertyGIFDictionary] as? NSDictionary else { continue }
@@ -52,10 +52,10 @@ extension UIImageView {
             totalDuration += frameDuration.doubleValue
         }
         // 设置imageView的属性
-        self.animationImages = images
-        self.animationDuration = totalDuration
-        self.animationRepeatCount = 0
+        animationImages = images
+        animationDuration = totalDuration
+        animationRepeatCount = 0
         // 开始播放
-        self.startAnimating()
+        startAnimating()
     }
 }

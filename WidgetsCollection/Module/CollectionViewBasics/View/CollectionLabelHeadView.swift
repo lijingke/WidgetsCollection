@@ -9,27 +9,27 @@
 import UIKit
 
 class CollectionLabelHeadView: UICollectionReusableView {
-    
     static let reuseID = "headView"
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configurationUI()
     }
-    
+
     fileprivate func configurationUI() {
         backgroundColor = .white
         addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { (make) in
+        titleLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.centerY.equalToSuperview()
         }
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         return label

@@ -9,38 +9,38 @@
 import UIKit
 
 class PDFCollectionCell: UICollectionViewCell {
-    
     static let reuseId = "PDFCollectionCell"
-    var tapBlock: (()->())?
+    var tapBlock: (() -> Void)?
     var entity: PDFEntity? {
         didSet {
             configureData()
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction))
-        self.addGestureRecognizer(tap)
+        addGestureRecognizer(tap)
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     @objc func tapAction() {
         if entity?.hasDownload == false {
             downView.isHidden = false
         }
-        
+
         tapBlock?()
     }
-    
+
     public func setProgress(progress: Float) {
         downView.progressView.progress = progress
     }
-    
+
     fileprivate func configureUI() {
         addSubview(coverImg)
         addSubview(pdfName)
@@ -49,42 +49,42 @@ class PDFCollectionCell: UICollectionViewCell {
         addSubview(readNum)
         coverImg.addSubview(downloadedIcon)
         coverImg.addSubview(downView)
-        
-        coverImg.snp.makeConstraints { (make) in
+
+        coverImg.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
         }
-        
-        pdfName.snp.makeConstraints { (make) in
+
+        pdfName.snp.makeConstraints { make in
             make.top.equalTo(coverImg.snp.bottom).offset(5)
             make.left.right.equalTo(coverImg)
         }
-        
-        indexLabel.snp.makeConstraints { (make) in
+
+        indexLabel.snp.makeConstraints { make in
             make.top.equalTo(pdfName.snp.bottom)
             make.left.equalTo(pdfName)
         }
-        
-        readIcon.snp.makeConstraints { (make) in
+
+        readIcon.snp.makeConstraints { make in
             make.top.equalTo(indexLabel.snp.bottom).offset(8)
             make.left.equalTo(indexLabel)
         }
-        
-        readNum.snp.makeConstraints { (make) in
+
+        readNum.snp.makeConstraints { make in
             make.centerY.equalTo(readIcon)
             make.left.equalTo(readIcon.snp.right).offset(2)
         }
-        
-        downloadedIcon.snp.makeConstraints { (make) in
+
+        downloadedIcon.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(5.5)
             make.left.equalToSuperview().offset(6.5)
             make.size.equalTo(CGSize(width: 12.5, height: 12.5))
         }
-        
-        downView.snp.makeConstraints { (make) in
+
+        downView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
+
     public func configureData() {
         coverImg.image = UIImage(named: entity?.cover ?? "")
         pdfName.text = entity?.name
@@ -93,13 +93,13 @@ class PDFCollectionCell: UICollectionViewCell {
         downloadedIcon.isHidden = !(entity?.hasDownload ?? false)
         downView.isHidden = true
     }
-    
+
     lazy var coverImg: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "cover_jrsy")
         return view
     }()
-    
+
     lazy var pdfName: UILabel = {
         let label = UILabel()
         label.text = "淋病诊断"
@@ -108,7 +108,7 @@ class PDFCollectionCell: UICollectionViewCell {
         label.numberOfLines = 0
         return label
     }()
-    
+
     lazy var indexLabel: UILabel = {
         let label = UILabel()
         label.text = "(WS 268-2019)"
@@ -116,13 +116,13 @@ class PDFCollectionCell: UICollectionViewCell {
         label.textColor = UIColor(hex: 0x151515)
         return label
     }()
-    
+
     lazy var readIcon: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "icon_read")
         return view
     }()
-    
+
     lazy var readNum: UILabel = {
         let label = UILabel()
         label.text = "3.25万"
@@ -130,13 +130,13 @@ class PDFCollectionCell: UICollectionViewCell {
         label.textColor = UIColor(hex: 0x7E7E7E)
         return label
     }()
-    
+
     lazy var downView: downloadView = {
         let view = downloadView()
         view.isHidden = true
         return view
     }()
-    
+
     lazy var downloadedIcon: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "icon_download")
@@ -146,26 +146,26 @@ class PDFCollectionCell: UICollectionViewCell {
 }
 
 class downloadView: UIView {
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     fileprivate func configureUI() {
-        self.backgroundColor = UIColor(hex: 0x000000, alpha: 0.4)
+        backgroundColor = UIColor(hex: 0x000000, alpha: 0.4)
         addSubview(progressView)
-        progressView.snp.makeConstraints { (make) in
+        progressView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(9.5)
             make.right.equalToSuperview().offset(-9.5)
             make.bottom.equalToSuperview().offset(-11)
         }
     }
-    
+
     lazy var progressView: UIProgressView = {
         let view = UIProgressView()
         view.progressViewStyle = .default

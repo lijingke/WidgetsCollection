@@ -1,6 +1,6 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
-
+platform :ios, '16.0'
+source 'https://github.com/CocoaPods/Specs.git'
 target 'WidgetsCollection' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
@@ -8,11 +8,11 @@ target 'WidgetsCollection' do
   # Pods for WidgetsCollection
   pod 'Alamofire'
   pod 'IQKeyboardManagerSwift'
-  pod 'Reveal-SDK', :configurations => ['Debug']
+  pod 'LookinServer', :configurations => ['Debug']
   pod 'SnapKit'
   pod 'Tiercel'
   pod 'TZImagePickerController'
-  pod 'HandyJSON'
+  pod 'HandyJSON', :git => 'https://github.com/Miles-Matheson/HandyJSON.git'
   pod 'SDWebImage'
   pod 'MBProgressHUD'
   pod 'MJRefresh'
@@ -21,7 +21,9 @@ target 'WidgetsCollection' do
   pod 'SwiftyJSON'
   pod 'R.swift'
   pod 'ActiveLabel'
-
+  # FLEX
+  pod 'FLEX', :configurations => ['Debug']
+  pod 'atlantis-proxyman'
   target 'WidgetsCollectionTests' do
     inherit! :search_paths
     # Pods for testing
@@ -38,7 +40,7 @@ post_install do |installer|
   installer.generated_projects.each do |project|
     project.targets.each do |target|
       target.build_configurations.each do |config|
-            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.0'
        end
     end
   end

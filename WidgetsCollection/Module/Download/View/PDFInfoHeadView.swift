@@ -9,50 +9,50 @@
 import UIKit
 
 class PDFInfoHeadView: UIView {
-    
     public var pdfInfo: PDFEntity? {
         didSet {
             configureData()
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     fileprivate func configureUI() {
         backgroundColor = .white
         addSubview(pdfName)
         addSubview(indexLabel)
         addSubview(readNum)
-        
-        pdfName.snp.makeConstraints { (make) in
+
+        pdfName.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(17)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
         }
-        indexLabel.snp.makeConstraints { (make) in
+        indexLabel.snp.makeConstraints { make in
             make.top.equalTo(pdfName.snp.bottom)
             make.left.equalTo(pdfName)
         }
-        
-        readNum.snp.makeConstraints { (make) in
+
+        readNum.snp.makeConstraints { make in
             make.top.equalTo(indexLabel.snp.bottom).offset(8)
             make.left.equalTo(indexLabel)
         }
     }
-    
+
     fileprivate func configureData() {
         pdfName.text = pdfInfo?.name
         indexLabel.text = pdfInfo?.indexInfo
         readNum.text = (pdfInfo?.readNum ?? "\(0)") + "人次阅读"
     }
-    
+
     lazy var pdfName: UILabel = {
         let label = UILabel()
         label.text = "淋病诊断"
@@ -61,7 +61,7 @@ class PDFInfoHeadView: UIView {
         label.numberOfLines = 0
         return label
     }()
-    
+
     lazy var indexLabel: UILabel = {
         let label = UILabel()
         label.text = "(WS 268-2019)"
@@ -69,7 +69,7 @@ class PDFInfoHeadView: UIView {
         label.textColor = UIColor(hex: 0x151515)
         return label
     }()
-    
+
     lazy var readNum: UILabel = {
         let label = UILabel()
         label.text = "3.25万人次阅读"
@@ -77,5 +77,4 @@ class PDFInfoHeadView: UIView {
         label.textColor = UIColor(hex: 0x999999)
         return label
     }()
-
 }

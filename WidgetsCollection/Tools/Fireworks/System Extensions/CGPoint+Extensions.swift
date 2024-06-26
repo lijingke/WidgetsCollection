@@ -1,10 +1,9 @@
 import UIKit
 
 extension CGPoint {
-
     mutating func add(vector: CGVector) {
-        self.x += vector.dx
-        self.y += vector.dy
+        x += vector.dx
+        y += vector.dy
     }
 
     func adding(vector: CGVector) -> CGPoint {
@@ -14,7 +13,7 @@ extension CGPoint {
     }
 
     mutating func multiply(by value: CGFloat) {
-        self.x *= value
-        self.y *= value
+        x *= value
+        y *= value
     }
 }

@@ -9,9 +9,8 @@
 import UIKit
 
 class BasicViewController: UIViewController {
-    
     var colors: [[UIColor]] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -19,7 +18,7 @@ class BasicViewController: UIViewController {
         colors.append(DataManager.shared.generalColor(8))
         colors.append(DataManager.shared.generalColor(7))
     }
-    
+
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 20) / 3, height: (UIScreen.main.bounds.width - 20) / 3)
@@ -38,51 +37,46 @@ class BasicViewController: UIViewController {
         collection.register(CollectionLabelFootView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: CollectionLabelFootView.reuseID)
         return collection
     }()
-    
+
     fileprivate func configureUI() {
         view.addSubview(collectionView)
-        collectionView.snp.makeConstraints { (make) in
+        collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
 }
 
-extension BasicViewController: UICollectionViewDelegate {
-    
-}
+extension BasicViewController: UICollectionViewDelegate {}
 
 extension BasicViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in _: UICollectionView) -> Int {
         return colors.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+    func collectionView(_: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return colors[section].count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseID", for: indexPath)
         cell.backgroundColor = colors[indexPath.section][indexPath.row]
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionLabelHeadView.reuseID, for: indexPath) as! CollectionLabelHeadView
             view.titleLabel.text = "Head \(indexPath.section)"
             return view
-            
+
         case UICollectionView.elementKindSectionFooter:
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionLabelFootView.reuseID, for: indexPath) as! CollectionLabelFootView
             view.titleLabel.text = "Foot \(indexPath.section)"
             return view
-            
+
         default:
             fatalError("No Such Kind")
         }
     }
-    
-    
 }

@@ -9,21 +9,23 @@
 import Foundation
 
 class ProcessUncompletedCell: UITableViewCell {
-    
     // MARK: Life Cycle
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Lazy Get
+
     lazy var unCompletedIcon = UIImageView(image: R.image.processIncomplete())
-    
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.regular(16)
@@ -33,6 +35,7 @@ class ProcessUncompletedCell: UITableViewCell {
 }
 
 // MARK: - Data
+
 extension ProcessUncompletedCell {
     public func setupData(title: String?) {
         titleLabel.text = title
@@ -40,6 +43,7 @@ extension ProcessUncompletedCell {
 }
 
 // MARK: - UI
+
 extension ProcessUncompletedCell {
     private func setupUI() {
         contentView.addSubviews([unCompletedIcon, titleLabel])

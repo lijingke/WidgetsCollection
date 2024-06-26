@@ -82,7 +82,7 @@ public extension Array {
         let JSONString = NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue)
         return JSONString! as String
     }
-    
+
     func toNSMutableArray() -> NSMutableArray {
         let NSMutableArray: NSMutableArray = []
         for item in self {
@@ -93,7 +93,6 @@ public extension Array {
 }
 
 extension Array {
-    
     func array2NSMutableArray() -> NSMutableArray {
         let NSMutableArray: NSMutableArray = []
         for item in self {

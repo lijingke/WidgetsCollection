@@ -28,16 +28,16 @@ class TagLayout: UICollectionViewLayout {
     // 标签的高度
     var itemHeight: CGFloat = 25
     // 标签的字体
-    var itemFont: UIFont = UIFont.systemFont(ofSize: 12)
+    var itemFont: UIFont = .systemFont(ofSize: 12)
     // header的高度
     var headerHeight: CGFloat = 150
     // sectionHeader 高度
     var sectionHeaderHeight: CGFloat = 50
     // header的类型
     let headerKind = "ElementTagHeader"
-    
+
     weak var delegate: TagLayoutDelegate?
-    
+
     // 缓存
     private var cache = [Element: [IndexPath: UICollectionViewLayoutAttributes]]()
     // 可见区域
@@ -48,22 +48,22 @@ class TagLayout: UICollectionViewLayout {
     private var insertIndexPaths = [IndexPath]()
     // 用来记录删除的元素
     private var deleteIndexPaths = [IndexPath]()
-    
+
     // MARK: - 一些计算属性 防止编写冗余代码
-      
+
     private var collectionViewWidth: CGFloat {
-      return collectionView!.frame.width
+        return collectionView!.frame.width
     }
-    
+
     override func prepare() {
-        guard let collectionView = self.collectionView, let delegate = delegate else {
+        guard let collectionView = collectionView, let delegate = delegate else {
             return
         }
         let sections = collectionView.numberOfSections
-        
+
         prepareCache()
         contentHeight = 0
-        
+
         /// 可伸缩header
         let headerIndexPath = IndexPath(item: 0, section: 0)
         let headerAttribute = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: headerKind, with: headerIndexPath)
@@ -71,10 +71,10 @@ class TagLayout: UICollectionViewLayout {
         headerAttribute.frame = frame
         cache[.header]?[headerIndexPath] = headerAttribute
         contentHeight = frame.maxY
-        
-        for section in 0..<sections {
+
+        for section in 0 ..< sections {
             let sectionHeaderIndexPath = IndexPath(item: 0, section: section)
-            
+
             let sectionHeaderAttribute = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: sectionHeaderIndexPath)
             var sectionOriginY = contentHeight
             if section != 0 {
@@ -84,17 +84,17 @@ class TagLayout: UICollectionViewLayout {
             sectionHeaderAttribute.frame = sectionFrame
             cache[.sectionHeader]?[sectionHeaderIndexPath] = sectionHeaderAttribute
             contentHeight = sectionFrame.maxY
-            
+
             // 处理tag
             let rows = collectionView.numberOfItems(inSection: section)
             var frame = CGRect(x: 0, y: contentHeight + lineSpacing, width: 0, height: 0)
-            
-            for item in 0..<rows {
+
+            for item in 0 ..< rows {
                 let indexPath = IndexPath(item: item, section: section)
-                
+
                 let text = delegate.collectionView(collectionView, TextForItemAt: indexPath)
-                let tagWidth = self.textWidth(text) + tagInnerMargin
-                
+                let tagWidth = textWidth(text) + tagInnerMargin
+
                 // 其他
                 if frame.maxX + tagWidth + itemSpacing * 2 > collectionViewWidth {
                     // 需要换行
@@ -102,7 +102,7 @@ class TagLayout: UICollectionViewLayout {
                 } else {
                     frame = CGRect(x: frame.maxX + itemSpacing, y: frame.origin.y, width: tagWidth, height: itemHeight)
                 }
-                
+
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 attributes.frame = frame
                 cache[.cell]?[indexPath] = attributes
@@ -110,15 +110,15 @@ class TagLayout: UICollectionViewLayout {
             contentHeight = frame.maxY
         }
     }
-    
+
     override var collectionViewContentSize: CGSize {
         return CGSize(width: collectionViewWidth, height: contentHeight)
     }
-    
+
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return cache[.cell]?[indexPath]
     }
-    
+
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         visibleLayoutAttributes.removeAll(keepingCapacity: true)
         for (type, elementInfos) in cache {
@@ -134,7 +134,7 @@ class TagLayout: UICollectionViewLayout {
         }
         return visibleLayoutAttributes
     }
-    
+
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         switch elementKind {
         case UICollectionView.elementKindSectionHeader:
@@ -145,78 +145,78 @@ class TagLayout: UICollectionViewLayout {
             return nil
         }
     }
-    
+
     private func prepareCache() {
         cache.removeAll(keepingCapacity: true)
         cache[.sectionHeader] = [IndexPath: UICollectionViewLayoutAttributes]()
         cache[.cell] = [IndexPath: UICollectionViewLayoutAttributes]()
         cache[.header] = [IndexPath: UICollectionViewLayoutAttributes]()
     }
-    
-    override public func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+
+    override public func shouldInvalidateLayout(forBoundsChange _: CGRect) -> Bool {
         return true
-      }
-     
-     private func calculateDeltalY() -> CGFloat? {
-         guard let collectionView = self.collectionView else {
-             return nil
-         }
-         let insets = collectionView.contentInset
-         let offset = collectionView.contentOffset
-         let minY = -insets.top
-         
-         if offset.y < minY {
-             let deltalY = abs(offset.y - minY)
-             return deltalY
-         }
-         return nil
-     }
-    
+    }
+
+    private func calculateDeltalY() -> CGFloat? {
+        guard let collectionView = collectionView else {
+            return nil
+        }
+        let insets = collectionView.contentInset
+        let offset = collectionView.contentOffset
+        let minY = -insets.top
+
+        if offset.y < minY {
+            let deltalY = abs(offset.y - minY)
+            return deltalY
+        }
+        return nil
+    }
+
     private func textWidth(_ text: String) -> CGFloat {
         let rect = (text as NSString).boundingRect(with: .zero, options: .usesLineFragmentOrigin, attributes: [.font: itemFont], context: nil)
         return rect.width
     }
-    
-    /// MARK: 动画相关
-    
+
+    // MARK: 动画相关
+
     override func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard let attribute = super.initialLayoutAttributesForAppearingItem(at: itemIndexPath) else {
             return nil
         }
-        if self.insertIndexPaths.contains(itemIndexPath) {
+        if insertIndexPaths.contains(itemIndexPath) {
             attribute.transform = CGAffineTransform.identity.scaledBy(x: 4, y: 4).rotated(by: CGFloat(Double.pi / 2))
         }
         return attribute
     }
-    
+
     override func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard let attribute = super.finalLayoutAttributesForDisappearingItem(at: itemIndexPath) else {
             return nil
         }
-        if self.deleteIndexPaths.contains(itemIndexPath) {
+        if deleteIndexPaths.contains(itemIndexPath) {
             attribute.transform = CGAffineTransform.identity.scaledBy(x: 4, y: 4).rotated(by: CGFloat(Double.pi / 2))
         }
-        
+
         return attribute
     }
-    
+
     override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
-         super.prepare(forCollectionViewUpdates: updateItems)
-         self.insertIndexPaths.removeAll()
-         self.deleteIndexPaths.removeAll()
-         for update in updateItems {
-             switch update.updateAction {
-             case .insert:
-                 if let indexPath = update.indexPathAfterUpdate {
-                     self.insertIndexPaths.append(indexPath)
-                 }
-             case .delete:
-                 if let indexPath = update.indexPathBeforeUpdate {
-                     self.deleteIndexPaths.append(indexPath)
-                 }
-             default:
-                 break
-             }
-         }
-     }
+        super.prepare(forCollectionViewUpdates: updateItems)
+        insertIndexPaths.removeAll()
+        deleteIndexPaths.removeAll()
+        for update in updateItems {
+            switch update.updateAction {
+            case .insert:
+                if let indexPath = update.indexPathAfterUpdate {
+                    insertIndexPaths.append(indexPath)
+                }
+            case .delete:
+                if let indexPath = update.indexPathBeforeUpdate {
+                    deleteIndexPaths.append(indexPath)
+                }
+            default:
+                break
+            }
+        }
+    }
 }

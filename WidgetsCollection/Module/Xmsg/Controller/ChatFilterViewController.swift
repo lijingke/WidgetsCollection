@@ -9,46 +9,44 @@
 import UIKit
 
 class ChatFilterViewController: UIViewController {
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    configureUI()
-    configureData()
-  }
-  
-  fileprivate func configureUI() {
-    view.backgroundColor = .white
-    view.addSubview(mainView)
-    mainView.snp.makeConstraints { (make) in
-      make.edges.equalToSuperview()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureUI()
+        configureData()
     }
-  }
-  
-  func configureData() {
-    let tags = ["高血压", "干预服务包", "干预服务包发送助手", "菁蓉大厦卫生室", "提醒"].compactMap { (title) -> tagViewModel? in
-      var entity = tagViewModel()
-      entity.title = title
-      entity.isSelected = false
-      return entity
+
+    fileprivate func configureUI() {
+        view.backgroundColor = .white
+        view.addSubview(mainView)
+        mainView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
-    mainView.configureData(defultTags: tags, customTags: ["Test1", "Test2", "Test3"], customMembers: ["赵", "钱", "孙", "李"])
-  }
-  
-  lazy var mainView: ChatFilterView = {
-    let view = ChatFilterView()
-    view.delegate = self
-    return view
-  }()
-  
+
+    func configureData() {
+        let tags = ["高血压", "干预服务包", "干预服务包发送助手", "菁蓉大厦卫生室", "提醒"].compactMap { title -> tagViewModel? in
+            var entity = tagViewModel()
+            entity.title = title
+            entity.isSelected = false
+            return entity
+        }
+        mainView.configureData(defultTags: tags, customTags: ["Test1", "Test2", "Test3"], customMembers: ["赵", "钱", "孙", "李"])
+    }
+
+    lazy var mainView: ChatFilterView = {
+        let view = ChatFilterView()
+        view.delegate = self
+        return view
+    }()
 }
 
-extension ChatFilterViewController: ChatFilterEventProtocol{
-  
-  func confirmAction(choosedDefultTags: [tagViewModel], customMembers: [String], customTags: [String]) {
-    let selectTags = choosedDefultTags.compactMap { (item) -> String? in
-      return item.title
+extension ChatFilterViewController: ChatFilterEventProtocol {
+    func confirmAction(choosedDefultTags: [tagViewModel], customMembers: [String], customTags: [String]) {
+        let selectTags = choosedDefultTags.compactMap { item -> String? in
+            item.title
+        }
+        print(selectTags)
+        print(customMembers)
+        print(customTags)
     }
-    print(selectTags)
-    print(customMembers)
-    print(customTags)
-  }
 }

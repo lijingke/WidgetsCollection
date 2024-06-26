@@ -9,16 +9,16 @@
 import UIKit
 
 class UserInfoHeadView: UIView {
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     lazy var userAvator: UIImageView = {
         let view = UIImageView()
         view.image = #imageLiteral(resourceName: "cat")
@@ -27,7 +27,7 @@ class UserInfoHeadView: UIView {
         view.contentMode = .scaleAspectFill
         return view
     }()
-    
+
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
         label.text = "瓦西里的小板凳"
@@ -35,7 +35,7 @@ class UserInfoHeadView: UIView {
         label.font = UIFont.semibold(20)
         return label
     }()
-    
+
     lazy var userMailLabel: UILabel = {
         let label = UILabel()
         label.text = "lijingke@mail.com"
@@ -43,36 +43,33 @@ class UserInfoHeadView: UIView {
         label.font = UIFont.regular(18)
         return label
     }()
-    
 }
 
 extension UserInfoHeadView {
     private func setupUI() {
-        
         addSubview(userAvator)
         addSubview(userNameLabel)
         addSubview(userMailLabel)
 
-        userAvator.snp.makeConstraints { (make) in
+        userAvator.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().offset(25)
             make.size.equalTo(CGSize(width: 60, height: 60))
             make.bottom.equalToSuperview().offset(-20)
         }
-        
-        userNameLabel.snp.makeConstraints { (make) in
+
+        userNameLabel.snp.makeConstraints { make in
             make.top.equalTo(userAvator)
             make.left.equalTo(userAvator.snp.right).offset(28)
         }
-        
-        userMailLabel.snp.makeConstraints { (make) in
+
+        userMailLabel.snp.makeConstraints { make in
             make.left.equalTo(userNameLabel)
             make.bottom.equalTo(userAvator)
         }
-        
     }
-    
+
     public func setupData(_ model: UserInfoModel?) {
         userNameLabel.text = model?.username
         userMailLabel.text = model?.email

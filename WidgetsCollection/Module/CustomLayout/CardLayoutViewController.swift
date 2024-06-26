@@ -9,26 +9,25 @@
 import UIKit
 
 class CardLayoutViewController: UIViewController {
-    
     var colors: [UIColor] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         configureData()
     }
-    
+
     fileprivate func configureUI() {
         view.addSubview(collectionView)
-        collectionView.snp.makeConstraints { (make) in
+        collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
+
     fileprivate func configureData() {
         colors = DataManager.shared.generalColor(20)
     }
-    
+
     lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: CardLayout())
         collection.backgroundColor = .white
@@ -40,19 +39,15 @@ class CardLayoutViewController: UIViewController {
 }
 
 extension CardLayoutViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return colors.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseID", for: indexPath)
         cell.backgroundColor = colors[indexPath.row]
         return cell
     }
-    
-    
 }
 
-extension CardLayoutViewController: UICollectionViewDelegate {
-    
-}
+extension CardLayoutViewController: UICollectionViewDelegate {}

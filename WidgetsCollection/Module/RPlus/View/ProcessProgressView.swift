@@ -11,19 +11,23 @@ import UIKit
 
 class ProcessProgressView: UIView {
     // MARK: Property
+
     private var dataSource: [ProcessModel] = []
-    
+
     // MARK: Life Cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Lazy Get
+
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .plain)
         table.delegate = self
@@ -36,10 +40,10 @@ class ProcessProgressView: UIView {
         table.separatorStyle = .none
         return table
     }()
-    
 }
 
 // MARK: - Data
+
 extension ProcessProgressView {
     public func setupData(_ dataSource: [ProcessModel]) {
         self.dataSource = dataSource
@@ -48,6 +52,7 @@ extension ProcessProgressView {
 }
 
 // MARK: - UI
+
 extension ProcessProgressView {
     private func setupUI() {
         addSubview(tableView)
@@ -58,16 +63,16 @@ extension ProcessProgressView {
 }
 
 // MARK: - UITableViewDelegate
-extension ProcessProgressView: UITableViewDelegate {
-    
-}
+
+extension ProcessProgressView: UITableViewDelegate {}
 
 // MARK: - UITableViewDataSource
+
 extension ProcessProgressView: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return dataSource.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataSource[indexPath.row]
         switch model.type {

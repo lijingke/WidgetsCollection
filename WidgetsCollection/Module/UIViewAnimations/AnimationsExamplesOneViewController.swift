@@ -10,16 +10,16 @@ import UIKit
 
 class AnimationsExamplesOneViewController: UIViewController {
     lazy var effectView = UIVisualEffectView()
-    
-    var pOrig: CGPoint = CGPoint.zero
-    var pFinal: CGPoint = CGPoint.zero
-    
+
+    var pOrig: CGPoint = .zero
+    var pFinal: CGPoint = .zero
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         configureEffectView()
     }
-    
+
     @objc fileprivate func btnAction(_ sender: UIButton) {
         switch sender.tag {
         case 1:
@@ -31,15 +31,14 @@ class AnimationsExamplesOneViewController: UIViewController {
             }
         case 2:
             print("Autoreverse")
-            let origX = self.view2.center.x
+            let origX = view2.center.x
             let opts: UIView.AnimationOptions = .autoreverse
             UIView.animate(withDuration: 1, delay: 0, options: opts, animations: {
                 UIView.setAnimationRepeatCount(5)
                 self.view2.center.x -= 100
-            }) { (_) in
+            }) { _ in
                 self.view2.center.x = origX
             }
-            
         case 3:
             print("Animation State")
             UIView.animate(withDuration: 0.5) {
@@ -50,16 +49,16 @@ class AnimationsExamplesOneViewController: UIViewController {
             }
         case 4:
             print("Animation Start")
-            self.pOrig = self.view4.center
-            self.pFinal = self.view4.center
-            self.pFinal.x -= 100
+            pOrig = view4.center
+            pFinal = view4.center
+            pFinal.x -= 100
             UIView.animate(withDuration: 4) {
                 self.view4.center = self.pFinal
             }
         case 5:
             print("Animation Cancel")
-            self.view4.layer.position = self.view4.layer.presentation()!.position
-            self.view4.layer.removeAllAnimations()
+            view4.layer.position = view4.layer.presentation()!.position
+            view4.layer.removeAllAnimations()
             UIView.animate(withDuration: 0.1) {
                 self.view4.center = self.pFinal
             }
@@ -72,37 +71,37 @@ class AnimationsExamplesOneViewController: UIViewController {
             break
         }
     }
-    
+
     lazy var view1: UIView = {
         let view = UIView()
         view.backgroundColor = .randomColor()
         return view
     }()
-    
+
     lazy var view2: UIView = {
         let view = UIView()
         view.backgroundColor = .randomColor()
         return view
     }()
-    
+
     lazy var view3: UIView = {
         let view = UIView()
         view.backgroundColor = .randomColor()
         return view
     }()
-    
+
     lazy var view4: UIView = {
         let view = UIView()
         view.backgroundColor = .randomColor()
         return view
     }()
-    
+
     lazy var view5: UIView = {
         let view = UIView()
         view.backgroundColor = .randomColor()
         return view
     }()
-    
+
     lazy var btn1: UIButton = {
         let btn = UIButton()
         btn.setTitle("Effect Animation", for: .normal)
@@ -111,7 +110,7 @@ class AnimationsExamplesOneViewController: UIViewController {
         btn.addTarget(self, action: #selector(btnAction(_:)), for: .touchDown)
         return btn
     }()
-    
+
     lazy var btn2: UIButton = {
         let btn = UIButton()
         btn.setTitle("Autoreverse", for: .normal)
@@ -120,7 +119,7 @@ class AnimationsExamplesOneViewController: UIViewController {
         btn.addTarget(self, action: #selector(btnAction(_:)), for: .touchDown)
         return btn
     }()
-    
+
     lazy var btn3: UIButton = {
         let btn = UIButton()
         btn.setTitle("Animation State", for: .normal)
@@ -129,7 +128,7 @@ class AnimationsExamplesOneViewController: UIViewController {
         btn.addTarget(self, action: #selector(btnAction(_:)), for: .touchDown)
         return btn
     }()
-    
+
     lazy var btn4: UIButton = {
         let btn = UIButton()
         btn.setTitle("Animation Start", for: .normal)
@@ -138,7 +137,7 @@ class AnimationsExamplesOneViewController: UIViewController {
         btn.addTarget(self, action: #selector(btnAction(_:)), for: .touchDown)
         return btn
     }()
-    
+
     lazy var btn5: UIButton = {
         let btn = UIButton()
         btn.setTitle("Animation Cancel", for: .normal)
@@ -147,7 +146,7 @@ class AnimationsExamplesOneViewController: UIViewController {
         btn.addTarget(self, action: #selector(btnAction(_:)), for: .touchDown)
         return btn
     }()
-    
+
     lazy var btn6: UIButton = {
         let btn = UIButton()
         btn.setTitle("Transform", for: .normal)
@@ -156,21 +155,19 @@ class AnimationsExamplesOneViewController: UIViewController {
         btn.addTarget(self, action: #selector(btnAction(_:)), for: .touchDown)
         return btn
     }()
-    
 }
 
-extension AnimationsExamplesOneViewController {
-    
-    fileprivate func configureEffectView() {
+private extension AnimationsExamplesOneViewController {
+    func configureEffectView() {
         view1.addSubview(effectView)
-        effectView.snp.makeConstraints { (make) in
+        effectView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
-    fileprivate func configureUI() {
+
+    func configureUI() {
         view.backgroundColor = .white
-        
+
         view.addSubview(view1)
         view.addSubview(view2)
         view.addSubview(view3)
@@ -182,63 +179,61 @@ extension AnimationsExamplesOneViewController {
         view.addSubview(btn4)
         view.addSubview(btn5)
         view.addSubview(btn6)
-        
-        view1.snp.makeConstraints { (make) in
+
+        view1.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(15)
             make.right.equalToSuperview().offset(-15)
             make.size.equalTo(80)
         }
-        
-        btn1.snp.makeConstraints { (make) in
+
+        btn1.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(15)
             make.centerY.equalTo(view1)
         }
-        
-        view2.snp.makeConstraints { (make) in
+
+        view2.snp.makeConstraints { make in
             make.top.equalTo(view1.snp.bottom).offset(15)
             make.right.size.equalTo(view1)
         }
-        
-        btn2.snp.makeConstraints { (make) in
+
+        btn2.snp.makeConstraints { make in
             make.left.equalTo(btn1)
             make.centerY.equalTo(view2)
         }
-        
-        view3.snp.makeConstraints { (make) in
+
+        view3.snp.makeConstraints { make in
             make.top.equalTo(view2.snp.bottom).offset(15)
             make.right.size.equalTo(view2)
         }
-        
-        btn3.snp.makeConstraints { (make) in
+
+        btn3.snp.makeConstraints { make in
             make.left.equalTo(btn2)
             make.centerY.equalTo(view3)
         }
-        
-        view4.snp.makeConstraints { (make) in
+
+        view4.snp.makeConstraints { make in
             make.top.equalTo(view3.snp.bottom).offset(15)
             make.right.size.equalTo(view3)
         }
-        
-        btn4.snp.makeConstraints { (make) in
+
+        btn4.snp.makeConstraints { make in
             make.left.equalTo(btn3)
             make.top.equalTo(view4)
         }
-        
-        btn5.snp.makeConstraints { (make) in
+
+        btn5.snp.makeConstraints { make in
             make.left.equalTo(btn3)
             make.bottom.equalTo(view4)
         }
-        
-        view5.snp.makeConstraints { (make) in
+
+        view5.snp.makeConstraints { make in
             make.top.equalTo(view4.snp.bottom).offset(15)
             make.right.size.equalTo(view4)
         }
-        
-        btn6.snp.makeConstraints { (make) in
+
+        btn6.snp.makeConstraints { make in
             make.left.equalTo(btn5)
             make.centerY.equalTo(view5)
         }
-        
     }
-    
 }

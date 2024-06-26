@@ -1,13 +1,11 @@
 import UIKit
 
 public class FireworkSparkScheduler {
-
     public var delay: TimeInterval = 0.05
     private var timer: Timer?
     private var queue = [Data]()
-    
-    private struct Data {
 
+    private struct Data {
         weak var presenterView: UIView?
         let sparks: [FireworkSpark]
         let animator: SparkViewAnimator
@@ -15,43 +13,44 @@ public class FireworkSparkScheduler {
     }
 
     public func schedule(sparks: [FireworkSpark],
-                  in presenterView: UIView,
-                  with animator: SparkViewAnimator,
-                  animationDuration: TimeInterval) {
+                         in presenterView: UIView,
+                         with animator: SparkViewAnimator,
+                         animationDuration: TimeInterval)
+    {
         let data = Data(presenterView: presenterView,
                         sparks: sparks,
                         animator: animator,
                         animationDuration: animationDuration)
-                        
-        self.queue.append(data)
 
-        if self.timer == nil {
-            self.scheduleTimer()
+        queue.append(data)
+
+        if timer == nil {
+            scheduleTimer()
         }
     }
 
     public func cancel() {
-        self.timer?.invalidate()
-        self.timer = nil
+        timer?.invalidate()
+        timer = nil
     }
 
     private func scheduleTimer() {
-        self.cancel()
+        cancel()
 
-        self.timer = Timer.scheduledTimer(timeInterval: self.delay,
-                                          target: self,
-                                          selector: #selector(timerDidFire),
-                                          userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: delay,
+                                     target: self,
+                                     selector: #selector(timerDidFire),
+                                     userInfo: nil, repeats: false)
     }
 
     @objc private func timerDidFire() {
-        guard let data = self.queue.first else {
-            self.cancel()
+        guard let data = queue.first else {
+            cancel()
             return
         }
 
         guard let presenterView = data.presenterView else {
-            self.cancel()
+            cancel()
             return
         }
 
@@ -60,12 +59,12 @@ public class FireworkSparkScheduler {
             data.animator.animate(spark: spark, duration: data.animationDuration)
         }
 
-        self.queue.remove(at: 0)
+        queue.remove(at: 0)
 
-        if self.queue.isEmpty {
-            self.cancel()
+        if queue.isEmpty {
+            cancel()
         } else {
-            self.scheduleTimer()
+            scheduleTimer()
         }
     }
 }

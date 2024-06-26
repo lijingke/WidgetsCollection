@@ -10,13 +10,14 @@ import UIKit
 
 class PDFCollectionFooter: UICollectionReusableView {
     static let reuseID = "PDFCollectionFooter"
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        backgroundColor = .white
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

@@ -10,18 +10,20 @@ import Foundation
 import MJRefresh
 
 class RefreshView: UIView {
-    
     // MARK: Life Cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Lazy Get
+
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .plain)
         table.delegate = self
@@ -35,10 +37,10 @@ class RefreshView: UIView {
 extension RefreshView {
     private func setupUI() {
         addSubview(tableView)
-        tableView.snp.makeConstraints { (make) in
+        tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
+
         let header = MJRefreshGifHeader()
         header.refreshingBlock = {
             print("refresh")
@@ -50,7 +52,7 @@ extension RefreshView {
         tableView.mj_header = header
         header.beginRefreshing()
         header.isAutomaticallyChangeAlpha = true
-        
+
         let footer = MJRefreshAutoGifFooter()
         footer.setImages([UIImage(named: "arrow_up")!, UIImage(named: "arrow_down")!], for: .noMoreData)
         footer.refreshingBlock = {
@@ -60,27 +62,25 @@ extension RefreshView {
                 self.tableView.mj_footer?.state = .noMoreData
             }
         }
-        
+
         tableView.mj_footer = footer
     }
 }
 
 // MARK: - UITableViewDataSource
+
 extension RefreshView: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return 50
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RefreshCell.identifier, for: indexPath) as? RefreshCell else { return UITableViewCell() }
         cell.textLabel?.text = "\(indexPath.description)"
         return cell
     }
-    
-    
 }
 
 // MARK: - UITableViewDelegate
-extension RefreshView: UITableViewDelegate {
-    
-}
+
+extension RefreshView: UITableViewDelegate {}

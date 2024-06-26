@@ -7,7 +7,7 @@
 
 import Foundation
 
-fileprivate let dateFormatter: DateFormatter = {
+private let dateFormatter: DateFormatter = {
     let dateFmt = DateFormatter()
     dateFmt.timeZone = TimeZone.current
     return dateFmt
@@ -30,31 +30,29 @@ extension String {
         let date: Date = dateFormatter.date(from: self) ?? Date()
         return date.timeIntervalSince1970
     }
-    
+
     public func substringToIndex(_ index: Int) -> String {
         let startIndex = self.startIndex
         let endIndex = self.index(startIndex, offsetBy: index)
-        let subStr = self[startIndex..<endIndex]
+        let subStr = self[startIndex ..< endIndex]
         return String(subStr)
     }
 }
 
-extension Int {
-    public func toTimeString(_ format: String? = "yyyy-MM-dd") -> String {
+public extension Int {
+    func toTimeString(_ format: String? = "yyyy-MM-dd") -> String {
         let timeInterval = TimeInterval(self)
         return Date(timeIntervalSince1970: timeInterval).toString(format)
     }
 }
 
-extension Int64 {
-    
-    public func toDate(_ format: String? = "yyyy-MM-dd") -> Date {
+public extension Int64 {
+    func toDate(_: String? = "yyyy-MM-dd") -> Date {
         let timeInterval = TimeInterval(self / 1000)
         return Date(timeIntervalSince1970: timeInterval)
     }
-    
-    public func toDateString(_ format: String? = "yyyy-MM-dd") -> String {
+
+    func toDateString(_ format: String? = "yyyy-MM-dd") -> String {
         return toDate(format).toString(format)
     }
 }
-

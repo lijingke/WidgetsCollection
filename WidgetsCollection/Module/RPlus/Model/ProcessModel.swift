@@ -9,7 +9,6 @@
 import Foundation
 import HandyJSON
 
-
 struct ProcessModel: HandyJSON {
     /// 类型：1-已完成，2-进行中，3-未开始，4-提示，5-已完成分割，6-未完成分割
     var type: Int?

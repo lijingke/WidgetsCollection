@@ -9,7 +9,6 @@
 import UIKit
 
 class TisprCardStackDemoViewCell: CardStackViewCell {
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = Constants.cellCornerRadius
@@ -17,26 +16,27 @@ class TisprCardStackDemoViewCell: CardStackViewCell {
         setupUI()
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupUI() {
         addSubview(text)
         addSubview(voteSmile)
-        
-        text.snp.makeConstraints { (make) in
+
+        text.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.centerX.equalToSuperview()
         }
-        
-        voteSmile.snp.makeConstraints { (make) in
+
+        voteSmile.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.size.equalTo(CGSize(width: 238, height: 238))
         }
     }
-    
-    private struct Constants {
+
+    private enum Constants {
         static let cellCornerRadius: CGFloat = 12
         static let animationSpeed: Float = 0.86
         static let rotationRadius: CGFloat = 15
@@ -46,21 +46,21 @@ class TisprCardStackDemoViewCell: CardStackViewCell {
         static let smileRotten1 = "smile_rotten_1"
         static let smileRotten2 = "smile_rotten_2"
     }
-    
+
     override var center: CGPoint {
         didSet {
             updateSmileVote()
         }
     }
-    
+
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
-        super.apply(layoutAttributes )
+        super.apply(layoutAttributes)
     }
-    
+
     private func updateSmileVote() {
         let smileImageName: String
         let rotation = atan2(transform.b, transform.a) * 100
-        
+
         switch rotation {
         case -1 * CGFloat.greatestFiniteMagnitude ..< -1 * Constants.rotationRadius:
             smileImageName = Constants.smileRotten2
@@ -73,18 +73,17 @@ class TisprCardStackDemoViewCell: CardStackViewCell {
         default:
             smileImageName = Constants.smileNeutral
         }
-        
+
         voteSmile.image = UIImage(named: smileImageName)
     }
-    
+
     lazy var text: UILabel = {
         let label = UILabel()
         return label
     }()
-    
+
     lazy var voteSmile: UIImageView = {
         let view = UIImageView()
         return view
     }()
-    
 }

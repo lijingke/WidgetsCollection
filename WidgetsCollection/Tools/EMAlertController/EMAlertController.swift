@@ -15,7 +15,7 @@ enum Dimension {
     static let buttonHeight: CGFloat = 50.0
     static let iconHeight: CGFloat = 100.0
     static let textFieldHeight: CGFloat = 30.0
-  
+
     static func width(from size: CGSize) -> CGFloat {
         return (size.width <= 414) ? size.width - 60 : 280
     }
@@ -24,21 +24,21 @@ enum Dimension {
 open class EMAlertController: UIViewController {
     // MARK: - Properties
 
-    internal var alertViewHeight: NSLayoutConstraint?
-    internal var alertViewWidth: NSLayoutConstraint?
-    internal var messageTextViewHeightConstraint: NSLayoutConstraint?
-    internal var buttonStackViewHeightConstraint: NSLayoutConstraint?
-    internal var buttonStackViewWidthConstraint: NSLayoutConstraint?
-    internal var scrollViewHeightConstraint: NSLayoutConstraint?
-    internal var imageViewHeight: CGFloat = Dimension.iconHeight
-    internal var titleLabelHeight: CGFloat = 20
-    internal var messageLabelHeight: CGFloat = 20
-    internal var iconHeightConstraint: NSLayoutConstraint?
-    internal var heighAnchor: NSLayoutConstraint?
-    internal var isLaunch = true
+    var alertViewHeight: NSLayoutConstraint?
+    var alertViewWidth: NSLayoutConstraint?
+    var messageTextViewHeightConstraint: NSLayoutConstraint?
+    var buttonStackViewHeightConstraint: NSLayoutConstraint?
+    var buttonStackViewWidthConstraint: NSLayoutConstraint?
+    var scrollViewHeightConstraint: NSLayoutConstraint?
+    var imageViewHeight: CGFloat = Dimension.iconHeight
+    var titleLabelHeight: CGFloat = 20
+    var messageLabelHeight: CGFloat = 20
+    var iconHeightConstraint: NSLayoutConstraint?
+    var heighAnchor: NSLayoutConstraint?
+    var isLaunch = true
     public var textFields: [UITextField] = []
-  
-    internal lazy var backgroundView: UIView = {
+
+    lazy var backgroundView: UIView = {
         let bgView = UIView()
         bgView.translatesAutoresizingMaskIntoConstraints = false
         bgView.backgroundColor = .darkGray
@@ -46,8 +46,8 @@ open class EMAlertController: UIViewController {
 
         return bgView
     }()
-  
-    internal var alertView: UIView = {
+
+    var alertView: UIView = {
         let alertView = UIView()
         alertView.translatesAutoresizingMaskIntoConstraints = false
         alertView.backgroundColor = .emAlertViewColor
@@ -58,30 +58,30 @@ open class EMAlertController: UIViewController {
         alertView.layer.shadowRadius = 5
         alertView.clipsToBounds = false
         alertView.layer.masksToBounds = false
-    
+
         return alertView
     }()
-  
-    internal var imageView: UIImageView = {
+
+    var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-    
+
         return imageView
     }()
-  
-    internal var titleLabel: UILabel = {
+
+    var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textAlignment = .center
         label.textColor = .black
         label.numberOfLines = 2
-    
+
         return label
     }()
-  
-    internal var messageTextView: UITextView = {
+
+    var messageTextView: UITextView = {
         let textview = UITextView()
         textview.translatesAutoresizingMaskIntoConstraints = false
         textview.font = UIFont.systemFont(ofSize: 16)
@@ -92,26 +92,26 @@ open class EMAlertController: UIViewController {
         textview.backgroundColor = UIColor.clear
         textview.isScrollEnabled = false
         textview.bounces = false
-    
+
         return textview
     }()
-  
-    internal let buttonStackView: UIStackView = {
+
+    let buttonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.axis = .horizontal
-    
+
         return stackView
     }()
-  
+
     public var cornerRadius: CGFloat? {
         willSet {
             alertView.layer.cornerRadius = newValue!
         }
     }
-  
+
     public var iconImage: UIImage? {
         get {
             return imageView.image
@@ -127,7 +127,7 @@ open class EMAlertController: UIViewController {
             iconHeightConstraint?.constant = imageViewHeight
         }
     }
-  
+
     public var titleText: String? {
         get {
             return titleLabel.text
@@ -136,67 +136,67 @@ open class EMAlertController: UIViewController {
             titleLabel.text = newValue
         }
     }
-  
+
     public var messageText: String? {
         get {
             return messageTextView.text
         }
         set {
             messageTextView.text = newValue
-      
+
             guard let _ = newValue, let constraint = messageTextViewHeightConstraint else { return }
-      
+
             messageLabelHeight = 20.0
             messageTextView.removeConstraint(constraint)
             messageTextViewHeightConstraint = messageTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: messageLabelHeight)
             messageTextViewHeightConstraint!.isActive = true
         }
     }
-  
+
     /// Returns the first textField
     public var firstTextField: UITextField? {
         guard let textField = textFields.first else { return nil }
         return textField
     }
-  
+
     public var titleColor: UIColor? {
         willSet {
             titleLabel.textColor = newValue
         }
     }
-  
+
     public var messageColor: UIColor? {
         willSet {
             messageTextView.textColor = newValue
         }
     }
-  
+
     /// Alert background color
     public var backgroundColor: UIColor? {
         willSet {
             alertView.backgroundColor = newValue
         }
     }
-  
+
     public var backgroundViewColor: UIColor? {
         willSet {
             backgroundView.backgroundColor = newValue
         }
     }
-  
+
     public var backgroundViewAlpha: CGFloat? {
         willSet {
             backgroundView.alpha = newValue!
         }
     }
-  
+
     /// Spacing between actions when presenting two actions in horizontal
     public var buttonSpacing: CGFloat = 15 {
         willSet {
             buttonStackView.spacing = newValue
         }
     }
-    
+
     public var cancelable: Bool = false {
         didSet {
             if cancelable {
@@ -205,14 +205,14 @@ open class EMAlertController: UIViewController {
             }
         }
     }
-  
+
     /// A Boolean value indicating whether the message text is selectable
     public var isMessageSelectable: Bool = false {
         willSet {
             messageTextView.isSelectable = newValue
         }
     }
-  
+
     /// Defines the types of information that can be detected in the message text
     public var dataDetectorTypes: UIDataDetectorTypes? {
         willSet {
@@ -220,47 +220,47 @@ open class EMAlertController: UIViewController {
             messageTextView.dataDetectorTypes = newValue
         }
     }
-  
+
     // MARK: - Initializers
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-  
+
     /// Creates a EMAlertController object with the specified icon, title and message
     public init(icon: UIImage?, title: String?, message: String?) {
         super.init(nibName: nil, bundle: nil)
-    
+
         guard icon != nil || title != nil || message != nil else {
             fatalError("EMAlertController must have an icon, a title, or a message to display")
         }
-    
+
         (icon != nil) ? (iconImage = icon) : (imageViewHeight = 0.0)
         (title != nil) ? (titleLabelHeight = 20) : (titleLabelHeight = 0.0)
         (message != nil) ? (messageLabelHeight = 20) : (messageLabelHeight = 0.0)
-    
+
         titleText = title
         messageText = message
         messageTextView.isSelectable = isMessageSelectable
-    
+
         setUp()
     }
-  
+
     /// Creates a EMAlertController object with the specified title and message
     public convenience init(title: String?, message: String?) {
         self.init(icon: nil, title: title, message: message)
     }
-  
-    override open func viewWillAppear(_ animated: Bool) {
+
+    override open func viewWillAppear(_: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-  
+
     override open func viewDidLayoutSubviews() {
         if alertView.frame.height >= UIScreen.main.bounds.height - 80 {
             messageTextView.isScrollEnabled = true
         }
-    
+
         // This is being called when typing
         if isLaunch {
             UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveLinear, animations: {
@@ -270,21 +270,21 @@ open class EMAlertController: UIViewController {
             }, completion: nil)
         }
     }
-  
-    override open func viewWillDisappear(_ animated: Bool) {
+
+    override open func viewWillDisappear(_: Bool) {
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveLinear, animations: {
             let transform = CGAffineTransform(translationX: 0, y: 50)
             self.alertView.transform = transform
         }, completion: nil)
     }
-  
+
     override open func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-  
-    override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+
+    override open func viewWillTransition(to size: CGSize, with _: UIViewControllerTransitionCoordinator) {
         if size.height < size.width {
             alertViewHeight?.constant = size.height - 40
             iconHeightConstraint?.constant = 0
@@ -292,9 +292,9 @@ open class EMAlertController: UIViewController {
             alertViewHeight?.constant = size.height - 80
             iconHeightConstraint?.constant = imageViewHeight
         }
-    
+
         alertViewWidth?.constant = Dimension.width(from: size)
-    
+
         UIView.animate(withDuration: 0.3) {
             self.alertView.updateConstraints()
         }
@@ -307,25 +307,25 @@ extension EMAlertController {
     func setUp() {
         modalPresentationStyle = .custom
         modalTransitionStyle = .crossDissolve
-    
+
         addConstraits()
     }
-  
+
     func addConstraits() {
         view.addSubview(alertView)
         view.insertSubview(backgroundView, at: 0)
-    
+
         alertView.addSubview(imageView)
         alertView.addSubview(titleLabel)
         alertView.addSubview(messageTextView)
         alertView.addSubview(buttonStackView)
-    
+
         // backgroundView Constraints
         backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    
+
         // alertView Constraints
         alertView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor, constant: 100).isActive = true
         alertView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
@@ -333,26 +333,26 @@ extension EMAlertController {
         alertViewWidth?.isActive = true
         alertViewHeight = alertView.heightAnchor.constraint(lessThanOrEqualToConstant: view.bounds.height - 80)
         alertViewHeight?.isActive = true
-    
+
         // imageView Constraints
         imageView.topAnchor.constraint(equalTo: alertView.topAnchor, constant: 5).isActive = true
         imageView.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: Dimension.padding).isActive = true
         imageView.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -Dimension.padding).isActive = true
         iconHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: imageViewHeight)
         iconHeightConstraint?.isActive = true
-    
+
         // titleLabel Constraints
         titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: Dimension.padding).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -Dimension.padding).isActive = true
         titleLabel.sizeToFit()
-    
+
         // messageLabel Constraints
         messageTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0).isActive = true
         messageTextView.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: Dimension.padding).isActive = true
         messageTextView.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -Dimension.padding).isActive = true
         messageTextView.sizeToFit()
-    
+
         // actionStackView Constraints
         buttonStackView.topAnchor.constraint(equalTo: messageTextView.bottomAnchor, constant: 8).isActive = true
         buttonStackView.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 0).isActive = true
@@ -369,14 +369,14 @@ extension EMAlertController {
     @objc func dismissFromTap() {
         dismiss(animated: true, completion: nil)
     }
-  
+
     @objc func keyboardWillShow() {
         UIView.animate(withDuration: 0.3) {
             let transform = CGAffineTransform(translationX: 0, y: -200)
             self.alertView.transform = transform
         }
     }
-  
+
     @objc func keyboardWillHide() {
         UIView.animate(withDuration: 0.3) {
             let transform = CGAffineTransform(translationX: 0, y: -100)
@@ -390,26 +390,26 @@ extension EMAlertController {
 extension EMAlertController {
     public func addAction(_ action: EMAlertAction) {
         buttonStackView.addArrangedSubview(action)
-    
+
         if buttonStackView.arrangedSubviews.count > 2 || textFields.count > 0 {
             buttonStackView.axis = .vertical
             buttonStackViewHeightConstraint?.constant = Dimension.buttonHeight * CGFloat(buttonStackView.arrangedSubviews.count)
             buttonStackView.spacing = 0
-            
+
         } else {
             buttonStackViewHeightConstraint?.constant = Dimension.buttonHeight
             buttonStackView.axis = .horizontal
             buttonStackView.spacing = 15
         }
-    
+
         action.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
-  
-    @objc func buttonAction(sender: EMAlertAction) {
+
+    @objc func buttonAction(sender _: EMAlertAction) {
         dismiss(animated: true, completion: nil)
     }
-    
-    @objc func handleTapBehind(_ sender: Any?) {
+
+    @objc func handleTapBehind(_: Any?) {
         dismiss(animated: true, completion: nil)
     }
 }
@@ -417,15 +417,15 @@ extension EMAlertController {
 // MARK: - TextField Methods
 
 extension EMAlertController {
-    internal func addTextField(_ textfield: UITextField) {
+    func addTextField(_ textfield: UITextField) {
         textFields.append(textfield)
         buttonStackView.addArrangedSubview(textfield)
         buttonStackViewHeightConstraint?.constant = Dimension.buttonHeight * CGFloat(buttonStackView.arrangedSubviews.count)
         buttonStackView.axis = .vertical
     }
-  
+
     ///
-    public func addTextField(_ configuration: (_ textField: UITextField?) -> ()) {
+    public func addTextField(_ configuration: (_ textField: UITextField?) -> Void) {
         let textField = EMAlertTextField()
         textField.delegate = self
         configuration(textField)

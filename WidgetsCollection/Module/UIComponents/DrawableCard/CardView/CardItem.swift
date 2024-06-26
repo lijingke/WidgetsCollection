@@ -13,15 +13,14 @@ protocol CardItemDelegate: AnyObject {
 }
 
 class CardItem: UIView {
-    
     override var frame: CGRect {
         didSet {
             originalCenter = CGPoint(x: frame.size.width * 0.5, y: frame.size.height * 0.5)
         }
     }
-    
+
     weak var delegate: CardItemDelegate?
-    
+
     /// 子视图最好加在contentView上
     var contentView: UIView
     var cornerRadius: CGFloat = 5
@@ -31,7 +30,7 @@ class CardItem: UIView {
     var isDown = false
     /// 如果不想让item可以拖动可以设置为false，默认为true
     var isPan = true
-    
+
     override init(frame: CGRect) {
         originalCenter = CGPoint(x: frame.width * 0.5, y: frame.height * 0.5)
         contentView = UIView()
@@ -41,33 +40,34 @@ class CardItem: UIView {
         layout()
         isUserInteractionEnabled = false
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.frame = bounds
     }
-    
+
     private func addPanGesture() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
         addGestureRecognizer(panGesture)
     }
-    
+
     private func layout() {
         contentView.layer.cornerRadius = cornerRadius
         contentView.layer.masksToBounds = true
         /// 光栅化
         contentView.layer.shouldRasterize = true
-        
+
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 5, height: 5)
         layer.shadowRadius = 5
         layer.shadowOpacity = 0.5
     }
-    
+
     @objc private func panGesture(_ pan: UIPanGestureRecognizer) {
         guard isPan else { return }
         if pan.state == .changed {
@@ -93,7 +93,7 @@ class CardItem: UIView {
                 remove(with: .up, angle: currentAngle)
                 return
             }
-            
+
             if (frame.origin.x + frame.width > 150 && frame.origin.x < frame.width - 150) && (frame.origin.y + frame.height > 150 && frame.origin.y < frame.height - 150) {
                 UIView.animate(withDuration: 0.5) { [weak self] in
                     guard let `self` = self else { return }
@@ -111,7 +111,7 @@ class CardItem: UIView {
             }
         }
     }
-    
+
     /// 移除item
     /// - Parameters:
     ///   - direction: 移除方向
@@ -132,7 +132,7 @@ class CardItem: UIView {
                     self.center = CGPoint(x: self.frame.width + 1000, y: self.center.y - self.currentAngle * self.frame.height + angle)
                 }
 
-            }) { [weak self] (_) in
+            }) { [weak self] _ in
                 guard let `self` = self else { return }
                 self.removeFromSuperview()
                 self.delegate?.removeFromSuperView(item: self)
@@ -142,5 +142,4 @@ class CardItem: UIView {
             delegate?.removeFromSuperView(item: self)
         }
     }
-    
 }

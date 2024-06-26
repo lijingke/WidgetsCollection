@@ -10,19 +10,21 @@ import Foundation
 import UIKit
 
 class ProcessSplitCell: UITableViewCell {
-    
     // MARK: Life Cycle
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Lazy Get
+
     lazy var splitLine: UIView = {
         let line = UIView()
         line.backgroundColor = UIColor(hexString: "#FF6770")
@@ -37,6 +39,7 @@ extension ProcessSplitCell {
 }
 
 // MARK: - UI
+
 extension ProcessSplitCell {
     private func setupUI() {
         contentView.addSubview(splitLine)

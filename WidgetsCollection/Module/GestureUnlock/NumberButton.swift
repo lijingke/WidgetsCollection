@@ -9,19 +9,18 @@
 import UIKit
 
 class NumberButton: UIView {
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         layer.borderColor = UIColor.hexStringToColor(hexString: ColorOfWaveBlackColor).cgColor
         layer.borderWidth = 5.0
-        layer.cornerRadius = self.width * 0.5
+        layer.cornerRadius = width * 0.5
         layer.masksToBounds = true
         isUserInteractionEnabled = false
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

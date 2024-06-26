@@ -6,11 +6,10 @@
 //  Copyright © 2019 李京珂. All rights reserved.
 //
 
-import UIKit
 import Tiercel
+import UIKit
 
 class PDFDownloadViewController: UIViewController {
-    
     //    var sessionManager = appDelegate.sessionManager
     fileprivate var sessionManager: SessionManager = {
         var configuration = SessionConfiguration()
@@ -19,25 +18,25 @@ class PDFDownloadViewController: UIViewController {
         let manager = SessionManager("default", configuration: configuration, operationQueue: DispatchQueue(label: "com.Tiercel.SessionManager.operationQueue"))
         return manager
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         creatData()
         addListener()
     }
-    
+
     deinit {
         print("bye")
     }
-    
+
     fileprivate func configureUI() {
         view.addSubview(mainView)
-        mainView.snp.makeConstraints { (make) in
+        mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
+
     lazy var mainView: PDFDownloadView = {
         let view = PDFDownloadView()
         view.delegate = self
@@ -46,19 +45,19 @@ class PDFDownloadViewController: UIViewController {
 }
 
 // MARK: - Setup Data
-extension PDFDownloadViewController {
-    
+
+private extension PDFDownloadViewController {
     /// 检查文件是否已下载
-    fileprivate func checkHasDownload(_ filePath: String) -> Bool {
-        let task = self.sessionManager.fetchTask(filePath)
+    func checkHasDownload(_ filePath: String) -> Bool {
+        let task = sessionManager.fetchTask(filePath)
         let hasDownload = sessionManager.cache.fileExists(fileName: task?.fileName ?? "")
         return hasDownload
     }
-    
+
     /// 创建数据源
-    fileprivate func creatData() {
+    func creatData() {
         var temArr = [PDFEntity]()
-        for i in 0...7 {
+        for i in 0 ... 7 {
             var entity = PDFEntity()
             switch i {
             case 0:
@@ -104,23 +103,23 @@ extension PDFDownloadViewController {
             default:
                 break
             }
-            
+
             temArr.append(entity)
         }
-        
-        let dataSource = temArr.compactMap { (element) -> PDFEntity in
+
+        let dataSource = temArr.compactMap { element -> PDFEntity in
             var entity: PDFEntity = element
             entity.hasDownload = checkHasDownload(entity.filePath ?? "")
             return entity
         }
-        
+
         let groupData = dataSource.clump(by: 3)
         mainView.setupData(groupData)
     }
-    
 }
 
 // MARK: - PDFDownloadDelegate
+
 extension PDFDownloadViewController: PDFDownloadDelegate {
     func downloadCellDidClicked(_ cell: PDFCollectionCell) {
         let data = cell.entity
@@ -131,15 +130,14 @@ extension PDFDownloadViewController: PDFDownloadDelegate {
             vc.mainView.filePath = task?.filePath
             vc.mainView.headInfoView.pdfInfo = data
             navigationController?.pushViewController(vc, animated: true)
-        }else {
-            
+        } else {
             let downloadTask = sessionManager.download(data?.filePath ?? "")
-            
-            downloadTask?.progress(onMainQueue: true, handler: { (task) in
+
+            downloadTask?.progress(onMainQueue: true, handler: { task in
                 let progress = task.progress.fractionCompleted
                 print("下载中，进度：\(progress)")
                 cell.setProgress(progress: Float(progress))
-            }).completion(handler: { [weak self] (task) in
+            }).completion(handler: { [weak self] task in
                 if task.status == .succeeded {
                     // 下载成功
                     let result = self?.checkHasDownload(cell.entity?.filePath ?? "")
@@ -150,18 +148,15 @@ extension PDFDownloadViewController: PDFDownloadDelegate {
                     // 其他状态
                 }
             })
-            
         }
-        
     }
-    
 }
 
-extension PDFDownloadViewController {
-    fileprivate func addListener() {
-        NotificationCenter.default.addObserver(forName: DownloadTask.didCompleteNotification, object: nil, queue: nil) { (notification) in
-            guard let task = notification.downloadTask else { return }
-            print(task.status)
+private extension PDFDownloadViewController {
+    func addListener() {
+        NotificationCenter.default.addObserver(forName: DownloadTask.didCompleteNotification, object: nil, queue: nil) { _ in
+//            guard let task = notification.userInfo?[downloadTaskKey] as? DownloadTask else { return }
+//            print(task.status)
         }
     }
 }

@@ -10,91 +10,91 @@ import Foundation
 
 struct AppInfoModel {
     /// 年龄分级
-    var advisories : [String]?
+    var advisories: [String]?
     /// Apple TV 预览
-    var appletvScreenshotUrls : [String]?
+    var appletvScreenshotUrls: [String]?
     /// 开发者Id
-    var artistId : Int?
+    var artistId: Int?
     /// 应用名
-    var artistName : String?
+    var artistName: String?
     /// 开发者应用页
-    var artistViewUrl : String?
+    var artistViewUrl: String?
     /// 应用图标，尺寸为100x100
-    var artworkUrl100 : String?
+    var artworkUrl100: String?
     /// 应用图标，尺寸为512x512
-    var artworkUrl512 : String?
+    var artworkUrl512: String?
     /// 应用图标，尺寸为60x60
-    var artworkUrl60 : String?
+    var artworkUrl60: String?
     /// 应用总的平均分
-    var averageUserRating : Double?
+    var averageUserRating: Double?
     /// 应用当前版本的平均分
-    var averageUserRatingForCurrentVersion : Double?
+    var averageUserRatingForCurrentVersion: Double?
     /// bundleId
-    var bundleId : String?
+    var bundleId: String?
     /// 年龄分级
-    var contentAdvisoryRating : String?
+    var contentAdvisoryRating: String?
     /// 货币单位
-    var currency : String?
+    var currency: String?
     /// 当前版本发布时间
-    var currentVersionReleaseDate : String?
+    var currentVersionReleaseDate: String?
     /// 应用描述
-    var description : String?
+    var description: String?
     /// 特性
-    var features : [String]?
+    var features: [String]?
     /// 应用大小
-    var fileSizeBytes : String?
+    var fileSizeBytes: String?
     /// 应用价格
-    var formattedPrice : String?
+    var formattedPrice: String?
     /// 分类Id
-    var genreIds : [String]?
+    var genreIds: [String]?
     /// 应用分类
-    var genres : [String]?
+    var genres: [String]?
     /// iPad预览图
-    var ipadScreenshotUrls : [String]?
+    var ipadScreenshotUrls: [String]?
     /// 是否支持游戏中心
-    var isGameCenterEnabled : Bool?
+    var isGameCenterEnabled: Bool?
     /// 是否支持批量购买
-    var isVppDeviceBasedLicensingEnabled : Bool?
+    var isVppDeviceBasedLicensingEnabled: Bool?
     /// iTunes种类
-    var kind : String?
+    var kind: String?
     /// 语言
-    var languageCodesISO2A : [String]?
+    var languageCodesISO2A: [String]?
     /// 系统要求
-    var minimumOsVersion : String?
+    var minimumOsVersion: String?
     /// 价格
-    var price : Float?
+    var price: Float?
     /// 主分类Id
-    var primaryGenreId : Int?
+    var primaryGenreId: Int?
     /// 主分类名
-    var primaryGenreName : String?
+    var primaryGenreName: String?
     /// 发布时间
-    var releaseDate : String?
+    var releaseDate: String?
     /// 更新日志
-    var releaseNotes : String?
+    var releaseNotes: String?
     /// 预览
-    var screenshotUrls : [String]?
+    var screenshotUrls: [String]?
     /// 开发者名称
-    var sellerName : String?
+    var sellerName: String?
     /// 开发者网站
-    var sellerUrl : String?
+    var sellerUrl: String?
     /// 兼容性
-    var supportedDevices : [String]?
+    var supportedDevices: [String]?
     /// 审查名称
-    var trackCensoredName : String?
+    var trackCensoredName: String?
     /// 评级
-    var trackContentRating : String?
+    var trackContentRating: String?
     /// 应用程序ID
-    var trackId : Int?
+    var trackId: Int?
     /// 应用程序名称
-    var trackName : String?
+    var trackName: String?
     /// 应用程序介绍网址
-    var trackViewUrl : String?
+    var trackViewUrl: String?
     /// 用户评级
-    var userRatingCount : Int?
+    var userRatingCount: Int?
     /// 当前评分
-    var userRatingCountForCurrentVersion : Int?
+    var userRatingCountForCurrentVersion: Int?
     /// 版本号
-    var version : String?
+    var version: String?
     /// 类型，图书或应用
-    var wrapperType : String?
+    var wrapperType: String?
 }

@@ -4,1099 +4,355 @@
 //
 
 import Foundation
-import Rswift
-import UIKit
+import RswiftResources
 
-/// This `R` struct is generated and contains references to static resources.
-struct R: Rswift.Validatable {
-  fileprivate static let applicationLocale = hostingBundle.preferredLocalizations.first.flatMap { Locale(identifier: $0) } ?? Locale.current
-  fileprivate static let hostingBundle = Bundle(for: R.Class.self)
-
-  /// Find first language and bundle for which the table exists
-  fileprivate static func localeBundle(tableName: String, preferredLanguages: [String]) -> (Foundation.Locale, Foundation.Bundle)? {
-    // Filter preferredLanguages to localizations, use first locale
-    var languages = preferredLanguages
-      .map { Locale(identifier: $0) }
-      .prefix(1)
-      .flatMap { locale -> [String] in
-        if hostingBundle.localizations.contains(locale.identifier) {
-          if let language = locale.languageCode, hostingBundle.localizations.contains(language) {
-            return [locale.identifier, language]
-          } else {
-            return [locale.identifier]
-          }
-        } else if let language = locale.languageCode, hostingBundle.localizations.contains(language) {
-          return [language]
-        } else {
-          return []
-        }
-      }
-
-    // If there's no languages, use development language as backstop
-    if languages.isEmpty {
-      if let developmentLocalization = hostingBundle.developmentLocalization {
-        languages = [developmentLocalization]
-      }
-    } else {
-      // Insert Base as second item (between locale identifier and languageCode)
-      languages.insert("Base", at: 1)
-
-      // Add development language as backstop
-      if let developmentLocalization = hostingBundle.developmentLocalization {
-        languages.append(developmentLocalization)
-      }
-    }
-
-    // Find first language for which table exists
-    // Note: key might not exist in chosen language (in that case, key will be shown)
-    for language in languages {
-      if let lproj = hostingBundle.url(forResource: language, withExtension: "lproj"),
-         let lbundle = Bundle(url: lproj)
-      {
-        let strings = lbundle.url(forResource: tableName, withExtension: "strings")
-        let stringsdict = lbundle.url(forResource: tableName, withExtension: "stringsdict")
-
-        if strings != nil || stringsdict != nil {
-          return (Locale(identifier: language), lbundle)
-        }
-      }
-    }
-
-    // If table is available in main bundle, don't look for localized resources
-    let strings = hostingBundle.url(forResource: tableName, withExtension: "strings", subdirectory: nil, localization: nil)
-    let stringsdict = hostingBundle.url(forResource: tableName, withExtension: "stringsdict", subdirectory: nil, localization: nil)
-
-    if strings != nil || stringsdict != nil {
-      return (applicationLocale, hostingBundle)
-    }
-
-    // If table is not found for requested languages, key will be shown
-    return nil
-  }
-
-  /// Load string from Info.plist file
-  fileprivate static func infoPlistString(path: [String], key: String) -> String? {
-    var dict = hostingBundle.infoDictionary
-    for step in path {
-      guard let obj = dict?[step] as? [String: Any] else { return nil }
-      dict = obj
-    }
-    return dict?[key] as? String
-  }
-
-  static func validate() throws {
-    try intern.validate()
-  }
-
-  /// This `R.image` struct is generated, and contains static references to 110 images.
-  struct image {
-    /// Image `AlbumAddBtn`.
-    static let albumAddBtn = Rswift.ImageResource(bundle: R.hostingBundle, name: "AlbumAddBtn")
-    /// Image `Bg`.
-    static let bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "Bg")
-    /// Image `ECG_Auth_Instruct`.
-    static let ecg_Auth_Instruct = Rswift.ImageResource(bundle: R.hostingBundle, name: "ECG_Auth_Instruct")
-    /// Image `ECG_HeartRate_Icon`.
-    static let ecg_HeartRate_Icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "ECG_HeartRate_Icon")
-    /// Image `ECG_Instruct`.
-    static let ecg_Instruct = Rswift.ImageResource(bundle: R.hostingBundle, name: "ECG_Instruct")
-    /// Image `ECG_Logo`.
-    static let ecg_Logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "ECG_Logo")
-    /// Image `ECG_Watch`.
-    static let ecg_Watch = Rswift.ImageResource(bundle: R.hostingBundle, name: "ECG_Watch")
-    /// Image `Photo_delete`.
-    static let photo_delete = Rswift.ImageResource(bundle: R.hostingBundle, name: "Photo_delete")
-    /// Image `Pointer`.
-    static let pointer = Rswift.ImageResource(bundle: R.hostingBundle, name: "Pointer")
-    /// Image `ProcessCompleted`.
-    static let processCompleted = Rswift.ImageResource(bundle: R.hostingBundle, name: "ProcessCompleted")
-    /// Image `ProcessEdit`.
-    static let processEdit = Rswift.ImageResource(bundle: R.hostingBundle, name: "ProcessEdit")
-    /// Image `ProcessInProgress`.
-    static let processInProgress = Rswift.ImageResource(bundle: R.hostingBundle, name: "ProcessInProgress")
-    /// Image `ProcessIncomplete`.
-    static let processIncomplete = Rswift.ImageResource(bundle: R.hostingBundle, name: "ProcessIncomplete")
-    /// Image `ProcessTips`.
-    static let processTips = Rswift.ImageResource(bundle: R.hostingBundle, name: "ProcessTips")
-    /// Image `ProcessWait`.
-    static let processWait = Rswift.ImageResource(bundle: R.hostingBundle, name: "ProcessWait")
-    /// Image `SpongeBob.gif`.
-    static let spongeBobGif = Rswift.ImageResource(bundle: R.hostingBundle, name: "SpongeBob.gif")
-    /// Image `Van Gogh_Starry Night`.
-    static let vanGogh_StarryNight = Rswift.ImageResource(bundle: R.hostingBundle, name: "Van Gogh_Starry Night")
-    /// Image `WeChat_Avatar_10`.
-    static let weChat_Avatar_10 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_10")
-    /// Image `WeChat_Avatar_11`.
-    static let weChat_Avatar_11 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_11")
-    /// Image `WeChat_Avatar_12`.
-    static let weChat_Avatar_12 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_12")
-    /// Image `WeChat_Avatar_13`.
-    static let weChat_Avatar_13 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_13")
-    /// Image `WeChat_Avatar_14`.
-    static let weChat_Avatar_14 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_14")
-    /// Image `WeChat_Avatar_15`.
-    static let weChat_Avatar_15 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_15")
-    /// Image `WeChat_Avatar_16`.
-    static let weChat_Avatar_16 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_16")
-    /// Image `WeChat_Avatar_17`.
-    static let weChat_Avatar_17 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_17")
-    /// Image `WeChat_Avatar_18`.
-    static let weChat_Avatar_18 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_18")
-    /// Image `WeChat_Avatar_19`.
-    static let weChat_Avatar_19 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_19")
-    /// Image `WeChat_Avatar_1`.
-    static let weChat_Avatar_1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_1")
-    /// Image `WeChat_Avatar_20`.
-    static let weChat_Avatar_20 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_20")
-    /// Image `WeChat_Avatar_21`.
-    static let weChat_Avatar_21 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_21")
-    /// Image `WeChat_Avatar_22`.
-    static let weChat_Avatar_22 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_22")
-    /// Image `WeChat_Avatar_23`.
-    static let weChat_Avatar_23 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_23")
-    /// Image `WeChat_Avatar_24`.
-    static let weChat_Avatar_24 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_24")
-    /// Image `WeChat_Avatar_25`.
-    static let weChat_Avatar_25 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_25")
-    /// Image `WeChat_Avatar_26`.
-    static let weChat_Avatar_26 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_26")
-    /// Image `WeChat_Avatar_2`.
-    static let weChat_Avatar_2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_2")
-    /// Image `WeChat_Avatar_3`.
-    static let weChat_Avatar_3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_3")
-    /// Image `WeChat_Avatar_4`.
-    static let weChat_Avatar_4 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_4")
-    /// Image `WeChat_Avatar_5`.
-    static let weChat_Avatar_5 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_5")
-    /// Image `WeChat_Avatar_6`.
-    static let weChat_Avatar_6 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_6")
-    /// Image `WeChat_Avatar_7`.
-    static let weChat_Avatar_7 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_7")
-    /// Image `WeChat_Avatar_8`.
-    static let weChat_Avatar_8 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_8")
-    /// Image `WeChat_Avatar_9`.
-    static let weChat_Avatar_9 = Rswift.ImageResource(bundle: R.hostingBundle, name: "WeChat_Avatar_9")
-    /// Image `arrow_down`.
-    static let arrow_down = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_down")
-    /// Image `arrow_up`.
-    static let arrow_up = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_up")
-    /// Image `arrow`.
-    static let arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow")
-    /// Image `cat`.
-    static let cat = Rswift.ImageResource(bundle: R.hostingBundle, name: "cat")
-    /// Image `chat_list_add`.
-    static let chat_list_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "chat_list_add")
-    /// Image `chat_list_filter`.
-    static let chat_list_filter = Rswift.ImageResource(bundle: R.hostingBundle, name: "chat_list_filter")
-    /// Image `chat_tools_add`.
-    static let chat_tools_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "chat_tools_add")
-    /// Image `chat_tools_photo`.
-    static let chat_tools_photo = Rswift.ImageResource(bundle: R.hostingBundle, name: "chat_tools_photo")
-    /// Image `chat_tools_pic`.
-    static let chat_tools_pic = Rswift.ImageResource(bundle: R.hostingBundle, name: "chat_tools_pic")
-    /// Image `chat_tools_reply`.
-    static let chat_tools_reply = Rswift.ImageResource(bundle: R.hostingBundle, name: "chat_tools_reply")
-    /// Image `chat_tools_voice`.
-    static let chat_tools_voice = Rswift.ImageResource(bundle: R.hostingBundle, name: "chat_tools_voice")
-    /// Image `clock`.
-    static let clock = Rswift.ImageResource(bundle: R.hostingBundle, name: "clock")
-    /// Image `cover_jrsy`.
-    static let cover_jrsy = Rswift.ImageResource(bundle: R.hostingBundle, name: "cover_jrsy")
-    /// Image `cover_lb`.
-    static let cover_lb = Rswift.ImageResource(bundle: R.hostingBundle, name: "cover_lb")
-    /// Image `cover_md`.
-    static let cover_md = Rswift.ImageResource(bundle: R.hostingBundle, name: "cover_md")
-    /// Image `cover_mfb`.
-    static let cover_mfb = Rswift.ImageResource(bundle: R.hostingBundle, name: "cover_mfb")
-    /// Image `cover_rxg`.
-    static let cover_rxg = Rswift.ImageResource(bundle: R.hostingBundle, name: "cover_rxg")
-    /// Image `cover_szdsyyyt`.
-    static let cover_szdsyyyt = Rswift.ImageResource(bundle: R.hostingBundle, name: "cover_szdsyyyt")
-    /// Image `cover_szqpz`.
-    static let cover_szqpz = Rswift.ImageResource(bundle: R.hostingBundle, name: "cover_szqpz")
-    /// Image `cover_venereum`.
-    static let cover_venereum = Rswift.ImageResource(bundle: R.hostingBundle, name: "cover_venereum")
-    /// Image `default_avatar_100`.
-    static let default_avatar_100 = Rswift.ImageResource(bundle: R.hostingBundle, name: "default_avatar_100")
-    /// Image `default_avatar_80`.
-    static let default_avatar_80 = Rswift.ImageResource(bundle: R.hostingBundle, name: "default_avatar_80")
-    /// Image `drawOut`.
-    static let drawOut = Rswift.ImageResource(bundle: R.hostingBundle, name: "drawOut")
-    /// Image `edit_delete`.
-    static let edit_delete = Rswift.ImageResource(bundle: R.hostingBundle, name: "edit_delete")
-    /// Image `elephant`.
-    static let elephant = Rswift.ImageResource(bundle: R.hostingBundle, name: "elephant")
-    /// Image `gift1`.
-    static let gift1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift1")
-    /// Image `gift2`.
-    static let gift2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift2")
-    /// Image `gift3`.
-    static let gift3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift3")
-    /// Image `gift4`.
-    static let gift4 = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift4")
-    /// Image `gift5`.
-    static let gift5 = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift5")
-    /// Image `gift6`.
-    static let gift6 = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift6")
-    /// Image `gift7`.
-    static let gift7 = Rswift.ImageResource(bundle: R.hostingBundle, name: "gift7")
-    /// Image `giftEmpty`.
-    static let giftEmpty = Rswift.ImageResource(bundle: R.hostingBundle, name: "giftEmpty")
-    /// Image `icon_download`.
-    static let icon_download = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_download")
-    /// Image `icon_plus`.
-    static let icon_plus = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_plus")
-    /// Image `icon_read`.
-    static let icon_read = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_read")
-    /// Image `img_00`.
-    static let img_00 = Rswift.ImageResource(bundle: R.hostingBundle, name: "img_00")
-    /// Image `img_01`.
-    static let img_01 = Rswift.ImageResource(bundle: R.hostingBundle, name: "img_01")
-    /// Image `img_02`.
-    static let img_02 = Rswift.ImageResource(bundle: R.hostingBundle, name: "img_02")
-    /// Image `img_03`.
-    static let img_03 = Rswift.ImageResource(bundle: R.hostingBundle, name: "img_03")
-    /// Image `img_04`.
-    static let img_04 = Rswift.ImageResource(bundle: R.hostingBundle, name: "img_04")
-    /// Image `img_05`.
-    static let img_05 = Rswift.ImageResource(bundle: R.hostingBundle, name: "img_05")
-    /// Image `kt_sh`.
-    static let kt_sh = Rswift.ImageResource(bundle: R.hostingBundle, name: "kt_sh")
-    /// Image `lattice`.
-    static let lattice = Rswift.ImageResource(bundle: R.hostingBundle, name: "lattice")
-    /// Image `loading.gif`.
-    static let loadingGif = Rswift.ImageResource(bundle: R.hostingBundle, name: "loading.gif")
-    /// Image `member_add`.
-    static let member_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "member_add")
-    /// Image `nav_back_black`.
-    static let nav_back_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "nav_back_black")
-    /// Image `option_radio_active`.
-    static let option_radio_active = Rswift.ImageResource(bundle: R.hostingBundle, name: "option_radio_active")
-    /// Image `option_radio_normal`.
-    static let option_radio_normal = Rswift.ImageResource(bundle: R.hostingBundle, name: "option_radio_normal")
-    /// Image `placeholder`.
-    static let placeholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "placeholder")
-    /// Image `rabbit`.
-    static let rabbit = Rswift.ImageResource(bundle: R.hostingBundle, name: "rabbit")
-    /// Image `setting_add`.
-    static let setting_add = Rswift.ImageResource(bundle: R.hostingBundle, name: "setting_add")
-    /// Image `smile_face_1`.
-    static let smile_face_1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "smile_face_1")
-    /// Image `smile_face_2`.
-    static let smile_face_2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "smile_face_2")
-    /// Image `smile_neutral`.
-    static let smile_neutral = Rswift.ImageResource(bundle: R.hostingBundle, name: "smile_neutral")
-    /// Image `smile_rotten_1`.
-    static let smile_rotten_1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "smile_rotten_1")
-    /// Image `smile_rotten_2`.
-    static let smile_rotten_2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "smile_rotten_2")
-    /// Image `star`.
-    static let star = Rswift.ImageResource(bundle: R.hostingBundle, name: "star")
-    /// Image `start_button`.
-    static let start_button = Rswift.ImageResource(bundle: R.hostingBundle, name: "start_button")
-    /// Image `tab_me_normal`.
-    static let tab_me_normal = Rswift.ImageResource(bundle: R.hostingBundle, name: "tab_me_normal")
-    /// Image `tab_work_normal`.
-    static let tab_work_normal = Rswift.ImageResource(bundle: R.hostingBundle, name: "tab_work_normal")
-    /// Image `turntableBg`.
-    static let turntableBg = Rswift.ImageResource(bundle: R.hostingBundle, name: "turntableBg")
-    /// Image `voice1`.
-    static let voice1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "voice1")
-    /// Image `voice2`.
-    static let voice2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "voice2")
-    /// Image `voice3`.
-    static let voice3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "voice3")
-    /// Image `主页_我的`.
-    static let 主页_我的 = Rswift.ImageResource(bundle: R.hostingBundle, name: "主页_我的")
-    /// Image `对勾`.
-    static let 对勾 = Rswift.ImageResource(bundle: R.hostingBundle, name: "对勾")
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "AlbumAddBtn", bundle: ..., traitCollection: ...)`
-    static func albumAddBtn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.albumAddBtn, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "Bg", bundle: ..., traitCollection: ...)`
-    static func bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.bg, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ECG_Auth_Instruct", bundle: ..., traitCollection: ...)`
-    static func ecg_Auth_Instruct(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.ecg_Auth_Instruct, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ECG_HeartRate_Icon", bundle: ..., traitCollection: ...)`
-    static func ecg_HeartRate_Icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.ecg_HeartRate_Icon, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ECG_Instruct", bundle: ..., traitCollection: ...)`
-    static func ecg_Instruct(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.ecg_Instruct, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ECG_Logo", bundle: ..., traitCollection: ...)`
-    static func ecg_Logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.ecg_Logo, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ECG_Watch", bundle: ..., traitCollection: ...)`
-    static func ecg_Watch(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.ecg_Watch, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "Photo_delete", bundle: ..., traitCollection: ...)`
-    static func photo_delete(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.photo_delete, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "Pointer", bundle: ..., traitCollection: ...)`
-    static func pointer(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.pointer, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ProcessCompleted", bundle: ..., traitCollection: ...)`
-    static func processCompleted(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.processCompleted, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ProcessEdit", bundle: ..., traitCollection: ...)`
-    static func processEdit(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.processEdit, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ProcessInProgress", bundle: ..., traitCollection: ...)`
-    static func processInProgress(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.processInProgress, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ProcessIncomplete", bundle: ..., traitCollection: ...)`
-    static func processIncomplete(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.processIncomplete, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ProcessTips", bundle: ..., traitCollection: ...)`
-    static func processTips(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.processTips, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ProcessWait", bundle: ..., traitCollection: ...)`
-    static func processWait(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.processWait, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "SpongeBob.gif", bundle: ..., traitCollection: ...)`
-    static func spongeBobGif(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.spongeBobGif, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "Van Gogh_Starry Night", bundle: ..., traitCollection: ...)`
-    static func vanGogh_StarryNight(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.vanGogh_StarryNight, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_1", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_1, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_10", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_10(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_10, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_11", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_11(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_11, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_12", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_12(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_12, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_13", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_13(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_13, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_14", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_14(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_14, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_15", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_15(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_15, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_16", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_16(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_16, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_17", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_17(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_17, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_18", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_18(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_18, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_19", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_19(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_19, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_2", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_2, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_20", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_20(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_20, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_21", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_21(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_21, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_22", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_22(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_22, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_23", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_23(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_23, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_24", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_24(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_24, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_25", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_25(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_25, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_26", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_26(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_26, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_3", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_3, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_4", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_4, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_5", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_5(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_5, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_6", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_6(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_6, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_7", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_7(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_7, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_8", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_8(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_8, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "WeChat_Avatar_9", bundle: ..., traitCollection: ...)`
-    static func weChat_Avatar_9(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.weChat_Avatar_9, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "arrow", bundle: ..., traitCollection: ...)`
-    static func arrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.arrow, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "arrow_down", bundle: ..., traitCollection: ...)`
-    static func arrow_down(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.arrow_down, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "arrow_up", bundle: ..., traitCollection: ...)`
-    static func arrow_up(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.arrow_up, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "cat", bundle: ..., traitCollection: ...)`
-    static func cat(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.cat, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "chat_list_add", bundle: ..., traitCollection: ...)`
-    static func chat_list_add(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.chat_list_add, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "chat_list_filter", bundle: ..., traitCollection: ...)`
-    static func chat_list_filter(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.chat_list_filter, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "chat_tools_add", bundle: ..., traitCollection: ...)`
-    static func chat_tools_add(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.chat_tools_add, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "chat_tools_photo", bundle: ..., traitCollection: ...)`
-    static func chat_tools_photo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.chat_tools_photo, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "chat_tools_pic", bundle: ..., traitCollection: ...)`
-    static func chat_tools_pic(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.chat_tools_pic, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "chat_tools_reply", bundle: ..., traitCollection: ...)`
-    static func chat_tools_reply(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.chat_tools_reply, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "chat_tools_voice", bundle: ..., traitCollection: ...)`
-    static func chat_tools_voice(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.chat_tools_voice, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "clock", bundle: ..., traitCollection: ...)`
-    static func clock(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.clock, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "cover_jrsy", bundle: ..., traitCollection: ...)`
-    static func cover_jrsy(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.cover_jrsy, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "cover_lb", bundle: ..., traitCollection: ...)`
-    static func cover_lb(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.cover_lb, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "cover_md", bundle: ..., traitCollection: ...)`
-    static func cover_md(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.cover_md, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "cover_mfb", bundle: ..., traitCollection: ...)`
-    static func cover_mfb(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.cover_mfb, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "cover_rxg", bundle: ..., traitCollection: ...)`
-    static func cover_rxg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.cover_rxg, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "cover_szdsyyyt", bundle: ..., traitCollection: ...)`
-    static func cover_szdsyyyt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.cover_szdsyyyt, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "cover_szqpz", bundle: ..., traitCollection: ...)`
-    static func cover_szqpz(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.cover_szqpz, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "cover_venereum", bundle: ..., traitCollection: ...)`
-    static func cover_venereum(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.cover_venereum, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "default_avatar_100", bundle: ..., traitCollection: ...)`
-    static func default_avatar_100(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.default_avatar_100, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "default_avatar_80", bundle: ..., traitCollection: ...)`
-    static func default_avatar_80(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.default_avatar_80, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "drawOut", bundle: ..., traitCollection: ...)`
-    static func drawOut(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.drawOut, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "edit_delete", bundle: ..., traitCollection: ...)`
-    static func edit_delete(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.edit_delete, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "elephant", bundle: ..., traitCollection: ...)`
-    static func elephant(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.elephant, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "gift1", bundle: ..., traitCollection: ...)`
-    static func gift1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.gift1, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "gift2", bundle: ..., traitCollection: ...)`
-    static func gift2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.gift2, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "gift3", bundle: ..., traitCollection: ...)`
-    static func gift3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.gift3, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "gift4", bundle: ..., traitCollection: ...)`
-    static func gift4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.gift4, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "gift5", bundle: ..., traitCollection: ...)`
-    static func gift5(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.gift5, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "gift6", bundle: ..., traitCollection: ...)`
-    static func gift6(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.gift6, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "gift7", bundle: ..., traitCollection: ...)`
-    static func gift7(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.gift7, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "giftEmpty", bundle: ..., traitCollection: ...)`
-    static func giftEmpty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.giftEmpty, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "icon_download", bundle: ..., traitCollection: ...)`
-    static func icon_download(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_download, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "icon_plus", bundle: ..., traitCollection: ...)`
-    static func icon_plus(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_plus, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "icon_read", bundle: ..., traitCollection: ...)`
-    static func icon_read(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon_read, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "img_00", bundle: ..., traitCollection: ...)`
-    static func img_00(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.img_00, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "img_01", bundle: ..., traitCollection: ...)`
-    static func img_01(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.img_01, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "img_02", bundle: ..., traitCollection: ...)`
-    static func img_02(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.img_02, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "img_03", bundle: ..., traitCollection: ...)`
-    static func img_03(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.img_03, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "img_04", bundle: ..., traitCollection: ...)`
-    static func img_04(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.img_04, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "img_05", bundle: ..., traitCollection: ...)`
-    static func img_05(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.img_05, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "kt_sh", bundle: ..., traitCollection: ...)`
-    static func kt_sh(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.kt_sh, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "lattice", bundle: ..., traitCollection: ...)`
-    static func lattice(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.lattice, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "loading.gif", bundle: ..., traitCollection: ...)`
-    static func loadingGif(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.loadingGif, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "member_add", bundle: ..., traitCollection: ...)`
-    static func member_add(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.member_add, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "nav_back_black", bundle: ..., traitCollection: ...)`
-    static func nav_back_black(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.nav_back_black, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "option_radio_active", bundle: ..., traitCollection: ...)`
-    static func option_radio_active(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.option_radio_active, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "option_radio_normal", bundle: ..., traitCollection: ...)`
-    static func option_radio_normal(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.option_radio_normal, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "placeholder", bundle: ..., traitCollection: ...)`
-    static func placeholder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.placeholder, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "rabbit", bundle: ..., traitCollection: ...)`
-    static func rabbit(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.rabbit, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "setting_add", bundle: ..., traitCollection: ...)`
-    static func setting_add(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.setting_add, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "smile_face_1", bundle: ..., traitCollection: ...)`
-    static func smile_face_1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.smile_face_1, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "smile_face_2", bundle: ..., traitCollection: ...)`
-    static func smile_face_2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.smile_face_2, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "smile_neutral", bundle: ..., traitCollection: ...)`
-    static func smile_neutral(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.smile_neutral, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "smile_rotten_1", bundle: ..., traitCollection: ...)`
-    static func smile_rotten_1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.smile_rotten_1, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "smile_rotten_2", bundle: ..., traitCollection: ...)`
-    static func smile_rotten_2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.smile_rotten_2, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "star", bundle: ..., traitCollection: ...)`
-    static func star(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.star, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "start_button", bundle: ..., traitCollection: ...)`
-    static func start_button(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.start_button, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "tab_me_normal", bundle: ..., traitCollection: ...)`
-    static func tab_me_normal(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.tab_me_normal, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "tab_work_normal", bundle: ..., traitCollection: ...)`
-    static func tab_work_normal(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.tab_work_normal, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "turntableBg", bundle: ..., traitCollection: ...)`
-    static func turntableBg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.turntableBg, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "voice1", bundle: ..., traitCollection: ...)`
-    static func voice1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.voice1, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "voice2", bundle: ..., traitCollection: ...)`
-    static func voice2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.voice2, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "voice3", bundle: ..., traitCollection: ...)`
-    static func voice3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.voice3, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "主页_我的", bundle: ..., traitCollection: ...)`
-    static func 主页_我的(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.主页_我的, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "对勾", bundle: ..., traitCollection: ...)`
-    static func 对勾(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.对勾, compatibleWith: traitCollection)
-    }
-    #endif
-
-    fileprivate init() {}
-  }
-
-  fileprivate struct intern: Rswift.Validatable {
-    fileprivate static func validate() throws {
-      // There are no resources to validate
-    }
-
-    fileprivate init() {}
-  }
-
-  fileprivate class Class {}
-
-  fileprivate init() {}
-}
+private class BundleFinder {}
+let R = _R(bundle: Bundle(for: BundleFinder.self))
 
 struct _R {
-  fileprivate init() {}
+  let bundle: Foundation.Bundle
+  var image: image { .init(bundle: bundle) }
+
+  func image(bundle: Foundation.Bundle) -> image {
+    .init(bundle: bundle)
+  }
+  func validate() throws {
+
+  }
+
+
+  /// This `_R.image` struct is generated, and contains static references to 110 images.
+  struct image {
+    let bundle: Foundation.Bundle
+
+    /// Image `AlbumAddBtn`.
+    var albumAddBtn: RswiftResources.ImageResource { .init(name: "AlbumAddBtn", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `Bg`.
+    var bg: RswiftResources.ImageResource { .init(name: "Bg", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `ECG_Auth_Instruct`.
+    var ecg_Auth_Instruct: RswiftResources.ImageResource { .init(name: "ECG_Auth_Instruct", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `ECG_HeartRate_Icon`.
+    var ecg_HeartRate_Icon: RswiftResources.ImageResource { .init(name: "ECG_HeartRate_Icon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `ECG_Instruct`.
+    var ecg_Instruct: RswiftResources.ImageResource { .init(name: "ECG_Instruct", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `ECG_Logo`.
+    var ecg_Logo: RswiftResources.ImageResource { .init(name: "ECG_Logo", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `ECG_Watch`.
+    var ecg_Watch: RswiftResources.ImageResource { .init(name: "ECG_Watch", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `Photo_delete`.
+    var photo_delete: RswiftResources.ImageResource { .init(name: "Photo_delete", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `Pointer`.
+    var pointer: RswiftResources.ImageResource { .init(name: "Pointer", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `ProcessCompleted`.
+    var processCompleted: RswiftResources.ImageResource { .init(name: "ProcessCompleted", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `ProcessEdit`.
+    var processEdit: RswiftResources.ImageResource { .init(name: "ProcessEdit", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `ProcessInProgress`.
+    var processInProgress: RswiftResources.ImageResource { .init(name: "ProcessInProgress", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `ProcessIncomplete`.
+    var processIncomplete: RswiftResources.ImageResource { .init(name: "ProcessIncomplete", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `ProcessTips`.
+    var processTips: RswiftResources.ImageResource { .init(name: "ProcessTips", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `ProcessWait`.
+    var processWait: RswiftResources.ImageResource { .init(name: "ProcessWait", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `SpongeBob.gif`.
+    var spongeBobGif: RswiftResources.ImageResource { .init(name: "SpongeBob.gif", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `Van Gogh_Starry Night`.
+    var vanGogh_StarryNight: RswiftResources.ImageResource { .init(name: "Van Gogh_Starry Night", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_1`.
+    var weChat_Avatar_1: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_10`.
+    var weChat_Avatar_10: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_10", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_11`.
+    var weChat_Avatar_11: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_11", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_12`.
+    var weChat_Avatar_12: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_12", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_13`.
+    var weChat_Avatar_13: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_13", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_14`.
+    var weChat_Avatar_14: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_14", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_15`.
+    var weChat_Avatar_15: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_15", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_16`.
+    var weChat_Avatar_16: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_16", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_17`.
+    var weChat_Avatar_17: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_17", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_18`.
+    var weChat_Avatar_18: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_18", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_19`.
+    var weChat_Avatar_19: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_19", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_2`.
+    var weChat_Avatar_2: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_20`.
+    var weChat_Avatar_20: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_20", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_21`.
+    var weChat_Avatar_21: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_21", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_22`.
+    var weChat_Avatar_22: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_22", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_23`.
+    var weChat_Avatar_23: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_23", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_24`.
+    var weChat_Avatar_24: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_24", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_25`.
+    var weChat_Avatar_25: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_25", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_26`.
+    var weChat_Avatar_26: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_26", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_3`.
+    var weChat_Avatar_3: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_3", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_4`.
+    var weChat_Avatar_4: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_4", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_5`.
+    var weChat_Avatar_5: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_5", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_6`.
+    var weChat_Avatar_6: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_6", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_7`.
+    var weChat_Avatar_7: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_7", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_8`.
+    var weChat_Avatar_8: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_8", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `WeChat_Avatar_9`.
+    var weChat_Avatar_9: RswiftResources.ImageResource { .init(name: "WeChat_Avatar_9", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `arrow`.
+    var arrow: RswiftResources.ImageResource { .init(name: "arrow", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `arrow_down`.
+    var arrow_down: RswiftResources.ImageResource { .init(name: "arrow_down", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `arrow_up`.
+    var arrow_up: RswiftResources.ImageResource { .init(name: "arrow_up", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `cat`.
+    var cat: RswiftResources.ImageResource { .init(name: "cat", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `chat_list_add`.
+    var chat_list_add: RswiftResources.ImageResource { .init(name: "chat_list_add", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `chat_list_filter`.
+    var chat_list_filter: RswiftResources.ImageResource { .init(name: "chat_list_filter", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `chat_tools_add`.
+    var chat_tools_add: RswiftResources.ImageResource { .init(name: "chat_tools_add", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `chat_tools_photo`.
+    var chat_tools_photo: RswiftResources.ImageResource { .init(name: "chat_tools_photo", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `chat_tools_pic`.
+    var chat_tools_pic: RswiftResources.ImageResource { .init(name: "chat_tools_pic", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `chat_tools_reply`.
+    var chat_tools_reply: RswiftResources.ImageResource { .init(name: "chat_tools_reply", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `chat_tools_voice`.
+    var chat_tools_voice: RswiftResources.ImageResource { .init(name: "chat_tools_voice", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `clock`.
+    var clock: RswiftResources.ImageResource { .init(name: "clock", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `cover_jrsy`.
+    var cover_jrsy: RswiftResources.ImageResource { .init(name: "cover_jrsy", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `cover_lb`.
+    var cover_lb: RswiftResources.ImageResource { .init(name: "cover_lb", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `cover_md`.
+    var cover_md: RswiftResources.ImageResource { .init(name: "cover_md", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `cover_mfb`.
+    var cover_mfb: RswiftResources.ImageResource { .init(name: "cover_mfb", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `cover_rxg`.
+    var cover_rxg: RswiftResources.ImageResource { .init(name: "cover_rxg", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `cover_szdsyyyt`.
+    var cover_szdsyyyt: RswiftResources.ImageResource { .init(name: "cover_szdsyyyt", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `cover_szqpz`.
+    var cover_szqpz: RswiftResources.ImageResource { .init(name: "cover_szqpz", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `cover_venereum`.
+    var cover_venereum: RswiftResources.ImageResource { .init(name: "cover_venereum", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `default_avatar_100`.
+    var default_avatar_100: RswiftResources.ImageResource { .init(name: "default_avatar_100", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `default_avatar_80`.
+    var default_avatar_80: RswiftResources.ImageResource { .init(name: "default_avatar_80", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `drawOut`.
+    var drawOut: RswiftResources.ImageResource { .init(name: "drawOut", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `edit_delete`.
+    var edit_delete: RswiftResources.ImageResource { .init(name: "edit_delete", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `elephant`.
+    var elephant: RswiftResources.ImageResource { .init(name: "elephant", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `gift1`.
+    var gift1: RswiftResources.ImageResource { .init(name: "gift1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `gift2`.
+    var gift2: RswiftResources.ImageResource { .init(name: "gift2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `gift3`.
+    var gift3: RswiftResources.ImageResource { .init(name: "gift3", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `gift4`.
+    var gift4: RswiftResources.ImageResource { .init(name: "gift4", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `gift5`.
+    var gift5: RswiftResources.ImageResource { .init(name: "gift5", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `gift6`.
+    var gift6: RswiftResources.ImageResource { .init(name: "gift6", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `gift7`.
+    var gift7: RswiftResources.ImageResource { .init(name: "gift7", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `giftEmpty`.
+    var giftEmpty: RswiftResources.ImageResource { .init(name: "giftEmpty", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon_download`.
+    var icon_download: RswiftResources.ImageResource { .init(name: "icon_download", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon_plus`.
+    var icon_plus: RswiftResources.ImageResource { .init(name: "icon_plus", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon_read`.
+    var icon_read: RswiftResources.ImageResource { .init(name: "icon_read", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `img_00`.
+    var img_00: RswiftResources.ImageResource { .init(name: "img_00", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `img_01`.
+    var img_01: RswiftResources.ImageResource { .init(name: "img_01", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `img_02`.
+    var img_02: RswiftResources.ImageResource { .init(name: "img_02", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `img_03`.
+    var img_03: RswiftResources.ImageResource { .init(name: "img_03", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `img_04`.
+    var img_04: RswiftResources.ImageResource { .init(name: "img_04", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `img_05`.
+    var img_05: RswiftResources.ImageResource { .init(name: "img_05", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `kt_sh`.
+    var kt_sh: RswiftResources.ImageResource { .init(name: "kt_sh", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `lattice`.
+    var lattice: RswiftResources.ImageResource { .init(name: "lattice", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading.gif`.
+    var loadingGif: RswiftResources.ImageResource { .init(name: "loading.gif", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `member_add`.
+    var member_add: RswiftResources.ImageResource { .init(name: "member_add", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `nav_back_black`.
+    var nav_back_black: RswiftResources.ImageResource { .init(name: "nav_back_black", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `option_radio_active`.
+    var option_radio_active: RswiftResources.ImageResource { .init(name: "option_radio_active", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `option_radio_normal`.
+    var option_radio_normal: RswiftResources.ImageResource { .init(name: "option_radio_normal", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `placeholder`.
+    var placeholder: RswiftResources.ImageResource { .init(name: "placeholder", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `rabbit`.
+    var rabbit: RswiftResources.ImageResource { .init(name: "rabbit", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `setting_add`.
+    var setting_add: RswiftResources.ImageResource { .init(name: "setting_add", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `smile_face_1`.
+    var smile_face_1: RswiftResources.ImageResource { .init(name: "smile_face_1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `smile_face_2`.
+    var smile_face_2: RswiftResources.ImageResource { .init(name: "smile_face_2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `smile_neutral`.
+    var smile_neutral: RswiftResources.ImageResource { .init(name: "smile_neutral", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `smile_rotten_1`.
+    var smile_rotten_1: RswiftResources.ImageResource { .init(name: "smile_rotten_1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `smile_rotten_2`.
+    var smile_rotten_2: RswiftResources.ImageResource { .init(name: "smile_rotten_2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `star`.
+    var star: RswiftResources.ImageResource { .init(name: "star", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `start_button`.
+    var start_button: RswiftResources.ImageResource { .init(name: "start_button", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `tab_me_normal`.
+    var tab_me_normal: RswiftResources.ImageResource { .init(name: "tab_me_normal", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `tab_work_normal`.
+    var tab_work_normal: RswiftResources.ImageResource { .init(name: "tab_work_normal", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `turntableBg`.
+    var turntableBg: RswiftResources.ImageResource { .init(name: "turntableBg", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `voice1`.
+    var voice1: RswiftResources.ImageResource { .init(name: "voice1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `voice2`.
+    var voice2: RswiftResources.ImageResource { .init(name: "voice2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `voice3`.
+    var voice3: RswiftResources.ImageResource { .init(name: "voice3", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `主页_我的`.
+    var 主页_我的: RswiftResources.ImageResource { .init(name: "主页_我的", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `对勾`.
+    var 对勾: RswiftResources.ImageResource { .init(name: "对勾", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+  }
 }

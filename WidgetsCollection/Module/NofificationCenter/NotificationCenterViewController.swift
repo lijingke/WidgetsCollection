@@ -9,39 +9,38 @@
 import UIKit
 
 class NotificationCenterViewController: UIViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         addListener()
         configureUI()
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
         print("通知---注销")
     }
-    
+
     fileprivate func configureUI() {
         view.backgroundColor = .white
         view.addSubview(triggerBtn)
         view.addSubview(textFiled)
-        triggerBtn.snp.makeConstraints { (make) in
+        triggerBtn.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.size.equalTo(CGSize(width: 100, height: 30))
         }
-        textFiled.snp.makeConstraints { (make) in
+        textFiled.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
             make.bottom.equalTo(triggerBtn.snp.top).offset(-20)
         }
         textFiled.textAlignment = .center
     }
-    
+
     fileprivate func addListener() {
         daddy.careAboutBaby()
         NotificationCenter.default.addObserver(self, selector: #selector(notificationEvent(sender:)), name: UITextField.textDidChangeNotification, object: textFiled)
     }
-    
+
     @objc fileprivate func notificationEvent(sender: AnyObject) {
         view.backgroundColor = .darkGray
         print("通知---调用")
@@ -55,10 +54,10 @@ class NotificationCenterViewController: UIViewController {
             }
         }
     }
-    
+
     lazy var daddy = Daddy()
     lazy var baby = Baby()
-    
+
     lazy var triggerBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setTitle("Hungry", for: .normal)
@@ -68,21 +67,20 @@ class NotificationCenterViewController: UIViewController {
         btn.addTarget(self, action: #selector(notificationEvent), for: .touchDown)
         return btn
     }()
-    
+
     lazy var textFiled: UITextField = {
         let field = UITextField()
         field.placeholder = "请输入一些内容"
         field.textAlignment = NSTextAlignment.center
         return field
     }()
-    
 }
 
 class Daddy {
     func careAboutBaby() {
         NotificationCenter.default.addObserver(self, selector: #selector(daddyIsComing🤗), name: NSNotification.Name(rawValue: Baby.CRY), object: nil)
     }
-    
+
     @objc func daddyIsComing🤗() {
         print("daddy is coming")
     }

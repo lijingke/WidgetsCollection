@@ -10,23 +10,26 @@ import Foundation
 
 class ECGSampleDetailCell: UITableViewCell {
     // MARK: Life Cycle
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Lazy Get
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(hexString: "#9599A8")
         label.font = UIFont.regular(12)
         return label
     }()
-    
+
     lazy var detailLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(hexString: "#2A2B2F")
@@ -36,6 +39,7 @@ class ECGSampleDetailCell: UITableViewCell {
 }
 
 // MARK: - Data
+
 extension ECGSampleDetailCell {
     public func setup(title: String?, detail: String?) {
         titleLabel.text = title
@@ -44,6 +48,7 @@ extension ECGSampleDetailCell {
 }
 
 // MARK: - UI
+
 extension ECGSampleDetailCell {
     private func setupUI() {
         contentView.addSubviews([titleLabel, detailLabel])

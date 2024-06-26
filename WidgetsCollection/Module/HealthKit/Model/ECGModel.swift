@@ -35,7 +35,7 @@ struct ECGModel {
     var classification: Int = 0
     var samplingFrequency: Double?
     var numberOfVoltageMeasurements: Int = 0
-    
+
     var classificationDes: String {
         switch classification {
         case 1:

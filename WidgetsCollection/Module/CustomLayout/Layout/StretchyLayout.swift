@@ -10,19 +10,19 @@ import UIKit
 
 class StretchyLayout: UICollectionViewFlowLayout {
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        guard let collectionView = self.collectionView else {
+        guard let collectionView = collectionView else {
             return nil
         }
         guard let attributes = super.layoutAttributesForElements(in: rect) else {
             return nil
         }
-        
+
         let insets = collectionView.contentInset
         let offset = collectionView.contentOffset
         let minY = -insets.top
-        
+
         if offset.y < minY {
-            let headerSize = self.headerReferenceSize
+            let headerSize = headerReferenceSize
             let deltalY = abs(offset.y - minY)
             for attribute in attributes {
                 if attribute.representedElementKind == UICollectionView.elementKindSectionHeader {
@@ -35,8 +35,8 @@ class StretchyLayout: UICollectionViewFlowLayout {
         }
         return attributes
     }
-    
-    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+
+    override func shouldInvalidateLayout(forBoundsChange _: CGRect) -> Bool {
         return true
     }
 }

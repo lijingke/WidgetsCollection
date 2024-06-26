@@ -29,11 +29,11 @@ class ProcessProgressVC: UIViewController {
 
 extension ProcessProgressVC {
     private func setupData() {
-        let dic: [[String: Any]] = [["type": 1, "title": "个人信息"], ["type": 1, "title": "诊断信息", "canEdit": true], ["type": 2, "title": "激活服务", "inProcessHint": "等待医生确认"], ["type": 3, "title": "关联医生"], ["type": 4, "tipsContent": "您目前的情况不适合线上评估，建议至医院/诊所进行更详细的肺功能筛查。同时请等待医生为您定制处方，医生发送处方后可以开始运动"] ]
-        let dataSource = dic.compactMap({ProcessModel.deserialize(from: $0)})
-        
+        let dic: [[String: Any]] = [["type": 1, "title": "个人信息"], ["type": 1, "title": "诊断信息", "canEdit": true], ["type": 2, "title": "激活服务", "inProcessHint": "等待医生确认"], ["type": 3, "title": "关联医生"], ["type": 4, "tipsContent": "您目前的情况不适合线上评估，建议至医院/诊所进行更详细的肺功能筛查。同时请等待医生为您定制处方，医生发送处方后可以开始运动"]]
+        let dataSource = dic.compactMap { ProcessModel.deserialize(from: $0) }
+
         var resData: [ProcessModel] = []
-        for i in 0..<dataSource.count {
+        for i in 0 ..< dataSource.count {
             resData.append(dataSource[i])
             if i == 0 {
                 continue

@@ -9,28 +9,30 @@
 import Foundation
 
 class ProcessInProgressCell: UITableViewCell {
-    
     // MARK: Life Cycle
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Lazy Get
+
     lazy var statusIcon = UIImageView(image: R.image.processInProgress())
-    
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.semibold(20)
         label.textColor = UIColor(hexString: "#2A2B2F")
         return label
     }()
-    
+
     lazy var statusBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.titleLabel?.font = UIFont.regular(14)
@@ -42,6 +44,7 @@ class ProcessInProgressCell: UITableViewCell {
 }
 
 // MARK: - Data
+
 extension ProcessInProgressCell {
     public func setupData(title: String?, hint: String?) {
         titleLabel.text = title
@@ -53,6 +56,7 @@ extension ProcessInProgressCell {
 }
 
 // MARK: - UI
+
 extension ProcessInProgressCell {
     private func setupUI() {
         contentView.addSubviews([statusIcon, titleLabel, statusBtn])

@@ -2,7 +2,6 @@ import UIKit
 
 /// Depends on calculations it can produce trajectories that differs in height and spread.
 public final class FountainSparkTrajectoryFactory: DefaultSparkTrajectoryFactory {
-
     public init() {}
 
     public func random() -> SparkTrajectory {

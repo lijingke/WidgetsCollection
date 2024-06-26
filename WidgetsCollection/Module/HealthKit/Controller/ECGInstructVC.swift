@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import HealthKit
+import UIKit
 
 class ECGInstructVC: UIViewController {
     // MARK: Property
@@ -41,7 +41,6 @@ extension ECGInstructVC: ECGInstructViewDelegate {
 }
 
 extension ECGInstructVC {
-    
     private func noDataObtained() {
         let alert = EMAlertController(title: "No data was obtained, please retest.", message: "Note: Please ensure that the test has been conducted within the last hour.")
         alert.cornerRadius = 10
@@ -60,9 +59,9 @@ extension ECGInstructVC {
         alert.buttonSpacing = 0
         present(alert, animated: true, completion: nil)
     }
-    
+
     private func requestData() {
-        Loading.showLoading(to: self.view)
+        Loading.showLoading(to: view)
         var counter = 0
         let healthKitTypes: Set = [HKObjectType.electrocardiogramType()]
         healthStore.requestAuthorization(toShare: nil, read: healthKitTypes) { bool, error in
@@ -106,14 +105,14 @@ extension ECGInstructVC {
             }
         }
     }
-    
+
     func getECGsCount(completion: @escaping (Int) -> Void) {
         var result = 0
-        
+
         let earlyDate = Calendar.current.date(byAdding: .hour, value: -1, to: Date())
         let predicate = HKQuery.predicateForSamples(withStart: earlyDate, end: Date(), options: .strictEndDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        
+
         let ecgQuery = HKSampleQuery(sampleType: HKObjectType.electrocardiogramType(), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { _, samples, _ in
             guard let samples = samples
             else {
@@ -132,7 +131,7 @@ extension ECGInstructVC {
         let earlyDate = Calendar.current.date(byAdding: .hour, value: -1, to: Date())
         let predicate = HKQuery.predicateForSamples(withStart: earlyDate, end: Date(), options: .strictEndDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        
+
         let ecgQuery = HKSampleQuery(sampleType: HKObjectType.electrocardiogramType(), predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { _, samples, error in
             guard let samples = samples, let currentSample = samples[counter] as? HKElectrocardiogram else {
                 return
@@ -141,10 +140,10 @@ extension ECGInstructVC {
             let query = HKElectrocardiogramQuery(samples[counter] as! HKElectrocardiogram) { _, result in
 
                 switch result {
-                case .error(let error):
+                case let .error(error):
                     print("error: ", error)
 
-                case .measurement(let value):
+                case let .measurement(value):
                     let sample = (value.quantity(for: .appleWatchSimilarToLeadI)!.doubleValue(for: HKUnit.volt()), value.timeSinceSampleStart)
                     ecgSamples.append(sample)
 
@@ -163,6 +162,7 @@ extension ECGInstructVC {
                         ecgModel.numberOfVoltageMeasurements = currentSample.numberOfVoltageMeasurements
                         completion(ecgModel)
                     }
+
                 @unknown default:
                     break
                 }
@@ -186,4 +186,3 @@ extension ECGInstructVC {
         }
     }
 }
-

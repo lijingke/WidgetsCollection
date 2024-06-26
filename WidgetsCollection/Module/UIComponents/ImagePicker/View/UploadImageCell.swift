@@ -6,11 +6,10 @@
 //  Copyright © 2020 李京珂. All rights reserved.
 //
 
-import UIKit
 import Photos
+import UIKit
 
 class UploadImageCell: UICollectionViewCell {
-    
     public var asset: PHAsset? {
         didSet {
             videoImageView.isHidden = asset?.mediaType != PHAssetMediaType.video
@@ -19,21 +18,23 @@ class UploadImageCell: UICollectionViewCell {
             gifLabel.isHidden = !isGIF
         }
     }
+
     public var row: Int? {
         didSet {
             deleteBtn.tag = row ?? 0
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView.frame = bounds
@@ -42,9 +43,9 @@ class UploadImageCell: UICollectionViewCell {
         let width = self.width / 3
         videoImageView.frame = CGRect(x: width, y: width, width: width, height: width)
     }
-    
+
     // MARK: - Lazy Get
-    
+
     lazy var imageView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = UIColor(white: 1.0, alpha: 0.5)
@@ -52,7 +53,7 @@ class UploadImageCell: UICollectionViewCell {
         view.clipsToBounds = true
         return view
     }()
-    
+
     lazy var videoImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage.tz_imageNamed(fromMyBundle: "MMVideoPreviewPlay")
@@ -60,7 +61,7 @@ class UploadImageCell: UICollectionViewCell {
         view.isHidden = true
         return view
     }()
-    
+
     lazy var deleteBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "Photo_delete"), for: .normal)
@@ -78,29 +79,27 @@ class UploadImageCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 10)
         return label
     }()
-
 }
 
 extension UploadImageCell {
-    
     private func setupUI() {
-        self.backgroundColor = .white
+        backgroundColor = .white
         addSubview(imageView)
         addSubview(videoImageView)
         addSubview(deleteBtn)
         addSubview(gifLabel)
     }
-    
+
     @objc func getSnapShotView() -> UIView {
         let view = UIView()
         var cellSnapShotView: UIView?
         if responds(to: #selector(UIScreen.snapshotView(afterScreenUpdates:))) {
             cellSnapShotView = self.snapshotView(afterScreenUpdates: false)
         } else {
-            let size = CGSize(width: self.width + 20, height: self.height + 20)
+            let size = CGSize(width: width + 20, height: height + 20)
             UIGraphicsBeginImageContextWithOptions(size, isOpaque, 0)
             if let context = UIGraphicsGetCurrentContext() {
-                self.layer.render(in: context)
+                layer.render(in: context)
             }
             let cellSnapShotImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
@@ -111,5 +110,4 @@ extension UploadImageCell {
         view.addSubview(cellSnapShotView ?? UIView())
         return view
     }
-    
 }

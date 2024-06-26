@@ -9,8 +9,8 @@
 import Foundation
 
 class Tools: NSObject {
-    
     // MARK: - 将数组转换成字符串
+
     static func passwordString(array: NSArray) -> String {
         var str = ""
         for p in array {

@@ -9,14 +9,15 @@
 import Foundation
 
 class ActivateServiceViewController: UIViewController {
-    
     // MARK: Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-    
+
     // MARK: Lazy Get
+
     lazy var mainView: ActivateServiceView = {
         let view = ActivateServiceView()
         return view
@@ -24,6 +25,7 @@ class ActivateServiceViewController: UIViewController {
 }
 
 // MARK: - UI
+
 extension ActivateServiceViewController {
     private func setupUI() {
         view.backgroundColor = .white

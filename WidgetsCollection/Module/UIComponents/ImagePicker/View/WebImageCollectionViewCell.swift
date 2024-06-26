@@ -10,33 +10,33 @@ import UIKit
 
 class WebImageCollectionViewCell: UICollectionViewCell {
     static let reuseId = "WebImageCollectionViewCell"
-    
-    public var tapBlock: (()->())?
-    
+
+    public var tapBlock: (() -> Void)?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupUI() {
         addSubview(imageView)
-        imageView.snp.makeConstraints { (make) in
+        imageView.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction))
-        
+
         imageView.addGestureRecognizer(tap)
-        
     }
-    
+
     @objc private func tapAction() {
         tapBlock?()
     }
-    
+
     lazy var imageView: UIImageView = {
         let view = UIImageView()
         view.isUserInteractionEnabled = true
@@ -47,5 +47,4 @@ class WebImageCollectionViewCell: UICollectionViewCell {
         view.clipsToBounds = true
         return view
     }()
-    
 }

@@ -16,46 +16,46 @@ class ECGChartView: UIView {
         super.init(frame: frame)
         setupUI()
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Lazy Get
-    
+
     lazy var classificationLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(hexString: "#2A2B2F")
         label.font = UIFont.semibold(20)
         return label
     }()
-    
+
     lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(hexString: "#9599A8")
         label.font = UIFont.regular(12)
         return label
     }()
-    
+
     lazy var heartRateIcon: UIImageView = {
         let view = UIImageView()
         view.image = R.image.ecg_HeartRate_Icon()
         return view
     }()
-    
+
     lazy var averageHRLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.regular(14)
         label.textColor = UIColor(hexString: "#2A2B2F")
         return label
     }()
-    
+
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         return view
     }()
-    
+
     lazy var ecgChartView: YOECGChartView = {
         let view = YOECGChartView(frame: CGRect(origin: .zero, size: CGSize(width: kScreenWidth, height: 200)))
         view.standard.voltageUnit = .volt
@@ -68,7 +68,6 @@ class ECGChartView: UIView {
 
 extension ECGChartView {
     public func refresh(model: ECGModel) {
-        
         classificationLabel.text = model.classificationDes
         timeLabel.text = DateUtil.getDateStr(interval: Double(model.startTimeStamp), format: "MM/dd/yyyy KK:mm aa")
         if let averageHeartRate = model.averageHeartRate {
@@ -84,9 +83,9 @@ extension ECGChartView {
         ecgChartView.snp.updateConstraints { make in
             make.width.equalTo(width)
         }
-        
+
         ecgChartView.refreshSubViewFrame()
-        
+
         ecgChartView.gridView.isShowSecondText = true
         ecgChartView.gridView.startSecond = 0
         ecgChartView.drawStaticECGLine(model.ecgData)
@@ -128,4 +127,3 @@ extension ECGChartView {
         }
     }
 }
-

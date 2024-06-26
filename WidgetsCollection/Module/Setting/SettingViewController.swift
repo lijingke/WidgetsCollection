@@ -6,31 +6,30 @@
 //  Copyright © 2020 李京珂. All rights reserved.
 //
 
-import UIKit
 import MBProgressHUD
+import UIKit
 import WCDBSwift
 
 class SettingViewController: UIViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.edgesForExtendedLayout = []
+        edgesForExtendedLayout = []
         setupUI()
         setupData()
         requeseUserInfo()
         testDB()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
+
     lazy var mainView: SettingView = {
         let view = SettingView()
         view.backgroundColor = .white
@@ -39,15 +38,16 @@ class SettingViewController: UIViewController {
 }
 
 // MARK: - UI
+
 extension SettingViewController {
     private func setupUI() {
         view.addSubview(mainView)
         mainView.frame = view.frame
     }
-    
+
     private func setupData() {
-        let titles:[[SettingCellEnum : String]] = [[.cellName: "设置", .imageName: "gear"], [.cellName: "退出", .imageName: "wrench"]]
-        let models = titles.compactMap { (dic) -> SettingCellModel? in
+        let titles: [[SettingCellEnum: String]] = [[.cellName: "设置", .imageName: "gear"], [.cellName: "退出", .imageName: "wrench"]]
+        let models = titles.compactMap { dic -> SettingCellModel? in
             var model = SettingCellModel()
             model.title = dic[.cellName]
             model.imageName = dic[.imageName]
@@ -64,7 +64,7 @@ extension SettingViewController {
                     UIView.animate(withDuration: 10, animations: {
                         window.alpha = 1
                         window.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-                    }) { (finished) in
+                    }) { _ in
                         exit(0)
                     }
                 }
@@ -75,15 +75,15 @@ extension SettingViewController {
         }
         mainView.setupData(models)
     }
-    
+
     private func requeseUserInfo() {
-        MBProgressHUD.showAdded(to: self.mainView, animated: true)
-        SMImageManager.shared.getUserInfo { (model) in
+        MBProgressHUD.showAdded(to: mainView, animated: true)
+        SMImageManager.shared.getUserInfo { model in
             self.mainView.setupUserInfo(model)
             MBProgressHUD.hide(for: self.mainView, animated: true)
         }
     }
-    
+
     private func testDB() {
         DataBaseManager.share.createTable(table: "Some", of: DBSample.self)
     }
@@ -92,12 +92,11 @@ extension SettingViewController {
 class DBSample: TableCodable {
     var identifier: Int? = nil
     var description: String? = nil
-    
+
     enum CodingKeys: String, CodingTableKey {
         typealias Root = DBSample
         static let objectRelationalMapping: TableBinding<DBSample.CodingKeys> = TableBinding(CodingKeys.self)
         case identifier
         case description
     }
-    
 }

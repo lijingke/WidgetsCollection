@@ -6,8 +6,8 @@
 //  Copyright © 2019 李京珂. All rights reserved.
 //
 
-import UIKit
 import Tiercel
+import UIKit
 
 protocol PDFDownloadDelegate: NSObject {
     func downloadCellDidClicked(_ cell: PDFCollectionCell)
@@ -16,37 +16,37 @@ protocol PDFDownloadDelegate: NSObject {
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
 class PDFDownloadView: UIView {
-    
     weak var delegate: PDFDownloadDelegate?
-    
-    var dataSource: [[PDFEntity]] = [[PDFEntity]]()
-    
+
+    var dataSource: [[PDFEntity]] = .init()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     deinit {
         print("View Leave")
     }
-    
+
     fileprivate func configureUI() {
-        self.backgroundColor = .white
+        backgroundColor = .white
         addSubview(collectionView)
-        collectionView.snp.makeConstraints { (make) in
+        collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
+
     public func setupData(_ data: [[PDFEntity]]) {
         dataSource = data
         collectionView.reloadData()
     }
-    
+
     lazy var collectionView: UICollectionView = {
         let itemWidth = (UIScreen.main.bounds.width - 30 * 4) / 3
         let itemHeight = itemWidth * 1.5728
@@ -66,20 +66,17 @@ class PDFDownloadView: UIView {
     }()
 }
 
-extension PDFDownloadView: UICollectionViewDelegate {
-    
-}
+extension PDFDownloadView: UICollectionViewDelegate {}
 
 extension PDFDownloadView: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in _: UICollectionView) -> Int {
         return dataSource.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+    func collectionView(_: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataSource[section].count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PDFCollectionCell.reuseId, for: indexPath) as? PDFCollectionCell else {
             return UICollectionViewCell()
@@ -91,7 +88,7 @@ extension PDFDownloadView: UICollectionViewDataSource {
         cell.backgroundColor = .clear
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionFooter:
@@ -101,5 +98,4 @@ extension PDFDownloadView: UICollectionViewDataSource {
             fatalError("No Such Kind")
         }
     }
-    
 }

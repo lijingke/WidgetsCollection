@@ -10,58 +10,61 @@ import UIKit
 
 class ProgressBarView: UIView {
     // MARK: Property
+
     var originFrame: CGRect
     var animating: Bool = false
     let progressBarHeight: CGFloat = 38
     let progressBarWidth: CGFloat = 150
-    
+
     // MARK: Life Cycle
+
     override init(frame: CGRect) {
         originFrame = frame
         super.init(frame: frame)
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupUI() {
         let tapped = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
-        self.addGestureRecognizer(tapped)
+        addGestureRecognizer(tapped)
     }
-    
-    @objc private func tapped(_ sender: UITapGestureRecognizer) {
-        self.frame = originFrame
+
+    @objc private func tapped(_: UITapGestureRecognizer) {
+        frame = originFrame
         if animating == true {
             return
         }
-        if let subLayers = self.layer.sublayers {
+        if let subLayers = layer.sublayers {
             for subLayer in subLayers {
                 subLayer.removeFromSuperlayer()
             }
         }
-        self.backgroundColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        backgroundColor = UIColor(red: 0.0, green: 122.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
         animating = true
-        self.layer.cornerRadius = self.progressBarHeight / 2
+        layer.cornerRadius = progressBarHeight / 2
         let radiusAnimation = CABasicAnimation(keyPath: "cornerRadius")
         radiusAnimation.duration = 2
         radiusAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
         radiusAnimation.fromValue = originFrame.size.height / 2
         radiusAnimation.delegate = self
-        self.layer.add(radiusAnimation, forKey: "cornerRadiusShrinkAnim")
+        layer.add(radiusAnimation, forKey: "cornerRadiusShrinkAnim")
     }
-    
+
     private func progressBarAnimation() {
         let progressLayer = CAShapeLayer()
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: self.progressBarHeight / 2, y: self.progressBarHeight / 2))
-        path.addLine(to: CGPoint(x: self.bounds.width - progressBarHeight / 2, y: self.bounds.height / 2))
+        path.move(to: CGPoint(x: progressBarHeight / 2, y: progressBarHeight / 2))
+        path.addLine(to: CGPoint(x: bounds.width - progressBarHeight / 2, y: bounds.height / 2))
         progressLayer.path = path.cgPath
         progressLayer.strokeColor = UIColor.white.cgColor
         progressLayer.lineWidth = progressBarHeight - 6
         progressLayer.lineCap = .round
-        self.layer.addSublayer(progressLayer)
+        layer.addSublayer(progressLayer)
         let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
         pathAnimation.duration = 2.0
         pathAnimation.fromValue = 0.0
@@ -73,33 +76,34 @@ class ProgressBarView: UIView {
 }
 
 // MARK: - CAAnimationDelegate
+
 extension ProgressBarView: CAAnimationDelegate {
     func animationDidStart(_ anim: CAAnimation) {
         print("started")
-        if anim == self.layer.animation(forKey: "cornerRadiusShrinkAnim") {
+        if anim == layer.animation(forKey: "cornerRadiusShrinkAnim") {
             UIView.animate(withDuration: 0.6, delay: 0.0, options: .curveEaseOut, animations: {
                 self.bounds = CGRect(x: 0, y: 0, width: self.progressBarWidth, height: self.progressBarHeight)
-            }) { (finished) in
+            }) { _ in
                 self.layer.removeAllAnimations()
                 /// 开启下一组动画
                 self.progressBarAnimation()
             }
         }
-        if anim == self.layer.animation(forKey: "cornerRadiusExpandAnim") {
+        if anim == layer.animation(forKey: "cornerRadiusExpandAnim") {
             UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: {
-                self.bounds = CGRect(x: 0, y: 0, width: self.originFrame.size.width/2, height: self.originFrame.size.width/2)
+                self.bounds = CGRect(x: 0, y: 0, width: self.originFrame.size.width / 2, height: self.originFrame.size.width / 2)
                 self.backgroundColor = UIColor(red: 0.18038, green: 0.8, blue: 0.44313, alpha: 1.0)
-            }) { (finished) in
+            }) { _ in
                 self.layer.removeAllAnimations()
                 self.checkAnimation()
                 self.animating = false
             }
         }
     }
-    
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+
+    func animationDidStop(_ anim: CAAnimation, finished _: Bool) {
         print("stopped")
-        guard let subLayers = self.layer.sublayers, let animValue = anim.value(forKey: "animationName") as? String else {
+        guard let subLayers = layer.sublayers, let animValue = anim.value(forKey: "animationName") as? String else {
             return
         }
         if animValue == "progressBarAnimation" {
@@ -107,7 +111,7 @@ extension ProgressBarView: CAAnimationDelegate {
                 for subLayer in subLayers {
                     subLayer.opacity = 0.0
                 }
-            }) { (finished) in
+            }) { _ in
                 for subLayer in subLayers {
                     subLayer.removeAllAnimations()
                 }
@@ -121,27 +125,27 @@ extension ProgressBarView: CAAnimationDelegate {
             }
         }
     }
-    
+
     private func checkAnimation() {
         let checkLayer = CAShapeLayer()
         let path = UIBezierPath()
         let bounds = self.bounds
-        
-        let dx = bounds.size.width * (1-1/CGFloat(sqrt(Float(2.0)))) / 2
-        let dy = bounds.size.width * (1-1/CGFloat(sqrt(Float(2.0)))) / 2
+
+        let dx = bounds.size.width * (1 - 1 / CGFloat(sqrt(Float(2.0)))) / 2
+        let dy = bounds.size.width * (1 - 1 / CGFloat(sqrt(Float(2.0)))) / 2
         let rectInCircle = bounds.insetBy(dx: dx, dy: dy)
         print("rectInCircle === \(rectInCircle)")
-        path.move(to: CGPoint(x: rectInCircle.origin.x + rectInCircle.size.width/9, y: rectInCircle.origin.y + rectInCircle.size.height*2/3))
-        path.addLine(to: CGPoint(x: rectInCircle.origin.x + rectInCircle.size.width/3, y: rectInCircle.origin.y + rectInCircle.size.height*9/10))
-        path.addLine(to: CGPoint(x: rectInCircle.origin.x + rectInCircle.size.width*8/10, y: rectInCircle.origin.y + rectInCircle.size.height*2/10))
+        path.move(to: CGPoint(x: rectInCircle.origin.x + rectInCircle.size.width / 9, y: rectInCircle.origin.y + rectInCircle.size.height * 2 / 3))
+        path.addLine(to: CGPoint(x: rectInCircle.origin.x + rectInCircle.size.width / 3, y: rectInCircle.origin.y + rectInCircle.size.height * 9 / 10))
+        path.addLine(to: CGPoint(x: rectInCircle.origin.x + rectInCircle.size.width * 8 / 10, y: rectInCircle.origin.y + rectInCircle.size.height * 2 / 10))
         checkLayer.path = path.cgPath
         checkLayer.fillColor = UIColor.clear.cgColor
         checkLayer.strokeColor = UIColor.white.cgColor
         checkLayer.lineWidth = 10.0
         checkLayer.lineCap = .round
         checkLayer.lineJoin = .round
-        self.layer.addSublayer(checkLayer)
-        let checkAnimation = CABasicAnimation.init(keyPath: "strokeEnd")
+        layer.addSublayer(checkLayer)
+        let checkAnimation = CABasicAnimation(keyPath: "strokeEnd")
         checkAnimation.duration = 0.3
         checkAnimation.fromValue = 0.0
         checkAnimation.delegate = self

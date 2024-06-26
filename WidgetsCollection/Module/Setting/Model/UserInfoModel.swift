@@ -10,7 +10,6 @@ import Foundation
 import HandyJSON
 
 struct UserInfoModel: HandyJSON {
-    
     /// 用户名称
     var username: String?
     /// 电子邮件

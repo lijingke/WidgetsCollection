@@ -6,27 +6,26 @@
 //  Copyright © 2020 李京珂. All rights reserved.
 //
 
-import UIKit
 import LocalAuthentication
+import UIKit
 
 class GestureUnlockViewController: UIViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
+
         // 指纹识别
         let fingerPrint = UserDefaults.standard.value(forKey: "fingerPrint")
         if fingerPrint != nil && fingerPrint as! Bool {
             // 指纹解锁
             let authenticationContext = LAContext()
             var error: NSError?
-            
+
             let isTouchIdAvailable = authenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
-            
+
             if isTouchIdAvailable {
                 print("恭喜，Touch ID可以使用！")
-                authenticationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "需要验证您的指纹来确认您的身份信息") { (success, error) in
+                authenticationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "需要验证您的指纹来确认您的身份信息") { success, error in
                     if success {
                         let message = "恭喜，您通过了Touch ID指纹验证！"
                         NSLog(message)
@@ -48,22 +47,21 @@ class GestureUnlockViewController: UIViewController {
             print("证明没添加过")
         }
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources than can be recreated.
     }
-    
+
     fileprivate func setupUI() {
         view.addSubview(mainView)
-        mainView.snp.makeConstraints { (make) in
+        mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
+
     lazy var mainView: GestureUnlockView = {
         let view = GestureUnlockView()
         return view
     }()
-    
 }

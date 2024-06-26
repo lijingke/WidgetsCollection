@@ -11,16 +11,19 @@ import UIKit
 
 class ActivateServiceView: UIView {
     // MARK: Life Cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Lazy Get
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "激活服务"
@@ -28,7 +31,7 @@ class ActivateServiceView: UIView {
         label.font = UIFont.regular(32)
         return label
     }()
-    
+
     lazy var inputField: UITextField = {
         let field = UITextField()
         field.placeholder = "请输入服务激活码"
@@ -39,10 +42,10 @@ class ActivateServiceView: UIView {
         field.leftViewMode = .always
         return field
     }()
-    
+
     lazy var bottomLabel: UILabel = {
         let label = UILabel()
-        
+
         return label
     }()
 }
