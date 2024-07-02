@@ -46,7 +46,7 @@ class HomepageViewController: UIViewController {
             case "WorkSpace":
                 dicArray = [[.cellName: "RPlus", .className: "ProcessProgressVC"], [.cellName: "富文本点击", .className: "AttributedStringViewController"]]
             case "UI Components":
-                dicArray = [[.cellName: "Tabbar", .className: "TabbarController"], [.cellName: "DrawableCard", .className: " DrawableCardViewController"], [.cellName: "TisprCardStack", .className: "TisprCardStackViewController"], [.cellName: "UIPasteboard", .className: "UIPasteboardViewController"], [.cellName: "ImagePicker", .className: "ImagePickerViewController"], [.cellName: "HUD Test", .className: "HUDManagerDemoViewController"]]
+                dicArray = [[.cellName: "Tabbar", .className: "TabbarController"], [.cellName: "DrawableCard", .className: "DrawableCardViewController"], [.cellName: "TisprCardStack", .className: "TisprCardStackViewController"], [.cellName: "UIPasteboard", .className: "UIPasteboardViewController"], [.cellName: "ImagePicker", .className: "ImagePickerViewController"], [.cellName: "HUD Test", .className: "HUDManagerDemoViewController"]]
             case "Toolbox":
                 dicArray = [[.cellName: "App Search", .className: "AppSearchViewController"], [.cellName: "周会幸运星", .className: "LotteryViewController"]]
             case "CollectionView Basics":
