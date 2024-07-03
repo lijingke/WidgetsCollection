@@ -4,30 +4,30 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>WatchWidget Watch App.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>27</integer>
-		</dict>
 		<key>WidgetsCollection.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>25</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>54C182912435C0B9008666E4</key>
+		<key>540682722C3525DA0039E3E2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>54C182A72435C0BA008666E4</key>
+		<key>54DD14A22C352D5D00A6484D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>54C182B22435C0BA008666E4</key>
+		<key>54DD14B82C352D7900A6484D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>54DD14CD2C352D9600A6484D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
