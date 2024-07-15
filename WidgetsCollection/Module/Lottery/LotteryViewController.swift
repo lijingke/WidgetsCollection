@@ -27,10 +27,6 @@ class LotteryViewController: BaseViewController {
             [.foregroundColor: UIColor.white]
         // 修改导航栏按钮颜色
         navigationController?.navigationBar.tintColor = UIColor.white
-        // 设置导航栏背景透明
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.shadowImage = UIImage()
     }
 
     // 视图消失
@@ -41,10 +37,6 @@ class LotteryViewController: BaseViewController {
             [.foregroundColor: UIColor.black]
         // 恢复导航栏按钮颜色
         navigationController?.navigationBar.tintColor = UIColor.black
-        // 重置导航栏背景
-        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.isTranslucent = false
     }
 
     // MARK: Lazy Get

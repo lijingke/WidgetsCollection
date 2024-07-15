@@ -27,13 +27,13 @@ class CommonUtil: NSObject {
         return subStr
     }
     
-    class public func getCurrentVc() -> UIViewController {
+    static public func getCurrentVc() -> UIViewController {
         let rootVc = UIApplication.shared.keyWindow?.rootViewController
         let currentVc = getCurrentVcFrom(rootVc!)
         return currentVc
     }
     
-    class private func getCurrentVcFrom(_ rootVc: UIViewController) -> UIViewController {
+    static private func getCurrentVcFrom(_ rootVc: UIViewController) -> UIViewController {
         var currentVc: UIViewController
         var rootCtr = rootVc
         if rootCtr.presentedViewController != nil {

@@ -13,7 +13,7 @@ class FeedbackManager {
     fileprivate let pinpointKit = PinpointKit(feedbackRecipients: ["lijingke@hotmail.com"])
 
     func showView() {
-        let currentVC = DeviceHelper.shared.getCurrentVc()
+        let currentVC = CommonUtil.getCurrentVc()
         pinpointKit.show(from: currentVC)
     }
 }
