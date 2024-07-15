@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RefreshViewController: UIViewController {
+class RefreshViewController: BaseViewController {
     // MARK: Life Cycle
 
     override func viewDidLoad() {

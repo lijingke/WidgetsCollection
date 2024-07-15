@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChooseConfigureViewController: UIViewController {
+class ChooseConfigureViewController: BaseViewController {
     override func viewDidLoad() {
         view.backgroundColor = .clear
         view.addSubview(mainView)

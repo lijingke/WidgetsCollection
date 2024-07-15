@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnimationsExamplesOneViewController: UIViewController {
+class AnimationsExamplesOneViewController: BaseViewController {
     lazy var effectView = UIVisualEffectView()
 
     var pOrig: CGPoint = .zero

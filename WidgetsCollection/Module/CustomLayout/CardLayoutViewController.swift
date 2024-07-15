@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardLayoutViewController: UIViewController {
+class CardLayoutViewController: BaseViewController {
     var colors: [UIColor] = []
 
     override func viewDidLoad() {

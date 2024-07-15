@@ -10,7 +10,7 @@ import Foundation
 import HealthKit
 import UIKit
 
-class ECGMeasureListVC: UIViewController {
+class ECGMeasureListVC: BaseViewController {
     // MARK: Property
 
     let healthStore = HKHealthStore()

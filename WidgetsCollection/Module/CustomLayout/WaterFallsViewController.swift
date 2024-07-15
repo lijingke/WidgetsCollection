@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WaterFallsViewController: UIViewController {
+class WaterFallsViewController: BaseViewController {
     var colors: [UIColor] = []
 
     var layout: WaterFallsLayout? {

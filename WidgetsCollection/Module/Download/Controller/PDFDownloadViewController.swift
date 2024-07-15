@@ -9,7 +9,7 @@
 import Tiercel
 import UIKit
 
-class PDFDownloadViewController: UIViewController {
+class PDFDownloadViewController: BaseViewController {
     //    var sessionManager = appDelegate.sessionManager
     fileprivate var sessionManager: SessionManager = {
         var configuration = SessionConfiguration()

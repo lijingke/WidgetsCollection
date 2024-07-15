@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatFilterViewController: UIViewController {
+class ChatFilterViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()

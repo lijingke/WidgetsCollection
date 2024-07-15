@@ -10,7 +10,7 @@ import ActiveLabel
 import Foundation
 import UIKit
 
-class AttributedStringViewController: UIViewController {
+class AttributedStringViewController: BaseViewController {
     // MARK: Life Cycle
 
     override func viewDidLoad() {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScrollViewController: UIViewController {
+class ScrollViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()

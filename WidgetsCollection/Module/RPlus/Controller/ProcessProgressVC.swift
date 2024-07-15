@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ProcessProgressVC: UIViewController {
+class ProcessProgressVC: BaseViewController {
     // MARK: Life Cycle
 
     override func viewDidLoad() {

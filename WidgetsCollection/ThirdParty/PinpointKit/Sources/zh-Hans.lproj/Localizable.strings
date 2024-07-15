@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  SY_Patient_Family
+
+  Created by 李京珂 on 2024/3/26.
+  Copyright © 2024 成都尚医信息技术有限公司. All rights reserved.
+*/
+
+"Bug Report" = "问题反馈";
+"Report a Bug" = "问题反馈";
+"Send" = "发送";
+"Report" = "报告";
+"Tap the screenshot to annotate." = "点击屏幕截图进行注释";
+"Select Screenshot…" = "选择截屏…";
+"Console Log" = "控制台日志";
+"Include Console Log" = "包括控制台日志";
+"Dismiss" = "退出";
+"Done" = "完成";

@@ -9,7 +9,7 @@
 import CoreLocation
 import UIKit
 
-class GetLocationViewController: UIViewController {
+class GetLocationViewController: BaseViewController {
     var currentLocation: CLLocation!
     var lock = NSLock()
 

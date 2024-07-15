@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CALayerViewController: UIViewController {
+class CALayerViewController: BaseViewController {
     let shapeLayer = CAShapeLayer()
 
     override func viewDidLoad() {

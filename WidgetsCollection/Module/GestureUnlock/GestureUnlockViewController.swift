@@ -9,7 +9,7 @@
 import LocalAuthentication
 import UIKit
 
-class GestureUnlockViewController: UIViewController {
+class GestureUnlockViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()

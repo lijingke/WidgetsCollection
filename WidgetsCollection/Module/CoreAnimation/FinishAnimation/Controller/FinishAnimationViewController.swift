@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FinishAnimationViewController: UIViewController {
+class FinishAnimationViewController: BaseViewController {
     // MARK: Property
 
     let kProgressBarHeight: CGFloat = 38

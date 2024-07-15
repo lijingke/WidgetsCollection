@@ -10,7 +10,7 @@ import Foundation
 import HealthKit
 import UIKit
 
-class ECGInstructVC: UIViewController {
+class ECGInstructVC: BaseViewController {
     // MARK: Property
 
     var dataSource: [ECGModel] = []

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ActivateServiceViewController: UIViewController {
+class ActivateServiceViewController: BaseViewController {
     // MARK: Life Cycle
 
     override func viewDidLoad() {

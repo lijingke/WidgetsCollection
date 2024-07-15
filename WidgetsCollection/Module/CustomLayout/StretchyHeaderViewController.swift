@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StretchyHeaderViewController: UIViewController {
+class StretchyHeaderViewController: BaseViewController {
     var layout: UICollectionViewFlowLayout? {
         return collectionView.collectionViewLayout as? StretchyLayout
     }

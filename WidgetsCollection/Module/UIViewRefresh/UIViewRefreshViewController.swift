@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UIViewRefreshViewController: UIViewController {
+class UIViewRefreshViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()

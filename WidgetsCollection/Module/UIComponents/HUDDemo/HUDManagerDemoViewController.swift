@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HUDManagerDemoViewController: UIViewController {
+class HUDManagerDemoViewController: BaseViewController {
     private var cellData: [String] = []
     private var progressValue: CGFloat = 0
     private var timer: Timer?

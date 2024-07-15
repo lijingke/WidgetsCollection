@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageViewAnimationViewController: UIViewController {
+class ImageViewAnimationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()

@@ -9,7 +9,7 @@
 
 import UIKit
 
-class AnimationsExamplesTwoViewController: UIViewController {
+class AnimationsExamplesTwoViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

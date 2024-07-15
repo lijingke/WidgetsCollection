@@ -121,6 +121,10 @@ extension UIColor {
         let blue = CGFloat(arc4random_uniform(255) + 1) / 255
         return UIColor(red: red, green: green, blue: blue, alpha: 1)
     }
+    
+    static var themeColor: UIColor {
+        return UIColor(hexString: "#0EA0A0")
+    }
 }
 
 extension NSObject {

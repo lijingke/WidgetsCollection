@@ -12,7 +12,7 @@ protocol SomeProtocol {
     func someFunc()
 }
 
-class AppSearchViewController: UIViewController {
+class AppSearchViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mainView)

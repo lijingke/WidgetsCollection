@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CGAffineTransformViewController: UIViewController {
+class CGAffineTransformViewController: BaseViewController {
     lazy var subView1 = UIView()
     lazy var subView2 = UIView()
     lazy var subView3 = UIView()

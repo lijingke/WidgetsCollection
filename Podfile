@@ -21,10 +21,17 @@ target 'WidgetsCollection' do
   pod 'SwiftyJSON'
   pod 'R.swift'
   pod 'ActiveLabel'
+  # 权限管理
+  pod 'PermissionsKit/CameraPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
+  pod 'PermissionsKit/PhotoLibraryPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
+  pod 'PermissionsKit/MediaLibraryPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
+  pod 'PermissionsKit/BluetoothPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
+  pod 'PermissionsKit/HealthPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
   # FLEX
   pod 'FLEX', :configurations => ['Debug']
   pod 'atlantis-proxyman'
-  
+  # 设别信息
+  pod 'DeviceKit'
 end
 
 post_install do |installer|

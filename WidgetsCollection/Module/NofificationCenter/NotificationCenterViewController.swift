@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotificationCenterViewController: UIViewController {
+class NotificationCenterViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addListener()

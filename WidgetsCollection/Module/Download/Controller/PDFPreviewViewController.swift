@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PDFPreviewViewController: UIViewController {
+class PDFPreviewViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "卫生行业标准文件"

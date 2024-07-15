@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabbarSubViewController: UIViewController {
+class TabbarSubViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []

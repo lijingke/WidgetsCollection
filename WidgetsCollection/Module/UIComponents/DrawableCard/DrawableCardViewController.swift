@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DrawableCardViewController: UIViewController {
+class DrawableCardViewController: BaseViewController {
     let count = 6
 
     var startButton: UIButton?

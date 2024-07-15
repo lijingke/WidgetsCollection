@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TagViewController: UIViewController {
+class TagViewController: BaseViewController {
     var tags: [[String]] = []
 
     var layout: TagLayout? {

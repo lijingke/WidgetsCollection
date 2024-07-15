@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LayoutAndDelegateViewController: UIViewController {
+class LayoutAndDelegateViewController: BaseViewController {
     var colors: [[UIColor]] = []
 
     override func viewDidLoad() {

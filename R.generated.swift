@@ -21,15 +21,30 @@ struct _R {
   }
 
 
-  /// This `_R.image` struct is generated, and contains static references to 110 images.
+  /// This `_R.image` struct is generated, and contains static references to 115 images.
   struct image {
     let bundle: Foundation.Bundle
 
     /// Image `AlbumAddBtn`.
     var albumAddBtn: RswiftResources.ImageResource { .init(name: "AlbumAddBtn", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `ArrowIcon`.
+    var arrowIcon: RswiftResources.ImageResource { .init(name: "ArrowIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `Bg`.
     var bg: RswiftResources.ImageResource { .init(name: "Bg", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `BlurIcon`.
+    var blurIcon: RswiftResources.ImageResource { .init(name: "BlurIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `BoxIcon`.
+    var boxIcon: RswiftResources.ImageResource { .init(name: "BoxIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `Checkmark`.
+    var checkmark: RswiftResources.ImageResource { .init(name: "Checkmark", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `CloseButtonX`.
+    var closeButtonX: RswiftResources.ImageResource { .init(name: "CloseButtonX", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `ECG_Auth_Instruct`.
     var ecg_Auth_Instruct: RswiftResources.ImageResource { .init(name: "ECG_Auth_Instruct", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }

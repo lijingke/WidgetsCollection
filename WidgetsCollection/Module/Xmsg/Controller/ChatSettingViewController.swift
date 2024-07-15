@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatSettingViewController: UIViewController {
+class ChatSettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()

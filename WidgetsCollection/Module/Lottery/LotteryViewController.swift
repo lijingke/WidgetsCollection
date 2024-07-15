@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class LotteryViewController: UIViewController {
+class LotteryViewController: BaseViewController {
     // MARK: Life Cycle
 
     override func viewDidLoad() {

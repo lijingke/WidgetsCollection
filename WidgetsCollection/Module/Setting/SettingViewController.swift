@@ -10,7 +10,7 @@ import MBProgressHUD
 import UIKit
 import WCDBSwift
 
-class SettingViewController: UIViewController {
+class SettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []

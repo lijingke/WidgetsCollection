@@ -11,7 +11,7 @@ import MBProgressHUD
 import TZImagePickerController
 import UIKit
 
-class ImagePickerViewController: UIViewController {
+class ImagePickerViewController: BaseViewController {
     // MARK: - Life Cycle
 
     override func viewDidLoad() {

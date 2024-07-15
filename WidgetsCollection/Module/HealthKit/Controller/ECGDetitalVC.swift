@@ -10,7 +10,7 @@ import Foundation
 import HealthKit
 import UIKit
 
-class ECGDetitalVC: UIViewController {
+class ECGDetitalVC: BaseViewController {
     // MARK: Property
 
     var model: ECGModel?
