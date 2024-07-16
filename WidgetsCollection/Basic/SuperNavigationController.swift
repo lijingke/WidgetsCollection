@@ -12,6 +12,14 @@ class SuperNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .white
+//        appearance.configureWithOpaqueBackground()
+//        appearance.backgroundImage = UIImage(color: .white)
+        appearance.shadowImage = UIImage(color: .white)
+        appearance.backgroundEffect = nil
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = appearance
     }
 
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {

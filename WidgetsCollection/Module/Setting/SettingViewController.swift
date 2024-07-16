@@ -13,7 +13,6 @@ import WCDBSwift
 class SettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        edgesForExtendedLayout = []
         setupUI()
         setupData()
         requeseUserInfo()
@@ -58,7 +57,8 @@ extension SettingViewController {
                 }
             case "退出":
                 model.tap = {
-                    abort()
+//                    abort()
+                    exit(1)
                     let window = UIApplication.shared.windows[0]
 
                     UIView.animate(withDuration: 10, animations: {

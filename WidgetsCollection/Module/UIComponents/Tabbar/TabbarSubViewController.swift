@@ -11,7 +11,6 @@ import UIKit
 class TabbarSubViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        edgesForExtendedLayout = []
         view.backgroundColor = .white
     }
 }

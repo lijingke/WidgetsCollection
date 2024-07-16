@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        NotificationCenter.default.addObserver(self, selector: #selector(didScreenshot(_:)), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
 
         window = UIWindow(frame: UIScreen.main.bounds)
+        window?.backgroundColor = .white
         let vc = MainTabbarController()
         window?.rootViewController = vc
         window?.makeKeyAndVisible()

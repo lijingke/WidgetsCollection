@@ -29,9 +29,6 @@ class RefreshViewController: BaseViewController {
 extension RefreshViewController {
     private func setupUI() {
         navigationController?.navigationBar.tintColor = .green
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-
         navigationController?.navigationBar.barTintColor = .green
         view.addSubview(mainView)
         mainView.snp.makeConstraints { make in

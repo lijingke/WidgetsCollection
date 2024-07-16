@@ -13,7 +13,13 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addCaptureListener()
+        edgesForExtendedLayout = []
         view.backgroundColor = .white
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.view.backgroundColor = .white
     }
     
     deinit {

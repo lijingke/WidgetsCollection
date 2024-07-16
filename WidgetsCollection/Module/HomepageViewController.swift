@@ -28,7 +28,6 @@ class HomepageViewController: BaseViewController {
         navigationItem.title = "瓦西里的百宝箱"
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
-        edgesForExtendedLayout = []
     }
 
     var headViewTitles: [String] = []
