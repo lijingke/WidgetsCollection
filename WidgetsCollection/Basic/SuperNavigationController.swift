@@ -18,6 +18,7 @@ class SuperNavigationController: UINavigationController {
 //        appearance.backgroundImage = UIImage(color: .white)
         appearance.shadowImage = UIImage(color: .white)
         appearance.backgroundEffect = nil
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
         navigationBar.standardAppearance = appearance
         navigationBar.scrollEdgeAppearance = appearance
     }

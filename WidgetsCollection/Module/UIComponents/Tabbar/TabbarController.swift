@@ -13,16 +13,6 @@ class TabbarController: SuperTabbarController {
         super.viewDidLoad()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-//        navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-//        navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-
     override func setupChildrenViewControllers() {
         let btn = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .done, target: self, action: #selector(backAction))
 
