@@ -62,26 +62,21 @@ extension UIColor {
 extension UIColor {
     // Hex String -> UIColor
     convenience init(hexString: String, withAlpha: CGFloat = 1.0) {
-        let hexString = hexString.trimmingCharacters(in: .whitespacesAndNewlines)
-        let scanner = Scanner(string: hexString)
+        var hexFormatted: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
 
-        if hexString.hasPrefix("#") {
-            scanner.scanLocation = 1
+        if hexFormatted.hasPrefix("#") {
+            hexFormatted = String(hexFormatted.dropFirst())
         }
 
-        var color: UInt32 = 0
-        scanner.scanHexInt32(&color)
+        assert(hexFormatted.count == 6, "Invalid hex code used.")
 
-        let mask = 0x0000_00FF
-        let r = Int(color >> 16) & mask
-        let g = Int(color >> 8) & mask
-        let b = Int(color) & mask
+        var rgbValue: UInt64 = 0
+        Scanner(string: hexFormatted).scanHexInt64(&rgbValue)
 
-        let red = CGFloat(r) / 255.0
-        let green = CGFloat(g) / 255.0
-        let blue = CGFloat(b) / 255.0
-
-        self.init(red: red, green: green, blue: blue, alpha: withAlpha)
+        self.init(red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+                  green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+                  blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+                  alpha: withAlpha)
     }
 
     // UIColor -> Hex String
@@ -114,6 +109,33 @@ extension UIColor {
             )
         }
     }
+    
+    /// 根据进度值修改颜色
+    /// - Parameters:
+    ///   - progress: 进度值，范围0-1
+    ///   - startColor: 进度为0时的初始色，默认白色
+    ///   - endColor: 进度为1时的结束色，默认黑色
+    /// - Returns: 返回的颜色，可能为空
+    static func progressColor(forProgress progress: CGFloat, startColor: String? = nil, endColor: String? = nil) -> UIColor? {
+        
+        let startColor = UIColor(hexString: startColor ?? "#FFFFFF")
+        let endColor = UIColor(hexString: endColor ?? "#000000")
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let startComponents = startColor.cgColor.components ?? []
+        let endComponents = endColor.cgColor.components ?? []
+
+        var components: [CGFloat] = []
+        for (index, startComponent) in startComponents.enumerated() {
+            let endComponent = endComponents[index]
+            let component = (endComponent - startComponent) * progress + startComponent
+            components.append(component)
+        }
+        if let cgColor = CGColor(colorSpace: colorSpace, components: components) {
+            return UIColor(cgColor: cgColor)
+        }
+
+        return nil
+    }
 
     static var random: UIColor {
         let red = CGFloat(arc4random_uniform(255) + 1) / 255
@@ -121,28 +143,32 @@ extension UIColor {
         let blue = CGFloat(arc4random_uniform(255) + 1) / 255
         return UIColor(red: red, green: green, blue: blue, alpha: 1)
     }
-    
+
     static var themeColor: UIColor {
         return UIColor(hexString: "#0EA0A0")
     }
 }
 
-extension NSObject {
-    func colorWithGradient(frame: CGRect, colors: [UIColor]) -> UIColor {
-        // create the background layer that will hold the gradient
-        let backgroundGradientLayer = CAGradientLayer()
-        backgroundGradientLayer.frame = frame
+#if os(iOS)
+    extension NSObject {
+        func colorWithGradient(frame: CGRect, colors: [UIColor]) -> UIColor {
+            // create the background layer that will hold the gradient
+            let backgroundGradientLayer = CAGradientLayer()
+            backgroundGradientLayer.frame = frame
 
-        // we create an array of CG colors from out UIColor array
-        let cgColors = colors.map { $0.cgColor }
+            // we create an array of CG colors from out UIColor array
+            let cgColors = colors.map { $0.cgColor }
 
-        backgroundGradientLayer.colors = cgColors
+            backgroundGradientLayer.colors = cgColors
+            // 下面两个参数是：开始点，结尾点；两点之间的连线可以形成一个矢量方向，即是渐变的方向
+            backgroundGradientLayer.startPoint = CGPoint(x: 0, y: 0) // 左上角
+            backgroundGradientLayer.endPoint = CGPoint(x: 1, y: 0) // 右上角
+            UIGraphicsBeginImageContext(backgroundGradientLayer.bounds.size)
+            backgroundGradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+            let backgroundColorImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
 
-        UIGraphicsBeginImageContext(backgroundGradientLayer.bounds.size)
-        backgroundGradientLayer.render(in: UIGraphicsGetCurrentContext()!)
-        let backgroundColorImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return UIColor(patternImage: backgroundColorImage!)
+            return UIColor(patternImage: backgroundColorImage!)
+        }
     }
-}
+#endif
