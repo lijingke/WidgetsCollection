@@ -21,9 +21,9 @@ open class Screenshotter {
     public static func takeScreenshot(of application: UIApplication = UIApplication.shared, on screen: UIScreen = UIScreen.main) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(screen.bounds.size, true, 0)
 
-        application.windows.forEach { window in
+        for window in application.windows {
 //            guard window.screen == screen else { return }
-            guard window.isKeyWindow else { return }
+            guard window.isKeyWindow else { continue }
 
             window.drawHierarchy(in: window.bounds, afterScreenUpdates: false)
         }

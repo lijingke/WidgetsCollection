@@ -43,16 +43,16 @@ class HomepageViewController: BaseViewController {
             case "WorkSpace":
                 dicArray = [
                     [.cellName: "RPlus", .className: "ProcessProgressVC"],
-                    [.cellName: "富文本点击", .className: "AttributedStringViewController"]
+                    [.cellName: "富文本点击", .className: "AttributedStringViewController"],
                 ]
             case "Core Animation":
                 dicArray = [
-                    [.cellName: "Finish Animation", .className: "FinishAnimationViewController"]
+                    [.cellName: "Finish Animation", .className: "FinishAnimationViewController"],
                 ]
             case "Playgrounds":
                 dicArray = [
                     [.cellName: "刷新", .className: "RefreshViewController"],
-                    [.cellName: "Combine", .className: "ViewController"]
+                    [.cellName: "Combine", .className: "ViewController"],
                 ]
             case "UI Components":
                 dicArray = [
@@ -61,64 +61,64 @@ class HomepageViewController: BaseViewController {
                     [.cellName: "TisprCardStack", .className: "TisprCardStackViewController"],
                     [.cellName: "UIPasteboard", .className: "UIPasteboardViewController"],
                     [.cellName: "ImagePicker", .className: "ImagePickerViewController"],
-                    [.cellName: "HUD Test", .className: "HUDManagerDemoViewController"]
+                    [.cellName: "HUD Test", .className: "HUDManagerDemoViewController"],
                 ]
             case "Toolbox":
                 dicArray = [
                     [.cellName: "App Search", .className: "AppSearchViewController"],
-                    [.cellName: "周会幸运星", .className: "LotteryViewController"]
+                    [.cellName: "周会幸运星", .className: "LotteryViewController"],
                 ]
             case "CollectionView Basics":
                 dicArray = [
                     [.cellName: "基础布局篇", .className: "BasicViewController", .pushType: "pop"],
-                    [.cellName: "布局和代理篇", .className: "LayoutAndDelegateViewController", .pushType: "pop"]
+                    [.cellName: "布局和代理篇", .className: "LayoutAndDelegateViewController", .pushType: "pop"],
                 ]
             case "CUSTOM LAYOUT":
                 dicArray = [
                     [.cellName: "卡片布局", .className: "CardLayoutViewController", .pushType: "pop"],
                     [.cellName: "瀑布流布局", .className: "WaterFallsViewController", .pushType: "pop"],
                     [.cellName: "可伸缩Header", .className: "StretchyHeaderViewController", .pushType: "pop"],
-                    [.cellName: "标签布局", .className: "TagViewController"]
+                    [.cellName: "标签布局", .className: "TagViewController"],
                 ]
             case "UIScrollView":
                 dicArray = [
-                    [.cellName: "滚动视图", .className: "ScrollViewController"]
+                    [.cellName: "滚动视图", .className: "ScrollViewController"],
                 ]
             case "UIView Animations":
                 dicArray = [
                     [.cellName: "CGAffineTransform", .className: "CGAffineTransformViewController"],
                     [.cellName: "UIView Animations - 01", .className: "AnimationsExamplesOneViewController"],
                     [.cellName: "UIView Animations - 02", .className: "AnimationsExamplesTwoViewController"],
-                    [.cellName: "UIImageView Animations", .className: "ImageViewAnimationViewController"]
+                    [.cellName: "UIImageView Animations", .className: "ImageViewAnimationViewController"],
                 ]
             case "CALYER":
                 dicArray = [
-                    [.cellName: "CALayer", .className: "CALayerViewController"]
+                    [.cellName: "CALayer", .className: "CALayerViewController"],
                 ]
             case "UIView Refresh":
                 dicArray = [
-                    [.cellName: "SetNeedsLayout", .className: "UIViewRefreshViewController"]
+                    [.cellName: "SetNeedsLayout", .className: "UIViewRefreshViewController"],
                 ]
             case "Location":
                 dicArray = [
-                    [.cellName: "Location", .className: "GetLocationViewController"]
+                    [.cellName: "Location", .className: "GetLocationViewController"],
                 ]
             case "NotificationCenter":
                 dicArray = [
-                    [.cellName: "NotificationCenterDemo", .className: "NotificationCenterViewController"]
+                    [.cellName: "NotificationCenterDemo", .className: "NotificationCenterViewController"],
                 ]
             case "Download":
                 dicArray = [
                     [.cellName: "PDF Download", .className: "PDFDownloadViewController"],
-                    [.cellName: "XMessage", .className: "ChatFilterViewController"]
+                    [.cellName: "XMessage", .className: "ChatFilterViewController"],
                 ]
             case "Safe":
                 dicArray = [
-                    [.cellName: "手势解锁", .className: "GestureUnlockViewController"]
+                    [.cellName: "手势解锁", .className: "GestureUnlockViewController"],
                 ]
             case "Health Kit":
                 dicArray = [
-                    [.cellName: "Electrocardiograms (ECG)", .className: "ECGMeasureListVC"]
+                    [.cellName: "Electrocardiograms (ECG)", .className: "ECGMeasureListVC"],
                 ]
             default:
                 break

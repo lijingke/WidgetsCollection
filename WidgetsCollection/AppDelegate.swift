@@ -11,7 +11,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
 //        // Define a listener to handle the case when a screen recording is launched
@@ -30,12 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    @objc private func didScreenshot(_ notification: Notification) {
-        
-#if DEBUG
+    @objc private func didScreenshot(_: Notification) {
+        #if DEBUG
             // Never add this log in RELEASED app.
             print("Screen capture detected then we force the immediate exit of the app!")
-#endif
+        #endif
         // Information about the image is not available here and screenshot cannot be prevented AS IS
         // See hint here about a way to address this issue:
         // https://tumblr.jeremyjohnstone.com/post/38503925370/how-to-detect-screenshots-on-ios-like-snapchat
@@ -43,14 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         exit(0)
     }
 
-    @objc private func didScreenRecording(_ notification: Notification) {
+    @objc private func didScreenRecording(_: Notification) {
         // If a screen recording operation is pending then we close the application
         print(UIScreen.main.isCaptured)
         if UIScreen.main.isCaptured {
-#if DEBUG
-            // Never add this log in RELEASED app.
-            print("Screen recording detected then we force the immediate exit of the app!")
-#endif
+            #if DEBUG
+                // Never add this log in RELEASED app.
+                print("Screen recording detected then we force the immediate exit of the app!")
+            #endif
             exit(0)
         }
     }

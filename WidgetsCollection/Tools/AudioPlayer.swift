@@ -5,8 +5,8 @@
 //  Created by 李京珂 on 2024/7/15.
 //
 
-import Foundation
 import AVFoundation
+import Foundation
 
 public enum AudioPlayerError: Error {
     case fileExtension, fileNotFound

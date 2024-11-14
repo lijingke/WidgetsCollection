@@ -25,10 +25,10 @@ class ViewController: BaseViewController {
 
     private let titleLabel = UILabel()
     private var cancel: AnyCancellable?
-    
+
     private let imageURLPublisher = PassthroughSubject<URL, RequestError>() // 图片加载请求发布者
     private let imageView = UIImageView()
-    
+
     // MARK: Life Cycle
 
     override func viewDidLoad() {
@@ -37,23 +37,23 @@ class ViewController: BaseViewController {
         setupUI()
         bindData()
     }
-    
+
     private func bindData() {
         let publisher = NotificationCenter.Publisher(center: .default, name: .dataLoaded).map { noti -> String? in
             return (noti.object as? Item)?.title
         }
         let subscriber = Subscribers.Assign(object: titleLabel, keyPath: \.text)
         publisher.subscribe(subscriber)
-        
+
         cancel = NotificationCenter.Publisher(center: .default, name: .dataLoaded).map { noti -> String? in
             return (noti.object as? Item)?.title
         }.sink { data in
             Log.info(data)
         }
-        
+
         cancel = imageURLPublisher.flatMap { url in
-            return URLSession.shared.dataTaskPublisher(for: url).mapError { error in
-                return RequestError.sessionError(error: error)
+            URLSession.shared.dataTaskPublisher(for: url).mapError { error in
+                RequestError.sessionError(error: error)
             }
         }.sink { error in
             print(error)
@@ -64,10 +64,9 @@ class ViewController: BaseViewController {
                 self.imageView.image = image
             }
         }
-
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+    override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
         let data = Item(title: "我是一个标题")
         NotificationCenter.default.post(name: .dataLoaded, object: data)
         print(titleLabel.text ?? "")

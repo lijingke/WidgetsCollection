@@ -279,6 +279,7 @@
 		545729622C45035E001BC95D /* RegexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545729612C45035E001BC95D /* RegexString.swift */; };
 		545729642C450374001BC95D /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545729632C450374001BC95D /* PermissionManager.swift */; };
 		545729662C450686001BC95D /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545729652C450686001BC95D /* DeviceHelper.swift */; };
+		5499DB862CE5DB7B00989AA6 /* StretchyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5499DB852CE5DB7B00989AA6 /* StretchyHeader.swift */; };
 		54D16AD32C352A4A00751DC4 /* userInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 54D16AD22C352A4A00751DC4 /* userInfo.json */; };
 		54DD149D2C352BA800A6484D /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DD149C2C352BA800A6484D /* R.generated.swift */; };
 		9095AE31B6285D87806D12F2 /* Pods_WidgetsCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 037528AA03FDA286B6EF35B5 /* Pods_WidgetsCollection.framework */; };
@@ -586,6 +587,7 @@
 		545729612C45035E001BC95D /* RegexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexString.swift; sourceTree = "<group>"; };
 		545729632C450374001BC95D /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		545729652C450686001BC95D /* DeviceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceHelper.swift; sourceTree = "<group>"; };
+		5499DB852CE5DB7B00989AA6 /* StretchyHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeader.swift; sourceTree = "<group>"; };
 		549EFD152C352B0D00B228F6 /* WidgetsCollection-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WidgetsCollection-Bridging-Header.h"; sourceTree = "<group>"; };
 		54D16AD22C352A4A00751DC4 /* userInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userInfo.json; sourceTree = "<group>"; };
 		54DD149C2C352BA800A6484D /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -629,6 +631,7 @@
 				54DD149E2C352C3200A6484D /* WidgetsCollection.entitlements */,
 				540682762C3525DA0039E3E2 /* AppDelegate.swift */,
 				5406828C2C3528D60039E3E2 /* MainTabbarController.swift */,
+				5499DB842CE5DB4B00989AA6 /* CommonView */,
 				540683842C3528EC0039E3E2 /* Basic */,
 				540683802C3528EC0039E3E2 /* Entity */,
 				540683A62C3528ED0039E3E2 /* Extension */,
@@ -1559,6 +1562,14 @@
 			path = ThirdParty;
 			sourceTree = "<group>";
 		};
+		5499DB842CE5DB4B00989AA6 /* CommonView */ = {
+			isa = PBXGroup;
+			children = (
+				5499DB852CE5DB7B00989AA6 /* StretchyHeader.swift */,
+			);
+			path = CommonView;
+			sourceTree = "<group>";
+		};
 		BA9B4D416269B62BB0D5E0FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1902,6 +1913,7 @@
 				540684222C3528ED0039E3E2 /* ChooseConfigureViewController.swift in Sources */,
 				5406846D2C3528ED0039E3E2 /* UIView+Layer.swift in Sources */,
 				540683E82C3528ED0039E3E2 /* WaterFallsViewController.swift in Sources */,
+				5499DB862CE5DB7B00989AA6 /* StretchyHeader.swift in Sources */,
 				5406846A2C3528ED0039E3E2 /* UIView+Border.swift in Sources */,
 				545729622C45035E001BC95D /* RegexString.swift in Sources */,
 				540684002C3528ED0039E3E2 /* ECGSampleDetailCell.swift in Sources */,

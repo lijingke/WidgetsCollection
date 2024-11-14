@@ -109,7 +109,7 @@ extension UIColor {
             )
         }
     }
-    
+
     /// 根据进度值修改颜色
     /// - Parameters:
     ///   - progress: 进度值，范围0-1
@@ -117,7 +117,6 @@ extension UIColor {
     ///   - endColor: 进度为1时的结束色，默认黑色
     /// - Returns: 返回的颜色，可能为空
     static func progressColor(forProgress progress: CGFloat, startColor: String? = nil, endColor: String? = nil) -> UIColor? {
-        
         let startColor = UIColor(hexString: startColor ?? "#FFFFFF")
         let endColor = UIColor(hexString: endColor ?? "#000000")
         let colorSpace = CGColorSpaceCreateDeviceRGB()
