@@ -150,7 +150,8 @@ extension String {
     func ext_debugPrint(file: String = #file, function _: String = #function, line _: Int = #line) -> String {
         #if DEBUG
             let fileName = file.ext_fileNameWithoutDirectory()
-            //        debugPrint("\(Date().ext_HHmmss) ***\(fileName)*** \(function) [line:\(line)] - \(self)")
+            let time = DateUtil.getDateStr(interval: Date().timeIntervalSince1970, format: "yyyy-MM-dd HH:mm:ss")
+            debugPrint("\(time) ***\(fileName)*** \(#function) [line:\(#line)] - \(self)")
         #endif
         return self
     }

@@ -44,6 +44,7 @@ class ViewController: BaseViewController {
 
         let some = "45.55"
         Log.info("\(some.toDouble())")
+        some.ext_debugPrint()
     }
 
     private func bindData() {
