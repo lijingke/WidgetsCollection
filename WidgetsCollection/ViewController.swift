@@ -34,6 +34,13 @@ class ViewController: BaseViewController {
     private let imageURLPublisher = PassthroughSubject<URL, RequestError>() // 图片加载请求发布者
     private let imageView = UIImageView()
 
+    lazy var gradientImageView: GradientImageView = {
+        let view = GradientImageView(colors: [.green, .blue, .yellow], gradientDirection: .downUp)
+        view.contentMode = .scaleAspectFit
+        view.colors = [.green, .blue, .yellow]
+        return view
+    }()
+
     // MARK: Life Cycle
 
     override func viewDidLoad() {
@@ -135,13 +142,19 @@ class ViewController: BaseViewController {
 
 extension ViewController {
     private func setupUI() {
-        view.addSubviews([titleLabel, imageView])
+        view.addSubviews([titleLabel, imageView, gradientImageView])
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
         imageView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
+        }
+        gradientImageView.snp.makeConstraints { make in
+            make.bottom.equalTo(titleLabel.snp.top).offset(-10)
+            make.left.equalToSuperview().offset(50)
+            make.right.equalToSuperview().offset(-50)
+            make.height.equalTo(100)
         }
     }
 }

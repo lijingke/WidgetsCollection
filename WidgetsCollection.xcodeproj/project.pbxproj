@@ -201,7 +201,6 @@
 		540684622C3528ED0039E3E2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540683982C3528ED0039E3E2 /* UIColor+Extension.swift */; };
 		540684632C3528ED0039E3E2 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540683992C3528ED0039E3E2 /* UIFont+Extension.swift */; };
 		540684642C3528ED0039E3E2 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5406839A2C3528ED0039E3E2 /* UIImage+Extension.swift */; };
-		540684652C3528ED0039E3E2 /* UIImage+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5406839C2C3528ED0039E3E2 /* UIImage+Gradient.m */; };
 		540684662C3528ED0039E3E2 /* UIImageView+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5406839D2C3528ED0039E3E2 /* UIImageView+Network.swift */; };
 		540684672C3528ED0039E3E2 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5406839E2C3528ED0039E3E2 /* UILabel+Extension.swift */; };
 		540684682C3528ED0039E3E2 /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5406839F2C3528ED0039E3E2 /* UIScrollView+Extension.swift */; };
@@ -211,6 +210,8 @@
 		5406846C2C3528ED0039E3E2 /* UIView+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540683A32C3528ED0039E3E2 /* UIView+Gradient.swift */; };
 		5406846D2C3528ED0039E3E2 /* UIView+Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540683A42C3528ED0039E3E2 /* UIView+Layer.swift */; };
 		5406846E2C3528ED0039E3E2 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540683A52C3528ED0039E3E2 /* UIViewController+Extension.swift */; };
+		540F06202CE7314F0009B8BB /* UIImage+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F061F2CE7314F0009B8BB /* UIImage+Gradient.m */; };
+		540F06222CE732940009B8BB /* GradientImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F06212CE732940009B8BB /* GradientImageView.swift */; };
 		545728D02C44FDCD001BC95D /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545728CF2C44FDCD001BC95D /* FeedbackManager.swift */; };
 		5457291B2C44FE16001BC95D /* PinpointKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545728D12C44FE16001BC95D /* PinpointKit.xcassets */; };
 		5457291C2C44FE16001BC95D /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 545728D22C44FE16001BC95D /* SourceSansPro-Bold.ttf */; };
@@ -506,8 +507,6 @@
 		540683982C3528ED0039E3E2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		540683992C3528ED0039E3E2 /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		5406839A2C3528ED0039E3E2 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
-		5406839B2C3528ED0039E3E2 /* UIImage+Gradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Gradient.h"; sourceTree = "<group>"; };
-		5406839C2C3528ED0039E3E2 /* UIImage+Gradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Gradient.m"; sourceTree = "<group>"; };
 		5406839D2C3528ED0039E3E2 /* UIImageView+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Network.swift"; sourceTree = "<group>"; };
 		5406839E2C3528ED0039E3E2 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		5406839F2C3528ED0039E3E2 /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
@@ -517,6 +516,9 @@
 		540683A32C3528ED0039E3E2 /* UIView+Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Gradient.swift"; sourceTree = "<group>"; };
 		540683A42C3528ED0039E3E2 /* UIView+Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layer.swift"; sourceTree = "<group>"; };
 		540683A52C3528ED0039E3E2 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		540F061E2CE7314F0009B8BB /* UIImage+Gradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Gradient.h"; sourceTree = "<group>"; };
+		540F061F2CE7314F0009B8BB /* UIImage+Gradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Gradient.m"; sourceTree = "<group>"; };
+		540F06212CE732940009B8BB /* GradientImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageView.swift; sourceTree = "<group>"; };
 		545728CF2C44FDCD001BC95D /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		545728D12C44FE16001BC95D /* PinpointKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PinpointKit.xcassets; sourceTree = "<group>"; };
 		545728D22C44FE16001BC95D /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
@@ -1408,8 +1410,8 @@
 				540683982C3528ED0039E3E2 /* UIColor+Extension.swift */,
 				540683992C3528ED0039E3E2 /* UIFont+Extension.swift */,
 				5406839A2C3528ED0039E3E2 /* UIImage+Extension.swift */,
-				5406839B2C3528ED0039E3E2 /* UIImage+Gradient.h */,
-				5406839C2C3528ED0039E3E2 /* UIImage+Gradient.m */,
+				540F061E2CE7314F0009B8BB /* UIImage+Gradient.h */,
+				540F061F2CE7314F0009B8BB /* UIImage+Gradient.m */,
 				5406839D2C3528ED0039E3E2 /* UIImageView+Network.swift */,
 				5406839E2C3528ED0039E3E2 /* UILabel+Extension.swift */,
 				5406839F2C3528ED0039E3E2 /* UIScrollView+Extension.swift */,
@@ -1566,6 +1568,7 @@
 			isa = PBXGroup;
 			children = (
 				5499DB852CE5DB7B00989AA6 /* StretchyHeader.swift */,
+				540F06212CE732940009B8BB /* GradientImageView.swift */,
 			);
 			path = CommonView;
 			sourceTree = "<group>";
@@ -1619,7 +1622,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					540682722C3525DA0039E3E2 = {
 						CreatedOnToolsVersion = 15.4;
@@ -1773,6 +1776,7 @@
 				540684552C3528ED0039E3E2 /* Dictionary+Extension.swift in Sources */,
 				5406844E2C3528ED0039E3E2 /* SuperTabbarController.swift in Sources */,
 				545729362C44FE16001BC95D /* FeedbackViewController.swift in Sources */,
+				540F06222CE732940009B8BB /* GradientImageView.swift in Sources */,
 				540684062C3528ED0039E3E2 /* LotteryViewController.swift in Sources */,
 				545729462C44FE16001BC95D /* ScreenshotCell.swift in Sources */,
 				540684442C3528ED0039E3E2 /* CommonInputCell.swift in Sources */,
@@ -1877,6 +1881,7 @@
 				540683B72C3528ED0039E3E2 /* ClassicSparkTrajectoryFactoryProtocol.swift in Sources */,
 				5406844B2C3528ED0039E3E2 /* HomeDataEntity.swift in Sources */,
 				540683D52C3528ED0039E3E2 /* Json.swift in Sources */,
+				540F06202CE7314F0009B8BB /* UIImage+Gradient.m in Sources */,
 				540683D42C3528ED0039E3E2 /* ImageUploadOperation.swift in Sources */,
 				540683F02C3528ED0039E3E2 /* PDFPreviewView.swift in Sources */,
 				540683EE2C3528ED0039E3E2 /* PDFDownloadView.swift in Sources */,
@@ -1996,7 +2001,6 @@
 				540683E52C3528ED0039E3E2 /* CardLayoutViewController.swift in Sources */,
 				5406828D2C3528D60039E3E2 /* MainTabbarController.swift in Sources */,
 				5457295E2C4502E4001BC95D /* AudioPlayer.swift in Sources */,
-				540684652C3528ED0039E3E2 /* UIImage+Gradient.m in Sources */,
 				5406841C2C3528ED0039E3E2 /* CardItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2044,6 +2048,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2107,6 +2112,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

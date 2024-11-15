@@ -97,7 +97,7 @@ extension UIImage {
         return image!
     }
 
-    static func getGradientImage(leftColor: UIColor, rightColor: UIColor, gradientType: HXSGRadientType = .leftToRight) -> UIImage {
+    static func getGradientImage(leftColor: UIColor, rightColor: UIColor, gradientType: RadientType = .leftToRight) -> UIImage {
         let image = UIImage(size: CGSize(width: UIScreen.main.bounds.size.width, height: 210), gradientColors: [leftColor, rightColor], percentage: [0, 1], gradientType: gradientType)
         return image
     }
@@ -111,6 +111,28 @@ extension UIImage {
         guard let theImage = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage() }
         UIGraphicsEndImageContext()
         return theImage
+    }
+}
+
+extension UIImage {
+    /**
+     Create gradient image from beginColor on top and end color at bottom
+
+     - parameter beginColor: beginColor
+     - parameter endColor:   endColor
+     - parameter frame:      frame to be filled
+
+     - returns: filled image
+     */
+    static func imageWithGradient(from beginColor: UIColor, to endColor: UIColor, with frame: CGRect) -> UIImage? {
+        let layer = CAGradientLayer()
+        layer.frame = frame
+        layer.colors = [beginColor.cgColor, endColor.cgColor]
+        UIGraphicsBeginImageContext(CGSize(width: frame.width, height: frame.height))
+        layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
 }
 

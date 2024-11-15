@@ -1,22 +1,24 @@
 //
 //  UIImage+Gradient.h
+//  WidgetsCollection
 //
-//  Created by 杨敬 on 2018/12/3.
-//  Copyright © 2018 grdoc. All rights reserved.
+//  Created by 李京珂 on 2024/11/15.
 //
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef NS_ENUM(NSInteger,HXSGRadientType) {
-    HXSGRadientTypeTopToBottom,//从上到下
-    HXSGRadientTypeLeftToRight,//从左到右
-    HXSGRadientTypeLeftTopToRightBottom,//从左上到右下
-    HXSGRadientTypeLeftBottomToRightTop//从左下到右上
+
+typedef NS_ENUM(NSInteger, RadientType) {
+    RadientTypeTopToBottom, // 从上到下
+    RadientTypeLeftToRight, // 从左到右
+    RadientTypeLeftTopToRightBottom, // 从左上到右下
+    RadientTypeLeftBottomToRightTop // 从左下到右上
 };
-@interface UIImage (HXSGradient)
--(instancetype)initWithSize:(CGSize)size gradientColors:(NSArray <UIColor *>*)colors percentage:(NSArray <NSNumber *>*)percents gradientType:(HXSGRadientType)type;
--(instancetype)cornerImageWithcornerRadius:(CGFloat)cornerRadius AndImage:(UIImage *)sourceImage;
+
+@interface UIImage (Gradient)
+- (instancetype)initWithSize:(CGSize)size gradientColors:(NSArray<UIColor *> *)colors percentage:(NSArray<NSNumber *> *)percents gradientType:(RadientType)type;
+- (instancetype)cornerImageWithcornerRadius:(CGFloat)cornerRadius AndImage:(UIImage *)sourceImage;
 @end
 
 NS_ASSUME_NONNULL_END
