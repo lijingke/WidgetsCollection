@@ -212,6 +212,7 @@
 		5406846E2C3528ED0039E3E2 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540683A52C3528ED0039E3E2 /* UIViewController+Extension.swift */; };
 		540F06202CE7314F0009B8BB /* UIImage+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 540F061F2CE7314F0009B8BB /* UIImage+Gradient.m */; };
 		540F06222CE732940009B8BB /* GradientImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F06212CE732940009B8BB /* GradientImageView.swift */; };
+		540F06242CE737450009B8BB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F06232CE737450009B8BB /* SearchViewModel.swift */; };
 		545728D02C44FDCD001BC95D /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545728CF2C44FDCD001BC95D /* FeedbackManager.swift */; };
 		5457291B2C44FE16001BC95D /* PinpointKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545728D12C44FE16001BC95D /* PinpointKit.xcassets */; };
 		5457291C2C44FE16001BC95D /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 545728D22C44FE16001BC95D /* SourceSansPro-Bold.ttf */; };
@@ -519,6 +520,7 @@
 		540F061E2CE7314F0009B8BB /* UIImage+Gradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Gradient.h"; sourceTree = "<group>"; };
 		540F061F2CE7314F0009B8BB /* UIImage+Gradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Gradient.m"; sourceTree = "<group>"; };
 		540F06212CE732940009B8BB /* GradientImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageView.swift; sourceTree = "<group>"; };
+		540F06232CE737450009B8BB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		545728CF2C44FDCD001BC95D /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		545728D12C44FE16001BC95D /* PinpointKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PinpointKit.xcassets; sourceTree = "<group>"; };
 		545728D22C44FE16001BC95D /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
@@ -642,6 +644,7 @@
 				5457295A2C450266001BC95D /* ThirdParty */,
 				540682D72C3528EC0039E3E2 /* Tools */,
 				5406827A2C3525DA0039E3E2 /* ViewController.swift */,
+				540F06232CE737450009B8BB /* SearchViewModel.swift */,
 				5406828A2C35270E0039E3E2 /* Launch Screen.storyboard */,
 				54DD149C2C352BA800A6484D /* R.generated.swift */,
 				54D16AD22C352A4A00751DC4 /* userInfo.json */,
@@ -1960,6 +1963,7 @@
 				540683BC2C3528ED0039E3E2 /* Firework.swift in Sources */,
 				540684272C3528ED0039E3E2 /* ConfigureView.swift in Sources */,
 				540683CF2C3528ED0039E3E2 /* YOECGChartView.m in Sources */,
+				540F06242CE737450009B8BB /* SearchViewModel.swift in Sources */,
 				540683C22C3528ED0039E3E2 /* SparkViewAnimator.swift in Sources */,
 				5457294D2C44FE16001BC95D /* SystemLogCollector.swift in Sources */,
 				540683ED2C3528ED0039E3E2 /* PDFCollectionFooter.swift in Sources */,

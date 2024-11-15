@@ -7,6 +7,7 @@
 
 import Combine
 import UIKit
+import Combine
 
 extension Notification.Name {
     static let dataLoaded = Notification.Name("data_loaded")
@@ -33,7 +34,8 @@ class ViewController: BaseViewController {
 
     private let imageURLPublisher = PassthroughSubject<URL, RequestError>() // 图片加载请求发布者
     private let imageView = UIImageView()
-
+    var vm = ViewModel()
+    
     lazy var gradientImageView: GradientImageView = {
         let view = GradientImageView(colors: [.green, .blue, .yellow], gradientDirection: .downUp)
         view.contentMode = .scaleAspectFit
@@ -49,9 +51,7 @@ class ViewController: BaseViewController {
         setupUI()
         bindData()
 
-        let some = "45.55"
-        Log.info("\(some.toDouble())")
-        some.ext_debugPrint()
+        vm.searchPublisher.send("搜索关键字")
     }
 
     private func bindData() {

@@ -241,7 +241,7 @@ extension DrawableCardViewController: CardViewDataSource {
         if let image = UIImage(named: "img_0" + "\(index)") {
             item = ImageCardItem(image: image)
         } else {
-            item = ImageCardItem(image: UIImage.getImageWithColor(color: .randomColor()))
+            item = ImageCardItem(image: UIImage.getImageWithColor(.randomColor()))
         }
 
         if index == count - 1 {
