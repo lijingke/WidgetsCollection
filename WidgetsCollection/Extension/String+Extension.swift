@@ -305,9 +305,8 @@ extension String {
     /**  字符串转Float */
     func toFloat() -> Float {
         let scanner = Scanner(string: self)
-        var float: Float = 0
-        if scanner.scanFloat(&float) {
-            return float
+        if let result = scanner.scanFloat() {
+            return result
         }
         return 0.0
     }
@@ -315,9 +314,8 @@ extension String {
     /**  字符串转Double  */
     func toDouble() -> Double {
         let scanner = Scanner(string: self)
-        var double: Double = 0
-        if scanner.scanDouble(&double) {
-            return double
+        if let result = scanner.scanDouble() {
+            return result
         }
         return 0.00
     }
@@ -422,6 +420,13 @@ public extension String {
 // MARK: - 字符串大小
 
 public extension String {
+    /// 计算宽度
+    func getWidth(_ font: UIFont) -> CGFloat {
+        let str = self as NSString
+        let rect = str.boundingRect(with: CGSize(width: 10000, height: 10000), options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+        return rect.width
+    }
+
     func heightForView(font: UIFont, width: CGFloat) -> CGFloat {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
@@ -505,5 +510,19 @@ extension String {
             print("Failed with error: \(error)")
         }
         return attributeString
+    }
+}
+
+extension String {
+    // 将原始的url编码为合法的url
+    func urlEncoded() -> String {
+        let encodeUrlString = addingPercentEncoding(withAllowedCharacters:
+            .urlQueryAllowed)
+        return encodeUrlString ?? ""
+    }
+
+    // 将编码后的url转换回原始的url
+    func urlDecoded() -> String {
+        return removingPercentEncoding ?? ""
     }
 }

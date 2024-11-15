@@ -84,13 +84,6 @@ extension String {
         return attriString
     }
 
-    /// 计算宽度
-    func getWidth(_ font: UIFont) -> CGFloat {
-        let str = self as NSString
-        let rect = str.boundingRect(with: CGSize(width: 10000, height: 10000), options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
-        return rect.width
-    }
-
     /// 自定义转整数
     func intValue() -> Int {
         if count == 0 { return -1 }

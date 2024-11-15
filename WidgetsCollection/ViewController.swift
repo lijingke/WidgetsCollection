@@ -41,6 +41,9 @@ class ViewController: BaseViewController {
         // Do any additional setup after loading the view.
         setupUI()
         bindData()
+
+        let some = "45.55"
+        Log.info("\(some.toDouble())")
     }
 
     private func bindData() {
