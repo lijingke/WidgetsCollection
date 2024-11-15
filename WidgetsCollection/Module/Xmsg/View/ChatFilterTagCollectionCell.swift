@@ -45,8 +45,8 @@ class ChatFilterTagCollectionCell: UICollectionViewCell {
         btn.setTitleColor(UIColor(hex: 0x333333), for: .normal)
         btn.setTitleColor(UIColor(hex: 0x3292FF), for: .selected)
         btn.titleLabel?.font = UIFont.regular(14)
-        btn.setBackgroundImage(UIImage.getImageWithColor(color: .white), for: .normal)
-        btn.setBackgroundImage(UIImage.getImageWithColor(color: UIColor(hex: 0x3292FF, alpha: 0.1)), for: .selected)
+        btn.setBackgroundImage(UIImage.getImageWithColor(.white), for: .normal)
+        btn.setBackgroundImage(UIImage.getImageWithColor(UIColor(hex: 0x3292FF, alpha: 0.1)), for: .selected)
         btn.isUserInteractionEnabled = false
         btn.layer.borderWidth = 0.5
         btn.layer.borderColor = UIColor(hex: 0xABABAB).cgColor

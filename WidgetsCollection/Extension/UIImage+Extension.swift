@@ -86,23 +86,12 @@ extension UIImage {
 }
 
 extension UIImage {
-    public static func getImageWithColor(color: UIColor) -> UIImage {
-        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        context!.setFillColor(color.cgColor)
-        context!.fill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image!
-    }
-
     static func getGradientImage(leftColor: UIColor, rightColor: UIColor, gradientType: RadientType = .leftToRight) -> UIImage {
         let image = UIImage(size: CGSize(width: UIScreen.main.bounds.size.width, height: 210), gradientColors: [leftColor, rightColor], percentage: [0, 1], gradientType: gradientType)
         return image
     }
 
-    static func creatImageWithColor(_ color: UIColor) -> UIImage {
+    static func getImageWithColor(_ color: UIColor) -> UIImage {
         let rect = CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
