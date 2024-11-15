@@ -91,7 +91,7 @@ class GestureUnlockView: UIView {
         let spaceWidth = (kScreenWidth - 3 * width) / 4
         let spaceHeight = (kscreenHeight - 3 * height) / 4
 
-        for index in 0 ..< 9 {
+        for index in 0..<9 {
             // 计算当前所在行
             let row = index % 3
             let line = index / 3

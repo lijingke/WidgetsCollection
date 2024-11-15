@@ -85,7 +85,7 @@ extension ECGMeasureListCell {
         } else {
             averageHRLabel.text = "-- BPM Average"
         }
-        let subVoltArr = Array(ArraySlice(model.ecgData[0 ..< 512 * 3]))
+        let subVoltArr = Array(ArraySlice(model.ecgData[0..<512 * 3]))
         let width = CGFloat(Float(subVoltArr.count) * ecgChartView.standard.onePointWidth)
         var frame = ecgChartView.frame
         frame.size.width = width

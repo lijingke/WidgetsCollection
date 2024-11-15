@@ -35,13 +35,13 @@ class WaterFallsLayout: UICollectionViewLayout {
             let columnWidth = (width - (CGFloat(numberOfColumns) + 1) * minimumInteritemSpacing) / CGFloat(numberOfColumns)
 
             var xOffsets = [CGFloat]()
-            for column in 0 ..< numberOfColumns {
+            for column in 0..<numberOfColumns {
                 xOffsets.append(CGFloat(column) * columnWidth + minimumInteritemSpacing * CGFloat(column + 1))
             }
 
             var yOffsets = [CGFloat](repeating: minimumInteritemSpacing, count: numberOfColumns)
             var column = 0
-            for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
+            for item in 0..<collectionView.numberOfItems(inSection: 0) {
                 let indexPath = IndexPath(item: item, section: 0)
                 let height = delegate.collectionView(collectionView, heightForItemAt: indexPath)
                 let frame = CGRect(x: xOffsets[column], y: yOffsets[column], width: columnWidth, height: height)

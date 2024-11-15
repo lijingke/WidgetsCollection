@@ -70,7 +70,7 @@ class ZXSectorModel {
 
         let startPoint = CGPoint(x: xValue, y: yValue)
 
-        for index in 0 ..< sectorCount {
+        for index in 0..<sectorCount {
             let zxShapeLayer = ZXPrizeContentLayer()
             let spLayer = zxShapeLayer.zxshape //
 

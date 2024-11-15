@@ -21,7 +21,7 @@ public class FountainFireworkController {
         let origin = CGPoint(x: sourceView.frame.midX, y: sourceView.frame.minY - offsetY)
         let firework = createFirework(at: origin, sparkSize: sparkSize, scale: scale)
 
-        for sparkIndex in 0 ..< sparksCount {
+        for sparkIndex in 0..<sparksCount {
             let spark = firework.spark(at: sparkIndex)
             spark.sparkView.isHidden = true
             superview.addSubview(spark.sparkView)

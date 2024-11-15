@@ -6,6 +6,24 @@
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
       buildArchitectures = "Automatic">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "# Type a script or drag a script file from your workspace to insert its path.&#10;if [ &quot;${CONFIGURATION}&quot; = &quot;Debug&quot; ]; then&#10;&#10;&quot;${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat&quot; --disable unusedArguments,numberFormatting,redundantReturn,andOperator,anyObjectProtocol,trailingClosures,redundantFileprivate --ranges nospace --swiftversion &quot;5.0&quot; &quot;${SRCROOT}/WidgetsCollection/&quot;&#10;&#10;echo &quot;format debug build swift code&quot;&#10;&#10;else&#10;&#10;echo &quot;Not Debug Env, skip format&quot;&#10;&#10;fi&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "540682722C3525DA0039E3E2"
+                     BuildableName = "WidgetsCollection.app"
+                     BlueprintName = "WidgetsCollection"
+                     ReferencedContainer = "container:WidgetsCollection.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"

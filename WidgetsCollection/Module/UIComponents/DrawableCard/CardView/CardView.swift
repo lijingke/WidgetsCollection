@@ -59,7 +59,7 @@ class CardView: UIView {
     public func reloadData() {
         guard let dataSource = dataSource else { return }
         count = dataSource.numberOfItems(in: self)
-        for index in 0 ..< count {
+        for index in 0..<count {
             addCard(with: index)
         }
     }
@@ -159,7 +159,7 @@ class CardView: UIView {
                     item.transform = CGAffineTransform.identity
                     self?.relayoutItem(isRevoke: true)
                 }) { [weak self] _ in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.delegate?.revoke(cardView: self, item: item, with: index)
                 }
             }

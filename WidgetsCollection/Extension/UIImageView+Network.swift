@@ -36,7 +36,7 @@ extension UIImageView {
         // 便利所有的图片
         var images = [UIImage]()
         var totalDuration: TimeInterval = 0
-        for i in 0 ..< imageCount {
+        for i in 0..<imageCount {
             // .取出图片
             guard let cgImage = CGImageSourceCreateImageAtIndex(imageSource, i, nil) else { continue }
             let image = UIImage(cgImage: cgImage)

@@ -34,7 +34,7 @@ extension String {
     public func substringToIndex(_ index: Int) -> String {
         let startIndex = self.startIndex
         let endIndex = self.index(startIndex, offsetBy: index)
-        let subStr = self[startIndex ..< endIndex]
+        let subStr = self[startIndex..<endIndex]
         return String(subStr)
     }
 }

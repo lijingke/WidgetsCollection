@@ -60,7 +60,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
             segment.accessibilityLabel = "Text Tool"
         }
 
-        for i in 0 ..< view.numberOfSegments {
+        for i in 0..<view.numberOfSegments {
             view.setWidth(54, forSegmentAt: i)
         }
 
@@ -375,7 +375,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
 
             let numberOfTouches = gestureRecognizer.numberOfTouches
 
-            for index in 0 ..< numberOfTouches {
+            for index in 0..<numberOfTouches {
                 if let annotationView = self.annotationView(in: view, with: gestureRecognizer.location(ofTouch: index, in: view)) {
                     annotationViews.append(annotationView)
                 }

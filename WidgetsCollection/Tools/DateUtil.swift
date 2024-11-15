@@ -35,7 +35,7 @@ class DateUtil: NSObject {
         // 1 ... 7表示周一到周日
         // 进行遍历和currentWeekDay进行比较，计算出之间的差值，即为当前日期和一周时间日期的差值，即可计算出一周时间内准备的日期
         var dates: [Date] = []
-        for index in 1 ... 7 {
+        for index in 1...7 {
             let diff = index - currentWeekDay
             comp.day = day + diff
             let date = calender.date(from: comp)

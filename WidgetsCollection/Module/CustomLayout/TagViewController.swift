@@ -61,7 +61,7 @@ class TagViewController: BaseViewController {
         tags[0].remove(at: indexPath.row)
         collectionView.performBatchUpdates({ [weak self] in
 
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.collectionView.deleteItems(at: [indexPath])
         }, completion: nil)
     }

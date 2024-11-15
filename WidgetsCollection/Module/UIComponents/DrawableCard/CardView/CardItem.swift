@@ -96,7 +96,7 @@ class CardItem: UIView {
 
             if (frame.origin.x + frame.width > 150 && frame.origin.x < frame.width - 150) && (frame.origin.y + frame.height > 150 && frame.origin.y < frame.height - 150) {
                 UIView.animate(withDuration: 0.5) { [weak self] in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.center = self.originalCenter
                     self.transform = CGAffineTransform.identity
                 }
@@ -120,7 +120,7 @@ class CardItem: UIView {
     public func remove(with direction: CardDirection = .right, angle: CGFloat = 0, animated: Bool = true) {
         if animated {
             UIView.animate(withDuration: 0.3, animations: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 switch direction {
                 case .up:
                     self.center = CGPoint(x: self.center.x + self.currentAngle * self.frame.width + angle, y: self.frame.height - 1000)
@@ -133,7 +133,7 @@ class CardItem: UIView {
                 }
 
             }) { [weak self] _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.removeFromSuperview()
                 self.delegate?.removeFromSuperView(item: self)
             }

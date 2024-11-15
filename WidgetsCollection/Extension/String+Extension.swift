@@ -21,7 +21,8 @@ extension String {
     func ext_size(withBoundingSize boundingSize: CGSize, font: UIFont) -> CGSize {
         let option = NSStringDrawingOptions.usesLineFragmentOrigin
         let attributes = [NSAttributedString.Key.font: font]
-        let contentSize = self.boundingRect(with: boundingSize, options: option, attributes: attributes, context: nil).size
+        let str = self as NSString
+        let contentSize = str.boundingRect(with: boundingSize, options: option, attributes: attributes, context: nil).size
         return contentSize
     }
 }
@@ -186,7 +187,7 @@ extension String {
      */
     func beginSpaceNum(num: Int) -> String {
         var beginSpace = ""
-        for _ in 0 ..< num {
+        for _ in 0..<num {
             beginSpace += " "
         }
         return beginSpace + removeHeadAndTailSpacePro
@@ -218,7 +219,7 @@ extension String {
         if (r.lowerBound > count) || (r.upperBound > count) { return "截取超出范围" }
         let startIndex = index(self.startIndex, offsetBy: r.lowerBound)
         let endIndex = index(self.startIndex, offsetBy: r.upperBound)
-        return String(self[startIndex ..< endIndex])
+        return String(self[startIndex..<endIndex])
     }
 
     /// 截取第一个到第任意位置
@@ -289,7 +290,7 @@ extension String {
             let from = String.Index(from16, within: self),
             let to = String.Index(to16, within: self)
         else { return nil }
-        return from ..< to
+        return from..<to
     }
 }
 

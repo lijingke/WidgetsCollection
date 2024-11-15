@@ -6,6 +6,7 @@ target 'WidgetsCollection' do
   use_frameworks!
 
   # Pods for WidgetsCollection
+  pod 'SwiftFormat/CLI'
   pod 'Alamofire'
   pod 'IQKeyboardManagerSwift'
   pod 'LookinServer', :configurations => ['Debug']

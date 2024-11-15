@@ -77,7 +77,7 @@ extension ECGInstructVC {
                         }
                         return
                     } else {
-                        for i in 0 ... ecgsCount - 1 {
+                        for i in 0...ecgsCount - 1 {
                             self.getECGs(counter: i) { ecgModel in
                                 DispatchQueue.main.async {
                                     self.dataSource.append(ecgModel)
