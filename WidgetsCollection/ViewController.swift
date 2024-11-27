@@ -7,7 +7,6 @@
 
 import Combine
 import UIKit
-import Combine
 
 extension Notification.Name {
     static let dataLoaded = Notification.Name("data_loaded")
@@ -35,7 +34,7 @@ class ViewController: BaseViewController {
     private let imageURLPublisher = PassthroughSubject<URL, RequestError>() // 图片加载请求发布者
     private let imageView = UIImageView()
     var vm = ViewModel()
-    
+
     lazy var gradientImageView: GradientImageView = {
         let view = GradientImageView(colors: [.green, .blue, .yellow], gradientDirection: .downUp)
         view.contentMode = .scaleAspectFit
@@ -67,11 +66,11 @@ class ViewController: BaseViewController {
             Log.info(data)
         }
 
-        photoCancel = [1, 2, 3].publisher.flatMap({ int in
+        photoCancel = [1, 2, 3].publisher.flatMap { int in
             // 转换原publisher为新publisher
             // 新publisher的Output为Range类型
-            return (0..<int).publisher
-        }).sink(receiveCompletion: { _ in }, receiveValue: { value in
+            (0 ..< int).publisher
+        }.sink(receiveCompletion: { _ in }, receiveValue: { value in
             print("value: \(value)")
         })
 
@@ -107,19 +106,19 @@ class ViewController: BaseViewController {
 //            }
 //        })
 
-                photoCancel = imageURLPublisher.flatMap { url in
-                    URLSession.shared.dataTaskPublisher(for: url).mapError { error in
-                        RequestError.sessionError(error: error)
-                    }
-                }.map({ result -> UIImage? in
-                    return UIImage(data: result.data)
-                }).replaceError(with: UIImage(named: "cat")).sink(receiveValue: { image in
-                    print(image)
-                    DispatchQueue.main.async {
-                        self.imageView.image = image
-                    }
-                })
-
+        photoCancel = imageURLPublisher.flatMap { url in
+            URLSession.shared.dataTaskPublisher(for: url).mapError { error in
+                RequestError.sessionError(error: error)
+            }
+        }.map { result -> UIImage? in
+            return UIImage(data: result.data)
+        }.replaceError(with: UIImage(named: "cat")).sink(receiveValue: { image in
+            print(image)
+            DispatchQueue.main.async {
+                self.imageView.image = image
+            }
+        })
+        
 //
 //        let subject = PassthroughSubject<String, Error>()
 //        cancel = subject
