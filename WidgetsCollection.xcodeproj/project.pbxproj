@@ -283,6 +283,7 @@
 		545729662C450686001BC95D /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545729652C450686001BC95D /* DeviceHelper.swift */; };
 		5499DB862CE5DB7B00989AA6 /* StretchyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5499DB852CE5DB7B00989AA6 /* StretchyHeader.swift */; };
 		54D16AD32C352A4A00751DC4 /* userInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 54D16AD22C352A4A00751DC4 /* userInfo.json */; };
+		54DB82912CF86791006B87CF /* String+Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DB82902CF86791006B87CF /* String+Attribute.swift */; };
 		54DD149D2C352BA800A6484D /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DD149C2C352BA800A6484D /* R.generated.swift */; };
 		9095AE31B6285D87806D12F2 /* Pods_WidgetsCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 037528AA03FDA286B6EF35B5 /* Pods_WidgetsCollection.framework */; };
 /* End PBXBuildFile section */
@@ -594,6 +595,7 @@
 		5499DB852CE5DB7B00989AA6 /* StretchyHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeader.swift; sourceTree = "<group>"; };
 		549EFD152C352B0D00B228F6 /* WidgetsCollection-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WidgetsCollection-Bridging-Header.h"; sourceTree = "<group>"; };
 		54D16AD22C352A4A00751DC4 /* userInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userInfo.json; sourceTree = "<group>"; };
+		54DB82902CF86791006B87CF /* String+Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Attribute.swift"; sourceTree = "<group>"; };
 		54DD149C2C352BA800A6484D /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		54DD149E2C352C3200A6484D /* WidgetsCollection.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsCollection.entitlements; sourceTree = "<group>"; };
 		A6B85B27BADA947CD7ACD7E1 /* Pods-WidgetsCollection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetsCollection.debug.xcconfig"; path = "Target Support Files/Pods-WidgetsCollection/Pods-WidgetsCollection.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1404,6 +1406,7 @@
 				5406838F2C3528ED0039E3E2 /* NSObject+Extension.swift */,
 				540683902C3528ED0039E3E2 /* Sequence+Extension.swift */,
 				540683912C3528ED0039E3E2 /* String+Extension.swift */,
+				54DB82902CF86791006B87CF /* String+Attribute.swift */,
 				540683922C3528ED0039E3E2 /* String+JSON.swift */,
 				540683932C3528ED0039E3E2 /* UIAlertController+Extension.swift */,
 				540683942C3528ED0039E3E2 /* UIApplication+Icon.swift */,
@@ -1952,6 +1955,7 @@
 				540683E22C3528ED0039E3E2 /* StretchyLayout.swift in Sources */,
 				545729452C44FE16001BC95D /* Screen.swift in Sources */,
 				540684042C3528ED0039E3E2 /* ZXSectorModel.swift in Sources */,
+				54DB82912CF86791006B87CF /* String+Attribute.swift in Sources */,
 				540684132C3528ED0039E3E2 /* ProcessInProgressCell.swift in Sources */,
 				540684642C3528ED0039E3E2 /* UIImage+Extension.swift in Sources */,
 				545729202C44FE16001BC95D /* AnnotationViewFactory.swift in Sources */,
