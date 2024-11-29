@@ -33,7 +33,7 @@ struct _R {
     var accentColor: RswiftResources.ColorResource { .init(name: "AccentColor", path: [], bundle: bundle) }
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 114 images.
+  /// This `_R.image` struct is generated, and contains static references to 106 images.
   struct image {
     let bundle: Foundation.Bundle
 
@@ -93,9 +93,6 @@ struct _R {
 
     /// Image `ProcessWait`.
     var processWait: RswiftResources.ImageResource { .init(name: "ProcessWait", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `SpongeBob.gif`.
-    var spongeBobGif: RswiftResources.ImageResource { .init(name: "SpongeBob.gif", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
 
     /// Image `Van Gogh_Starry Night`.
     var vanGogh_StarryNight: RswiftResources.ImageResource { .init(name: "Van Gogh_Starry Night", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -286,32 +283,11 @@ struct _R {
     /// Image `icon_read`.
     var icon_read: RswiftResources.ImageResource { .init(name: "icon_read", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
-    /// Image `img_00`.
-    var img_00: RswiftResources.ImageResource { .init(name: "img_00", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
-
-    /// Image `img_01`.
-    var img_01: RswiftResources.ImageResource { .init(name: "img_01", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
-
-    /// Image `img_02`.
-    var img_02: RswiftResources.ImageResource { .init(name: "img_02", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
-
-    /// Image `img_03`.
-    var img_03: RswiftResources.ImageResource { .init(name: "img_03", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
-
-    /// Image `img_04`.
-    var img_04: RswiftResources.ImageResource { .init(name: "img_04", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
-
-    /// Image `img_05`.
-    var img_05: RswiftResources.ImageResource { .init(name: "img_05", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
-
     /// Image `kt_sh`.
     var kt_sh: RswiftResources.ImageResource { .init(name: "kt_sh", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `lattice`.
     var lattice: RswiftResources.ImageResource { .init(name: "lattice", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `loading.gif`.
-    var loadingGif: RswiftResources.ImageResource { .init(name: "loading.gif", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
 
     /// Image `member_add`.
     var member_add: RswiftResources.ImageResource { .init(name: "member_add", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
