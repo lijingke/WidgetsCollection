@@ -24,11 +24,11 @@
             </objects>
             <point key="canvasLocation" x="1670.9923664122136" y="-27.464788732394368"/>
         </scene>
-        <!--Item-->
+        <!--Random-->
         <scene sceneID="9Of-8S-jbE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="beI-dM-n2v" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="kkd-Cd-Ukc"/>
+                    <tabBarItem key="tabBarItem" title="Random" image="pencil" catalog="system" id="kkd-Cd-Ukc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wd9-2E-Noo">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -63,6 +63,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
