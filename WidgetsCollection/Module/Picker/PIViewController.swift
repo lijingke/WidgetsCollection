@@ -25,6 +25,7 @@ class PIViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.datePicker.minimumDate = Date().addingTimeInterval(self.validPast)
+        self.datePicker.maximumDate = Date()
         self.datePicker.delegate = self
         
         view.addSubview(self.btn)
