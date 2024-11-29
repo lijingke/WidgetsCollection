@@ -14,14 +14,19 @@ enum CellInfoEnum {
     case pushType
 }
 
+enum PushType: String {
+    case navi
+    case present
+}
+
 struct HomeDataEntity {
     var cellName: String?
     var className: String?
-    var pushType: String? = "navi"
+    var pushType: PushType = .navi
 
-    init(_ dic: [CellInfoEnum: String]) {
-        cellName = dic[.cellName]
-        className = dic[.className]
-        pushType = dic[.pushType]
+    init(_ dic: [CellInfoEnum: Any]) {
+        cellName = dic[.cellName] as? String
+        className = dic[.className] as? String
+        pushType = dic[.pushType] as? PushType ?? .navi
     }
 }

@@ -1,5 +1,5 @@
 //
-//  HomepageViewController.swift
+//  HomeViewController.swift
 //  WidgetsCollection
 //
 //  Created by 李京珂 on 2020/4/2.
@@ -9,7 +9,7 @@
 import SnapKit
 import UIKit
 
-class HomepageViewController: BaseViewController {
+class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -35,19 +35,23 @@ class HomepageViewController: BaseViewController {
     var dataSource: [[HomeDataEntity]] = []
 
     fileprivate func getDataSource() {
-        headViewTitles = ["WorkSpace", "TableView", "Core Animation", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
+        headViewTitles = ["WorkSpace", "Picker", "TableView", "Core Animation", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CollectionView Custom Layout", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
 
         for title in headViewTitles {
-            var dicArray: [[CellInfoEnum: String]] = []
+            var dicArray: [[CellInfoEnum: Any]] = []
             switch title {
             case "WorkSpace":
                 dicArray = [
                     [.cellName: "RPlus", .className: "ProcessProgressVC"],
                     [.cellName: "富文本点击", .className: "AttributedStringViewController"],
                 ]
+            case "Picker":
+                dicArray = [
+                    [.cellName: "Picker", .className: "PIViewController"],
+                ]
             case "TableView":
                 dicArray = [
-                    [.cellName: "StretchyHeader", .className: "StretchyHeaderTableViewVC"]
+                    [.cellName: "StretchyHeader", .className: "StretchyHeaderTableViewVC"],
                 ]
             case "Core Animation":
                 dicArray = [
@@ -74,14 +78,14 @@ class HomepageViewController: BaseViewController {
                 ]
             case "CollectionView Basics":
                 dicArray = [
-                    [.cellName: "基础布局篇", .className: "BasicViewController", .pushType: "present"],
-                    [.cellName: "布局和代理篇", .className: "LayoutAndDelegateViewController", .pushType: "present"],
+                    [.cellName: "基础布局篇", .className: "BasicViewController", .pushType: PushType.present],
+                    [.cellName: "布局和代理篇", .className: "LayoutAndDelegateViewController", .pushType: PushType.present],
                 ]
-            case "CUSTOM LAYOUT":
+            case "CollectionView Custom Layout":
                 dicArray = [
-                    [.cellName: "卡片布局", .className: "CardLayoutViewController", .pushType: "present"],
-                    [.cellName: "瀑布流布局", .className: "WaterFallsViewController", .pushType: "present"],
-                    [.cellName: "可伸缩Header", .className: "StretchyHeaderViewController", .pushType: "present"],
+                    [.cellName: "卡片布局", .className: "CardLayoutViewController", .pushType: PushType.present],
+                    [.cellName: "瀑布流布局", .className: "WaterFallsViewController", .pushType: PushType.present],
+                    [.cellName: "可伸缩Header", .className: "StretchyHeaderViewController", .pushType: PushType.present],
                     [.cellName: "标签布局", .className: "TagViewController"],
                 ]
             case "UIScrollView":
@@ -151,7 +155,7 @@ class HomepageViewController: BaseViewController {
     }()
 }
 
-extension HomepageViewController: UITableViewDelegate {
+extension HomeViewController: UITableViewDelegate {
     func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let head = UITableViewHeaderFooterView()
         head.textLabel?.text = headViewTitles[section]
@@ -163,22 +167,28 @@ extension HomepageViewController: UITableViewDelegate {
 
         let entity = dataSource[indexPath.section][indexPath.row]
         let className = entity.className ?? ""
-        if entity.pushType == "present" {
+        switch entity.pushType {
+        case .navi:
+            
+            if let vc = getVCFromString(className) {
+                if className == "Picker" {
+                    navigationController?.pushViewController(PIViewController.loadFromNib(), animated: true)
+                    return
+                }
+                vc.navigationItem.title = entity.cellName
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        case .present:
             if let vc = getVCFromString(className) {
                 DispatchQueue.main.async { [weak self] in
                     self?.present(vc, animated: true, completion: nil)
                 }
             }
-        } else {
-            if let vc = getVCFromString(className) {
-                vc.navigationItem.title = entity.cellName
-                navigationController?.pushViewController(vc, animated: true)
-            }
         }
     }
 }
 
-extension HomepageViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource {
     func numberOfSections(in _: UITableView) -> Int {
         return dataSource.count
     }
