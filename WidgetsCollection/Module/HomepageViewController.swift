@@ -140,7 +140,7 @@ class HomepageViewController: BaseViewController {
     }
 
     lazy var tableView: UITableView = {
-        let table = UITableView(frame: .zero, style: .grouped)
+        let table = UITableView(frame: .zero, style: .insetGrouped)
         table.delegate = self
         table.dataSource = self
         return table
