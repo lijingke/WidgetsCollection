@@ -5,25 +5,150 @@
 
 import Foundation
 import RswiftResources
+import UIKit
 
 private class BundleFinder {}
 let R = _R(bundle: Bundle(for: BundleFinder.self))
 
 struct _R {
   let bundle: Foundation.Bundle
+  var string: string { .init(bundle: bundle, preferredLanguages: nil, locale: nil) }
   var color: color { .init(bundle: bundle) }
   var image: image { .init(bundle: bundle) }
+  var info: info { .init(bundle: bundle) }
+  var entitlements: entitlements { .init() }
+  var font: font { .init(bundle: bundle) }
+  var file: file { .init(bundle: bundle) }
+  var nib: nib { .init(bundle: bundle) }
+  var storyboard: storyboard { .init(bundle: bundle) }
 
+  func string(bundle: Foundation.Bundle) -> string {
+    .init(bundle: bundle, preferredLanguages: nil, locale: nil)
+  }
+  func string(locale: Foundation.Locale) -> string {
+    .init(bundle: bundle, preferredLanguages: nil, locale: locale)
+  }
+  func string(preferredLanguages: [String], locale: Locale? = nil) -> string {
+    .init(bundle: bundle, preferredLanguages: preferredLanguages, locale: locale)
+  }
   func color(bundle: Foundation.Bundle) -> color {
     .init(bundle: bundle)
   }
   func image(bundle: Foundation.Bundle) -> image {
     .init(bundle: bundle)
   }
+  func info(bundle: Foundation.Bundle) -> info {
+    .init(bundle: bundle)
+  }
+  func font(bundle: Foundation.Bundle) -> font {
+    .init(bundle: bundle)
+  }
+  func file(bundle: Foundation.Bundle) -> file {
+    .init(bundle: bundle)
+  }
+  func nib(bundle: Foundation.Bundle) -> nib {
+    .init(bundle: bundle)
+  }
+  func storyboard(bundle: Foundation.Bundle) -> storyboard {
+    .init(bundle: bundle)
+  }
   func validate() throws {
-
+    try self.font.validate()
+    try self.nib.validate()
+    try self.storyboard.validate()
   }
 
+  struct project {
+    let developmentRegion = "en"
+  }
+
+  /// This `_R.string` struct is generated, and contains static references to 1 localization tables.
+  struct string {
+    let bundle: Foundation.Bundle
+    let preferredLanguages: [String]?
+    let locale: Locale?
+    var localizable: localizable { .init(source: .init(bundle: bundle, tableName: "Localizable", preferredLanguages: preferredLanguages, locale: locale)) }
+
+    func localizable(preferredLanguages: [String]) -> localizable {
+      .init(source: .init(bundle: bundle, tableName: "Localizable", preferredLanguages: preferredLanguages, locale: locale))
+    }
+
+
+    /// This `_R.string.localizable` struct is generated, and contains static references to 10 localization keys.
+    struct localizable {
+      let source: RswiftResources.StringResource.Source
+
+      /// en translation: Bug Report
+      ///
+      /// Key: Bug Report
+      ///
+      /// Locales: en, zh-Hans
+      var bugReport: RswiftResources.StringResource { .init(key: "Bug Report", tableName: "Localizable", source: source, developmentValue: "Bug Report", comment: nil) }
+
+      /// en translation: Console Log
+      ///
+      /// Key: Console Log
+      ///
+      /// Locales: en, zh-Hans
+      var consoleLog: RswiftResources.StringResource { .init(key: "Console Log", tableName: "Localizable", source: source, developmentValue: "Console Log", comment: nil) }
+
+      /// en translation: Dismiss
+      ///
+      /// Key: Dismiss
+      ///
+      /// Locales: en, zh-Hans
+      var dismiss: RswiftResources.StringResource { .init(key: "Dismiss", tableName: "Localizable", source: source, developmentValue: "Dismiss", comment: nil) }
+
+      /// en translation: Done
+      ///
+      /// Key: Done
+      ///
+      /// Locales: en, zh-Hans
+      var done: RswiftResources.StringResource { .init(key: "Done", tableName: "Localizable", source: source, developmentValue: "Done", comment: nil) }
+
+      /// en translation: Include Console Log
+      ///
+      /// Key: Include Console Log
+      ///
+      /// Locales: en, zh-Hans
+      var includeConsoleLog: RswiftResources.StringResource { .init(key: "Include Console Log", tableName: "Localizable", source: source, developmentValue: "Include Console Log", comment: nil) }
+
+      /// en translation: Report
+      ///
+      /// Key: Report
+      ///
+      /// Locales: en, zh-Hans
+      var report: RswiftResources.StringResource { .init(key: "Report", tableName: "Localizable", source: source, developmentValue: "Report", comment: nil) }
+
+      /// en translation: Report a Bug
+      ///
+      /// Key: Report a Bug
+      ///
+      /// Locales: en, zh-Hans
+      var reportABug: RswiftResources.StringResource { .init(key: "Report a Bug", tableName: "Localizable", source: source, developmentValue: "Report a Bug", comment: nil) }
+
+      /// en translation: Select Screenshot…
+      ///
+      /// Key: Select Screenshot…
+      ///
+      /// Locales: en, zh-Hans
+      var selectScreenshot: RswiftResources.StringResource { .init(key: "Select Screenshot…", tableName: "Localizable", source: source, developmentValue: "Select Screenshot…", comment: nil) }
+
+      /// en translation: Send
+      ///
+      /// Key: Send
+      ///
+      /// Locales: en, zh-Hans
+      var send: RswiftResources.StringResource { .init(key: "Send", tableName: "Localizable", source: source, developmentValue: "Send", comment: nil) }
+
+      /// en translation: Tap the screenshot to annotate.
+      ///
+      /// Key: Tap the screenshot to annotate.
+      ///
+      /// Locales: en, zh-Hans
+      var tapTheScreenshotToAnnotate: RswiftResources.StringResource { .init(key: "Tap the screenshot to annotate.", tableName: "Localizable", source: source, developmentValue: "Tap the screenshot to annotate.", comment: nil) }
+    }
+  }
 
   /// This `_R.color` struct is generated, and contains static references to 1 colors.
   struct color {
@@ -33,9 +158,12 @@ struct _R {
     var accentColor: RswiftResources.ColorResource { .init(name: "AccentColor", path: [], bundle: bundle) }
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 106 images.
+  /// This `_R.image` struct is generated, and contains static references to 116 images.
   struct image {
     let bundle: Foundation.Bundle
+
+    /// Image `AlbumAddBtn`.
+    var albumAddBtn: RswiftResources.ImageResource { .init(name: "AlbumAddBtn", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `ArrowIcon`.
     var arrowIcon: RswiftResources.ImageResource { .init(name: "ArrowIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -93,6 +221,9 @@ struct _R {
 
     /// Image `ProcessWait`.
     var processWait: RswiftResources.ImageResource { .init(name: "ProcessWait", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `SpongeBob.gif`.
+    var spongeBobGif: RswiftResources.ImageResource { .init(name: "SpongeBob.gif", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
 
     /// Image `Van Gogh_Starry Night`.
     var vanGogh_StarryNight: RswiftResources.ImageResource { .init(name: "Van Gogh_Starry Night", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -283,11 +414,32 @@ struct _R {
     /// Image `icon_read`.
     var icon_read: RswiftResources.ImageResource { .init(name: "icon_read", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `img_00`.
+    var img_00: RswiftResources.ImageResource { .init(name: "img_00", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `img_01`.
+    var img_01: RswiftResources.ImageResource { .init(name: "img_01", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `img_02`.
+    var img_02: RswiftResources.ImageResource { .init(name: "img_02", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `img_03`.
+    var img_03: RswiftResources.ImageResource { .init(name: "img_03", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `img_04`.
+    var img_04: RswiftResources.ImageResource { .init(name: "img_04", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `img_05`.
+    var img_05: RswiftResources.ImageResource { .init(name: "img_05", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
     /// Image `kt_sh`.
     var kt_sh: RswiftResources.ImageResource { .init(name: "kt_sh", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `lattice`.
     var lattice: RswiftResources.ImageResource { .init(name: "lattice", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading.gif`.
+    var loadingGif: RswiftResources.ImageResource { .init(name: "loading.gif", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
 
     /// Image `member_add`.
     var member_add: RswiftResources.ImageResource { .init(name: "member_add", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -331,6 +483,9 @@ struct _R {
     /// Image `start_button`.
     var start_button: RswiftResources.ImageResource { .init(name: "start_button", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `stretchy_header`.
+    var stretchy_header: RswiftResources.ImageResource { .init(name: "stretchy_header", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `tab_me_normal`.
     var tab_me_normal: RswiftResources.ImageResource { .init(name: "tab_me_normal", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
@@ -354,5 +509,183 @@ struct _R {
 
     /// Image `对勾`.
     var 对勾: RswiftResources.ImageResource { .init(name: "对勾", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+  }
+
+  /// This `_R.info` struct is generated, and contains static references to 1 properties.
+  struct info {
+    let bundle: Foundation.Bundle
+    var uiApplicationSceneManifest: uiApplicationSceneManifest { .init(bundle: bundle) }
+
+    func uiApplicationSceneManifest(bundle: Foundation.Bundle) -> uiApplicationSceneManifest {
+      .init(bundle: bundle)
+    }
+
+    struct uiApplicationSceneManifest {
+      let bundle: Foundation.Bundle
+
+      let uiApplicationSupportsMultipleScenes: Bool = false
+
+      var _key: String { bundle.infoDictionaryString(path: ["UIApplicationSceneManifest"], key: "_key") ?? "UIApplicationSceneManifest" }
+      var uiSceneConfigurations: uiSceneConfigurations { .init(bundle: bundle) }
+
+      func uiSceneConfigurations(bundle: Foundation.Bundle) -> uiSceneConfigurations {
+        .init(bundle: bundle)
+      }
+
+      struct uiSceneConfigurations {
+        let bundle: Foundation.Bundle
+        var _key: String { bundle.infoDictionaryString(path: ["UIApplicationSceneManifest", "UISceneConfigurations"], key: "_key") ?? "UISceneConfigurations" }
+        var uiWindowSceneSessionRoleApplication: uiWindowSceneSessionRoleApplication { .init(bundle: bundle) }
+
+        func uiWindowSceneSessionRoleApplication(bundle: Foundation.Bundle) -> uiWindowSceneSessionRoleApplication {
+          .init(bundle: bundle)
+        }
+
+        struct uiWindowSceneSessionRoleApplication {
+          let bundle: Foundation.Bundle
+          var defaultConfiguration: defaultConfiguration { .init(bundle: bundle) }
+
+          func defaultConfiguration(bundle: Foundation.Bundle) -> defaultConfiguration {
+            .init(bundle: bundle)
+          }
+
+          struct defaultConfiguration {
+            let bundle: Foundation.Bundle
+            var uiSceneConfigurationName: String { bundle.infoDictionaryString(path: ["UIApplicationSceneManifest", "UISceneConfigurations", "UIWindowSceneSessionRoleApplication"], key: "UISceneConfigurationName") ?? "Default Configuration" }
+            var uiSceneDelegateClassName: String { bundle.infoDictionaryString(path: ["UIApplicationSceneManifest", "UISceneConfigurations", "UIWindowSceneSessionRoleApplication"], key: "UISceneDelegateClassName") ?? "$(PRODUCT_MODULE_NAME).SceneDelegate" }
+            var uiSceneStoryboardFile: String { bundle.infoDictionaryString(path: ["UIApplicationSceneManifest", "UISceneConfigurations", "UIWindowSceneSessionRoleApplication"], key: "UISceneStoryboardFile") ?? "Main" }
+          }
+        }
+      }
+    }
+  }
+
+  /// This `_R.entitlements` struct is generated, and contains static references to 1 properties.
+  struct entitlements {
+    let comAppleDeveloperHealthkit: Bool = true
+    let comAppleDeveloperHealthkitAccess = comAppleDeveloperHealthkitAccess()
+    let comAppleDeveloperHealthkitBackgroundDelivery: Bool = true
+    struct comAppleDeveloperHealthkitAccess {
+      let healthRecords: String = "health-records"
+    }
+  }
+
+  /// This `_R.font` struct is generated, and contains static references to 3 fonts.
+  struct font: Sequence {
+    let bundle: Foundation.Bundle
+
+    /// Font `SourceSansPro-Bold`.
+    var sourceSansProBold: RswiftResources.FontResource { .init(name: "SourceSansPro-Bold", bundle: bundle, filename: "SourceSansPro-Bold.ttf") }
+
+    /// Font `SourceSansPro-Regular`.
+    var sourceSansProRegular: RswiftResources.FontResource { .init(name: "SourceSansPro-Regular", bundle: bundle, filename: "SourceSansPro-Regular.ttf") }
+
+    /// Font `SourceSansPro-Semibold`.
+    var sourceSansProSemibold: RswiftResources.FontResource { .init(name: "SourceSansPro-Semibold", bundle: bundle, filename: "SourceSansPro-Semibold.ttf") }
+
+    func makeIterator() -> IndexingIterator<[RswiftResources.FontResource]> {
+      [sourceSansProBold, sourceSansProRegular, sourceSansProSemibold].makeIterator()
+    }
+    func validate() throws {
+      for font in self {
+        if !font.canBeLoaded() { throw RswiftResources.ValidationError("[R.swift] Font '\(font.name)' could not be loaded, is '\(font.filename)' added to the UIAppFonts array in this targets Info.plist?") }
+      }
+    }
+  }
+
+  /// This `_R.file` struct is generated, and contains static references to 12 resource files.
+  struct file {
+    let bundle: Foundation.Bundle
+
+    /// Resource file `SourceSansPro-Bold.ttf`.
+    var sourceSansProBoldTtf: RswiftResources.FileResource { .init(name: "SourceSansPro-Bold", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `SourceSansPro-Regular.ttf`.
+    var sourceSansProRegularTtf: RswiftResources.FileResource { .init(name: "SourceSansPro-Regular", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `SourceSansPro-Semibold.ttf`.
+    var sourceSansProSemiboldTtf: RswiftResources.FileResource { .init(name: "SourceSansPro-Semibold", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `SpongeBob.gif`.
+    var spongeBobGif: RswiftResources.FileResource { .init(name: "SpongeBob", pathExtension: "gif", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `img_00.png`.
+    var img_00Png: RswiftResources.FileResource { .init(name: "img_00", pathExtension: "png", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `img_01.png`.
+    var img_01Png: RswiftResources.FileResource { .init(name: "img_01", pathExtension: "png", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `img_02.png`.
+    var img_02Png: RswiftResources.FileResource { .init(name: "img_02", pathExtension: "png", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `img_03.png`.
+    var img_03Png: RswiftResources.FileResource { .init(name: "img_03", pathExtension: "png", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `img_04.png`.
+    var img_04Png: RswiftResources.FileResource { .init(name: "img_04", pathExtension: "png", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `img_05.png`.
+    var img_05Png: RswiftResources.FileResource { .init(name: "img_05", pathExtension: "png", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `loading.gif`.
+    var loadingGif: RswiftResources.FileResource { .init(name: "loading", pathExtension: "gif", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `userInfo.json`.
+    var userInfoJson: RswiftResources.FileResource { .init(name: "userInfo", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
+  }
+
+  /// This `_R.nib` struct is generated, and contains static references to 1 nibs.
+  struct nib {
+    let bundle: Foundation.Bundle
+
+    /// Nib `ConfigureView`.
+    var configureView: RswiftResources.NibReference<ConfigureView> { .init(name: "ConfigureView", bundle: bundle) }
+
+    func validate() throws {
+
+    }
+  }
+
+  /// This `_R.storyboard` struct is generated, and contains static references to 2 storyboards.
+  struct storyboard {
+    let bundle: Foundation.Bundle
+    var launchScreen: launchScreen { .init(bundle: bundle) }
+    var main: main { .init(bundle: bundle) }
+
+    func launchScreen(bundle: Foundation.Bundle) -> launchScreen {
+      .init(bundle: bundle)
+    }
+    func main(bundle: Foundation.Bundle) -> main {
+      .init(bundle: bundle)
+    }
+    func validate() throws {
+      try self.launchScreen.validate()
+      try self.main.validate()
+    }
+
+
+    /// Storyboard `Launch Screen`.
+    struct launchScreen: RswiftResources.StoryboardReference, RswiftResources.InitialControllerContainer {
+      typealias InitialController = UIKit.UIViewController
+
+      let bundle: Foundation.Bundle
+
+      let name = "Launch Screen"
+      func validate() throws {
+
+      }
+    }
+
+    /// Storyboard `Main`.
+    struct main: RswiftResources.StoryboardReference, RswiftResources.InitialControllerContainer {
+      typealias InitialController = MainTabbarController
+
+      let bundle: Foundation.Bundle
+
+      let name = "Main"
+      func validate() throws {
+        if #available(iOS 13.0, *) { if UIKit.UIImage(systemName: "pencil") == nil { throw RswiftResources.ValidationError("[R.swift] System image named 'pencil' is used in storyboard 'Main', but couldn't be loaded.") } }
+      }
+    }
   }
 }

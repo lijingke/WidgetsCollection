@@ -35,7 +35,7 @@ class HomepageViewController: BaseViewController {
     var dataSource: [[HomeDataEntity]] = []
 
     fileprivate func getDataSource() {
-        headViewTitles = ["WorkSpace", "Core Animation", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
+        headViewTitles = ["WorkSpace", "TableView", "Core Animation", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CUSTOM LAYOUT", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
 
         for title in headViewTitles {
             var dicArray: [[CellInfoEnum: String]] = []
@@ -44,6 +44,10 @@ class HomepageViewController: BaseViewController {
                 dicArray = [
                     [.cellName: "RPlus", .className: "ProcessProgressVC"],
                     [.cellName: "富文本点击", .className: "AttributedStringViewController"],
+                ]
+            case "TableView":
+                dicArray = [
+                    [.cellName: "StretchyHeader", .className: "StretchyHeaderTableViewVC"]
                 ]
             case "Core Animation":
                 dicArray = [
@@ -70,14 +74,14 @@ class HomepageViewController: BaseViewController {
                 ]
             case "CollectionView Basics":
                 dicArray = [
-                    [.cellName: "基础布局篇", .className: "BasicViewController", .pushType: "pop"],
-                    [.cellName: "布局和代理篇", .className: "LayoutAndDelegateViewController", .pushType: "pop"],
+                    [.cellName: "基础布局篇", .className: "BasicViewController", .pushType: "present"],
+                    [.cellName: "布局和代理篇", .className: "LayoutAndDelegateViewController", .pushType: "present"],
                 ]
             case "CUSTOM LAYOUT":
                 dicArray = [
-                    [.cellName: "卡片布局", .className: "CardLayoutViewController", .pushType: "pop"],
-                    [.cellName: "瀑布流布局", .className: "WaterFallsViewController", .pushType: "pop"],
-                    [.cellName: "可伸缩Header", .className: "StretchyHeaderViewController", .pushType: "pop"],
+                    [.cellName: "卡片布局", .className: "CardLayoutViewController", .pushType: "present"],
+                    [.cellName: "瀑布流布局", .className: "WaterFallsViewController", .pushType: "present"],
+                    [.cellName: "可伸缩Header", .className: "StretchyHeaderViewController", .pushType: "present"],
                     [.cellName: "标签布局", .className: "TagViewController"],
                 ]
             case "UIScrollView":
@@ -159,7 +163,7 @@ extension HomepageViewController: UITableViewDelegate {
 
         let entity = dataSource[indexPath.section][indexPath.row]
         let className = entity.className ?? ""
-        if entity.pushType == "pop" {
+        if entity.pushType == "present" {
             if let vc = getVCFromString(className) {
                 DispatchQueue.main.async { [weak self] in
                     self?.present(vc, animated: true, completion: nil)
