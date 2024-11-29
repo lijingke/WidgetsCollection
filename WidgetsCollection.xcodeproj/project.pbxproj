@@ -198,7 +198,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/WidgetsCollection/R.generated.swift\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate --generators image,color \"$SRCROOT/WidgetsCollection/R.generated.swift\"\n";
 		};
 		7C064C196B7B818235613402 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
