@@ -96,6 +96,7 @@ public class PIDatePicker: UIControl, UIPickerViewDataSource, UIPickerViewDelega
      Handles the common initialization amongst all init()
      */
     func commonInit() {
+//        self.locale = Locale(identifier: "en_US")
         self.pickerView.dataSource = self
         self.pickerView.delegate = self
         
@@ -195,7 +196,7 @@ public class PIDatePicker: UIControl, UIPickerViewDataSource, UIPickerViewDelega
             let secondComponent = PIDatePickerComponents(rawValue: remainingValue),
             let lastComponent = PIDatePickerComponents(rawValue: lastComponentOrderingString)
         else {
-            return
+            return  self.datePickerComponentOrdering = [.year, .month, .day]
         }
         
         self.datePickerComponentOrdering = [firstComponent, secondComponent, lastComponent]
@@ -516,7 +517,19 @@ public class PIDatePicker: UIControl, UIPickerViewDataSource, UIPickerViewDelega
         label.font = self.font
         label.textColor = self.textColor
         label.text = self.titleForRow(row, inComponentIndex: component)
-        label.textAlignment = self.componentAtIndex(component) == .month ? NSTextAlignment.left : NSTextAlignment.right
+//        label.textAlignment = self.componentAtIndex(component) == .month ? NSTextAlignment.left : NSTextAlignment.right
+//        switch component {
+//        case 0:
+//            label.textAlignment = .left
+//        case 1:
+//            label.textAlignment = .center
+//        case 2:
+//            label.textAlignment = .right
+//        default:
+//            label.textAlignment = .center
+//        }
+        label.textAlignment = .center
+
         label.textColor = self.isRowEnabled(row, forComponent: self.componentAtIndex(component)) ? self.textColor : self.disabledTextColor
         
         return label
