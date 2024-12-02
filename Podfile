@@ -15,6 +15,7 @@ target 'WidgetsCollection' do
   pod 'SnapKit'
   pod 'Tiercel'
   pod 'TZImagePickerController'
+# pod 'HandyJSON', :git => 'https://github.com/Miles-Matheson/HandyJSON.git'
   pod 'HandyJSON', :git => 'https://github.com/Miles-Matheson/HandyJSON.git'
   pod 'SDWebImage'
   pod 'MBProgressHUD'

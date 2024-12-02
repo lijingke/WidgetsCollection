@@ -35,7 +35,7 @@ class HomeViewController: BaseViewController {
     var dataSource: [[HomeDataEntity]] = []
 
     fileprivate func getDataSource() {
-        headViewTitles = ["WorkSpace", "Picker", "TableView", "Core Animation", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CollectionView Custom Layout", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
+        headViewTitles = ["WorkSpace", "Sound&Vibrate", "Picker", "TableView", "Core Animation", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CollectionView Custom Layout", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
 
         for title in headViewTitles {
             var dicArray: [[CellInfoEnum: Any]] = []
@@ -44,6 +44,11 @@ class HomeViewController: BaseViewController {
                 dicArray = [
                     [.cellName: "RPlus", .className: "ProcessProgressVC"],
                     [.cellName: "富文本点击", .className: "AttributedStringViewController"],
+                ]
+            case "Sound&Vibrate":
+                dicArray = [
+                    [.cellName: "Sound", .className: "SoundListViewController"],
+                    [.cellName: "Vibrate", .className: "VibrateListViewController"]
                 ]
             case "Picker":
                 dicArray = [
@@ -59,6 +64,7 @@ class HomeViewController: BaseViewController {
                 ]
             case "Playgrounds":
                 dicArray = [
+                    [.cellName: "UIViewTestVC", .className: "UIViewTestVC"],
                     [.cellName: "刷新", .className: "RefreshViewController"],
                     [.cellName: "Combine", .className: "ViewController"],
                 ]
