@@ -36,23 +36,17 @@ public extension String {
         let upperBound = min(bounds.upperBound, self.count-1)
         guard upperBound >= 0 else { return "" }
 
-        let i = index(startIndex, offsetBy: lowerBound)
-        let j = index(i, offsetBy: upperBound-lowerBound)
-
-        return String(self[i ... j])
+        return String(self[index(at: lowerBound)...index(at: upperBound)])
     }
 
     subscript(bounds: CountableRange<Int>) -> String {
         let lowerBound = max(0, bounds.lowerBound)
         guard lowerBound < self.count else { return "" }
 
-        let upperBound = min(bounds.upperBound, self.count)
+        let upperBound = min(bounds.upperBound, self.count-1)
         guard upperBound >= 0 else { return "" }
-
-        let i = index(startIndex, offsetBy: lowerBound)
-        let j = index(i, offsetBy: upperBound-lowerBound)
-
-        return String(self[i..<j])
+        
+        return String(self[index(at: lowerBound)..<index(at: upperBound)])
     }
 
     subscript(bounds: PartialRangeUpTo<Int>) -> String {

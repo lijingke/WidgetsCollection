@@ -35,9 +35,9 @@ class UIViewTestVC: BaseViewController {
 extension UIViewTestVC {
     private func setupData() {
         let text = "Hello world"
-        text[100] // H
-        text[...20] // "Hell"
-        let sub = text[20...] // world
+        text[100] // "d"
+        text[...20] // "Hello world"
+        let sub = text[0..<20] // "Hello world"
         Log.info(String(sub))
     }
 }
