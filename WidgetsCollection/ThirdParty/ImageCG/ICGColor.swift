@@ -32,7 +32,7 @@ public extension ImageCG where Base == [UIColor] {
     }
     
     /// Linear Gradient
-    func linearGradient(_ size: CGSize, cornerRadius: CGFloat? = nil, locations: [CGFloat]? = nil, direction: Direction = .horizontal) -> UIImage? {
+    func linearGradient(_ size: CGSize, cornerRadius: CGFloat? = nil, locations: [CGFloat]? = nil, direction: Direction = .horizontal) -> UIImage {
         return drawImage(size: size) { context in
             let colors: [CGColor] = base.map { $0.cgColor }
             let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(),
@@ -47,11 +47,11 @@ public extension ImageCG where Base == [UIColor] {
                                        start: CGPoint(x: 0, y: 0),
                                        end: direction.point(size),
                                        options: .drawsBeforeStartLocation)
-        }
+        } ?? UIImage()
     }
     
     /// Radial Gradient
-    func radialGradient(_ size: CGSize, locations: [CGFloat]? = nil) -> UIImage? {
+    func radialGradient(_ size: CGSize, locations: [CGFloat]? = nil) -> UIImage {
         return drawImage(size: size) { context in
             let colors: [CGColor] = base.map { $0.cgColor }
             let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(),
@@ -63,6 +63,6 @@ public extension ImageCG where Base == [UIColor] {
                                        startCenter: center, startRadius: 0.0,
                                        endCenter: center, endRadius: radius,
                                        options: .drawsBeforeStartLocation)
-        }
+        } ?? UIImage()
     }
 }

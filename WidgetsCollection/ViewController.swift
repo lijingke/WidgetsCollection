@@ -37,6 +37,7 @@ class ViewController: UIViewController {
             size: helloWorld.bounds.size,
             horizontal: true
         )
+        let gradientImage = [UIColor.red,  UIColor.green, UIColor.blue, UIColor.red].icg.linearGradient(helloWorld.bounds.size, locations: [0.0, 0.33, 0.66, 1.0], direction: .horizontal)
         helloWorld.textColor = UIColor(patternImage: labelGradient)
         
         // Vertical gradient
@@ -45,7 +46,10 @@ class ViewController: UIViewController {
             locations: [0.0, 1.0],
             size: button.bounds.size
         )
-        button.setTitleColor(UIColor(patternImage: buttonGradient), for: .normal)
+//            .color(hex: "#E969C0"),.color(hex: "#F763A5")
+        
+        let image = [UIColor(hexString: "#E969C0"), UIColor.white, UIColor(hexString: "#F763A5")].icg.linearGradient(button.bounds.size, direction: .vertical)
+        button.setTitleColor(UIColor(patternImage: image), for: .normal)
     }
 
 

@@ -6,7 +6,6 @@
 #import "LxGridViewFlowLayout.h"
 #import "FLAnimatedImageView.h"
 #import "FLAnimatedImage.h"
-#import "UIImage+Gradient.h"
 #import "YOECGChartView.h"
 #import "YOECGParamter.h"
 #import "ASLLogger.h"
