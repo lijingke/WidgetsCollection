@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         
         // Vertical gradient
         let buttonGradient = UIImage.gradientImage(
-            colors: [UIColor.black, UIColor.brown],
+            colors: [UIColor.black, UIColor.red],
             locations: [0.0, 1.0],
             size: button.bounds.size
         )
