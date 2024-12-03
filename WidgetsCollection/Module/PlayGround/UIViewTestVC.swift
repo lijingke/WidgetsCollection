@@ -34,8 +34,11 @@ class UIViewTestVC: BaseViewController {
 // MARK: - Data
 extension UIViewTestVC {
     private func setupData() {
-        label1.text = "lijingkelijingkelijingkelijingkelijingke"
-        label2.text = "shuaige's sfj;asa sgflagjl sfjl ggjlresh"
+        let text = "Hello world"
+        text[100] // H
+        text[...20] // "Hell"
+        let sub = text[20...] // world
+        Log.info(String(sub))
     }
 }
 

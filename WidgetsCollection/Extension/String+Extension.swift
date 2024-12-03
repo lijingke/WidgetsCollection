@@ -215,14 +215,6 @@ extension String {
         return range(of: find, options: .caseInsensitive) != nil
     }
 
-    /// 使用下标截取字符串 例: "示例字符串"[0..<2] 结果是 "示例"
-    subscript(r: Range<Int>) -> String {
-        if (r.lowerBound > count) || (r.upperBound > count) { return "截取超出范围" }
-        let startIndex = index(self.startIndex, offsetBy: r.lowerBound)
-        let endIndex = index(self.startIndex, offsetBy: r.upperBound)
-        return String(self[startIndex..<endIndex])
-    }
-
     /// 截取第一个到第任意位置
     ///
     /// - Parameter end: 结束的位值

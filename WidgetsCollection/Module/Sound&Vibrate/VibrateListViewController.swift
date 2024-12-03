@@ -172,14 +172,14 @@ class VibrateListViewController: BaseViewController {
         }
 
         // If something goes wrong, attempt to restart the engine immediately
-        engine?.resetHandler = { [weak self] in
+        engine?.resetHandler = {
             Log.info("The engine reset")
 
-            do {
-                try self?.engine?.start()
-            } catch {
-                Log.info("Failed to restart the engine: \(error)")
-            }
+//            do {
+//                try self.engine?.start()
+//            } catch {
+//                Log.info("Failed to restart the engine: \(error)")
+//            }
         }
     }
     
