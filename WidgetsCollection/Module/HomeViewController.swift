@@ -66,10 +66,11 @@ class HomeViewController: BaseViewController {
                 dicArray = [
                     [.cellName: "UIViewTestVC", .className: "UIViewTestVC"],
                     [.cellName: "刷新", .className: "RefreshViewController"],
-                    [.cellName: "Combine", .className: "ViewController"],
+                    [.cellName: "Combine", .className: "CombineTestVC"],
                 ]
             case "UI Components":
                 dicArray = [
+                    [.cellName: "TapLabel", .className: "TapLabelVC"],
                     [.cellName: "ExpandableLabel", .className: "ExpandableLabelVC", .pushType: PushType.nib],
                     [.cellName: "Tabbar", .className: "TabbarController"],
                     [.cellName: "DrawableCard", .className: "DrawableCardViewController"],
@@ -187,8 +188,10 @@ extension HomeViewController: UITableViewDelegate {
                 }
             }
         case .nib:
-            if let vc = getVCClassFromString(className) {
-                navigationController?.pushViewController(vc.loadFromNib(), animated: true)
+            if let vcClass = getVCClassFromString(className) {
+                let vc = vcClass.loadFromNib()
+                vc.navigationItem.title = entity.cellName
+                navigationController?.pushViewController(vc, animated: true)
             }
         }
     }

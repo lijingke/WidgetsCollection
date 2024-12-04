@@ -22,8 +22,8 @@ class TabbarController: SuperTabbarController {
         let twoVC = TabbarSubViewController()
         twoVC.navigationItem.leftBarButtonItem = btn
 
-        addChileViewController(title: "One", image: "tab_me_normal", selectedImage: "", controller: oneVC)
-        addChileViewController(title: "Two", image: "tab_work_normal", selectedImage: "", controller: twoVC)
+        addChileViewController(title: "One", image: "tab_me_normal", selectedImage: "tab_me_normal", controller: oneVC)
+        addChileViewController(title: "Two", image: "tab_work_normal", selectedImage: "tab_work_normal", controller: twoVC)
     }
 
     @objc func backAction() {
