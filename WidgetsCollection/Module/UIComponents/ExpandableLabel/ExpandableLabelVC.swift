@@ -7,11 +7,15 @@
 
 import Foundation
 
-class ExpandableLabelVC: BaseViewController, ExpandableLabelDelegate {
+class ExpandableLabelVC: BaseViewController {
+    // MARK: Property
+
     @IBOutlet var tableView: UITableView!
     let numberOfCells: Int = 12
     var states: [Bool]!
     
+    // MARK: Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         states = [Bool](repeating: true, count: numberOfCells)
@@ -26,52 +30,11 @@ class ExpandableLabelVC: BaseViewController, ExpandableLabelDelegate {
         super.viewDidAppear(animated)
         tableView.reloadData()
     }
-    
-    func preparedSources() -> [(text: String, textReplacementType: ExpandableLabel.TextReplacementType, numberOfLines: Int, textAlignment: NSTextAlignment)] {
-        return [(loremIpsumText(), .word, 3, .left),
-                (textWithNewLinesInCollapsedLine(), .word, 2, .center),
-                (textWithLongWordInCollapsedLine(), .character, 1, .right),
-                (textWithVeryLongWords(), .character, 1, .left),
-                (loremIpsumText(), .word, 4, .center),
-                (loremIpsumText(), .character, 3, .right),
-                (loremIpsumText(), .word, 2, .left),
-                (loremIpsumText(), .character, 5, .center),
-                (loremIpsumText(), .word, 3, .right),
-                (loremIpsumText(), .character, 1, .left),
-                (textWithShortWordsPerLine(), .character, 3, .center),
-                (textEmojis(), .character, 3, .left)]
-    }
-    
-    func loremIpsumText() -> String {
-        return "On third line our text need be collapsed because we have ordinary text, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-    }
-    
-    func textWithNewLinesInCollapsedLine() -> String {
-        return "When u had new line specialChars \n More not appeared eirmod\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n tempor invidunt ut\n\n\n\n labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-    }
-    
-    func textWithLongWordInCollapsedLine() -> String {
-        return "When u had long word which not entered in one line More not appeared FooBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaR tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-    }
-    
-    func textWithVeryLongWords() -> String {
-        return "FooBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaR FooBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaR FooBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaR FooBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaR Will show first line and will increase touch area for more voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-    }
-    
-    func textWithShortWordsPerLine() -> String {
-        return "A\nB\nC\nD\nE\nF\nG\nH\nI\nJ\nK\nL\nM\nN"
-    }
-    
-    func textEmojis() -> String {
-        return "😂😄😃😊😍😗😜😅😓☺️😶🤦😒😁😟😵🙁🤔🤓☹️🙄😑😫😱🙂😧🤵😶👥👩‍❤️‍👩💖👨‍❤️‍💋‍👨💏👩‍👩‍👦‍👦👦👀👨‍👩‍👧‍👦👩‍❤️‍👩🗨🕴👩‍❤️‍💋‍👩👧☹️😠😤😆💚🙄🤒💋😿👄"
-    }
-    
-    //
+}
 
-    // MARK: ExpandableLabel Delegate
+// MARK: - Data
 
-    //
-    
+extension ExpandableLabelVC: ExpandableLabelDelegate {
     func willExpandLabel(_ label: ExpandableLabel) {
         tableView.beginUpdates()
     }
@@ -103,12 +66,13 @@ class ExpandableLabelVC: BaseViewController, ExpandableLabelDelegate {
     }
 }
 
+// MARK: - UITableViewDelegate
+
 extension ExpandableLabelVC: UITableViewDelegate {}
 
+// MARK: - UITableViewDataSource
+
 extension ExpandableLabelVC: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return states.count
@@ -134,6 +98,50 @@ extension ExpandableLabelVC: UITableViewDataSource {
     }
 }
 
+// MARK: - Data
+
+extension ExpandableLabelVC {
+    func preparedSources() -> [(text: String, textReplacementType: ExpandableLabel.TextReplacementType, numberOfLines: Int, textAlignment: NSTextAlignment)] {
+        return [(loremIpsumText(), .word, 3, .left),
+                (textWithNewLinesInCollapsedLine(), .word, 2, .center),
+                (textWithLongWordInCollapsedLine(), .character, 1, .right),
+                (textWithVeryLongWords(), .character, 1, .left),
+                (loremIpsumText(), .word, 4, .center),
+                (loremIpsumText(), .character, 3, .right),
+                (loremIpsumText(), .word, 2, .left),
+                (loremIpsumText(), .character, 5, .center),
+                (loremIpsumText(), .word, 3, .right),
+                (loremIpsumText(), .character, 1, .left),
+                (textWithShortWordsPerLine(), .character, 3, .center),
+                (textEmojis(), .character, 3, .left)]
+    }
+
+    func loremIpsumText() -> String {
+        return "On third line our text need be collapsed because we have ordinary text, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+    }
+    
+    func textWithNewLinesInCollapsedLine() -> String {
+        return "When u had new line specialChars \n More not appeared eirmod\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n tempor invidunt ut\n\n\n\n labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+    }
+    
+    func textWithLongWordInCollapsedLine() -> String {
+        return "When u had long word which not entered in one line More not appeared FooBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaR tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+    }
+    
+    func textWithVeryLongWords() -> String {
+        return "FooBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaR FooBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaR FooBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaR FooBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaR Will show first line and will increase touch area for more voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+    }
+    
+    func textWithShortWordsPerLine() -> String {
+        return "A\nB\nC\nD\nE\nF\nG\nH\nI\nJ\nK\nL\nM\nN"
+    }
+    
+    func textEmojis() -> String {
+        return "😂😄😃😊😍😗😜😅😓☺️😶🤦😒😁😟😵🙁🤔🤓☹️🙄😑😫😱🙂😧🤵😶👥👩‍❤️‍👩💖👨‍❤️‍💋‍👨💏👩‍👩‍👦‍👦👦👀👨‍👩‍👧‍👦👩‍❤️‍👩🗨🕴👩‍❤️‍💋‍👩👧☹️😠😤😆💚🙄🤒💋😿👄"
+    }
+}
+
+// MARK: - String+Extension
 extension String {
     func specialPriceAttributedStringWith(_ color: UIColor) -> NSMutableAttributedString {
         let attributes = [NSAttributedString.Key.strikethroughStyle: NSNumber(value: NSUnderlineStyle.single.rawValue as Int),

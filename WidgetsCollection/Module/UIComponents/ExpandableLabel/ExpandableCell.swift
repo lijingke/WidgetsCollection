@@ -12,6 +12,11 @@ class ExpandableCell: UITableViewCell {
     
     @IBOutlet weak var expandableLabel: ExpandableLabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .none
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
         expandableLabel.collapsed = true
