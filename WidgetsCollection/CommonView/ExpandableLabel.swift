@@ -473,13 +473,12 @@ extension String {
 extension UILabel {
     public func check(touch: UITouch, isInRange targetRange: NSRange) -> Bool {
         let touchPoint = touch.location(in: self)
-        let index = characterIndex(at: touch)
+        let index = characterIndex(at: touchPoint)
         return NSLocationInRange(index, targetRange)
     }
     
-    private func characterIndex(at touch: UITouch) -> Int {
-        let location = touch.location(in: self)
-
+    private func characterIndex(at touchPoint: CGPoint) -> Int {
+        
         // Configure NSTextContainer
         let textContainer = NSTextContainer(size: bounds.size)
         textContainer.lineFragmentPadding = 0.0
@@ -498,7 +497,7 @@ extension UILabel {
         textStorage.addLayoutManager(layoutManager)
         
         // get the tapped character location
-        let locationOfTouchInLabel = location
+        let locationOfTouchInLabel = touchPoint
         
         // account for text alignment and insets
         let textBoundingBox = layoutManager.usedRect(for: textContainer)
