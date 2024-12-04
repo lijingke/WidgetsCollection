@@ -17,6 +17,7 @@ enum CellInfoEnum {
 enum PushType: String {
     case navi
     case present
+    case nib
 }
 
 struct HomeDataEntity {

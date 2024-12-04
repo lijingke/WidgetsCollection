@@ -18,6 +18,16 @@ extension UIViewController {
             return nil
         }
     }
+    
+    func getVCClassFromString(_ name: String) -> UIViewController.Type? {
+        let className = projectName + "." + name
+
+        if let type = NSClassFromString(className) as? UIViewController.Type {
+            return type
+        } else {
+            return nil
+        }
+    }
 }
 
 extension UIViewController {

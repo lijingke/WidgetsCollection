@@ -52,7 +52,7 @@ class HomeViewController: BaseViewController {
                 ]
             case "Picker":
                 dicArray = [
-                    [.cellName: "Picker", .className: "PIViewController"],
+                    [.cellName: "Picker", .className: "PIViewController", .pushType: PushType.nib],
                 ]
             case "TableView":
                 dicArray = [
@@ -70,6 +70,7 @@ class HomeViewController: BaseViewController {
                 ]
             case "UI Components":
                 dicArray = [
+                    [.cellName: "ExpandableLabel", .className: "ExpandableLabelVC", .pushType: PushType.nib],
                     [.cellName: "Tabbar", .className: "TabbarController"],
                     [.cellName: "DrawableCard", .className: "DrawableCardViewController"],
                     [.cellName: "TisprCardStack", .className: "TisprCardStackViewController"],
@@ -175,12 +176,7 @@ extension HomeViewController: UITableViewDelegate {
         let className = entity.className ?? ""
         switch entity.pushType {
         case .navi:
-            
             if let vc = getVCFromString(className) {
-                if className == "Picker" {
-                    navigationController?.pushViewController(PIViewController.loadFromNib(), animated: true)
-                    return
-                }
                 vc.navigationItem.title = entity.cellName
                 navigationController?.pushViewController(vc, animated: true)
             }
@@ -189,6 +185,10 @@ extension HomeViewController: UITableViewDelegate {
                 DispatchQueue.main.async { [weak self] in
                     self?.present(vc, animated: true, completion: nil)
                 }
+            }
+        case .nib:
+            if let vc = getVCClassFromString(className) {
+                navigationController?.pushViewController(vc.loadFromNib(), animated: true)
             }
         }
     }
