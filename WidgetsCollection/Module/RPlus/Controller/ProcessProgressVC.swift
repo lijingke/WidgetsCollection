@@ -33,7 +33,7 @@ extension ProcessProgressVC {
         let dataSource = dic.compactMap { ProcessModel.deserialize(from: $0) }
 
         var resData: [ProcessModel] = []
-        for i in 0..<dataSource.count {
+        for i in 0 ..< dataSource.count {
             resData.append(dataSource[i])
             if i == 0 {
                 continue

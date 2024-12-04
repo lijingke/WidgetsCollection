@@ -21,7 +21,7 @@ extension String {
             while startIndex < tempString.endIndex {
                 if let prefixRange = tempString.range(of: imgPrefix, range: Range(uncheckedBounds: (lower: startIndex, upper: tempString.endIndex))) {
                     if let suffixRange = tempString.range(of: imgSuffix, range: Range(uncheckedBounds: (lower: prefixRange.upperBound, upper: tempString.endIndex))) {
-                        let imgName = String(tempString[prefixRange.upperBound...tempString.index(before: suffixRange.lowerBound)])
+                        let imgName = String(tempString[prefixRange.upperBound ... tempString.index(before: suffixRange.lowerBound)])
                         let img = UIImage(named: imgName)!
                         let attachment = NSTextAttachment(image: img)
                         let imgH = img.size.height
@@ -67,17 +67,17 @@ extension String {
                         var colorValue: String?
                         if let colorRange = tempString.range(of: colorPrefix, range: Range(uncheckedBounds: (lower: prefixEndIndex, upper: prefixCloseStartIndex))) {
                             if let spaceRange = tempString.range(of: " ", range: Range(uncheckedBounds: (lower: colorRange.upperBound, upper: prefixCloseStartIndex))) {
-                                colorValue = String(tempString[colorRange.upperBound...tempString.index(before: spaceRange.lowerBound)])
+                                colorValue = String(tempString[colorRange.upperBound ... tempString.index(before: spaceRange.lowerBound)])
                             } else {
-                                colorValue = String(tempString[colorRange.upperBound...tempString.index(before: prefixCloseStartIndex)])
+                                colorValue = String(tempString[colorRange.upperBound ... tempString.index(before: prefixCloseStartIndex)])
                             }
                         }
                         var fontValue: String?
                         if let fontRange = tempString.range(of: fontPrefix, range: Range(uncheckedBounds: (lower: prefixEndIndex, upper: prefixCloseStartIndex))) {
                             if let spaceRange = tempString.range(of: " ", range: Range(uncheckedBounds: (lower: fontRange.upperBound, upper: prefixCloseStartIndex))) {
-                                fontValue = String(tempString[fontRange.upperBound...tempString.index(before: spaceRange.lowerBound)])
+                                fontValue = String(tempString[fontRange.upperBound ... tempString.index(before: spaceRange.lowerBound)])
                             } else {
-                                fontValue = String(tempString[fontRange.upperBound...tempString.index(before: prefixCloseStartIndex)])
+                                fontValue = String(tempString[fontRange.upperBound ... tempString.index(before: prefixCloseStartIndex)])
                             }
                         }
                         let contentRange = Range(uncheckedBounds: (lower: prefixCloseEndIndex, upper: suffixStartIndex))

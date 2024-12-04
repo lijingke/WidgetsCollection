@@ -171,7 +171,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
         let start = index - bottomStackCount
         let end = (index + 1) + topStackCount
 
-        for i in start..<end {
+        for i in start ..< end {
             result.append(IndexPath(item: i, section: 0))
         }
         return result

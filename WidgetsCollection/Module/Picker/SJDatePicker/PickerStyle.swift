@@ -11,13 +11,13 @@ import UIKit
 extension UIColor {
     static var pickBackgroundColor: UIColor {
         return UIColor { traits -> UIColor in
-            return traits.userInterfaceStyle == .dark ? UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1.0) : .white
+            return traits.userInterfaceStyle == .dark ? UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 1.0) : .white
         }
     }
 
     static var titleBackgroundColor: UIColor {
         return UIColor { traits -> UIColor in
-            return traits.userInterfaceStyle == .dark ? UIColor(red: 150/255.0, green: 217/255.0, blue: 181/255.0, alpha: 1.0) : UIColor(red: 10/255.0, green: 186/255.0, blue: 181/255.0, alpha: 1.0)
+            return traits.userInterfaceStyle == .dark ? UIColor(red: 150 / 255.0, green: 217 / 255.0, blue: 181 / 255.0, alpha: 1.0) : UIColor(red: 10 / 255.0, green: 186 / 255.0, blue: 181 / 255.0, alpha: 1.0)
         }
     }
 }
@@ -64,7 +64,7 @@ protocol PickerStyle {
 struct DefaultStyle: PickerStyle {
     var backColor: UIColor = .pickBackgroundColor
     var textColor: UIColor = .titleBackgroundColor
-    var pickerColor: StyleColor? = StyleColor.color(UIColor(red: 10/255.0, green: 186/255.0, blue: 181/255.0, alpha: 1.0))
+    var pickerColor: StyleColor? = StyleColor.color(UIColor(red: 10 / 255.0, green: 186 / 255.0, blue: 181 / 255.0, alpha: 1.0))
     var timeZone: TimeZone? = TimeZone(secondsFromGMT: TimeZone.current.secondsFromGMT())
     var minimumDate: Date?
     var maximumDate: Date?

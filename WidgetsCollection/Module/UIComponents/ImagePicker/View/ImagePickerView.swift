@@ -530,7 +530,7 @@ extension ImagePickerView: TZImagePickerControllerDelegate {
         operationQueue = OperationQueue()
         operationQueue?.maxConcurrentOperationCount = 1
 
-        for i in 0..<assets.count {
+        for i in 0 ..< assets.count {
             let asset = assets[i] as! PHAsset
 
             let operation = ImageUploadOperation(asset: asset, completion: { _, _, isDegraded in

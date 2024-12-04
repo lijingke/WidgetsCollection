@@ -188,7 +188,7 @@ extension String {
      */
     func beginSpaceNum(num: Int) -> String {
         var beginSpace = ""
-        for _ in 0..<num {
+        for _ in 0 ..< num {
             beginSpace += " "
         }
         return beginSpace + removeHeadAndTailSpacePro
@@ -283,7 +283,7 @@ extension String {
             let from = String.Index(from16, within: self),
             let to = String.Index(to16, within: self)
         else { return nil }
-        return from..<to
+        return from ..< to
     }
 }
 

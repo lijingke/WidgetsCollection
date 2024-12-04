@@ -69,9 +69,9 @@ class CGAffineTransformViewController: BaseViewController {
         var originY: CGFloat = 30
         let btnW = (view.frame.width - 4 * 30) / 3
 
-        for i in 0...2 {
+        for i in 0 ... 2 {
             originY = 30 + CGFloat(i * 70)
-            for j in 0...2 {
+            for j in 0 ... 2 {
                 if j == 0 {
                     originX = 30
                 }

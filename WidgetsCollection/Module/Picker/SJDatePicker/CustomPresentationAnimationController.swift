@@ -17,7 +17,7 @@ class CustomPresentationAnimationController: NSObject, UIViewControllerAnimatedT
         super.init()
     }
 
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    func transitionDuration(using _: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }
 

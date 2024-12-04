@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class StretchyHeaderTableViewVC: BaseViewController {
-
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,23 +25,22 @@ class StretchyHeaderTableViewVC: BaseViewController {
     }
 
     func setupView() {
-
-        let headerView = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 250))
+        let headerView = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
         headerView.imageView.image = R.image.stretchy_header()
-        self.tableView.tableHeaderView = headerView
-        self.view.addSubview(tableView)
+        tableView.tableHeaderView = headerView
+        view.addSubview(tableView)
 
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
-
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate
+
 extension StretchyHeaderTableViewVC: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -50,14 +48,12 @@ extension StretchyHeaderTableViewVC: UITableViewDelegate, UITableViewDataSource,
         return cell
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return 100
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let headerView = self.tableView.tableHeaderView as? StretchyTableHeaderView
+        let headerView = tableView.tableHeaderView as? StretchyTableHeaderView
         headerView?.scrollViewDidScroll(scrollView: scrollView)
     }
 }
-
-

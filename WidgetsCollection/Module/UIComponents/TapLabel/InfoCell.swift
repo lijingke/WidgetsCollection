@@ -11,32 +11,35 @@ import ZhuoZhuo
 
 class InfoCell: UITableViewCell {
     // MARK: Property
+
     var linkDic: [String: String] = [:]
-    
+
     // MARK: Life Cycle
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         setupUI()
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
     }
-    
+
     // MARK: Lazy Get
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
-    
+
     lazy var contentLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +48,7 @@ class InfoCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-    
+
     lazy var picView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -54,6 +57,7 @@ class InfoCell: UITableViewCell {
 }
 
 // MARK: - Event
+
 extension InfoCell {
     @objc func click(tap: UITapGestureRecognizer) {
         tap.didTapLabelAttributedText(linkDic) { _, url in
@@ -64,10 +68,10 @@ extension InfoCell {
             }
         }
     }
-
 }
 
 // MARK: - Data
+
 extension InfoCell {
     public func setupData(_ model: ResponseModel) {
         titleLabel.text = model.title
@@ -86,10 +90,10 @@ extension InfoCell {
         picView.widthAnchor.constraint(equalToConstant: CGFloat(model.imageSizeInfo.width)).isActive = true
         picView.heightAnchor.constraint(equalToConstant: CGFloat(model.imageSizeInfo.height)).isActive = true
     }
-    
 }
 
 // MARK: - UI
+
 extension InfoCell {
     private func setupUI() {
         contentView.addSubview(picView)

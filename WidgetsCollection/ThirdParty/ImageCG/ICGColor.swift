@@ -21,7 +21,7 @@ public extension ImageCG where Base == [UIColor] {
         case horizontal
         case vertical
         case diagonally
-        
+
         fileprivate func point(_ size: CGSize) -> CGPoint {
             switch self {
             case .horizontal: return .init(x: size.width, y: 0)
@@ -30,33 +30,33 @@ public extension ImageCG where Base == [UIColor] {
             }
         }
     }
-    
+
     /// Linear Gradient
     func linearGradient(_ size: CGSize, cornerRadius: CGFloat? = nil, locations: [CGFloat]? = nil, direction: Direction = .horizontal) -> UIImage {
         return drawImage(size: size) { context in
             let colors: [CGColor] = base.map { $0.cgColor }
             let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(),
                                       colors: colors as CFArray, locations: locations)!
-            
+
             if let cornerRadius = cornerRadius {
                 let path = UIBezierPath(roundedRect: .init(origin: .zero, size: size), cornerRadius: cornerRadius)
                 path.addClip()
             }
-            
+
             context.drawLinearGradient(gradient,
                                        start: CGPoint(x: 0, y: 0),
                                        end: direction.point(size),
                                        options: .drawsBeforeStartLocation)
         } ?? UIImage()
     }
-    
+
     /// Radial Gradient
     func radialGradient(_ size: CGSize, locations: [CGFloat]? = nil) -> UIImage {
         return drawImage(size: size) { context in
             let colors: [CGColor] = base.map { $0.cgColor }
             let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(),
                                       colors: colors as CFArray, locations: locations)!
-            
+
             let center = CGPoint(x: size.width / 2.0, y: size.height / 2.0)
             let radius: CGFloat = hypot(size.width, size.height) / 2.0
             context.drawRadialGradient(gradient,

@@ -12,39 +12,39 @@ public extension ImageCG where Base: UIImage {
     enum Position {
         case center
     }
-    
-    func add(_ logoImage: UIImage, position: ImageCG.Position = .center) -> UIImage? {
+
+    func add(_ logoImage: UIImage, position _: ImageCG.Position = .center) -> UIImage? {
         return drawImage(size: base.size) { _ in
             let x = (base.size.width - logoImage.size.width) / 2.0
             let y = (base.size.height - logoImage.size.height) / 2.0
-            
+
             base.draw(in: .init(origin: .zero, size: base.size))
             logoImage.draw(in: .init(origin: .init(x: x, y: y), size: logoImage.size))
         }
     }
-    
+
     func add(_ logoImageName: String, position: ImageCG.Position = .center) -> UIImage? {
         return add(UIImage(named: logoImageName)!, position: position)
     }
-    
+
     /// 缩放到指定大小
     func zoom(to size: CGSize) -> UIImage? {
         return drawImage(size: size) { _ in
             base.draw(in: CGRect(origin: .zero, size: size))
         }
     }
-    
+
     /// 裁剪
     func clip(in rect: CGRect) -> UIImage? {
         guard let subImage = base.cgImage?.cropping(to: rect.pixel(base.scale)) else { return nil }
         return UIImage(cgImage: subImage, scale: base.scale, orientation: .up)
     }
-    
+
     /// to UIColor
     var color: UIColor? {
         UIColor(patternImage: base)
     }
-    
+
     /// UIImage 并转为 PDF
     /// - Parameters:
     ///   - filePath: PDF 路径
@@ -55,7 +55,7 @@ public extension ImageCG where Base: UIImage {
         base.draw(in: rect)
         UIGraphicsEndPDFContext()
     }
-    
+
     /// 读取 PDF 并转为 UIImage
     /// - Parameters:
     ///   - filePath: PDF 路径
@@ -67,7 +67,7 @@ public extension ImageCG where Base: UIImage {
         guard isJoin else { return data.0 }
         return [pdfJoin(from: data)]
     }
-    
+
     internal static func pdfJoin(from data: ([UIImage], CGSize)) -> UIImage {
         return (drawImage(size: data.1, isOpaque: true) { _ in
             var offsetY: CGFloat = 0.0
@@ -80,19 +80,19 @@ public extension ImageCG where Base: UIImage {
             }
         })!
     }
-    
+
     internal static func readPDF(from filePath: String, fill color: UIColor = .white) -> ([UIImage], CGSize) {
         guard let pdf = CGPDFDocument(URL(fileURLWithPath: filePath) as CFURL) else { return ([], .zero) }
-        
+
         var images: [UIImage] = []
         let pageRect: CGRect = pdf.page(at: 1)!.getBoxRect(.mediaBox)
-        
+
         _ = drawImage(size: pageRect.size, isOpaque: true) { context in
             for index in 1 ... pdf.numberOfPages {
                 context.saveGState()
                 color.setFill()
                 context.fill(CGRect(origin: .zero, size: pageRect.size))
-                
+
                 let pdfPage: CGPDFPage = pdf.page(at: index)!
                 context.translateBy(x: 0.0, y: pageRect.size.height)
                 context.scaleBy(x: 1.0, y: -1.0)
@@ -103,7 +103,7 @@ public extension ImageCG where Base: UIImage {
                 context.restoreGState()
             }
         }
-        
+
         let scale = pageRect.size.width / UIScreen.main.bounds.width
         return (images, CGSize(width: pageRect.size.width / scale, height: pageRect.size.height * CGFloat(pdf.numberOfPages) / scale))
     }

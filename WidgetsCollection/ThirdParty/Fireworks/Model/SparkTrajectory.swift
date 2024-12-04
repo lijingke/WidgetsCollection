@@ -13,14 +13,14 @@ public extension SparkTrajectory {
     /// Use it after all other transforms have been applied and before `shift`.
     func scale(by value: CGFloat) -> SparkTrajectory {
         var copy = self
-        (0..<points.count).forEach { copy.points[$0].multiply(by: value) }
+        (0 ..< points.count).forEach { copy.points[$0].multiply(by: value) }
         return copy
     }
 
     /// Flips trajectory horizontally
     func flip() -> SparkTrajectory {
         var copy = self
-        (0..<points.count).forEach { copy.points[$0].x *= -1 }
+        (0 ..< points.count).forEach { copy.points[$0].x *= -1 }
         return copy
     }
 
@@ -29,7 +29,7 @@ public extension SparkTrajectory {
     func shift(to point: CGPoint) -> SparkTrajectory {
         var copy = self
         let vector = CGVector(dx: point.x, dy: point.y)
-        (0..<points.count).forEach { copy.points[$0].add(vector: vector) }
+        (0 ..< points.count).forEach { copy.points[$0].add(vector: vector) }
         return copy
     }
 }

@@ -58,7 +58,7 @@ class DesignStyleLayout: UICollectionViewFlowLayout {
     {
         var attributesArray = [UICollectionViewLayoutAttributes]()
         let cellCount = collectionView!.numberOfItems(inSection: 0)
-        for i in 0..<cellCount {
+        for i in 0 ..< cellCount {
             let indexPath = IndexPath(item: i, section: 0)
             let attributes = layoutAttributesForItem(at: indexPath)
             attributesArray.append(attributes!)

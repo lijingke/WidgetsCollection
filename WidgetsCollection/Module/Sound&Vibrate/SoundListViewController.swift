@@ -18,7 +18,7 @@ class SystemSoundsManager {
     var infos: [SystemSoundInfo] = []
 
     init() {
-        self.infos = gatherSystemSounds()
+        infos = gatherSystemSounds()
     }
 
     private func gatherSystemSounds() -> [SystemSoundInfo] {
@@ -70,13 +70,13 @@ class SoundListViewController: UITableViewController {
     init() {
         super.init(style: .plain)
 
-        self.title = "System Sounds"
+        title = "System Sounds"
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(SoundListViewController.persist(sender:)))
     }
 
     @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -110,7 +110,7 @@ class SoundListViewController: UITableViewController {
 
     // MARK: - 🔴🔴🔴🔴🔴 UITableViewDataSource 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return filteredInfos.count
     }
 
@@ -147,7 +147,7 @@ class SoundListViewController: UITableViewController {
 
     // MARK: - 🔴🔴🔴🔴🔴 targets 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
 
-    @objc func persist(sender: UIBarButtonItem) {
+    @objc func persist(sender _: UIBarButtonItem) {
         persist()
 
         let ac = UIAlertController(title: "Saved to Documents dir", message: "Use Xcode -> Window -> Devices (⇧⌘2) -> Installed Apps -> Download container... to copy the files to your computer", preferredStyle: .alert)

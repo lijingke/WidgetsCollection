@@ -26,12 +26,12 @@ class CustomDatePickerVC: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        self.view.backgroundColor = UIColor.systemBackground
-        self.txtShowDate.textColor = UIColor(named: "textColor")
-        self.txtShowDate.backgroundColor = UIColor(named: "backColor")
+        view.backgroundColor = UIColor.systemBackground
+        txtShowDate.textColor = UIColor(named: "textColor")
+        txtShowDate.backgroundColor = UIColor(named: "backColor")
 
-        view.addSubview(self.txtShowDate)
-        self.txtShowDate.snp.makeConstraints { make in
+        view.addSubview(txtShowDate)
+        txtShowDate.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.equalTo(200)
             make.height.equalTo(50)
@@ -53,7 +53,7 @@ class CustomDatePickerVC: BaseViewController {
         pick.block = { [weak self] date in
             self?.txtShowDate.text = date
         }
-        self.present(pick, animated: true, completion: nil)
+        present(pick, animated: true, completion: nil)
     }
 }
 
@@ -62,6 +62,6 @@ class CustomDatePickerVC: BaseViewController {
 extension CustomDatePickerVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.resignFirstResponder()
-        self.showPicker()
+        showPicker()
     }
 }

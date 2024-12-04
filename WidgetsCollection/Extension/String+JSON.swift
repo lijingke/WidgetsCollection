@@ -171,7 +171,7 @@ extension String {
         }
         let start = index(self.startIndex, offsetBy: startIndex)
         let end = index(self.startIndex, offsetBy: endInt)
-        return String(self[start...end])
+        return String(self[start ... end])
     }
 
     /// thisiscontent  返回["this","isco","ntent"]
@@ -181,7 +181,7 @@ extension String {
 
         if len > maxLen {
             let count = len / maxLen
-            for i in 0..<count {
+            for i in 0 ..< count {
                 let index = i * maxLen
                 let endIndex = index + maxLen - 1
                 let subString = getSubString(startIndex: index, endIndex: endIndex)

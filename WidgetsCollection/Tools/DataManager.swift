@@ -22,7 +22,7 @@ class DataManager {
 
     func generalColor(_ count: Int) -> [UIColor] {
         var colors = [UIColor]()
-        for _ in 0..<count {
+        for _ in 0 ..< count {
             colors.append(UIColor.randomColor())
         }
         return colors
@@ -38,7 +38,7 @@ class DataManager {
         let step = arc4random_uniform(5) + 2
         let startTextIndex = randomText.index(startIndex, offsetBy: start)
         let endTextIndex = randomText.index(startIndex, offsetBy: start + Int(step))
-        let text = String(randomText[startTextIndex..<endTextIndex])
+        let text = String(randomText[startTextIndex ..< endTextIndex])
         return text
     }
 
@@ -47,7 +47,7 @@ class DataManager {
         var tags2: [String] = []
         var tags3: [String] = []
 
-        for i in 0..<50 {
+        for i in 0 ..< 50 {
             if i % 3 == 0 {
                 tags1.append(generalText())
             }

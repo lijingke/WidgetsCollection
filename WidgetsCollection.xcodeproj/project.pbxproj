@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54A3BDED2D004318004FB071 /* SFSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 54A3BDEC2D004318004FB071 /* SFSymbols */; };
 		EFF3A6DBD1C9AE6F52890546 /* Pods_WidgetsCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE0870E5B0344C379332D2AE /* Pods_WidgetsCollection.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54A3BDED2D004318004FB071 /* SFSymbols in Frameworks */,
 				EFF3A6DBD1C9AE6F52890546 /* Pods_WidgetsCollection.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +141,9 @@
 			);
 			mainGroup = 5480DE812CF9653A00C21D67;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				54A3BDEB2D004318004FB071 /* XCRemoteSwiftPackageReference "SFSymbols" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5480DE8B2CF9653A00C21D67 /* Products */;
 			projectDirPath = "";
@@ -444,6 +449,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		54A3BDEB2D004318004FB071 /* XCRemoteSwiftPackageReference "SFSymbols" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Rspoon3/SFSymbols";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		54A3BDEC2D004318004FB071 /* SFSymbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54A3BDEB2D004318004FB071 /* XCRemoteSwiftPackageReference "SFSymbols" */;
+			productName = SFSymbols;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5480DE822CF9653A00C21D67 /* Project object */;
 }

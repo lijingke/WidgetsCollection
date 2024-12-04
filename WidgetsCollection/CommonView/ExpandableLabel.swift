@@ -43,10 +43,10 @@ import UIKit
         case character
         case word
     }
-    
+
     /// The delegate of ExpandableLabel
     @objc open weak var delegate: ExpandableLabelDelegate?
-    
+
     /// Set 'true' if the label should be collapsed or 'false' for expanded.
     @IBInspectable open var collapsed: Bool = true {
         didSet {
@@ -59,15 +59,15 @@ import UIKit
             }
         }
     }
-    
+
     /// Set 'true' if the label can be expanded or 'false' if not.
     /// The default value is 'true'.
     @IBInspectable open var shouldExpand: Bool = true
-    
+
     /// Set 'true' if the label can be collapsed or 'false' if not.
     /// The default value is 'false'.
     @IBInspectable open var shouldCollapse: Bool = false
-    
+
     /// Set the link name (and attributes) that is shown when collapsed.
     /// The default value is "More". Cannot be nil.
     @objc open var collapsedAttributedLink: NSAttributedString! {
@@ -75,11 +75,11 @@ import UIKit
             collapsedAttributedLink = collapsedAttributedLink.copyWithAddedFontAttribute(font)
         }
     }
-    
+
     /// Set the link name (and attributes) that is shown when expanded.
     /// The default value is "Less". Can be nil.
     @objc open var expandedAttributedLink: NSAttributedString?
-    
+
     /// Set the ellipsis that appears just after the text and before the link.
     /// The default value is "...". Can be nil.
     @objc open var ellipsis: NSAttributedString? {
@@ -87,15 +87,15 @@ import UIKit
             ellipsis = ellipsis?.copyWithAddedFontAttribute(font)
         }
     }
-    
+
     /// Set a view to animate changes of the label collapsed state with. If this value is nil, no animation occurs.
     /// Usually you assign the superview of this label or a UIScrollView in which this label sits.
     /// Also don't forget to set the contentMode of this label to top to smoothly reveal the hidden lines.
     /// The default value is 'nil'.
     @objc open var animationView: UIView?
-    
+
     open var textReplacementType: TextReplacementType = .word
-    
+
     private var collapsedText: NSAttributedString?
     private var linkHighlighted: Bool = false
     private let touchSize = CGSize(width: 44, height: 44)
@@ -104,28 +104,28 @@ import UIKit
     private var expandedLinkPosition: NSTextAlignment?
     private var collapsedLinkTextRange: NSRange?
     private var expandedLinkTextRange: NSRange?
-    
+
     override open var numberOfLines: NSInteger {
         didSet {
             collapsedNumberOfLines = numberOfLines
         }
     }
-    
+
     @objc public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
-    
+
     @objc override public init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
-    
+
     @objc public init() {
         super.init(frame: .zero)
         commonInit()
     }
-    
+
     override open var text: String? {
         set(text) {
             if let text = text {
@@ -138,7 +138,7 @@ import UIKit
             return attributedText?.string
         }
     }
-    
+
     open private(set) var expandedText: NSAttributedString?
     override open var attributedText: NSAttributedString? {
         set(attributedText) {
@@ -158,7 +158,7 @@ import UIKit
             return super.attributedText
         }
     }
-    
+
     open func setLessLinkWith(lessLink: String, attributes: [NSAttributedString.Key: AnyObject], position: NSTextAlignment?) {
         var alignedattributes = attributes
         if let pos = position {
@@ -178,21 +178,21 @@ extension ExpandableLabel {
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         setLinkHighlighted(touches, event: event, highlighted: true)
     }
-    
+
     override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         setLinkHighlighted(touches, event: event, highlighted: false)
     }
-    
+
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
             return
         }
-        
+
         if !collapsed {
             guard let range = expandedLinkTextRange else {
                 return
             }
-            
+
             if shouldCollapse, check(touch: touch, isInRange: range) {
                 delegate?.willCollapseLabel(self)
                 collapsed = true
@@ -211,7 +211,7 @@ extension ExpandableLabel {
             }
         }
     }
-    
+
     override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         setLinkHighlighted(touches, event: event, highlighted: false)
     }
@@ -228,7 +228,7 @@ extension ExpandableLabel {
         collapsedAttributedLink = NSAttributedString(string: "More", attributes: [.font: UIFont.boldSystemFont(ofSize: font.pointSize)])
         ellipsis = NSAttributedString(string: "...")
     }
-    
+
     private func textReplaceWordWithLink(_ lineIndex: LineIndexTuple, text: NSAttributedString, linkName: NSAttributedString) -> NSAttributedString {
         let lineText = text.text(for: lineIndex.line)
         var lineTextWithLink = lineText
@@ -252,7 +252,7 @@ extension ExpandableLabel {
         }
         return lineTextWithLink
     }
-    
+
     private func textReplaceWithLink(_ lineIndex: LineIndexTuple, text: NSAttributedString, linkName: NSAttributedString) -> NSAttributedString {
         let lineText = text.text(for: lineIndex.line)
         let lineTextTrimmedNewLines = NSMutableAttributedString()
@@ -268,7 +268,7 @@ extension ExpandableLabel {
             linkText.append(NSAttributedString(string: " ", attributes: [.font: font!]))
         }
         linkText.append(linkName)
-        
+
         let lengthDifference = lineTextTrimmedNewLines.string.composedCount - linkText.string.composedCount
         let truncatedString = lineTextTrimmedNewLines.attributedSubstring(
             from: NSMakeRange(0, lengthDifference >= 0 ? lengthDifference : lineTextTrimmedNewLines.string.composedCount))
@@ -276,7 +276,7 @@ extension ExpandableLabel {
         lineTextWithLink.append(linkText)
         return lineTextWithLink
     }
-    
+
     private func getExpandedText(for text: NSAttributedString?, link: NSAttributedString?) -> NSAttributedString? {
         guard let text = text else { return nil }
         let expandedText = NSMutableAttributedString()
@@ -287,10 +287,10 @@ extension ExpandableLabel {
             expandedText.append(NSMutableAttributedString(string: "\(link.string)", attributes: link.attributes(at: 0, effectiveRange: nil)).copyWithAddedFontAttribute(font))
             expandedLinkTextRange = NSMakeRange(expandedText.length - link.length, link.length)
         }
-        
+
         return expandedText
     }
-    
+
     private func getCollapsedText(for text: NSAttributedString?, link: NSAttributedString) -> NSAttributedString? {
         guard let text = text else { return nil }
         let lines = text.lines(for: frame.size.width)
@@ -298,7 +298,7 @@ extension ExpandableLabel {
             let lastLineRef = lines[collapsedNumberOfLines - 1] as CTLine
             var lineIndex: LineIndexTuple?
             var modifiedLastLineText: NSAttributedString?
-            
+
             if textReplacementType == .word {
                 lineIndex = findLineWithWords(lastLine: lastLineRef, text: text, lines: lines)
                 if let lineIndex = lineIndex {
@@ -310,14 +310,14 @@ extension ExpandableLabel {
                     modifiedLastLineText = textReplaceWithLink(lineIndex, text: text, linkName: link)
                 }
             }
-            
+
             if let lineIndex = lineIndex, let modifiedLastLineText = modifiedLastLineText {
                 let collapsedLines = NSMutableAttributedString()
-                for index in 0..<lineIndex.index {
+                for index in 0 ..< lineIndex.index {
                     collapsedLines.append(text.text(for: lines[index]))
                 }
                 collapsedLines.append(modifiedLastLineText)
-                
+
                 collapsedLinkTextRange = NSRange(location: collapsedLines.length - link.length, length: link.length)
                 return collapsedLines
             } else {
@@ -326,7 +326,7 @@ extension ExpandableLabel {
         }
         return text
     }
-    
+
     private func findLineWithWords(lastLine: CTLine, text: NSAttributedString, lines: [CTLine]) -> LineIndexTuple {
         var lastLineRef = lastLine
         var lastLineIndex = collapsedNumberOfLines - 1
@@ -338,7 +338,7 @@ extension ExpandableLabel {
         }
         return (lastLineRef, lastLineIndex)
     }
-    
+
     private func spiltIntoWords(str: NSString) -> [String] {
         var strings: [String] = []
         str.enumerateSubstrings(in: NSRange(location: 0, length: str.length), options: [.byWords, .reverse]) { word, _, _, stop in
@@ -349,38 +349,38 @@ extension ExpandableLabel {
         }
         return strings
     }
-    
+
     private func textFitsWidth(_ text: NSAttributedString) -> Bool {
         return (text.boundingRect(for: frame.size.width).size.height <= font.lineHeight) as Bool
     }
-    
+
     private func textWillBeTruncated(_ text: NSAttributedString) -> Bool {
         let lines = text.lines(for: frame.size.width)
         return collapsedNumberOfLines > 0 && collapsedNumberOfLines < lines.count
     }
-    
-    private func textClicked(touches: Set<UITouch>?, event: UIEvent?) -> Bool {
+
+    private func textClicked(touches _: Set<UITouch>?, event: UIEvent?) -> Bool {
         let touch = event?.allTouches?.first
         let location = touch?.location(in: self)
         let textRect = attributedText?.boundingRect(for: frame.width)
         if let location = location, let textRect = textRect {
-            let finger = CGRect(x: location.x - touchSize.width/2, y: location.y - touchSize.height/2, width: touchSize.width, height: touchSize.height)
+            let finger = CGRect(x: location.x - touchSize.width / 2, y: location.y - touchSize.height / 2, width: touchSize.width, height: touchSize.height)
             if finger.intersects(textRect) {
                 return true
             }
         }
         return false
     }
-    
-    @discardableResult private func setLinkHighlighted(_ touches: Set<UITouch>?, event: UIEvent?, highlighted: Bool) -> Bool {
+
+    @discardableResult private func setLinkHighlighted(_ touches: Set<UITouch>?, event _: UIEvent?, highlighted: Bool) -> Bool {
         guard let touch = touches?.first else {
             return false
         }
-        
+
         guard let range = collapsedLinkTextRange else {
             return false
         }
-        
+
         if collapsed && check(touch: touch, isInRange: range) {
             linkHighlighted = highlighted
             setNeedsDisplay()
@@ -398,7 +398,7 @@ private extension NSAttributedString {
         let font = attribute(.font, at: 0, effectiveRange: nil) as? UIFont
         return font != nil
     }
-    
+
     func copyWithParagraphAttribute(_ font: UIFont) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.05
@@ -406,14 +406,14 @@ private extension NSAttributedString {
         paragraphStyle.lineSpacing = 0.0
         paragraphStyle.minimumLineHeight = font.lineHeight
         paragraphStyle.maximumLineHeight = font.lineHeight
-        
+
         let copy = NSMutableAttributedString(attributedString: self)
         let range = NSRange(location: 0, length: copy.length)
         copy.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
         copy.addAttribute(.baselineOffset, value: font.pointSize * 0.08, range: range)
         return copy
     }
-    
+
     func copyWithAddedFontAttribute(_ font: UIFont) -> NSAttributedString {
         if !hasFontAttribute() {
             let copy = NSMutableAttributedString(attributedString: self)
@@ -422,7 +422,7 @@ private extension NSAttributedString {
         }
         return copy() as! NSAttributedString
     }
-    
+
     func copyWithHighlightedColor() -> NSAttributedString {
         let alphaComponent = CGFloat(0.5)
         let baseColor: UIColor = (attribute(.foregroundColor, at: 0, effectiveRange: nil) as? UIColor)?.withAlphaComponent(alphaComponent) ??
@@ -433,25 +433,25 @@ private extension NSAttributedString {
         highlightedCopy.addAttribute(.foregroundColor, value: baseColor, range: range)
         return highlightedCopy
     }
-    
+
     func lines(for width: CGFloat) -> [CTLine] {
         let path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: width, height: .greatestFiniteMagnitude))
         let frameSetterRef: CTFramesetter = CTFramesetterCreateWithAttributedString(self as CFAttributedString)
         let frameRef: CTFrame = CTFramesetterCreateFrame(frameSetterRef, CFRange(location: 0, length: 0), path.cgPath, nil)
-        
+
         let linesNS: NSArray = CTFrameGetLines(frameRef)
         let linesAO: [AnyObject] = linesNS as [AnyObject]
         let lines: [CTLine] = linesAO as! [CTLine]
-        
+
         return lines
     }
-    
+
     func text(for lineRef: CTLine) -> NSAttributedString {
         let lineRangeRef: CFRange = CTLineGetStringRange(lineRef)
         let range = NSRange(location: lineRangeRef.location, length: lineRangeRef.length)
         return attributedSubstring(from: range)
     }
-    
+
     func boundingRect(for width: CGFloat) -> CGRect {
         return boundingRect(with: CGSize(width: width, height: .greatestFiniteMagnitude),
                             options: .usesLineFragmentOrigin, context: nil)
@@ -463,7 +463,7 @@ private extension NSAttributedString {
 extension String {
     var composedCount: Int {
         var count = 0
-        enumerateSubstrings(in: startIndex..<endIndex, options: .byComposedCharacterSequences) { _, _, _, _ in count += 1 }
+        enumerateSubstrings(in: startIndex ..< endIndex, options: .byComposedCharacterSequences) { _, _, _, _ in count += 1 }
         return count
     }
 }
@@ -476,42 +476,41 @@ extension UILabel {
         let index = characterIndex(at: touchPoint)
         return NSLocationInRange(index, targetRange)
     }
-    
+
     private func characterIndex(at touchPoint: CGPoint) -> Int {
-        
         // Configure NSTextContainer
         let textContainer = NSTextContainer(size: bounds.size)
         textContainer.lineFragmentPadding = 0.0
         textContainer.lineBreakMode = lineBreakMode
         textContainer.maximumNumberOfLines = numberOfLines
-        
+
         // Configure NSLayoutManager and add the text container
         let layoutManager = NSLayoutManager()
         layoutManager.addTextContainer(textContainer)
-        
+
         guard let attributedText = attributedText else { return NSNotFound }
-        
+
         // Configure NSTextStorage and apply the layout manager
         let textStorage = NSTextStorage(attributedString: attributedText)
         textStorage.addAttribute(NSAttributedString.Key.font, value: font!, range: NSMakeRange(0, attributedText.length))
         textStorage.addLayoutManager(layoutManager)
-        
+
         // get the tapped character location
         let locationOfTouchInLabel = touchPoint
-        
+
         // account for text alignment and insets
         let textBoundingBox = layoutManager.usedRect(for: textContainer)
         let alignmentOffset: CGFloat = aligmentOffset(for: self)
-        
+
         let xOffset = ((bounds.size.width - textBoundingBox.size.width) * alignmentOffset) - textBoundingBox.origin.x
         let yOffset = ((bounds.size.height - textBoundingBox.size.height) * alignmentOffset) - textBoundingBox.origin.y
         let locationOfTouchInTextContainer = CGPoint(x: locationOfTouchInLabel.x - xOffset, y: locationOfTouchInLabel.y - yOffset)
-        
+
         // work out which character was tapped
         let characterIndex = layoutManager.characterIndex(for: locationOfTouchInTextContainer, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
         return characterIndex
     }
-    
+
     private func aligmentOffset(for label: UILabel) -> CGFloat {
         switch label.textAlignment {
         case .left, .natural, .justified:

@@ -72,7 +72,7 @@ class TagLayout: UICollectionViewLayout {
         cache[.header]?[headerIndexPath] = headerAttribute
         contentHeight = frame.maxY
 
-        for section in 0..<sections {
+        for section in 0 ..< sections {
             let sectionHeaderIndexPath = IndexPath(item: 0, section: section)
 
             let sectionHeaderAttribute = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: sectionHeaderIndexPath)
@@ -89,7 +89,7 @@ class TagLayout: UICollectionViewLayout {
             let rows = collectionView.numberOfItems(inSection: section)
             var frame = CGRect(x: 0, y: contentHeight + lineSpacing, width: 0, height: 0)
 
-            for item in 0..<rows {
+            for item in 0 ..< rows {
                 let indexPath = IndexPath(item: item, section: section)
 
                 let text = delegate.collectionView(collectionView, TextForItemAt: indexPath)

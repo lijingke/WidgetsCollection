@@ -55,7 +55,7 @@ class WebImageCacheManager: NSObject {
         let newStr = NSMutableString()
         for i in 0 ..< str.length {
             let c: unichar = str.character(at: i)
-            if (c>=48&&c<=57)||(c>=65&&c<=90)||(c>=97&&c<=122) {
+            if (c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122) {
                 newStr.appendFormat("%c", c)
             }
         }

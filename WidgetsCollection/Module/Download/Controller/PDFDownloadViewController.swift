@@ -57,7 +57,7 @@ private extension PDFDownloadViewController {
     /// 创建数据源
     func creatData() {
         var temArr = [PDFEntity]()
-        for i in 0...7 {
+        for i in 0 ... 7 {
             var entity = PDFEntity()
             switch i {
             case 0:

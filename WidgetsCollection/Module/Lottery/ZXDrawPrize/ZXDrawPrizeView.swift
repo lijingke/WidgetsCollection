@@ -165,7 +165,7 @@ class ZXDrawPrizeView: UIView {
                 }
             }
 
-            for n in 0..<zx_count {
+            for n in 0 ..< zx_count {
                 let tempI = (zx_count - 1 - n) // 调整顺序
                 let spl = zxShapeLayers[tempI] //
                 // spl.setPrizeImage(dataSouce.zxDrawPrize(prizeView: self, imageAt: tempI))

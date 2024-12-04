@@ -11,19 +11,23 @@ import ZhuoZhuo
 
 class InfoListView: UIView {
     // MARK: Property
+
     private var dataSource: [ResponseModel] = []
-    
+
     // MARK: Life Cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: Lazy Get
+
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .plain)
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +39,7 @@ class InfoListView: UIView {
 }
 
 // MARK: - Data
+
 extension InfoListView {
     public func setupData(_ data: [ResponseModel]) {
         dataSource = data
@@ -43,27 +48,28 @@ extension InfoListView {
 }
 
 // MARK: - UI
+
 extension InfoListView {
     private func setupUI() {
         addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
 }
 
 // MARK: - UITableViewDelegate
-extension InfoListView: UITableViewDelegate {
-    
-}
+
+extension InfoListView: UITableViewDelegate {}
 
 // MARK: - UITableViewDataSource
+
 extension InfoListView: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return dataSource.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoCell
         let model = dataSource[indexPath.row]

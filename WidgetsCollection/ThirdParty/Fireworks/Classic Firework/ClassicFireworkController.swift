@@ -30,13 +30,13 @@ public class ClassicFireworkController {
             CGPoint(x: sourceView.frame.maxX, y: sourceView.frame.maxY),
         ]
 
-        for _ in 0..<fireworksCount {
+        for _ in 0 ..< fireworksCount {
             let idx = Int(arc4random_uniform(UInt32(origins.count)))
             let origin = origins[idx].adding(vector: randomChangeVector(max: maxVectorChange))
 
             let firework = createFirework(at: origin, sparkSize: sparkSize, scale: scale)
 
-            for sparkIndex in 0..<sparksCount {
+            for sparkIndex in 0 ..< sparksCount {
                 let spark = firework.spark(at: sparkIndex)
                 spark.sparkView.isHidden = true
                 superview.addSubview(spark.sparkView)

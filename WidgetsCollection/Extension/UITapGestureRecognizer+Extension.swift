@@ -9,12 +9,11 @@ import Foundation
 import UIKit
 
 @objc public extension UITapGestureRecognizer {
-
     func didTapLabelAttributedText(_ linkDic: [String: String], action: @escaping (String, String?) -> Void) {
-        assert(((self.view as? UILabel) != nil), "Only supports UILabel")
-        guard let label = self.view as? UILabel,
+        assert((view as? UILabel) != nil, "Only supports UILabel")
+        guard let label = view as? UILabel,
               let attributedText = label.attributedText
-              else { return }
+        else { return }
 
         // Create instances of NSLayoutManager, NSTextContainer and NSTextStorage
         let layoutManager = NSLayoutManager()
@@ -33,15 +32,15 @@ import UIKit
         textContainer.size = labelSize
 
         // Find the tapped character location and compare it to the specified range
-        let locationOfTouchInLabel = self.location(in: label)
+        let locationOfTouchInLabel = location(in: label)
         let textBoundingBox = layoutManager.usedRect(for: textContainer)
-        let textContainerOffset = CGPoint(x:(labelSize.width - textBoundingBox.size.width)*0.5 - textBoundingBox.origin.x,
-                                        y:(labelSize.height - textBoundingBox.size.height)*0.5 - textBoundingBox.origin.y)
+        let textContainerOffset = CGPoint(x: (labelSize.width - textBoundingBox.size.width) * 0.5 - textBoundingBox.origin.x,
+                                          y: (labelSize.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y)
         let locationOfTouchInTextContainer = CGPoint(x: locationOfTouchInLabel.x - textContainerOffset.x,
-                                                   y: locationOfTouchInLabel.y - textContainerOffset.y)
+                                                     y: locationOfTouchInLabel.y - textContainerOffset.y)
         let indexOfCharacter = layoutManager.characterIndex(for: locationOfTouchInTextContainer,
-                                                          in: textContainer,                                                             fractionOfDistanceBetweenInsertionPoints: nil)
-        linkDic.forEach { e in
+                                                            in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        for e in linkDic {
             let targetRange: NSRange = (attributedText.string as NSString).range(of: e.key)
             let isContain = NSLocationInRange(indexOfCharacter, targetRange)
             if isContain {

@@ -59,7 +59,7 @@ class CardView: UIView {
     public func reloadData() {
         guard let dataSource = dataSource else { return }
         count = dataSource.numberOfItems(in: self)
-        for index in 0..<count {
+        for index in 0 ..< count {
             addCard(with: index)
         }
     }

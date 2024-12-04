@@ -105,43 +105,43 @@ class VibrateListViewController: BaseViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
+
     let keys: [String] = SystemSound.allCases.map { "\($0)" }
     let values: [Int] = SystemSound.allCases.map { $0.rawValue }
-    
+
     var sections: [(title: String, options: [String])] = [
         ("Haptic (iOS 13)", ["Haptic Transient", "Haptic Continuous", "Haptic Custom"]),
         ("Taptic Basic", ["Standard Vibration", "Alert Vibration"]),
         ("Taptic Engine", ["Peek", "Pop", "Cancelled", "Try Again", "Failed"]),
         ("Haptic Feedback - Notification", ["Success", "Warning", "Error"]),
         ("Haptic Feedback - Impact", ["Light", "Medium", "Heavy", "Soft (iOS 13)", "Rigid (iOS 13)"]),
-        ("Haptic Feedback - Selection", ["Selection"])
+        ("Haptic Feedback - Selection", ["Selection"]),
     ]
-    
+
     let feedbackGenerator: (notification: UINotificationFeedbackGenerator, impact: (light: UIImpactFeedbackGenerator, medium: UIImpactFeedbackGenerator, heavy: UIImpactFeedbackGenerator, soft: UIImpactFeedbackGenerator, rigid: UIImpactFeedbackGenerator), selection: UISelectionFeedbackGenerator) = (notification: UINotificationFeedbackGenerator(), impact: (light: UIImpactFeedbackGenerator(style: .light), medium: UIImpactFeedbackGenerator(style: .medium), heavy: UIImpactFeedbackGenerator(style: .heavy), soft: UIImpactFeedbackGenerator(style: .soft), rigid: UIImpactFeedbackGenerator(style: .rigid)), selection: UISelectionFeedbackGenerator())
-    
+
     var engine: CHHapticEngine?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Vibration Example"
-        
+
         sections.append(("Audio System", keys))
-        
+
         tableView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
         view.addSubview(tableView)
-        
+
         initHaptic()
-        
+
         for value in SystemSound.allCases {
             print(value)
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         feedbackGenerator.selection.prepare()
@@ -182,11 +182,11 @@ class VibrateListViewController: BaseViewController {
 //            }
         }
     }
-    
+
     deinit {
         self.destroyHaptics()
     }
-    
+
     func playHaptic(event: CHHapticEvent) {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
         do {
@@ -200,25 +200,25 @@ class VibrateListViewController: BaseViewController {
 }
 
 extension VibrateListViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in _: UITableView) -> Int {
         return sections.count
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].options.count
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+
+    func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         let title = sections[section].title
         return title
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
         cell.textLabel?.text = sections[indexPath.section].options[indexPath.row]
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
@@ -348,7 +348,7 @@ extension VibrateListViewController: UITableViewDelegate, UITableViewDataSource 
         default:
             break
         }
-        
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

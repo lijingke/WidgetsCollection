@@ -64,11 +64,11 @@ class TisprCardStackDemoViewCell: CardStackViewCell {
         switch rotation {
         case -1 * CGFloat.greatestFiniteMagnitude ..< -1 * Constants.rotationRadius:
             smileImageName = Constants.smileRotten2
-        case -1 * Constants.rotationRadius..<0:
+        case -1 * Constants.rotationRadius ..< 0:
             smileImageName = Constants.smileRotten1
-        case 1..<Constants.rotationRadius:
+        case 1 ..< Constants.rotationRadius:
             smileImageName = Constants.smileFace1
-        case Constants.rotationRadius...CGFloat.greatestFiniteMagnitude:
+        case Constants.rotationRadius ... CGFloat.greatestFiniteMagnitude:
             smileImageName = Constants.smileFace2
         default:
             smileImageName = Constants.smileNeutral

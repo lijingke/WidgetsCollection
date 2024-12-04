@@ -22,13 +22,13 @@ extension UIImageView {
         }
         // 设置默认图片
         if defaultImage != nil {
-            self.image = UIImage(named: defaultImage!)
+            image = UIImage(named: defaultImage!)
         }
 
         if isCache {
             if let data = WebImageCacheManager.readCacheFromUrl(url: url ?? "") {
                 ZYHImage = UIImage(data: data)
-                self.image = ZYHImage
+                image = ZYHImage
             } else {
                 let backgroundQueue = DispatchQueue(label: "background_queue",
                                                     qos: .background)

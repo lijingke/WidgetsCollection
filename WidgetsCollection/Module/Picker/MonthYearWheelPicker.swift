@@ -10,7 +10,6 @@ import UIKit
 
 /// A control for the inputting of month and year values in a view that uses a spinning-wheel or slot-machine metaphor.
 open class MonthYearWheelPicker: UIPickerView {
-    
     private var calendar = Calendar(identifier: .gregorian)
     private var _maximumDate: Date?
     private var _minimumDate: Date?
@@ -22,7 +21,7 @@ open class MonthYearWheelPicker: UIPickerView {
     private var dayCount = 31
     private var selectedMonth: Int = 1
     private var selectedYear: Int = 2019
-    
+
     /// The maximum date that a picker can show.
     ///
     /// Use this property to configure the maximum date that is selected in the picker interface. The default is the current month and 15 years into the future.
@@ -35,7 +34,7 @@ open class MonthYearWheelPicker: UIPickerView {
             return _maximumDate ?? formattedDate(from: calendar.date(byAdding: .year, value: 15, to: Date()) ?? Date())
         }
     }
-    
+
     /// The minimum date that a picker can show.
     ///
     /// Use this property to configure the minimum date that is selected in the picker interface. The default is the current month and year.
@@ -48,7 +47,7 @@ open class MonthYearWheelPicker: UIPickerView {
             return _minimumDate ?? formattedDate(from: Date())
         }
     }
-    
+
     /// The date displayed by the picker.
     ///
     /// Use this property to get and set the currently selected date. The default value of this property is the date when the UIDatePicker object is created. Setting this property animates the date picker by spinning the wheels to the new date and time; if you don't want any animation to occur when you set the date, use the ``setDate(_:animated:)`` method, passing `false` for the animated parameter.
@@ -62,34 +61,34 @@ open class MonthYearWheelPicker: UIPickerView {
             return _date ?? formattedDate(from: Date())
         }
     }
-    
+
     /// The month displayed by the picker.
     ///
     /// Use this property to get the current month in the Gregorian calendar starting from `1` for _January_ through to `12` for _December_.
     open var month: Int {
         return calendar.component(.month, from: date)
     }
-    
+
     /// The year displayed by the picker.
     ///
     /// Use this property to get the current year in the Gregorian calendar.
     open var year: Int {
         return calendar.component(.year, from: date)
     }
-    
+
     /// A completion handler to receive the month and year when the picker value is changed.
     open var onDateSelected: ((_ month: Int, _ year: Int) -> Void)?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonSetup()
     }
-    
-    required public init?(coder aDecoder: NSCoder) {
+
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonSetup()
     }
-    
+
     /// Associates a target object and action method with the control.
     ///
     /// - parameter target: The target object—that is, the object whose action method is called. If you specify nil, UIKit searches the responder chain for an object that responds to the specified action message and delivers the message to that object.
@@ -104,20 +103,20 @@ open class MonthYearWheelPicker: UIPickerView {
         self.target = target as? AnyObject
         self.action = action
     }
-    
+
     /// Stops the delivery of events to the previously set target object.
     public func removeTarget() {
-        self.target = nil
-        self.action = nil
+        target = nil
+        action = nil
     }
-    
+
     /// Stops the delivery of events to the previously set target object.
     ///
     /// - Note: `MonthYearWheelPicker` does not inherit from `UIControl` so this method is provided only as a way for it be a drop-in replacement for `UIDatePicker` in most scenarios. The parameters used here are meaningless as any call to this method will result in the previously set target / action being removed.
-    public func removeTarget(_ target: Any?, action: Selector?, for controlEvents: UIControl.Event) {
+    public func removeTarget(_: Any?, action _: Selector?, for _: UIControl.Event) {
         removeTarget()
     }
-    
+
     /// Sets the date to display in the date picker, with an option to animate the setting.
     ///
     /// - parameter date: An `NSDate` object representing the new date to display in the date picker.
@@ -136,10 +135,9 @@ open class MonthYearWheelPicker: UIPickerView {
         }
         updatePickers(animated: animated)
     }
-    
-    
+
     // MARK: Private methods
-    
+
     private func updatePickers(animated: Bool) {
         let month = calendar.component(.month, from: date)
         let year = calendar.component(.year, from: date)
@@ -151,7 +149,7 @@ open class MonthYearWheelPicker: UIPickerView {
             }
         }
     }
-    
+
     private func pickerViewDidSelectRow() {
         let month = selectedRow(inComponent: 0) + 1
         let year = years[selectedRow(inComponent: 1)]
@@ -159,57 +157,56 @@ open class MonthYearWheelPicker: UIPickerView {
             fatalError("Could not generate date from components")
         }
         self.date = date
-        
+
         if let block = onDateSelected {
             block(month, year)
         }
-        
+
         if let target = target, let action = action {
             _ = target.perform(action, with: self)
         }
     }
-    
+
     private func formattedDate(from date: Date) -> Date {
         return DateComponents(calendar: calendar, year: calendar.component(.year, from: date), month: calendar.component(.month, from: date), day: 1, hour: 0, minute: 0, second: 0).date ?? Date()
     }
-    
+
     private func updateAvailableYears(animated: Bool) {
         var years = [Int]()
-        
+
         let startYear = calendar.component(.year, from: minimumDate)
         let endYear = max(calendar.component(.year, from: maximumDate), startYear)
-        
+
         while years.last != endYear {
             years.append((years.last ?? startYear - 1) + 1)
         }
         self.years = years
-        
+
         updatePickers(animated: animated)
     }
-    
+
     private func commonSetup() {
         delegate = self
         dataSource = self
-        
+
         var months: [String] = []
         var month = 0
-        for _ in 1...12 {
+        for _ in 1 ... 12 {
             months.append(DateFormatter().monthSymbols[month].capitalized)
             month += 1
         }
         self.months = months
-        
+
         updateAvailableYears(animated: false)
     }
 }
 
 extension MonthYearWheelPicker: UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    open func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    open func numberOfComponents(in _: UIPickerView) -> Int {
         return 3
     }
-    
-    open func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+
+    open func pickerView(_: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
         case 0:
             return months.count
@@ -219,17 +216,16 @@ extension MonthYearWheelPicker: UIPickerViewDelegate, UIPickerViewDataSource {
             return dayCount
         }
     }
-    
-    open func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+
+    open func pickerView(_ pickerView: UIPickerView, didSelectRow _: Int, inComponent component: Int) {
         pickerViewDidSelectRow()
         if component == 1 {
 //            pickerView.reloadComponent(0)
         }
         pickerView.reloadAllComponents()
     }
-    
-    public func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        
+
+    public func pickerView(_: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         var text: String?
         switch component {
         case 0:
@@ -241,7 +237,7 @@ extension MonthYearWheelPicker: UIPickerViewDelegate, UIPickerViewDataSource {
         default:
             return nil
         }
-        
+
         guard let text = text else { return nil }
 
         var attributes = [NSAttributedString.Key: Any]()
@@ -250,7 +246,7 @@ extension MonthYearWheelPicker: UIPickerViewDelegate, UIPickerViewDataSource {
         } else {
             attributes[.foregroundColor] = UIColor.black
         }
-        
+
         if component == 0 {
             let month = row + 1
             let year = years[selectedRow(inComponent: 1)]
@@ -262,33 +258,33 @@ extension MonthYearWheelPicker: UIPickerViewDelegate, UIPickerViewDataSource {
                 }
             }
         }
-        
+
         return NSAttributedString(string: text, attributes: attributes)
     }
-    
-    //MARK: 计算每月天数
-    fileprivate func dayCalculation(month:Int ,year:Int) {
-        
-        if (month == 1) || (month == 3) || (month == 5) || (month == 7) || (month == 8) || (month == 10) || (month == 12){
+
+    // MARK: 计算每月天数
+
+    fileprivate func dayCalculation(month: Int, year: Int) {
+        if (month == 1) || (month == 3) || (month == 5) || (month == 7) || (month == 8) || (month == 10) || (month == 12) {
             dayCount = 31
-        }else if month == 2 {
+        } else if month == 2 {
             // 判断闰年规则  ①、普通年能被4整除而不能被100整除的为闰年。（如2004年就是闰年,1900年不是闰年）
-           //  ②、世纪年能被400整除而不能被3200整除的为闰年。(如2000年是闰年，3200年不是闰年)
-            
-            if year%100 == 0 {
-                if (year%400 == 0 ) && (year%3200 != 0){
+            //  ②、世纪年能被400整除而不能被3200整除的为闰年。(如2000年是闰年，3200年不是闰年)
+
+            if year % 100 == 0 {
+                if (year % 400 == 0) && (year % 3200 != 0) {
                     dayCount = 29
-                }else{
+                } else {
                     dayCount = 28
                 }
-            }else{
-                if (year%4 == 0) && (year%100 != 0){
+            } else {
+                if (year % 4 == 0) && (year % 100 != 0) {
                     dayCount = 29
-                }else{
+                } else {
                     dayCount = 28
                 }
             }
-        }else {
+        } else {
             dayCount = 30
         }
     }

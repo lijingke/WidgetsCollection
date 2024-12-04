@@ -35,11 +35,15 @@ class HomeViewController: BaseViewController {
     var dataSource: [[HomeDataEntity]] = []
 
     fileprivate func getDataSource() {
-        headViewTitles = ["WorkSpace", "Sound&Vibrate", "Picker", "TableView", "Core Animation", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CollectionView Custom Layout", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
+        headViewTitles = ["Semantic UI", "WorkSpace", "Sound&Vibrate", "Picker", "TableView", "Core Animation", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CollectionView Custom Layout", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
 
         for title in headViewTitles {
             var dicArray: [[CellInfoEnum: Any]] = []
             switch title {
+            case "Semantic UI":
+                dicArray = [
+                    [.cellName: "Semantic UI", .className: "DemosController", .pushType: PushType.nib],
+                ]
             case "WorkSpace":
                 dicArray = [
                     [.cellName: "RPlus", .className: "ProcessProgressVC"],
@@ -48,7 +52,7 @@ class HomeViewController: BaseViewController {
             case "Sound&Vibrate":
                 dicArray = [
                     [.cellName: "Sound", .className: "SoundListViewController"],
-                    [.cellName: "Vibrate", .className: "VibrateListViewController"]
+                    [.cellName: "Vibrate", .className: "VibrateListViewController"],
                 ]
             case "Picker":
                 dicArray = [

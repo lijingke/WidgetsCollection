@@ -40,7 +40,7 @@ class ImageViewAnimationViewController: BaseViewController {
     fileprivate func breathingAction() {
         var arr = [UIImage]()
         let w: CGFloat = 18
-        for i in 0..<6 {
+        for i in 0 ..< 6 {
             UIGraphicsBeginImageContextWithOptions(CGSize(width: w, height: w), false, 0)
             let context = UIGraphicsGetCurrentContext()!
             context.setFillColor(UIColor.randomColor().cgColor)
@@ -166,8 +166,8 @@ private extension ImageViewAnimationViewController {
 
 extension Array {
     mutating func sortedDatas(by: (Element, Element) -> Bool) -> [Element] {
-        for i in 0...count - 1 {
-            for j in i...count - 1 {
+        for i in 0 ... count - 1 {
+            for j in i ... count - 1 {
                 if by(self[i], self[j]) {
                     (self[i], self[j]) = (self[j], self[i])
                 }

@@ -8,24 +8,23 @@
 import Foundation
 import UIKit
 
-typealias returnDate = (String?) -> ()
+typealias returnDate = (String?) -> Void
 
 class PresentedViewController: UIViewController {
-    
-    private var picker:LJKDatePicker = LJKDatePicker()
-    private var confirmButton:UIButton = UIButton()
-    private let cornerRadius:CGFloat = 7.5
-    private let pickerHeight:CGFloat = 216
-    private let pickerWidth:CGFloat = UIScreen.main.bounds.size.width - 10
-    
-    var block:returnDate?
-    var style:PickerStyle = DefaultStyle()
-    
+    private var picker: LJKDatePicker = .init()
+    private var confirmButton: UIButton = .init()
+    private let cornerRadius: CGFloat = 7.5
+    private let pickerHeight: CGFloat = 216
+    private let pickerWidth: CGFloat = UIScreen.main.bounds.size.width - 10
+
+    var block: returnDate?
+    var style: PickerStyle = DefaultStyle()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         injected()
     }
-    
+
     func injected() {
         let btnConfirm = UIButton(type: .custom)
         btnConfirm.setTitle("OK", for: .normal)
@@ -34,24 +33,23 @@ class PresentedViewController: UIViewController {
         btnConfirm.layer.masksToBounds = true
         btnConfirm.addTarget(self, action: #selector(confirmButton_Click), for: .touchUpInside)
         btnConfirm.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(btnConfirm)
-        NSLayoutConstraint.activate([btnConfirm.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-                                     btnConfirm.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
-                                     btnConfirm.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
+        view.addSubview(btnConfirm)
+        NSLayoutConstraint.activate([btnConfirm.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                                     btnConfirm.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
+                                     btnConfirm.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
                                      btnConfirm.heightAnchor.constraint(equalToConstant: CustomPresentationController.buttonHeight)])
-        
-        
+
         let viewPicker = UIView(frame: .zero)
         viewPicker.backgroundColor = style.backColor
         viewPicker.layer.cornerRadius = cornerRadius
         viewPicker.layer.masksToBounds = true
         viewPicker.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(viewPicker)
+        view.addSubview(viewPicker)
         NSLayoutConstraint.activate([viewPicker.bottomAnchor.constraint(equalTo: btnConfirm.topAnchor, constant: -10),
-                                     viewPicker.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
-                                     viewPicker.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
+                                     viewPicker.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
+                                     viewPicker.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
                                      viewPicker.heightAnchor.constraint(equalToConstant: pickerHeight)])
-        
+
         picker.frame = .zero
         picker.style = style
         picker.translatesAutoresizingMaskIntoConstraints = false
@@ -60,9 +58,9 @@ class PresentedViewController: UIViewController {
                                      picker.leadingAnchor.constraint(equalTo: viewPicker.leadingAnchor),
                                      picker.trailingAnchor.constraint(equalTo: viewPicker.trailingAnchor),
                                      picker.bottomAnchor.constraint(equalTo: viewPicker.bottomAnchor)])
-        
+
         if let title = style.titleString {
-            let titleLabel:UILabel = UILabel(frame: .zero)
+            let titleLabel = UILabel(frame: .zero)
             titleLabel.backgroundColor = style.backColor
             titleLabel.layer.cornerRadius = cornerRadius
             titleLabel.layer.masksToBounds = true
@@ -71,20 +69,21 @@ class PresentedViewController: UIViewController {
             titleLabel.font = style.titleFont
             titleLabel.text = title
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
-            self.view.addSubview(titleLabel)
+            view.addSubview(titleLabel)
             NSLayoutConstraint.activate([titleLabel.bottomAnchor.constraint(equalTo: viewPicker.topAnchor, constant: -10),
-                                         titleLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
-                                         titleLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
+                                         titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
+                                         titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
                                          titleLabel.heightAnchor.constraint(equalToConstant: 40)])
         }
     }
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.initialize()
+        initialize()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -92,33 +91,32 @@ class PresentedViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func initialize() {
-        self.modalPresentationStyle = .custom
-        self.transitioningDelegate = self
+        modalPresentationStyle = .custom
+        transitioningDelegate = self
     }
-    
-    @objc func confirmButton_Click(){
-        self.dismiss(animated: true, completion: nil)
-        let df:DateFormatter = DateFormatter.init()
+
+    @objc func confirmButton_Click() {
+        dismiss(animated: true, completion: nil)
+        let df = DateFormatter()
         df.dateFormat = style.returnDateFormat?.rawValue
         df.timeZone = TimeZone(secondsFromGMT: TimeZone.current.secondsFromGMT())
-        let returnDate:String = df.string(from: picker.date)
+        let returnDate: String = df.string(from: picker.date)
         block?(returnDate)
     }
 }
 
-extension PresentedViewController:UIViewControllerTransitioningDelegate{
-    
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+extension PresentedViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source _: UIViewController) -> UIPresentationController? {
         if presented == self {
-            return  CustomPresentationController(presentedViewController: presented, presenting: presenting)
-        }else{
+            return CustomPresentationController(presentedViewController: presented, presenting: presenting)
+        } else {
             return nil
         }
     }
-    
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+
+    func animationController(forPresented presented: UIViewController, presenting _: UIViewController, source _: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if presented == self {
             return CustomPresentationAnimationController(isPresenting: true)
         } else {

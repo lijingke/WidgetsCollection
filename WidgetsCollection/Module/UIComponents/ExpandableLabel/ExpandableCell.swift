@@ -9,9 +9,8 @@ import Foundation
 import UIKit
 
 class ExpandableCell: UITableViewCell {
-    
-    @IBOutlet weak var expandableLabel: ExpandableLabel!
-    
+    @IBOutlet var expandableLabel: ExpandableLabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none

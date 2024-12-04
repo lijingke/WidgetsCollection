@@ -31,7 +31,7 @@ public extension Array {
         var count = self.count
         while count > 0 {
             let value = max > count ? count : max
-            let subLogArr: [String] = Array(self[j..<(j + value)]) as! [String]
+            let subLogArr: [String] = Array(self[j ..< (j + value)]) as! [String]
             sortArticleIds.append(subLogArr)
             count = count - value
             j = j + value

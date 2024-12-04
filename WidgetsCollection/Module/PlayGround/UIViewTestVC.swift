@@ -20,74 +20,74 @@ class UIViewTestVC: BaseViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         Log.info(" initWithCoder:(NSCoder *)aDecoder")
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         Log.info("init?(coder: NSCoder)")
     }
-    
+
     override func loadView() {
         super.loadView()
         Log.info("loadView")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         Log.info("viewDidLoad")
         setupUI()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Log.info("viewWillAppear")
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         Log.info("viewWillLayoutSubviews")
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         Log.info("viewDidLayoutSubviews")
         setupData()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Log.info("viewDidAppear")
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         Log.info("viewWillDisappear")
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         Log.info("viewDidDisappear")
     }
-    
+
     deinit {
         Log.info("deinit")
     }
 
     // MARK: UI
-    
+
     lazy var label1: UILabel = {
         let label = UILabel()
         label.textColor = .red
         label.numberOfLines = 0
         return label
     }()
-    
+
     lazy var label2: UILabel = {
         let label = UILabel()
         label.textColor = .blue
 //        label.numberOfLines = 0
         return label
     }()
-    
+
     lazy var expandableLabel: ExpandableLabel = {
         let label = ExpandableLabel()
         label.numberOfLines = 3
@@ -104,19 +104,19 @@ class UIViewTestVC: BaseViewController {
 // MARK: - ExpandableLabelDelegate
 
 extension UIViewTestVC: ExpandableLabelDelegate {
-    func willExpandLabel(_ label: ExpandableLabel) {
+    func willExpandLabel(_: ExpandableLabel) {
         Log.info("willExpandLabel")
     }
-    
-    func didExpandLabel(_ label: ExpandableLabel) {
+
+    func didExpandLabel(_: ExpandableLabel) {
         Log.info("didExpandLabel")
     }
-    
-    func willCollapseLabel(_ label: ExpandableLabel) {
+
+    func willCollapseLabel(_: ExpandableLabel) {
         Log.info("willCollapseLabel")
     }
-    
-    func didCollapseLabel(_ label: ExpandableLabel) {
+
+    func didCollapseLabel(_: ExpandableLabel) {
         Log.info("didCollapseLabel")
     }
 }
@@ -134,7 +134,7 @@ extension UIViewTestVC {
         label2.text = text[1]
         expandableLabel.text = loremIpsumText()
     }
-    
+
     func loremIpsumText() -> String {
         return "On third line our text need be collapsed because we have ordinary text, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
     }
