@@ -18,7 +18,6 @@ class DemosController: UITableViewController {
     override init(nibName _: String?, bundle _: Bundle?) {
         super.init(style: .insetGrouped)
 
-        title = NSLocalizedString("demos_controller.title", value: "Semantic UI Demos", comment: "Demos controller title")
         let semanticUIDemos = [
             ColorStackViewController(),
             ColorsViewController(),
@@ -40,6 +39,8 @@ class DemosController: UITableViewController {
     }
 
     override func viewDidLoad() {
+        title = NSLocalizedString("demos_controller.title", value: "Semantic UI Demos", comment: "Demos controller title")
+
         super.viewDidLoad()
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)

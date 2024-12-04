@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  WidgetsCollection
+
+  Created by 李京珂 on 2024/12/4.
+  
+*/
+feedBackTitle = "Contact Us";
+feedBackIssuesTitle = "* Are you experiencing any issues？";
+feedBackIssuesRadio1 = "Fitness content";
+feedBackIssuesRadio2 = "Workout difficulty";
+feedBackIssuesRadio3 = "Subscription";
+feedBackIssuesRadio4 = "Others";
+feedBackIssuesTextViewHint = "Please tell us more details or suggestions so that we can resolve your issue faster.";
+feedBackQuestionnaireTitle = "* What type of fitness content would you like to see more of？";
+feedBackQuestionnaireRadio1 = "Current content suits me well";
+feedBackQuestionnaireRadio2 = "Cardio Workouts";
+feedBackQuestionnaireRadio3 = "Strength Training";
+feedBackQuestionnaireRadio4 = "Relaxation & Recovery";
+feedBackQuestionnaireRadio5 = "Pilates/Yoga";
+feedBackQuestionnaireRadio6 = "Quick Workouts (10-15 mins)";
+feedBackQuestionnaireRadio7 = "Others";
+feedBackEmailTitle = "Your email address";
+feedBackSubmitTitle = "SUBMIT";
+feedBackCopy = "Feedback";
+feedBackHintCopy = "WE’D LOVE TO HEAR FROM YOU";
+feedBackNeedCompleteCopy = "Please select a issue type before submitting.";
+feedBackSuccessCopy = "Submit successfully. Thanks for your feedback！";
+feedBackHelpUsCopy = "Help us contact you";

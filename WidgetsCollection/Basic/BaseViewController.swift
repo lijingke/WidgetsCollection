@@ -6,18 +6,25 @@
 //  Copyright © 2024 李京珂. All rights reserved.
 //
 
+import Combine
 import Foundation
 import UIKit
 
 class BaseViewController: UIViewController {
+    var isSlidePopGestureEnable = false
+    
+    var cancellableSet = Set<AnyCancellable>()
+
+    override var view: UIView! {
+        didSet {
+            initSlidePopGesture()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        initNavigator(controller: navigationController as? BaseNavigationController)
         addCaptureListener()
-        view.backgroundColor = .white
-    }
-
-    deinit {
-        removeCaputureListener()
     }
 
     @objc func feedback(type _: Int = 0) {
@@ -60,5 +67,65 @@ class BaseViewController: UIViewController {
         alertVC.addAction(okAction)
         alertVC.addAction(cancelAction)
         present(alertVC, animated: true, completion: nil)
+    }
+
+    private func initNavigator(controller: BaseNavigationController?) {
+        if let config = getNavigatorConfig() {
+            if let title = config.title {
+                controller?.setTitle(title: title, subTitle: config.subTitle, action: config.titleSelector)
+            }
+            if let leftBarButton = config.leftBarButton {
+                controller?.setLeftBarButton(title: leftBarButton.buttonTitle, titleAttrs: leftBarButton.buttonTitleAttrs, image: leftBarButton.buttonBg, action: leftBarButton.buttonSelector!)
+            }
+            
+            if let rightBarButton = config.rightBarButton {
+                controller?.setRightBarButton(title: rightBarButton.buttonTitle, titleAttrs: rightBarButton.buttonTitleAttrs, image: rightBarButton.buttonBg, action: rightBarButton.buttonSelector!)
+            }
+        }
+    }
+    
+    func getNavigatorConfig() -> NavigatorConfig? {
+        return NavigatorConfig.newConfig()
+    }
+    
+    func updateNavigator() {
+        initNavigator(controller: navigationController as? BaseNavigationController)
+    }
+    
+    func initSlidePopGesture() {
+        if isSlidePopGestureEnable {
+            let gesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(onSlidePop))
+            gesture.edges = .left
+            view.addGestureRecognizer(gesture)
+        }
+    }
+    
+    @objc private func onSlidePop() {
+        if let navCtrl = navigationController {
+            if self != navCtrl.viewControllers.first {
+                navCtrl.popViewController(animated: true)
+            }
+        }
+    }
+    
+    func setAutoRotate(enable: Bool) {
+        if let navCtrl = navigationController as? BaseNavigationController {
+            navCtrl.setAutoRotate(enable: enable)
+        }
+    }
+    
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        debugPrint("init BaseViewController class :\(String(describing: type(of: self)))")
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        debugPrint("init coder BaseViewController class :\(String(describing: type(of: self)))")
+    }
+    
+    deinit {
+        debugPrint("deinit BaseViewController class :\(String(describing: type(of: self)))")
+        removeCaputureListener()
     }
 }

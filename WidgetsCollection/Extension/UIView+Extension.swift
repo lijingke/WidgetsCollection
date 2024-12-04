@@ -37,6 +37,38 @@ extension UIView {
 }
 
 extension UIView {
+    func setShadow(color: UIColor, radius: CGFloat, offset: CGSize) {
+        layer.shadowColor = color.cgColor
+        layer.shadowOffset = offset
+        layer.shadowOpacity = 1
+        layer.shadowRadius = radius
+    }
+    
+    func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        if bounds == .zero {
+            return
+        }
+        let rectShape = CAShapeLayer()
+        rectShape.bounds = frame
+        rectShape.position = center
+        rectShape.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius)).cgPath
+        layer.mask = rectShape
+    }
+    
+    func screenCoordinates() -> CGRect? {
+        guard let rootView = UIApplication.shared.windows.first(where: \.isKeyWindow) else {
+            return nil
+        }
+        
+        let viewFrameInWindow = self.convert(self.bounds, to: nil)
+        let viewFrameInScreen = rootView.convert(viewFrameInWindow, to: nil)
+        
+        return viewFrameInScreen
+    }
+}
+
+
+extension UIView {
     var size: CGSize {
         get {
             return frame.size

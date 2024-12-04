@@ -69,6 +69,7 @@ class HomeViewController: BaseViewController {
             case "Playgrounds":
                 dicArray = [
                     [.cellName: "UIViewTestVC", .className: "UIViewTestVC"],
+                    [.cellName: "FeedbackViewController", .className: "JKFeedbackViewController"],
                     [.cellName: "刷新", .className: "RefreshViewController"],
                     [.cellName: "Combine", .className: "CombineTestVC"],
                 ]

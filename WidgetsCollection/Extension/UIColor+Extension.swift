@@ -148,6 +148,82 @@ extension UIColor {
     }
 }
 
+enum GradientDirection {
+    case horizontal
+    case vertical
+    case topLeftToBottomRight
+    case bottomLeftToTopRight
+}
+
+extension UIColor {
+    private class func colorComponentFrom(colorString: String?, start: Int, length: Int)->Double {
+        if colorString == nil {
+            return 1.0
+        }
+        let startIndex = colorString?.index((colorString?.startIndex)!, offsetBy: start)
+        let endIndex = colorString?.index(startIndex!, offsetBy: length)
+        let substring = colorString![startIndex! ..< endIndex!]
+        let fullHex = (length == 2 ? substring : substring + substring)
+        var hexComponent: UInt64 = 0
+        Scanner(string: String(fullHex)).scanHexInt64(&hexComponent)
+        return Double(hexComponent) / 255.0
+    }
+
+    func toImage(size: CGSize, roundCorner: CGFloat = 0.0) -> UIImage? {
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        UIGraphicsBeginImageContext(size) // 创建图片
+        let context = UIGraphicsGetCurrentContext() // 创建图片上下文
+        context?.setFillColor(self.cgColor)
+        let path = UIBezierPath(roundedRect: rect, cornerRadius: roundCorner)
+        context?.addPath(path.cgPath)
+        context?.fillPath()
+        let theImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return theImage
+    }
+    
+    class func gradient(size: CGSize, colors: [UIColor], direction: GradientDirection)->UIColor {
+        if let image = gradientImage(size: size, colors: colors, direction: direction) {
+            return UIColor(patternImage: image)
+        } else {
+            return clear
+        }
+    }
+    
+    class func gradientImage(size: CGSize, colors: [UIColor], direction: GradientDirection) -> UIImage? {
+        if size == .zero {
+            return nil
+        }
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = CGRect(origin: .zero, size: size)
+        
+        var colorRefs = [CGColor]()
+        colors.forEach { colorRefs.append($0.cgColor) }
+        gradientLayer.colors = colorRefs
+     
+        switch direction {
+        case .horizontal:
+            gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
+            gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
+        case .vertical:
+            gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+            gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+        case .bottomLeftToTopRight:
+            gradientLayer.startPoint = CGPoint(x: 1, y: 0)
+            gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+        case .topLeftToBottomRight:
+            gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+            gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        }
+        
+        UIGraphicsBeginImageContext(size)
+        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
+
 #if os(iOS)
     extension NSObject {
         func colorWithGradient(frame: CGRect, colors: [UIColor]) -> UIColor {
