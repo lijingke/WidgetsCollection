@@ -1,5 +1,5 @@
 //
-//  SuperTabbarController.swift
+//  BaseTabbarController.swift
 //  WidgetsCollection
 //
 //  Created by 李京珂 on 2020/4/23.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SuperTabbarController: UITabBarController {
+class BaseTabbarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildrenViewControllers()
@@ -23,7 +23,7 @@ class SuperTabbarController: UITabBarController {
         controller.tabBarItem.image = UIImage(named: image) ?? UIImage(systemName: image)
         controller.tabBarItem.selectedImage = UIImage(named: selectedImage) ?? UIImage(systemName: selectedImage)
 
-        let naviController = SuperNavigationController(rootViewController: controller)
+        let naviController = BaseNavigationController(rootViewController: controller)
         addChild(naviController)
     }
 }

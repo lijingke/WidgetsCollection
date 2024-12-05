@@ -149,7 +149,7 @@ extension FeedbackView {
     }
 
     @objc private func onBackClicked() {
-//        NaviTool.getCurrentVc().navigationController?.popViewController(animated: true)
+        parentViewController?.navigationController?.popViewController(animated: true)
     }
 
     @objc private func sumbit() {

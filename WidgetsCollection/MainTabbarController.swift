@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MainTabbarController: SuperTabbarController {
+class MainTabbarController: BaseTabbarController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }

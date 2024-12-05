@@ -53,6 +53,9 @@ class BaseNavigationController: UINavigationController {
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        if children.count > 0 {
+            viewController.hidesBottomBarWhenPushed = true
+        }
         super.pushViewController(viewController, animated: animated)
         if let vc = viewController as? BaseViewController {
             if let config = vc.getNavigatorConfig() {
@@ -62,7 +65,7 @@ class BaseNavigationController: UINavigationController {
                 setNavigationBarHidden(true, animated: true)
             }
         } else {
-            setNavigationBarHidden(true, animated: true)
+            setNavigationBarHidden(false, animated: true)
         }
     }
     
