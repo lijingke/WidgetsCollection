@@ -66,6 +66,7 @@ class BaseNavigationController: UINavigationController {
             }
         } else {
             setNavigationBarHidden(false, animated: true)
+            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.navigation_return_btn(), style: .plain, target: self, action: #selector(self.onBack))
         }
     }
     

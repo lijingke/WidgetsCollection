@@ -23,8 +23,6 @@ class LotteryViewController: BaseViewController {
     // 视图将要显示
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // 修改导航栏按钮颜色
-        navigationController?.navigationBar.tintColor = UIColor.green
     }
 
     // 视图消失
@@ -33,7 +31,7 @@ class LotteryViewController: BaseViewController {
     }
     
     override func getNavigatorConfig() -> NavigatorConfig? {
-        return NavigatorConfig.newConfig().isTranslucent(true)
+        return NavigatorConfig.newConfig().tinColor(color: .green).isTranslucent(true)
     }
 
     // MARK: Lazy Get
