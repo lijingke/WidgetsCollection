@@ -76,7 +76,7 @@ class BaseViewController: UIViewController {
                 controller?.setTitle(title: title, subTitle: config.subTitle, action: config.titleSelector)
             }
             if let leftBarButton = config.leftBarButton {
-                controller?.setLeftBarButton(title: leftBarButton.buttonTitle, titleAttrs: leftBarButton.buttonTitleAttrs, image: leftBarButton.buttonBg, action: leftBarButton.buttonSelector!)
+                controller?.setLeftBarButton(title: leftBarButton.buttonTitle, titleAttrs: leftBarButton.buttonTitleAttrs, image: leftBarButton.buttonBg, action: leftBarButton.buttonSelector)
             }
             
             if let rightBarButton = config.rightBarButton {

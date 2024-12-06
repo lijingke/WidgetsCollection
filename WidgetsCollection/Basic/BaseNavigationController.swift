@@ -261,7 +261,7 @@ class NavigatorConfig {
         return self
     }
     
-    func leftBarButton(image: UIImage?, title: String? = nil, titleAttrs: [NSAttributedString.Key: Any]? = nil, action: Selector) -> NavigatorConfig {
+    func leftBarButton(image: UIImage?, title: String? = nil, titleAttrs: [NSAttributedString.Key: Any]? = nil, action: Selector?) -> NavigatorConfig {
         self.leftBarButton = BarButtonBean()
         self.leftBarButton?.buttonTitle = title
         self.leftBarButton?.buttonTitleAttrs = titleAttrs

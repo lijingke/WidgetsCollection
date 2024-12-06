@@ -18,16 +18,13 @@ class HomeViewController: BaseViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             MBProgressManager.showHUD(withSuccess: "加载成功")
         }
-
-        configureNav()
         configureUI()
         getDataSource()
     }
-
-    fileprivate func configureNav() {
-        navigationItem.title = "瓦西里的百宝箱"
-        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
+    
+    override func getNavigatorConfig() -> NavigatorConfig? {
+        navigationController?.navigationItem.leftBarButtonItem = nil
+        return NavigatorConfig.newConfig().title(title: "瓦西里的百宝箱").leftBarButton(image: nil, action: nil)
     }
 
     var headViewTitles: [String] = []

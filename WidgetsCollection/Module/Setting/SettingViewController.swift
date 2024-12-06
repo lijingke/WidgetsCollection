@@ -21,14 +21,16 @@ class SettingViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
-
+    
+    override func getNavigatorConfig() -> NavigatorConfig? {
+        return nil
+    }
+    
     lazy var mainView: SettingView = {
         let view = SettingView()
         view.backgroundColor = .white
