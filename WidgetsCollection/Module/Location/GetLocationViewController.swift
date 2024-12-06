@@ -42,7 +42,7 @@ class GetLocationViewController: BaseViewController {
             }
 
             if authority == false {
-                if CLLocationManager.authorizationStatus() == .notDetermined {
+                if self?.locationManager.authorizationStatus == .notDetermined {
                     self?.locationManager.requestAlwaysAuthorization()
                 } else {
                     let alertCon = UIAlertController(title: "获取定位失败", message: "请跳转到设置页面开启定位", preferredStyle: .alert)
@@ -82,7 +82,7 @@ class GetLocationViewController: BaseViewController {
         let btn = UIButton()
         btn.setTitle("Click Me", for: .normal)
         btn.backgroundColor = .systemBlue
-        btn.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        btn.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
         btn.addTarget(self, action: #selector(checkLocationAuthority), for: .touchDown)
         return btn
     }()
@@ -96,9 +96,16 @@ class GetLocationViewController: BaseViewController {
 }
 
 extension GetLocationViewController: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        let canLocation = manager.authorizationStatus != .notDetermined || manager.authorizationStatus != .denied
+        if canLocation {
+            callUserLocation()
+        }
+    }
+
     func openLocationServiceWithBlock(action: @escaping ((Bool) -> Void)) {
         var isOpen = false
-        if CLLocationManager.locationServicesEnabled() && (CLLocationManager.authorizationStatus() != .denied && CLLocationManager.authorizationStatus() != .notDetermined) {
+        if CLLocationManager.locationServicesEnabled() && (locationManager.authorizationStatus != .denied && locationManager.authorizationStatus != .notDetermined) {
             isOpen = true
         }
         action(isOpen)

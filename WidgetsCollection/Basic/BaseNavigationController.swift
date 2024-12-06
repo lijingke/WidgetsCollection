@@ -195,7 +195,7 @@ class BaseNavigationController: UINavigationController {
         let titleView = UILabel()
         titleView.textColor = .black
         titleView.textAlignment = .center
-        titleView.font = UIFont.systemFont(ofSize: 17.3)
+        titleView.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         titleView.numberOfLines = 0
         if subTitle != nil, !subTitle!.isEmpty {
             let wholeTitle = title + "\n" + (subTitle ?? "")
