@@ -36,6 +36,9 @@ target 'WidgetsCollection' do
   pod 'atlantis-proxyman'
   # 设别信息
   pod 'DeviceKit'
+  # 时间
+  pod 'SwiftDate'
+  
 end
 
 post_install do |installer|

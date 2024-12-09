@@ -22,6 +22,7 @@ let kscreenHeight = UIScreen.main.bounds.height
 let kStatusBarHeight = UIApplication.shared.statusBarFrame.height
 let kNaviHeight = CGFloat(44)
 let kTopHeight = kStatusBarHeight + kNaviHeight
+let kThemeColor = UIColor(hexString: "#0A75D8")
 
 // MARK: - 项目相关
 
