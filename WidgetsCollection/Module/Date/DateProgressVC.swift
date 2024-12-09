@@ -31,12 +31,24 @@ class DateProgressVC: BaseViewController {
 //        self.navigationController?.setNavigationBarHidden(true, animated: true)
         setupData()
     }
-    
+
     override func getNavigatorConfig() -> NavigatorConfig? {
         return NavigatorConfig.newConfig().isTranslucent(true)
     }
 
     // MARK: Lazy Get
+
+    lazy var progressRing: UICircularProgressRing = {
+        let ring = UICircularProgressRing()
+        ring.delegate = self
+        ring.startAngle = 270
+        ring.style = .ontop
+        ring.outerRingWidth = 10
+        ring.innerRingWidth = 20
+        ring.outerRingColor = UIColor(hexString: "#CFD2D2")
+        ring.innerRingColor = kThemeColor
+        return ring
+    }()
 
     lazy var totalDayLabel: UILabel = {
         let label = UILabel()
@@ -56,44 +68,54 @@ class DateProgressVC: BaseViewController {
         return label
     }()
     
-    lazy var progressRing: UICircularProgressRing = {
-        let ring = UICircularProgressRing()
-        ring.delegate = self
-        ring.startAngle = 270
-        ring.style = .ontop
-        ring.outerRingWidth = 10
-        ring.innerRingWidth = 20
-        ring.outerRingColor = UIColor(hexString: "#CFD2D2")
-        ring.innerRingColor = kThemeColor
-        return ring
+    lazy var fourDollarDayLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.semibold(17)
+        return label
     }()
+    
+    lazy var jumpBtn: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setTitle("更新倒计时", for: .normal)
+        btn.addTarget(self, action: #selector(btnAction(sender:)), for: .touchUpInside)
+        btn.setBackgroundImage(UIImage(color: kThemeColor), for: .normal)
+        btn.layer.cornerRadius = 10
+        btn.layer.masksToBounds = true
+        return btn
+    }()
+}
 
+// MARK: - Event
+
+extension DateProgressVC {
+    @objc func btnAction(sender: UIButton) {
+        let comeDate = "2024-10-12".toDate() ?? DateInRegion(Date(), region: .current)
+        let currentDate = "2024-12-25".toDate() ?? DateInRegion(Date(), region: .current)
+        pastDay = currentDate.difference(in: .day, from: comeDate) ?? 0
+        let progress = CGFloat(pastDay) / CGFloat(totalDay)
+        DispatchQueue.main.async {
+            self.progressRing.startProgress(to: progress * 100, duration: 1)
+        }
+    }
 }
 
 // MARK: - UICircularProgressRingDelegate
 
 extension DateProgressVC: UICircularProgressRingDelegate {
-    func didFinishProgress(for ring: UICircularProgressRing) {
-        
-    }
-    
-    func didPauseProgress(for ring: UICircularProgressRing) {
-        
-    }
-    
-    func didContinueProgress(for ring: UICircularProgressRing) {
-        
-    }
-    
+    func didFinishProgress(for ring: UICircularProgressRing) {}
+
+    func didPauseProgress(for ring: UICircularProgressRing) {}
+
+    func didContinueProgress(for ring: UICircularProgressRing) {}
+
     func didUpdateProgressValue(for ring: UICircularProgressRing, to newValue: CGFloat) {
         LogUtil.log(newValue.description)
     }
-    
+
     func willDisplayLabel(for ring: UICircularProgressRing, _ label: UILabel) {
         label.font = UIFont.semibold(45)
         label.textColor = kThemeColor
     }
-    
 }
 
 // MARK: - Data
@@ -113,13 +135,15 @@ extension DateProgressVC {
         totalDayLabel.text = "总共待：\(totalDay)天"
         pastDayLabel.text = "已经待：\(pastDay)天"
         remainDayLabel.text = "剩余待：\(remainDay)天"
-        let progress = CGFloat(pastDay)/CGFloat(totalDay)
+        let progress = CGFloat(pastDay) / CGFloat(totalDay)
         DispatchQueue.main.async {
             self.progressRing.startProgress(to: progress * 100, duration: 1)
         }
+        let currentDate = DateInRegion(Date(), region: .current)
+        let fourDollarComeDate = "2024-12-25".toDate() ?? DateInRegion(Date(), region: .current)
+        let remainDay = fourDollarComeDate.difference(in: .day, from: currentDate) ?? 0
+        fourDollarDayLabel.text = "距离李思源来广州还有：\(remainDay)天"
     }
-    
-    
 }
 
 // MARK: - UI
@@ -127,7 +151,7 @@ extension DateProgressVC {
 extension DateProgressVC {
     private func setupUI() {
         view.backgroundColor = .white
-        view.addSubviews([progressRing, totalDayLabel, pastDayLabel, remainDayLabel])
+        view.addSubviews([progressRing, totalDayLabel, pastDayLabel, remainDayLabel, fourDollarDayLabel, jumpBtn])
         progressRing.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(150)
             make.centerX.equalToSuperview()
@@ -144,6 +168,15 @@ extension DateProgressVC {
         remainDayLabel.snp.makeConstraints { make in
             make.top.equalTo(pastDayLabel.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
+        }
+        fourDollarDayLabel.snp.makeConstraints { make in
+            make.top.equalTo(remainDayLabel.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
+        jumpBtn.snp.makeConstraints { make in
+            make.top.equalTo(fourDollarDayLabel.snp.bottom).offset(25)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 120, height: 50))
         }
     }
 }
