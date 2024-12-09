@@ -252,11 +252,22 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WidgetsCollection/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "CollectionViewDemo请求使用您的相机以拍照";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "CollectionViewDemo请求访问FaceID以解锁";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "CollectionViewDemo请求访问Healthkit Data以训练";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "CollectionViewDemo请求访问Healthkit Data以训练";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "CollectionViewDemo请求访问Healthkit Data以训练";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "CollectionViewDemo需要始终使用您的位置";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "CollectionViewDemo请求一直使用您的定位";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CollectionViewDemo请求在使用时获取您的位置";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "CollectionViewDemo请求访问麦克风以录像";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "CollectionViewDemo请求访问相册以选择照片";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -289,11 +300,22 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WidgetsCollection/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "CollectionViewDemo请求使用您的相机以拍照";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "CollectionViewDemo请求访问FaceID以解锁";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "CollectionViewDemo请求访问Healthkit Data以训练";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "CollectionViewDemo请求访问Healthkit Data以训练";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "CollectionViewDemo请求访问Healthkit Data以训练";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "CollectionViewDemo需要始终使用您的位置";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "CollectionViewDemo请求一直使用您的定位";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CollectionViewDemo请求在使用时获取您的位置";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "CollectionViewDemo请求访问麦克风以录像";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "CollectionViewDemo请求访问相册以选择照片";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

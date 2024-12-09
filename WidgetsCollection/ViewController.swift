@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: BaseViewController {
     @IBOutlet var helloWorld: UILabel!
 
     @IBOutlet var button: UIButton!
@@ -31,23 +31,31 @@ class ViewController: UIViewController {
 
         // Horizontal gradient
         let labelGradient = UIImage.gradientImage(
-            colors: [UIColor.red, UIColor.green, UIColor.blue, UIColor.red],
-            locations: [0.0, 0.33, 0.66, 1.0],
+            colors: [.systemRed, .systemOrange, .systemYellow, .systemGreen, .systemBlue, .systemIndigo, .systemPurple],
+            locations: [0.0, 0.14, 0.29, 0.42, 0.57, 0.71, 0.86, 1.0],
             size: helloWorld.bounds.size,
             horizontal: true
         )
-        let gradientImage = [UIColor.red, UIColor.green, UIColor.blue, UIColor.red].icg.linearGradient(helloWorld.bounds.size, locations: [0.0, 0.33, 0.66, 1.0], direction: .horizontal)
+        let _ = [UIColor.red, UIColor.green, UIColor.blue, UIColor.red].icg.linearGradient(helloWorld.bounds.size, locations: [0.0, 0.33, 0.66, 1.0], direction: .horizontal)
         helloWorld.textColor = UIColor(patternImage: labelGradient)
 
         // Vertical gradient
-        let buttonGradient = UIImage.gradientImage(
+        let _ = UIImage.gradientImage(
             colors: [UIColor.black, UIColor.red],
             locations: [0.0, 1.0],
             size: button.bounds.size
         )
-//            .color(hex: "#E969C0"),.color(hex: "#F763A5")
 
-        let image = [UIColor(hexString: "#E969C0"), UIColor.white, UIColor(hexString: "#F763A5")].icg.linearGradient(button.bounds.size, direction: .vertical)
+        let image = [UIColor(hexString: "#E969C0"), .systemCyan, UIColor(hexString: "#F763A5")].icg.linearGradient(button.bounds.size, direction: .vertical)
         button.setTitleColor(UIColor(patternImage: image), for: .normal)
+    }
+}
+
+// MARK: - Event
+
+extension ViewController {
+    @IBAction func btnAction(_ sender: UIButton) {
+        let vc = DateProgressVC()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

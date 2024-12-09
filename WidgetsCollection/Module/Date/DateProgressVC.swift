@@ -28,7 +28,6 @@ class DateProgressVC: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.navigationController?.setNavigationBarHidden(true, animated: true)
         setupData()
     }
 
@@ -47,6 +46,9 @@ class DateProgressVC: BaseViewController {
         ring.innerRingWidth = 20
         ring.outerRingColor = UIColor(hexString: "#CFD2D2")
         ring.innerRingColor = kThemeColor
+        var formatter = UICircularProgressRingFormatter()
+        formatter.showFloatingPoint = true
+        ring.valueFormatter = formatter
         return ring
     }()
 
@@ -67,13 +69,21 @@ class DateProgressVC: BaseViewController {
         label.font = UIFont.semibold(17)
         return label
     }()
-    
+
     lazy var fourDollarDayLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.semibold(17)
         return label
     }()
-    
+
+    lazy var datePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.preferredDatePickerStyle = .compact
+        picker.datePickerMode = .date
+        picker.addTarget(self, action: #selector(onDateValueChanged(_:)), for: .valueChanged)
+        return picker
+    }()
+
     lazy var jumpBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setTitle("更新倒计时", for: .normal)
@@ -91,6 +101,28 @@ extension DateProgressVC {
     @objc func btnAction(sender: UIButton) {
         let comeDate = "2024-10-12".toDate() ?? DateInRegion(Date(), region: .current)
         let currentDate = "2024-12-25".toDate() ?? DateInRegion(Date(), region: .current)
+        pastDay = currentDate.difference(in: .day, from: comeDate) ?? 0
+        let progress = CGFloat(pastDay) / CGFloat(totalDay)
+        DispatchQueue.main.async {
+            self.progressRing.startProgress(to: progress * 100, duration: 1)
+        }
+    }
+
+    @objc private func onDateValueChanged(_ datePicker: UIDatePicker) {
+        // do something here
+        Log.info("Choosed Date is: \(datePicker.date)")
+
+        UIView.animate(withDuration: 0.5) {
+            self.presentedViewController?.view.alpha = 0
+        } completion: { _ in
+            self.presentedViewController?.dismiss(animated: true, completion: nil)
+            self.updateProgress(withData: datePicker.date)
+        }
+    }
+
+    private func updateProgress(withData date: Date) {
+        let comeDate = "2024-10-12".toDate() ?? DateInRegion(Date(), region: .current)
+        let currentDate = DateInRegion(date, region: .current)
         pastDay = currentDate.difference(in: .day, from: comeDate) ?? 0
         let progress = CGFloat(pastDay) / CGFloat(totalDay)
         DispatchQueue.main.async {
@@ -151,14 +183,14 @@ extension DateProgressVC {
 extension DateProgressVC {
     private func setupUI() {
         view.backgroundColor = .white
-        view.addSubviews([progressRing, totalDayLabel, pastDayLabel, remainDayLabel, fourDollarDayLabel, jumpBtn])
+        view.addSubviews([progressRing, totalDayLabel, pastDayLabel, remainDayLabel, fourDollarDayLabel, jumpBtn, datePicker])
         progressRing.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(150)
             make.centerX.equalToSuperview()
             make.size.equalTo(CGSize(width: 250, height: 250))
         }
         totalDayLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressRing.snp.bottom).offset(50)
+            make.top.equalTo(progressRing.snp.bottom).offset(30)
             make.centerX.equalToSuperview()
         }
         pastDayLabel.snp.makeConstraints { make in
@@ -177,6 +209,10 @@ extension DateProgressVC {
             make.top.equalTo(fourDollarDayLabel.snp.bottom).offset(25)
             make.centerX.equalToSuperview()
             make.size.equalTo(CGSize(width: 120, height: 50))
+        }
+        datePicker.snp.makeConstraints { make in
+            make.top.equalTo(jumpBtn.snp.bottom).offset(15)
+            make.centerX.equalToSuperview()
         }
     }
 }

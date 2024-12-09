@@ -29,9 +29,12 @@
                                         <size key="shadowOffset" width="2" height="2"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQe-YT-zIW">
-                                        <rect key="frame" x="149" y="338.66666666666669" width="95" height="48"/>
+                                        <rect key="frame" x="141.66666666666666" y="338.66666666666669" width="110" height="48"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Tap Me!"/>
+                                        <connections>
+                                            <action selector="btnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mhf-wk-eYd"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="G8b-cS-1b5"/>
