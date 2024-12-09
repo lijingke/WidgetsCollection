@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Swift Ascii ArtVC-->
+        <scene sceneID="NQp-de-JA0">
+            <objects>
+                <viewController storyboardIdentifier="SwiftAsciiArtVC" id="9W3-EU-Eah" customClass="SwiftAsciiArtVC" customModule="WidgetsCollection" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sia-Jy-Moo"/>
+                        <viewControllerLayoutGuide type="bottom" id="kcu-tW-cZa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rGD-WJ-bKb">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wur-uI-I1M">
+                                <rect key="frame" x="20" y="59" width="45" height="30"/>
+                                <state key="normal" title="Kermit">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleKermitTapped:" destination="9W3-EU-Eah" eventType="touchUpInside" id="N2X-S0-BqP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acp-XC-4QQ" userLabel="Batman">
+                                <rect key="frame" x="81" y="59" width="53" height="30"/>
+                                <state key="normal" title="Batman">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleBatmanTapped:" destination="9W3-EU-Eah" eventType="touchUpInside" id="rCa-89-alJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iw2-Nz-S1e">
+                                <rect key="frame" x="150" y="59" width="54" height="30"/>
+                                <state key="normal" title="Monkey">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleMonkeyTapped:" destination="9W3-EU-Eah" eventType="touchUpInside" id="FVK-kC-OKt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i8k-e2-85C">
+                                <rect key="frame" x="298" y="59" width="75" height="30"/>
+                                <state key="normal" title="Pick Image">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handlePickImageTapped:" destination="9W3-EU-Eah" eventType="touchUpInside" id="l3W-GL-avH"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkI-1V-7fm">
+                                <rect key="frame" x="0.0" y="89" width="393" height="729"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </scrollView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmv-X1-Jrc" userLabel="Busy View">
+                                <rect key="frame" x="-4" y="59" width="401" height="759"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ef1-jz-Gdf">
+                                        <rect key="frame" x="190.66666666666666" y="369.66666666666669" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hold on…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVo-tC-H0B">
+                                        <rect key="frame" x="166.66666666666666" y="397.66666666666669" width="68" height="18"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="14"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.68999999999999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="tVo-tC-H0B" firstAttribute="top" secondItem="ef1-jz-Gdf" secondAttribute="bottom" constant="8" id="7G0-NM-Rj9"/>
+                                    <constraint firstAttribute="centerY" secondItem="ef1-jz-Gdf" secondAttribute="centerY" id="gSV-r3-c72"/>
+                                    <constraint firstAttribute="centerX" secondItem="tVo-tC-H0B" secondAttribute="centerX" id="kgH-el-4zM"/>
+                                    <constraint firstAttribute="centerX" secondItem="ef1-jz-Gdf" secondAttribute="centerX" id="nn3-nH-hvv"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tOA-c3-bDu"/>
+                        <color key="backgroundColor" red="0.75558769699999995" green="0.75558769699999995" blue="0.75558769699999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Dmv-X1-Jrc" firstAttribute="top" secondItem="rGD-WJ-bKb" secondAttribute="topMargin" id="1Yf-Rz-1P3"/>
+                            <constraint firstItem="i8k-e2-85C" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iw2-Nz-S1e" secondAttribute="trailing" constant="8" symbolic="YES" id="2gR-d9-dWU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Dmv-X1-Jrc" secondAttribute="trailing" constant="-20" id="6Ag-vi-rs9"/>
+                            <constraint firstItem="acp-XC-4QQ" firstAttribute="leading" secondItem="wur-uI-I1M" secondAttribute="trailing" constant="16" id="8Qh-VW-c0a"/>
+                            <constraint firstItem="i8k-e2-85C" firstAttribute="top" secondItem="Sia-Jy-Moo" secondAttribute="bottom" id="ADp-jh-ki4"/>
+                            <constraint firstItem="TkI-1V-7fm" firstAttribute="top" secondItem="i8k-e2-85C" secondAttribute="bottom" id="Eap-gN-Da0"/>
+                            <constraint firstItem="acp-XC-4QQ" firstAttribute="top" secondItem="Sia-Jy-Moo" secondAttribute="bottom" id="QzB-dY-Gnl"/>
+                            <constraint firstItem="kcu-tW-cZa" firstAttribute="top" secondItem="TkI-1V-7fm" secondAttribute="bottom" id="Upn-tj-IoX"/>
+                            <constraint firstItem="wur-uI-I1M" firstAttribute="top" secondItem="Sia-Jy-Moo" secondAttribute="bottom" id="VYr-oJ-pcn"/>
+                            <constraint firstItem="Dmv-X1-Jrc" firstAttribute="leading" secondItem="rGD-WJ-bKb" secondAttribute="leadingMargin" constant="-20" id="agB-DY-OLD"/>
+                            <constraint firstItem="TkI-1V-7fm" firstAttribute="leading" secondItem="rGD-WJ-bKb" secondAttribute="leadingMargin" constant="-16" id="c99-BN-dF3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="i8k-e2-85C" secondAttribute="trailing" constant="4" id="gJU-Xw-7mc"/>
+                            <constraint firstItem="i8k-e2-85C" firstAttribute="leading" secondItem="iw2-Nz-S1e" secondAttribute="trailing" constant="50" id="iQs-w8-iHg"/>
+                            <constraint firstItem="kcu-tW-cZa" firstAttribute="top" secondItem="Dmv-X1-Jrc" secondAttribute="bottom" id="k4f-5s-jlf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TkI-1V-7fm" secondAttribute="trailing" constant="-16" id="q6Q-fs-nnJ"/>
+                            <constraint firstItem="iw2-Nz-S1e" firstAttribute="top" secondItem="Sia-Jy-Moo" secondAttribute="bottom" id="slk-C5-yl4"/>
+                            <constraint firstItem="iw2-Nz-S1e" firstAttribute="leading" secondItem="acp-XC-4QQ" secondAttribute="trailing" constant="16" id="vv5-K6-JsN"/>
+                            <constraint firstItem="wur-uI-I1M" firstAttribute="leading" secondItem="rGD-WJ-bKb" secondAttribute="leadingMargin" constant="4" id="zTS-mM-KU0"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="iQs-w8-iHg"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="busyView" destination="Dmv-X1-Jrc" id="qk3-8C-NUk"/>
+                        <outlet property="scrollView" destination="TkI-1V-7fm" id="qPC-Mj-nXe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Rb-z3-5Bl" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="67.938931297709928" y="84.507042253521135"/>
+        </scene>
+    </scenes>
+</document>

@@ -328,7 +328,7 @@ struct _R {
     var textColor: RswiftResources.ColorResource { .init(name: "textColor", path: [], bundle: bundle) }
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 120 images.
+  /// This `_R.image` struct is generated, and contains static references to 123 images.
   struct image {
     let bundle: Foundation.Bundle
 
@@ -485,6 +485,9 @@ struct _R {
     /// Image `arrow_up`.
     var arrow_up: RswiftResources.ImageResource { .init(name: "arrow_up", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `batman`.
+    var batman: RswiftResources.ImageResource { .init(name: "batman", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `cat`.
     var cat: RswiftResources.ImageResource { .init(name: "cat", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
@@ -611,6 +614,9 @@ struct _R {
     /// Image `img_05`.
     var img_05: RswiftResources.ImageResource { .init(name: "img_05", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
 
+    /// Image `kermit`.
+    var kermit: RswiftResources.ImageResource { .init(name: "kermit", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `kt_sh`.
     var kt_sh: RswiftResources.ImageResource { .init(name: "kt_sh", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
@@ -622,6 +628,9 @@ struct _R {
 
     /// Image `member_add`.
     var member_add: RswiftResources.ImageResource { .init(name: "member_add", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `monkey`.
+    var monkey: RswiftResources.ImageResource { .init(name: "monkey", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `nav_back_black`.
     var nav_back_black: RswiftResources.ImageResource { .init(name: "nav_back_black", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -850,11 +859,12 @@ struct _R {
     var cell: RswiftResources.ReuseIdentifier<ExpandableCell> { .init(identifier: "cell") }
   }
 
-  /// This `_R.storyboard` struct is generated, and contains static references to 2 storyboards.
+  /// This `_R.storyboard` struct is generated, and contains static references to 3 storyboards.
   struct storyboard {
     let bundle: Foundation.Bundle
     var launchScreen: launchScreen { .init(bundle: bundle) }
     var main: main { .init(bundle: bundle) }
+    var swiftAsciiArtVC: swiftAsciiArtVC { .init(bundle: bundle) }
 
     func launchScreen(bundle: Foundation.Bundle) -> launchScreen {
       .init(bundle: bundle)
@@ -862,9 +872,13 @@ struct _R {
     func main(bundle: Foundation.Bundle) -> main {
       .init(bundle: bundle)
     }
+    func swiftAsciiArtVC(bundle: Foundation.Bundle) -> swiftAsciiArtVC {
+      .init(bundle: bundle)
+    }
     func validate() throws {
       try self.launchScreen.validate()
       try self.main.validate()
+      try self.swiftAsciiArtVC.validate()
     }
 
 
@@ -889,6 +903,19 @@ struct _R {
       let name = "Main"
       func validate() throws {
         if #available(iOS 13.0, *) { if UIKit.UIImage(systemName: "pencil") == nil { throw RswiftResources.ValidationError("[R.swift] System image named 'pencil' is used in storyboard 'Main', but couldn't be loaded.") } }
+      }
+    }
+
+    /// Storyboard `SwiftAsciiArtVC`.
+    struct swiftAsciiArtVC: RswiftResources.StoryboardReference {
+      let bundle: Foundation.Bundle
+
+      let name = "SwiftAsciiArtVC"
+
+      var swiftAsciiArtVC: RswiftResources.StoryboardViewControllerIdentifier<SwiftAsciiArtVC> { .init(identifier: "SwiftAsciiArtVC", storyboard: name, bundle: bundle) }
+
+      func validate() throws {
+        if swiftAsciiArtVC() == nil { throw RswiftResources.ValidationError("[R.swift] ViewController with identifier 'swiftAsciiArtVC' could not be loaded from storyboard 'SwiftAsciiArtVC' as 'SwiftAsciiArtVC'.") }
       }
     }
   }

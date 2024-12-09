@@ -21,7 +21,7 @@ class HomeViewController: BaseViewController {
         configureUI()
         getDataSource()
     }
-    
+
     override func getNavigatorConfig() -> NavigatorConfig? {
         navigationController?.navigationItem.leftBarButtonItem = nil
         return NavigatorConfig.newConfig().title(title: "瓦西里的百宝箱").leftBarButton(image: nil, action: nil)
@@ -45,6 +45,7 @@ class HomeViewController: BaseViewController {
                 dicArray = [
                     [.cellName: "RPlus", .className: "ProcessProgressVC"],
                     [.cellName: "富文本点击", .className: "AttributedStringViewController"],
+                    [.cellName: "SwiftAsciiArt", .className: "SwiftAsciiArtVC", .pushType: PushType.storyboard],
                 ]
             case "Sound&Vibrate":
                 dicArray = [
@@ -196,6 +197,12 @@ extension HomeViewController: UITableViewDelegate {
         case .nib:
             if let vcClass = getVCClassFromString(className) {
                 let vc = vcClass.loadFromNib()
+                vc.navigationItem.title = entity.cellName
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        case .storyboard:
+            if let vc = getVCFromString(className) {
+                var vc = UIStoryboard(name: className, bundle: nil).instantiateViewController(withIdentifier: className)
                 vc.navigationItem.title = entity.cellName
                 navigationController?.pushViewController(vc, animated: true)
             }
