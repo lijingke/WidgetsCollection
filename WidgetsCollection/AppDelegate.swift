@@ -11,6 +11,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        requestNoti()
         return true
     }
 
@@ -26,5 +27,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    func requestNoti() {
+        // 请求权限
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            guard granted else { return }
+         
+            // 创建通知内容
+            let content = UNMutableNotificationContent()
+            content.title = "My Notification"
+            content.body = "Hello, this is a local notification!"
+            content.sound = UNNotificationSound.default
+         
+            // 创建触发器
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+         
+            // 创建请求
+            let request = UNNotificationRequest(identifier: "myLocalNotification", content: content, trigger: trigger)
+         
+            // 添加请求到通知中心
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }
