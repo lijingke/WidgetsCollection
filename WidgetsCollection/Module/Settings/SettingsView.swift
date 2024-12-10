@@ -19,13 +19,17 @@ class SettingsView: UIView {
     }
     
     // MARK: Lazy Get
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .plain)
         table.delegate = self
         table.dataSource = self
         table.register(NotificationCell.self, forCellReuseIdentifier: NotificationCell.identifier)
         return table
     }()
+    
+    func refreshSettings() {
+        tableView.reloadData()
+    }
 }
 
 
@@ -44,6 +48,7 @@ extension SettingsView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NotificationCell.identifier, for: indexPath) as! NotificationCell
+        cell.configData()
         return cell
     }
 }
