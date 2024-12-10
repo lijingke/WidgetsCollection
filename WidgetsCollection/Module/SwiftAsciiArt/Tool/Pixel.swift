@@ -12,28 +12,23 @@ import Foundation
 typealias PixelPointer = UnsafePointer<UInt8>
 
 /** A point in an image converted to an ASCII character. */
-struct Pixel
-{
+struct Pixel {
     /** The number of bytes a pixel occupies. 1 byte per channel (RGBA). */
     static let bytesPerPixel = 4
 
     fileprivate let offset: Int
     fileprivate init(_ offset: Int) { self.offset = offset }
 
-    static func createPixelMatrix(_ width: Int, _ height: Int) -> [[Pixel]]
-    {
-        return (0..<height).map
-        { row in
-            (0..<width).map
-            { col in
+    static func createPixelMatrix(_ width: Int, _ height: Int) -> [[Pixel]] {
+        return (0..<height).map { row in
+            (0..<width).map { col in
                 let offset = (width * row + col) * Pixel.bytesPerPixel
                 return Pixel(offset)
             }
         }
     }
 
-    func intensityFromPixelPointer(_ pointer: PixelPointer) -> Double
-    {
+    func intensityFromPixelPointer(_ pointer: PixelPointer) -> Double {
         let
             red = pointer[offset + 0],
             green = pointer[offset + 1],
@@ -41,8 +36,7 @@ struct Pixel
         return Pixel.calculateIntensity(red, green, blue)
     }
 
-    fileprivate static func calculateIntensity(_ r: UInt8, _ g: UInt8, _ b: UInt8) -> Double
-    {
+    fileprivate static func calculateIntensity(_ r: UInt8, _ g: UInt8, _ b: UInt8) -> Double {
         // Normalize the pixel's grayscale value to between 0 and 1.
         // Weights from http://en.wikipedia.org/wiki/Grayscale#Luma_coding_in_video_systems
         let

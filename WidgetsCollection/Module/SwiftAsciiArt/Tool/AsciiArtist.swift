@@ -10,20 +10,17 @@ import Foundation
 import UIKit
 
 /** Transforms an image to ASCII art. */
-class AsciiArtist
-{
+class AsciiArtist {
     fileprivate let
         image: UIImage,
         palette: AsciiPalette
     
-    init(_ image: UIImage, _ palette: AsciiPalette)
-    {
+    init(_ image: UIImage, _ palette: AsciiPalette) {
         self.image = image
         self.palette = palette
     }
     
-    func createAsciiArt() -> String
-    {
+    func createAsciiArt() -> String {
         let
             dataProvider = image.cgImage?.dataProvider,
             pixelData = dataProvider?.data,
@@ -33,34 +30,27 @@ class AsciiArtist
         return symbolMatrix.joined(separator: "\n")
     }
     
-    fileprivate func intensityMatrixFromPixelPointer(_ pointer: PixelPointer) -> [[Double]]
-    {
+    fileprivate func intensityMatrixFromPixelPointer(_ pointer: PixelPointer) -> [[Double]] {
         let
             width = Int(image.size.width),
             height = Int(image.size.height),
             matrix = Pixel.createPixelMatrix(width, height)
-        return matrix.map
-        { pixelRow in
-            pixelRow.map
-            { pixel in
+        return matrix.map { pixelRow in
+            pixelRow.map { pixel in
                 pixel.intensityFromPixelPointer(pointer)
             }
         }
     }
     
-    fileprivate func symbolMatrixFromIntensityMatrix(_ matrix: [[Double]]) -> [String]
-    {
-        return matrix.map
-        { intensityRow in
-            intensityRow.reduce("")
-            {
+    fileprivate func symbolMatrixFromIntensityMatrix(_ matrix: [[Double]]) -> [String] {
+        return matrix.map { intensityRow in
+            intensityRow.reduce("") {
                 $0 + self.symbolFromIntensity($1)
             }
         }
     }
     
-    fileprivate func symbolFromIntensity(_ intensity: Double) -> String
-    {
+    fileprivate func symbolFromIntensity(_ intensity: Double) -> String {
         assert(intensity >= 0.0 && intensity <= 1.0)
         
         let

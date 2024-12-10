@@ -51,7 +51,7 @@ class SwiftAsciiArtVC: BaseViewController {
                 self.displayAsciiArt(asciiArt)
                 self.busyView.isHidden = true
             }
-            print(asciiArt)
+            Log.info(asciiArt)
         }
     }
     
@@ -100,6 +100,8 @@ extension SwiftAsciiArtVC {
         if let view = currentLabel {
             let image = convertViewToImage(view: view)
             try? exportImageAsPNG(image, filename: "Preview")
+        } else {
+            Loading.showToastHint(with: "请选择一张图片", to: self.view)
         }
     }
     

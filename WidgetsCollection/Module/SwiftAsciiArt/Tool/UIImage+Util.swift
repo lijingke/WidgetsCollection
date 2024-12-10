@@ -10,10 +10,8 @@ import AVFoundation
 import Foundation
 import UIKit
 
-extension UIImage
-{
-    class func imageOfSymbol(_ symbol: String, _ font: UIFont) -> UIImage
-    {
+extension UIImage {
+    class func imageOfSymbol(_ symbol: String, _ font: UIFont) -> UIImage {
         let
             length = font.pointSize * 2,
             size = CGSize(width: length, height: length),
@@ -21,7 +19,7 @@ extension UIImage
         
         UIGraphicsBeginImageContext(size)
         let context = UIGraphicsGetCurrentContext()
-
+        
         // Fill the background with white.
         context?.setFillColor(UIColor.white.cgColor)
         context?.fill(rect)
@@ -38,13 +36,11 @@ extension UIImage
         return image
     }
     
-    func imageConstrainedToMaxSize(_ maxSize: CGSize) -> UIImage
-    {
+    func imageConstrainedToMaxSize(_ maxSize: CGSize) -> UIImage {
         let isTooBig =
             size.width > maxSize.width ||
             size.height > maxSize.height
-        if isTooBig
-        {
+        if isTooBig {
             let
                 maxRect = CGRect(origin: CGPoint.zero, size: maxSize),
                 scaledRect = AVMakeRect(aspectRatio: self.size, insideRect: maxRect),
@@ -66,13 +62,11 @@ extension UIImage
                     bytesPerRow: bytesPerRow,
                     space: colorSpace!,
                     bitmapInfo: (bitmapInfo?.rawValue)!)
-        
-            if context != nil
-            {
+            
+            if context != nil {
                 context!.interpolationQuality = CGInterpolationQuality.low
                 context?.draw(cgImage!, in: targetRect)
-                if let scaledCGImage = context?.makeImage()
-                {
+                if let scaledCGImage = context?.makeImage() {
                     return UIImage(cgImage: scaledCGImage)
                 }
             }
@@ -80,15 +74,12 @@ extension UIImage
         return self
     }
     
-    func imageRotatedToPortraitOrientation() -> UIImage
-    {
+    func imageRotatedToPortraitOrientation() -> UIImage {
         let mustRotate = self.imageOrientation != .up
-        if mustRotate
-        {
+        if mustRotate {
             let rotatedSize = CGSize(width: size.height, height: size.width)
             UIGraphicsBeginImageContext(rotatedSize)
-            if let context = UIGraphicsGetCurrentContext()
-            {
+            if let context = UIGraphicsGetCurrentContext() {
                 // Perform the rotation and scale transforms around the image's center.
                 context.translateBy(x: rotatedSize.width/2, y: rotatedSize.height/2)
                 
@@ -115,10 +106,8 @@ extension UIImage
         return self
     }
     
-    fileprivate func degreesToRotate() -> Double
-    {
-        switch self.imageOrientation
-        {
+    fileprivate func degreesToRotate() -> Double {
+        switch self.imageOrientation {
         case .right: return 90
         case .down: return 180
         case .left: return -90
@@ -128,14 +117,12 @@ extension UIImage
 }
 
 // Helper function inserted by Swift 4.2 migrator.
-private func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]?
-{
+private func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
     guard let input = input else { return nil }
     return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value) })
 }
 
 // Helper function inserted by Swift 4.2 migrator.
-private func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String
-{
+private func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
     return input.rawValue
 }
