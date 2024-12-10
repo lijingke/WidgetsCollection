@@ -6,6 +6,7 @@
 //  Copyright © 2019 Cocoa Controls. All rights reserved.
 //
 
+import MBProgressHUD
 import SFSymbols
 import UIKit
 
@@ -14,7 +15,7 @@ class IconsViewController: UIViewController, UISearchBarDelegate, UISearchResult
 
     private let cellIdentifier = "identifier"
 
-    private lazy var dataSource = IconDataSource(cellIdentifier: cellIdentifier)
+    private var dataSource: IconDataSource?
 
     private lazy var searchDataSource = IconSearchDataSource(cellIdentifier: cellIdentifier)
 
@@ -25,6 +26,7 @@ class IconsViewController: UIViewController, UISearchBarDelegate, UISearchResult
 
         title = "Icons"
         tabBarItem.image = UIImage(systemName: SFSymbol.eyeglasses.id)
+//        Log.info(dataSource.description)
     }
 
     @available(*, unavailable)
@@ -42,6 +44,22 @@ class IconsViewController: UIViewController, UISearchBarDelegate, UISearchResult
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         configureSearch()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.dataSource != nil {
+            return
+        }
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        DispatchQueue.global().async {
+            self.dataSource = IconDataSource(cellIdentifier: self.cellIdentifier)
+            DispatchQueue.main.async {
+                self.tableView.dataSource = self.dataSource
+                self.tableView.reloadData()
+                MBProgressHUD.hide(for: self.view, animated: true)
+            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

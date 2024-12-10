@@ -6,9 +6,9 @@
 //  Copyright © 2020 李京珂. All rights reserved.
 //
 
-import MBProgressHUD
 import UIKit
 import WCDBSwift
+import MBProgressHUD
 
 class MineViewController: BaseViewController {
     override func viewDidLoad() {
