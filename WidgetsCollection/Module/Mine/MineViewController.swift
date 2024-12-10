@@ -54,8 +54,10 @@ extension MineViewController {
             model.imageName = dic[.imageName]
             switch model.title {
             case "设置":
-                model.tap = {
-                    Loading.showToastHint(with: "尚未完成", to: self.view)
+                model.tap = { [weak self] in
+//                    Loading.showToastHint(with: "尚未完成", to: self.view)
+                    let vc = SettingsViewController()
+                    self?.navigationController?.pushViewController(vc, animated: true)
                 }
             case "退出":
                 model.tap = {
@@ -91,7 +93,7 @@ extension MineViewController {
     }
 }
 
-class DBSample: TableCodable {
+final class DBSample: TableCodable {
     var identifier: Int? = nil
     var description: String? = nil
 

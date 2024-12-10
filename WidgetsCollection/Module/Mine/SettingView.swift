@@ -71,7 +71,6 @@ extension MineView: UITableViewDataSource {
     func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataSource[indexPath.row]
         let cell = UITableViewCell()
-        cell.textLabel?.text = "Setting"
         cell.textLabel?.text = model.title
         cell.accessoryType = .disclosureIndicator
         cell.imageView?.image = UIImage(named: model.imageName ?? "") ?? UIImage(systemName: model.imageName ?? "")
