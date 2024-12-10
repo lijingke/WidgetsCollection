@@ -38,6 +38,8 @@ target 'WidgetsCollection' do
   pod 'DeviceKit'
   # 时间
   pod 'SwiftDate'
+  # UserDefaults
+  pod 'DefaultsKit'
   
 end
 

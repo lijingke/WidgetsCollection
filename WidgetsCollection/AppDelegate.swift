@@ -11,7 +11,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        requestNoti()
+//        requestNoti()
+//        niceNoti()
         return true
     }
 
@@ -27,6 +28,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    func niceNoti() {
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+
+        let content = UNMutableNotificationContent()
+        content.title = "Repeating"
+        content.body = "Every 1 minutes"
+        content.sound = .default
+
+        let request = UNNotificationRequest(
+            identifier: "repeating_360",
+            content: content,
+            trigger: trigger
+        )
+
+        LocalNotifications.directSchedule(
+            request: request,
+            permissionStrategy: .askSystemPermissionIfNeeded
+        ) // completion is optional
+        
+        LocalNotifications.schedule(permissionStrategy: .askSystemPermissionIfNeeded) {
+            EveryMonth(forMonths: 12, starting: .thisMonth)
+                .first(.friday)
+                .at(hour: 20, minute: 15)
+                .schedule(title: "First Friday", body: "Oakland let's go!")
+        }
     }
     
     func requestNoti() {

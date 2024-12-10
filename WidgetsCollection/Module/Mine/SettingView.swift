@@ -1,5 +1,5 @@
 //
-//  SettingView.swift
+//  MineView.swift
 //  WidgetsCollection
 //
 //  Created by 李京珂 on 2020/4/23.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-class SettingView: UIView {
-    private var dataSource: [SettingCellModel] = []
+class MineView: UIView {
+    private var dataSource: [MineCellModel] = []
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,7 +38,7 @@ class SettingView: UIView {
 
 // MARK: - UI
 
-extension SettingView {
+extension MineView {
     private func setupUI() {
         addSubview(tableView)
         tableView.addSubview(headView)
@@ -51,7 +51,7 @@ extension SettingView {
 
     /// 刷新table
     /// - Parameter dataSource: 数据源
-    public func setupData(_ dataSource: [SettingCellModel]) {
+    public func setupData(_ dataSource: [MineCellModel]) {
         self.dataSource = dataSource
         tableView.reloadData()
     }
@@ -63,7 +63,7 @@ extension SettingView {
 
 // MARK: - UITableViewDataSource
 
-extension SettingView: UITableViewDataSource {
+extension MineView: UITableViewDataSource {
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return dataSource.count
     }
@@ -82,7 +82,7 @@ extension SettingView: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension SettingView: UITableViewDelegate {
+extension MineView: UITableViewDelegate {
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = dataSource[indexPath.row]
         item.tap?()

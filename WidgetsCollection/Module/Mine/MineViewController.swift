@@ -1,5 +1,5 @@
 //
-//  SettingViewController.swift
+//  MineViewController.swift
 //  WidgetsCollection
 //
 //  Created by 李京珂 on 2020/4/23.
@@ -10,7 +10,7 @@ import MBProgressHUD
 import UIKit
 import WCDBSwift
 
-class SettingViewController: BaseViewController {
+class MineViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -31,8 +31,8 @@ class SettingViewController: BaseViewController {
         return nil
     }
     
-    lazy var mainView: SettingView = {
-        let view = SettingView()
+    lazy var mainView: MineView = {
+        let view = MineView()
         view.backgroundColor = .white
         return view
     }()
@@ -40,16 +40,16 @@ class SettingViewController: BaseViewController {
 
 // MARK: - UI
 
-extension SettingViewController {
+extension MineViewController {
     private func setupUI() {
         view.addSubview(mainView)
         mainView.frame = view.frame
     }
 
     private func setupData() {
-        let titles: [[SettingCellEnum: String]] = [[.cellName: "设置", .imageName: "gear"], [.cellName: "退出", .imageName: "wrench"]]
-        let models = titles.compactMap { dic -> SettingCellModel? in
-            var model = SettingCellModel()
+        let titles: [[MineCellEnum: String]] = [[.cellName: "设置", .imageName: "gear"], [.cellName: "退出", .imageName: "wrench"]]
+        let models = titles.compactMap { dic -> MineCellModel? in
+            var model = MineCellModel()
             model.title = dic[.cellName]
             model.imageName = dic[.imageName]
             switch model.title {

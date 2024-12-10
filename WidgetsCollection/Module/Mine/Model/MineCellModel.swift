@@ -1,5 +1,5 @@
 //
-//  SettingCellModel.swift
+//  MineCellModel.swift
 //  WidgetsCollection
 //
 //  Created by 李京珂 on 2020/4/24.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-enum SettingCellEnum {
+enum MineCellEnum {
     case cellName
     case imageName
     case action
 }
 
-struct SettingCellModel {
+struct MineCellModel {
     typealias typeAction = () -> Void
     var title: String?
     var imageName: String?
