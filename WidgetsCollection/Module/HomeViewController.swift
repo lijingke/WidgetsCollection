@@ -201,11 +201,9 @@ extension HomeViewController: UITableViewDelegate {
                 navigationController?.pushViewController(vc, animated: true)
             }
         case .storyboard:
-            if let vc = getVCFromString(className) {
-                var vc = UIStoryboard(name: className, bundle: nil).instantiateViewController(withIdentifier: className)
-                vc.navigationItem.title = entity.cellName
-                navigationController?.pushViewController(vc, animated: true)
-            }
+            let vc = UIStoryboard(name: className, bundle: nil).instantiateViewController(withIdentifier: className)
+            vc.navigationItem.title = entity.cellName
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
