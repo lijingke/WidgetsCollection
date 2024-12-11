@@ -104,7 +104,32 @@ class DateProgressVC: BaseViewController {
 // MARK: - POPMenuViewDelegate
 
 extension DateProgressVC: POPMenuViewDelegate {
-    func POPMenuViewDidSelectedAt(index: Int) {}
+    func POPMenuViewDidSelectedAt(index: Int) {
+        niceNoti()
+    }
+}
+
+// MARK: - Noti
+
+extension DateProgressVC {
+    func niceNoti() {
+        LocalNotifications.schedule(permissionStrategy: .askSystemPermissionIfNeeded) {
+            EveryDay(forDays: 30, starting: .today)
+                 .at(hour: 17, minute: 42, second: 0)
+                 .schedule(with: content(forTriggerDate:))
+        }
+    }
+    
+    func content(forTriggerDate date: Date) -> NotificationContent {
+        // create content based on date
+        let content = NotificationContent()
+        content.title = "剩余倒计时"
+        let progress = CGFloat(pastDay) / CGFloat(totalDay)
+        content.body = "\(progress)"
+        content.sound = .default
+        return content
+    }
+    
 }
 
 // MARK: - Event

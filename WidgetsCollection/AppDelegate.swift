@@ -54,7 +54,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 .first(.friday)
                 .at(hour: 20, minute: 15)
                 .schedule(title: "First Friday", body: "Oakland let's go!")
+            EveryDay(forDays: 30, starting: .today)
+                 .at(hour: 20, minute: 30, second: 30)
+                 .schedule(with: content(forTriggerDate:))
         }
+    }
+    
+    func content(forTriggerDate date: Date) -> NotificationContent {
+        // create content based on date
+        return NotificationContent(title: "", subtitle: nil, body: "", sound: .default)
     }
     
     func requestNoti() {
