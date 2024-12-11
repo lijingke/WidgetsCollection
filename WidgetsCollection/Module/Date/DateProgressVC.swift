@@ -19,6 +19,12 @@ class DateProgressVC: BaseViewController {
     private var fourDollarConstranit: Constraint?
     private var isShowFourDollar: Bool = false
 
+    let menuArr: [PopMenu] = [PopMenu(title: "通知", icon: "app.badge")]
+    lazy var menuView: POPMenuView = {
+        let menu = POPMenuView(dataArray: menuArr, origin: CGPoint(x: kScreenWidth - 13, y: 90), size: CGSize(width: 130, height: 44), direction: POPMenueDirection.right)
+        return menu
+    }()
+
     // MARK: Life Cycle
 
     override func viewDidLoad() {
@@ -35,7 +41,11 @@ class DateProgressVC: BaseViewController {
     }
 
     override func getNavigatorConfig() -> NavigatorConfig? {
-        return NavigatorConfig.newConfig().isTranslucent(true)
+        return NavigatorConfig.newConfig().isTranslucent(true).rightBarButton(image: UIImage(systemName: "bell"), action: #selector(notiAction))
+    }
+
+    @objc func notiAction() {
+        menuView.pop()
     }
 
     // MARK: Lazy Get
@@ -89,6 +99,12 @@ class DateProgressVC: BaseViewController {
         picker.addTarget(self, action: #selector(onDateValueChanged(_:)), for: .valueChanged)
         return picker
     }()
+}
+
+// MARK: - POPMenuViewDelegate
+
+extension DateProgressVC: POPMenuViewDelegate {
+    func POPMenuViewDidSelectedAt(index: Int) {}
 }
 
 // MARK: - Event

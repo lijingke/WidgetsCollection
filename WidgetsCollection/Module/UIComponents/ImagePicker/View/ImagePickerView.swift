@@ -234,7 +234,7 @@ extension ImagePickerView {
         // 设置竖屏下的裁剪尺寸
         let left: CGFloat = 30
         let widthHeight = width - 2 * left
-        let top = (kscreenHeight - widthHeight) / 2
+        let top = (kScreenHeight - widthHeight) / 2
         imagePickerVC?.cropRect = CGRect(x: left, y: top, width: widthHeight, height: widthHeight)
         imagePickerVC?.scaleAspectFillCrop = true
 

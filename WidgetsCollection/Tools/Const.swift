@@ -18,7 +18,7 @@ let ColorOfWaveBlackColor = "#4F4F4F"
 // MARK: - 坐标
 
 let kScreenWidth = UIScreen.main.bounds.width
-let kscreenHeight = UIScreen.main.bounds.height
+let kScreenHeight = UIScreen.main.bounds.height
 let kStatusBarHeight = UIApplication.shared.statusBarFrame.height
 let kNaviHeight = CGFloat(44)
 let kTopHeight = kStatusBarHeight + kNaviHeight
