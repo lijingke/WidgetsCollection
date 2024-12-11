@@ -117,7 +117,16 @@ extension DateProgressVC {
     func niceNoti() {
         LocalNotifications.schedule(permissionStrategy: .askSystemPermissionIfNeeded) {
             EveryDay(forDays: 30, starting: .today)
-                 .at(hour: 17, minute: 45, second: 0)
+                 .at(hour: 8, minute: 0, second: 0)
+                 .schedule(with: content(forTriggerDate:))
+            EveryDay(forDays: 30, starting: .today)
+                 .at(hour: 9, minute: 0, second: 0)
+                 .schedule(with: content(forTriggerDate:))
+            EveryDay(forDays: 30, starting: .today)
+                 .at(hour: 17, minute: 56, second: 0)
+                 .schedule(with: content(forTriggerDate:))
+            EveryDay(forDays: 30, starting: .today)
+                 .at(hour: 18, minute: 00, second: 0)
                  .schedule(with: content(forTriggerDate:))
         }
     }
@@ -125,9 +134,10 @@ extension DateProgressVC {
     func content(forTriggerDate date: Date) -> NotificationContent {
         // create content based on date
         let content = NotificationContent()
-        content.title = "剩余倒计时"
+        content.title = "回成都倒计时"
         let progress = CGFloat(pastDay) / CGFloat(totalDay)
-        content.body = "\(progress)"
+        content.subtitle = "已过去\(pastDay)天：\((progress * 100).roundToStr2(2))%"
+        content.body = "还剩\(remainDay)天"
         content.sound = .default
         return content
     }
