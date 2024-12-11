@@ -13,7 +13,6 @@ class SFSymbolsVC: BaseViewController {
         super.viewDidLoad()
         Loading.showLoading(to: view)
         DispatchQueue.global().async {
-            let model = ContentViewModel()
             DispatchQueue.main.async {
                 Loading.hideLoading(from: self.view)
                 _ = self.addSwiftUIView(SymbolList())

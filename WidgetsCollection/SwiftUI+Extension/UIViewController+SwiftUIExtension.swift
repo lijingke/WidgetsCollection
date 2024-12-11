@@ -16,7 +16,6 @@ extension UIViewController {
         uiView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-//        uiView.frame = view.bounds
         if addSubController{
             addChild(swiftUIHostingController)
             swiftUIHostingController.didMove(toParent: self)
