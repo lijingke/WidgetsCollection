@@ -18,8 +18,13 @@ class DateProgressVC: BaseViewController {
     private var remainDay: Int = 0
     private var fourDollarConstranit: Constraint?
     private var isShowFourDollar: Bool = false
-
-    let menuArr: [PopMenu] = [PopMenu(title: "通知", icon: "app.badge")]
+    private var notiGroup: LocalNotificationsGroup?
+    
+    let menuArr: [PopMenu] = [
+        PopMenu(title: "打开通知", icon: "app.badge"),
+        PopMenu(title: "取消通知", icon: "eraser")
+    ]
+    
     lazy var menuView: POPMenuView = {
         let menu = POPMenuView(dataArray: menuArr, origin: CGPoint(x: kScreenWidth - 13, y: 90), size: CGSize(width: 130, height: 44), direction: POPMenueDirection.right)
         menu.delegate = self
@@ -107,15 +112,19 @@ class DateProgressVC: BaseViewController {
 extension DateProgressVC: POPMenuViewDelegate {
     func POPMenuViewDidSelectedAt(index: Int) {
         menuView.dismiss()
-        niceNoti()
+        if index == 0 {
+            addNoti()
+        } else {
+            removeAllNoti()
+        }
     }
 }
 
 // MARK: - Noti
 
 extension DateProgressVC {
-    func niceNoti() {
-        LocalNotifications.schedule(permissionStrategy: .askSystemPermissionIfNeeded) {
+    func addNoti() {
+        notiGroup = LocalNotifications.schedule(permissionStrategy: .askSystemPermissionIfNeeded) {
             EveryDay(forDays: 30, starting: .today)
                  .at(hour: 8, minute: 0, second: 0)
                  .schedule(with: content(forTriggerDate:))
@@ -123,13 +132,21 @@ extension DateProgressVC {
                  .at(hour: 9, minute: 0, second: 0)
                  .schedule(with: content(forTriggerDate:))
             EveryDay(forDays: 30, starting: .today)
-                 .at(hour: 17, minute: 56, second: 0)
+                 .at(hour: 18, minute: 00, second: 0)
                  .schedule(with: content(forTriggerDate:))
             EveryDay(forDays: 30, starting: .today)
-                 .at(hour: 18, minute: 00, second: 0)
+                 .at(hour: 19, minute: 00, second: 0)
                  .schedule(with: content(forTriggerDate:))
         }
     }
+    
+    
+    func removeAllNoti() {
+        if let group = notiGroup {
+            LocalNotifications.remove(group: group)
+        }
+    }
+    
     
     func content(forTriggerDate date: Date) -> NotificationContent {
         // create content based on date
