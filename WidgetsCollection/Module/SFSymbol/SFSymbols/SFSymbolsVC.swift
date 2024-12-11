@@ -14,8 +14,8 @@ class SFSymbolsVC: BaseViewController {
         Loading.showLoading(to: view)
         DispatchQueue.global().async {
             DispatchQueue.main.async {
-                Loading.hideLoading(from: self.view)
                 _ = self.addSwiftUIView(SymbolList())
+                Loading.hideLoading(from: self.view)
             }
         }
     }
