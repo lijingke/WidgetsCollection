@@ -22,7 +22,7 @@ struct CategoriesList: View {
     
     var body: some View {
         List(searchResults) { category in
-            NavigationLink(destination: SymbolList(category: category)) {
+            NavigationLink(destination: SymbolDemoList(category: category)) {
                 Label(category.title, systemImage: category.icon)
             }
         }

@@ -41,6 +41,7 @@ class HomeViewController: BaseViewController {
             case "Semantic UI":
                 dicArray = [
                     [.cellName: "Semantic UI", .className: "DemosController", .pushType: PushType.nib],
+                    [.cellName: "SFSymbols", .className: "SFSymbolsVC", .pushType: PushType.swiftUI],
                     [.cellName: "SFSymbolsDemo", .className: "SFSymbolsDemoVC", .pushType: PushType.swiftUI],
                 ]
             case "WorkSpace":

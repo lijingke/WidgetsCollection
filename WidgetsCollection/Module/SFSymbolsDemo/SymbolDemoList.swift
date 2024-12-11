@@ -1,5 +1,5 @@
 //
-//  SymbolList.swift
+//  SymbolDemoList.swift
 //  WidgetsCollection
 //
 //  Created by 李京珂 on 2024/12/11.
@@ -8,7 +8,7 @@
 import SFSymbols
 import SwiftUI
 
-struct SymbolList: View {
+struct SymbolDemoList: View {
     let category: SFCategory
     @State private var searchText = String()
 
@@ -39,6 +39,6 @@ struct SymbolList: View {
 
 struct SymbolList_Previews: PreviewProvider {
     static var previews: some View {
-        SymbolList(category: .whatsnew)
+        SymbolDemoList(category: .whatsnew)
     }
 }

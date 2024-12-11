@@ -784,9 +784,15 @@ struct _R {
     }
   }
 
-  /// This `_R.file` struct is generated, and contains static references to 18 resource files.
+  /// This `_R.file` struct is generated, and contains static references to 21 resource files.
   struct file {
     let bundle: Foundation.Bundle
+
+    /// Resource file `AllSymbols.txt`.
+    var allSymbolsTxt: RswiftResources.FileResource { .init(name: "AllSymbols", pathExtension: "txt", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `MulticolorSymbols.txt`.
+    var multicolorSymbolsTxt: RswiftResources.FileResource { .init(name: "MulticolorSymbols", pathExtension: "txt", bundle: bundle, locale: LocaleReference.none) }
 
     /// Resource file `SourceSansPro-Bold.ttf`.
     var sourceSansProBoldTtf: RswiftResources.FileResource { .init(name: "SourceSansPro-Bold", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
@@ -799,6 +805,9 @@ struct _R {
 
     /// Resource file `SpongeBob.gif`.
     var spongeBobGif: RswiftResources.FileResource { .init(name: "SpongeBob", pathExtension: "gif", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `VariableSymbols.txt`.
+    var variableSymbolsTxt: RswiftResources.FileResource { .init(name: "VariableSymbols", pathExtension: "txt", bundle: bundle, locale: LocaleReference.none) }
 
     /// Resource file `ZhuoZhuo`.
     var zhuoZhuo: RswiftResources.FileResource { .init(name: "ZhuoZhuo", pathExtension: "", bundle: bundle, locale: LocaleReference.none) }
