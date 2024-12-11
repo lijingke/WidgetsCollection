@@ -22,6 +22,7 @@ class DateProgressVC: BaseViewController {
     let menuArr: [PopMenu] = [PopMenu(title: "通知", icon: "app.badge")]
     lazy var menuView: POPMenuView = {
         let menu = POPMenuView(dataArray: menuArr, origin: CGPoint(x: kScreenWidth - 13, y: 90), size: CGSize(width: 130, height: 44), direction: POPMenueDirection.right)
+        menu.delegate = self
         return menu
     }()
 
@@ -105,6 +106,7 @@ class DateProgressVC: BaseViewController {
 
 extension DateProgressVC: POPMenuViewDelegate {
     func POPMenuViewDidSelectedAt(index: Int) {
+        menuView.dismiss()
         niceNoti()
     }
 }
@@ -115,7 +117,7 @@ extension DateProgressVC {
     func niceNoti() {
         LocalNotifications.schedule(permissionStrategy: .askSystemPermissionIfNeeded) {
             EveryDay(forDays: 30, starting: .today)
-                 .at(hour: 17, minute: 42, second: 0)
+                 .at(hour: 17, minute: 45, second: 0)
                  .schedule(with: content(forTriggerDate:))
         }
     }
