@@ -784,7 +784,7 @@ struct _R {
     }
   }
 
-  /// This `_R.file` struct is generated, and contains static references to 14 resource files.
+  /// This `_R.file` struct is generated, and contains static references to 18 resource files.
   struct file {
     let bundle: Foundation.Bundle
 
@@ -802,6 +802,9 @@ struct _R {
 
     /// Resource file `ZhuoZhuo`.
     var zhuoZhuo: RswiftResources.FileResource { .init(name: "ZhuoZhuo", pathExtension: "", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `categories.plist`.
+    var categoriesPlist: RswiftResources.FileResource { .init(name: "categories", pathExtension: "plist", bundle: bundle, locale: LocaleReference.none) }
 
     /// Resource file `img_00.png`.
     var img_00Png: RswiftResources.FileResource { .init(name: "img_00", pathExtension: "png", bundle: bundle, locale: LocaleReference.none) }
@@ -826,6 +829,15 @@ struct _R {
 
     /// Resource file `module.modulemap`.
     var moduleModulemap: RswiftResources.FileResource { .init(name: "module", pathExtension: "modulemap", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `name_availability.plist`.
+    var name_availabilityPlist: RswiftResources.FileResource { .init(name: "name_availability", pathExtension: "plist", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `symbol_categories.plist`.
+    var symbol_categoriesPlist: RswiftResources.FileResource { .init(name: "symbol_categories", pathExtension: "plist", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `symbol_search.plist`.
+    var symbol_searchPlist: RswiftResources.FileResource { .init(name: "symbol_search", pathExtension: "plist", bundle: bundle, locale: LocaleReference.none) }
 
     /// Resource file `userInfo.json`.
     var userInfoJson: RswiftResources.FileResource { .init(name: "userInfo", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }

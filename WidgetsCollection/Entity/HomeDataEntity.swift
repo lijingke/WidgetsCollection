@@ -19,6 +19,7 @@ enum PushType: String {
     case present
     case nib
     case storyboard
+    case swiftUI
 }
 
 struct HomeDataEntity {

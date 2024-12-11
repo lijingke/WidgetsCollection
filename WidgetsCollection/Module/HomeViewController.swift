@@ -7,6 +7,7 @@
 //
 
 import SnapKit
+import SwiftUI
 import UIKit
 
 class HomeViewController: BaseViewController {
@@ -40,6 +41,7 @@ class HomeViewController: BaseViewController {
             case "Semantic UI":
                 dicArray = [
                     [.cellName: "Semantic UI", .className: "DemosController", .pushType: PushType.nib],
+                    [.cellName: "SFSymbolsDemo", .className: "SFSymbolsDemoVC", .pushType: PushType.swiftUI],
                 ]
             case "WorkSpace":
                 dicArray = [
@@ -204,6 +206,11 @@ extension HomeViewController: UITableViewDelegate {
             let vc = UIStoryboard(name: className, bundle: nil).instantiateViewController(withIdentifier: className)
             vc.navigationItem.title = entity.cellName
             navigationController?.pushViewController(vc, animated: true)
+        case .swiftUI:
+            if let vc = getVCFromString(className) {
+                vc.navigationItem.title = entity.cellName
+                navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 }

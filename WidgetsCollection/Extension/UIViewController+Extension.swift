@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 extension UIViewController {
     func getVCFromString(_ name: String) -> UIViewController? {
@@ -28,6 +29,7 @@ extension UIViewController {
             return nil
         }
     }
+    
 }
 
 extension UIViewController {
