@@ -19,17 +19,11 @@ class DateProgressVC: BaseViewController {
     private var fourDollarConstranit: Constraint?
     private var isShowFourDollar: Bool = false
     private var notiGroup: LocalNotificationsGroup?
-    
+
     let menuArr: [PopMenu] = [
         PopMenu(title: "打开通知", icon: "app.badge"),
         PopMenu(title: "取消通知", icon: "eraser")
     ]
-    
-    lazy var menuView: PopMenuView = {
-        let menu = PopMenuView(dataArray: menuArr, origin: CGPoint(x: kScreenWidth - 13, y: 90), size: CGSize(width: 130, height: 44), direction: PopMenueDirection.right)
-        menu.delegate = self
-        return menu
-    }()
 
     // MARK: Life Cycle
 
@@ -50,10 +44,6 @@ class DateProgressVC: BaseViewController {
         return NavigatorConfig.newConfig().isTranslucent(true).rightBarButton(image: UIImage(systemName: "bell"), action: #selector(notiAction))
     }
 
-    @objc func notiAction() {
-        menuView.pop()
-    }
-
     // MARK: Lazy Get
 
     lazy var progressRing: UICircularProgressRing = {
@@ -69,6 +59,12 @@ class DateProgressVC: BaseViewController {
         formatter.showFloatingPoint = true
         ring.valueFormatter = formatter
         return ring
+    }()
+
+    lazy var menuView: PopMenuView = {
+        let menu = PopMenuView(dataArray: menuArr, origin: CGPoint(x: kScreenWidth - 13, y: 82), size: CGSize(width: 130, height: 44), direction: PopMenueDirection.right)
+        menu.delegate = self
+        return menu
     }()
 
     lazy var totalDayLabel: UILabel = {
@@ -126,28 +122,26 @@ extension DateProgressVC {
     func addNoti() {
         notiGroup = LocalNotifications.schedule(permissionStrategy: .askSystemPermissionIfNeeded) {
             EveryDay(forDays: 30, starting: .today)
-                 .at(hour: 8, minute: 0, second: 0)
-                 .schedule(with: content(forTriggerDate:))
+                .at(hour: 8, minute: 0, second: 0)
+                .schedule(with: content(forTriggerDate:))
             EveryDay(forDays: 30, starting: .today)
-                 .at(hour: 9, minute: 0, second: 0)
-                 .schedule(with: content(forTriggerDate:))
+                .at(hour: 9, minute: 0, second: 0)
+                .schedule(with: content(forTriggerDate:))
             EveryDay(forDays: 30, starting: .today)
-                 .at(hour: 18, minute: 00, second: 0)
-                 .schedule(with: content(forTriggerDate:))
+                .at(hour: 18, minute: 00, second: 0)
+                .schedule(with: content(forTriggerDate:))
             EveryDay(forDays: 30, starting: .today)
-                 .at(hour: 19, minute: 00, second: 0)
-                 .schedule(with: content(forTriggerDate:))
+                .at(hour: 19, minute: 00, second: 0)
+                .schedule(with: content(forTriggerDate:))
         }
     }
-    
-    
+
     func removeAllNoti() {
         if let group = notiGroup {
             LocalNotifications.remove(group: group)
         }
     }
-    
-    
+
     func content(forTriggerDate date: Date) -> NotificationContent {
         // create content based on date
         let content = NotificationContent()
@@ -158,12 +152,15 @@ extension DateProgressVC {
         content.sound = .default
         return content
     }
-    
 }
 
 // MARK: - Event
 
 extension DateProgressVC {
+    @objc func notiAction() {
+        menuView.pop()
+    }
+
     private func jumpBtnAction() {
         let comeDate = "2024-10-12".toDate() ?? DateInRegion(Date(), region: .current)
         let currentDate = "2024-12-25".toDate() ?? DateInRegion(Date(), region: .current)
