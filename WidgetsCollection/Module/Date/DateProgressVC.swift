@@ -62,7 +62,7 @@ class DateProgressVC: BaseViewController {
     }()
 
     lazy var menuView: PopMenuView = {
-        let menu = PopMenuView(dataArray: menuArr, origin: CGPoint(x: kScreenWidth - 13, y: 82), size: CGSize(width: 130, height: 44), direction: PopMenueDirection.right)
+        let menu = PopMenuView(dataArray: menuArr, origin: CGPoint(x: kScreenWidth - 13, y: 90), size: CGSize(width: 130, height: 44), direction: PopMenueDirection.right)
         menu.delegate = self
         return menu
     }()
@@ -103,10 +103,10 @@ class DateProgressVC: BaseViewController {
     }()
 }
 
-// MARK: - POPMenuViewDelegate
+// MARK: - PopMenuViewDelegate
 
-extension DateProgressVC: POPMenuViewDelegate {
-    func POPMenuViewDidSelectedAt(index: Int) {
+extension DateProgressVC: PopMenuViewDelegate {
+    func PopMenuViewDidSelectedAt(index: Int) {
         menuView.dismiss()
         if index == 0 {
             addNoti()

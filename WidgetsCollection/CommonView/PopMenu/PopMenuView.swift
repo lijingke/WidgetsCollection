@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 // 代理方法，选中事件
-protocol POPMenuViewDelegate {
-    func POPMenuViewDidSelectedAt(index: Int)
+protocol PopMenuViewDelegate {
+    func PopMenuViewDidSelectedAt(index: Int)
 }
 
 enum PopMenueDirection {
@@ -21,7 +21,7 @@ enum PopMenueDirection {
 class PopMenuView: UIView {
     // MARK: Property
 
-    var delegate: POPMenuViewDelegate?
+    var delegate: PopMenuViewDelegate?
     var font: UIFont = .semibold(14)!
     var direction: PopMenueDirection = .left
     var menuArr: [PopMenu] = .init() {
@@ -31,6 +31,7 @@ class PopMenuView: UIView {
     }
 
     var orign: CGPoint = .zero
+    var tableFrame: CGRect = .zero
     var cellHeight: CGFloat = 44
     // 分割线颜色
     var separtorColor: UIColor = .black
@@ -42,10 +43,6 @@ class PopMenuView: UIView {
         }
     }
 
-    var contentView: PopBubbleView!
-
-    var contentFrame: CGRect = .zero
-
     // MARK: Life Cycle
 
     init(dataArray: [PopMenu], origin: CGPoint, size: CGSize, direction: PopMenueDirection) {
@@ -54,13 +51,12 @@ class PopMenuView: UIView {
         orign = origin
         cellHeight = size.height
         backgroundColor = UIColor(white: 0.3, alpha: 0.2)
-        contentView = PopBubbleView(direction: direction, fillColor: .white)
         if direction == PopMenueDirection.left {
-            contentView.frame = CGRect(x: origin.x, y: origin.y, width: size.width, height: size.height * CGFloat(dataArray.count)+8)
+            tableView.frame = CGRect(x: origin.x, y: origin.y, width: size.width, height: size.height * CGFloat(dataArray.count))
         } else {
-            contentView.frame = CGRect(x: origin.x, y: origin.y, width: -size.width, height: size.height * CGFloat(dataArray.count)+8)
+            tableView.frame = CGRect(x: origin.x, y: origin.y, width: -size.width, height: size.height * CGFloat(dataArray.count))
         }
-        contentFrame = contentView.frame
+        tableFrame = tableView.frame
         InitUI()
         menuArr = dataArray
     }
@@ -72,6 +68,28 @@ class PopMenuView: UIView {
 
     override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
         dismiss()
+    }
+
+    override func draw(_: CGRect) {
+        let context = UIGraphicsGetCurrentContext()
+        context?.beginPath()
+        if direction == PopMenueDirection.left {
+            let startX = orign.x + 20
+            let startY = orign.y
+            context?.move(to: CGPoint(x: startX, y: startY)) // 起点
+            context?.addLine(to: CGPoint(x: startX + 5, y: startY - 8))
+            context?.addLine(to: CGPoint(x: startX + 10, y: startY))
+        } else {
+            let startX = orign.x - 20
+            let startY = orign.y
+            context?.move(to: CGPoint(x: startX, y: startY)) // 起点
+            context?.addLine(to: CGPoint(x: startX + 5, y: startY - 8))
+            context?.addLine(to: CGPoint(x: startX + 10, y: startY))
+        }
+        context?.closePath() // 结束
+        tableView.backgroundColor?.setFill() // 设置填充色
+        tableView.backgroundColor?.setStroke()
+        context?.drawPath(using: .fillStroke) // 绘制路径
     }
 
     // MARK: Lazy Get
@@ -92,12 +110,7 @@ class PopMenuView: UIView {
 
 extension PopMenuView {
     func InitUI() {
-        addSubview(contentView)
-        contentView.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(8)
-            make.left.bottom.right.equalToSuperview()
-        }
+        addSubview(tableView)
         tableView.tableFooterView = UIView()
     }
 }
@@ -108,15 +121,16 @@ extension PopMenuView {
     func pop() {
         guard let window = kWindow else { return }
         window.addSubview(self)
-        contentView.frame = CGRect(x: orign.x, y: orign.y, width: 0, height: 0)
+        let frame = CGRect(x: tableFrame.origin.x, y: tableFrame.origin.y, width: tableFrame.width, height: 0)
+        tableView.frame = frame
         UIView.animate(withDuration: 0.2) {
-            self.contentView.frame = self.contentFrame
+            self.tableView.frame = self.tableFrame
         }
     }
 
     func dismiss() {
         UIView.animate(withDuration: 0.2, animations: {
-            self.contentView.frame = CGRect(x: self.orign.x, y: self.orign.y, width: 0, height: 0)
+            self.tableView.frame = CGRect(x: self.tableFrame.origin.x, y: self.tableFrame.origin.y, width: self.tableFrame.width, height: 0)
         }) { _ in
             self.removeFromSuperview()
         }
@@ -147,6 +161,6 @@ extension PopMenuView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.POPMenuViewDidSelectedAt(index: indexPath.row)
+        delegate?.PopMenuViewDidSelectedAt(index: indexPath.row)
     }
 }
