@@ -26,7 +26,7 @@ class DateProgressVC: BaseViewController {
     ]
     
     lazy var menuView: PopMenuView = {
-        let menu = PopMenuView(dataArray: menuArr, origin: CGPoint(x: kScreenWidth - 13, y: 90), size: CGSize(width: 130, height: 44), direction: POPMenueDirection.right)
+        let menu = PopMenuView(dataArray: menuArr, origin: CGPoint(x: kScreenWidth - 13, y: 90), size: CGSize(width: 130, height: 44), direction: PopMenueDirection.right)
         menu.delegate = self
         return menu
     }()
