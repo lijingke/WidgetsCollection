@@ -36,4 +36,17 @@ let UploadHistoryAPI = "upload_history"
 let ProfileAPI = "profile"
 let UploadAPI = "upload"
 
-let kWindow = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
+var kWindow: UIWindow? {
+    if #available(iOS 15.0, *) {
+        guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
+            return nil
+        }
+        var window = scene.keyWindow
+        if window == nil {
+            window = scene.windows.first { $0.isKeyWindow }
+        }
+        return window
+    } else {
+        return UIApplication.shared.keyWindow
+    }
+}

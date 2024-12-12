@@ -1,5 +1,5 @@
 //
-//  POPMenuView.swift
+//  PopMenuView.swift
 //  WidgetsCollection
 //
 //  Created by 李京珂 on 2024/12/11.
@@ -18,7 +18,7 @@ enum POPMenueDirection {
     case right
 }
 
-class POPMenuView: UIView {
+class PopMenuView: UIView {
     // MARK: Property
 
     var delegate: POPMenuViewDelegate?
@@ -103,14 +103,14 @@ class POPMenuView: UIView {
         tabV.layer.cornerRadius = 5
         tabV.delegate = self
         tabV.dataSource = self
-        tabV.register(POPMenuViewCell.self, forCellReuseIdentifier: "menuCell")
+        tabV.register(PopMenuViewCell.self, forCellReuseIdentifier: "menuCell")
         return tabV
     }()
 }
 
 // MARK: - UI
 
-extension POPMenuView {
+extension PopMenuView {
     func InitUI() {
         addSubview(tableView)
         tableView.tableFooterView = UIView()
@@ -119,10 +119,10 @@ extension POPMenuView {
 
 // MARK: - Event
 
-extension POPMenuView {
+extension PopMenuView {
     func pop() {
-        let window = UIApplication.shared.keyWindow
-        window?.addSubview(self)
+        guard let window = kWindow else { return }
+        window.addSubview(self)
         tableView.frame = CGRect(x: orign.x, y: orign.y, width: 0, height: 0)
         UIView.animate(withDuration: 0.2) {
             self.tableView.frame = self.tableFrame
@@ -140,7 +140,7 @@ extension POPMenuView {
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension POPMenuView: UITableViewDelegate, UITableViewDataSource {
+extension PopMenuView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return menuArr.count
     }
@@ -150,7 +150,7 @@ extension POPMenuView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! POPMenuViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! PopMenuViewCell
         let menu = menuArr[indexPath.row]
         cell.setupData(menu)
         cell.titleLabel.font = font

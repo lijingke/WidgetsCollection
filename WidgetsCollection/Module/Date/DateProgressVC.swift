@@ -25,8 +25,8 @@ class DateProgressVC: BaseViewController {
         PopMenu(title: "取消通知", icon: "eraser")
     ]
     
-    lazy var menuView: POPMenuView = {
-        let menu = POPMenuView(dataArray: menuArr, origin: CGPoint(x: kScreenWidth - 13, y: 90), size: CGSize(width: 130, height: 44), direction: POPMenueDirection.right)
+    lazy var menuView: PopMenuView = {
+        let menu = PopMenuView(dataArray: menuArr, origin: CGPoint(x: kScreenWidth - 13, y: 90), size: CGSize(width: 130, height: 44), direction: POPMenueDirection.right)
         menu.delegate = self
         return menu
     }()

@@ -1,5 +1,5 @@
 //
-//  POPMenuViewCell.swift
+//  PopMenuViewCell.swift
 //  WidgetsCollection
 //
 //  Created by 李京珂 on 2024/12/11.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class POPMenuViewCell: UITableViewCell {
+class PopMenuViewCell: UITableViewCell {
     lazy var imgView: UIImageView = .init()
     lazy var titleLabel: UILabel = .init()
     lazy var separtorLine: UIView = .init()
@@ -47,7 +47,7 @@ class POPMenuViewCell: UITableViewCell {
     }
 }
 
-extension POPMenuViewCell {
+extension PopMenuViewCell {
     public func setupData(_ menu: PopMenu) {
         if let imageName = menu.icon {
             imgView.image = UIImage(named: imageName) ?? UIImage(systemName: imageName)
