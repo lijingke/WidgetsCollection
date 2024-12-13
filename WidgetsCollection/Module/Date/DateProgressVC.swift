@@ -236,18 +236,18 @@ extension DateProgressVC {
         let comeDate = "2024-10-12".toDate() ?? DateInRegion(Date(), region: .current)
         let goDate = "2025-04-16".toDate() ?? DateInRegion(Date(), region: .current)
         if currentDate > comeDate {
-            pastDay = currentDate.difference(in: .day, from: comeDate) ?? 0
+            pastDay = (currentDate.difference(in: .day, from: comeDate) ?? 0) + 1
             if currentDate > goDate {
                 remainDay = 0
             } else {
-                remainDay = goDate.difference(in: .day, from: currentDate) ?? 0
+                remainDay = (goDate.difference(in: .day, from: currentDate) ?? 0) + 1
             }
         } else {
             pastDay = 0
-            remainDay = goDate.difference(in: .day, from: comeDate) ?? 0
+            remainDay = (goDate.difference(in: .day, from: comeDate) ?? 0) + 1
         }
 
-        totalDay = goDate.difference(in: .day, from: comeDate) ?? 0
+        totalDay = (goDate.difference(in: .day, from: comeDate) ?? 0) + 1
         Log.info("Time past: \(pastDay)")
     }
 
