@@ -263,9 +263,9 @@ extension DateProgressVC {
         let fourDollarComeDate = "2024-12-25".toDate() ?? DateInRegion(Date(), region: .current)
         var fourDollarComeRemainDay = 0
         if currentDate > fourDollarComeDate {
-            let fourDollarComeRemainDay = 0
+            fourDollarComeRemainDay = 0
         } else {
-            let fourDollarComeRemainDay = fourDollarComeDate.difference(in: .day, from: currentDate) ?? 0
+            fourDollarComeRemainDay = fourDollarComeDate.difference(in: .day, from: currentDate) ?? 0
         }
         fourDollarView.setupContent("距离李思源来广州还有：\(fourDollarComeRemainDay)天")
     }
