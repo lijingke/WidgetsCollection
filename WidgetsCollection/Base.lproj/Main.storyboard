@@ -63,7 +63,7 @@
         <!--Random-->
         <scene sceneID="9Of-8S-jbE">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="beI-dM-n2v" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="beI-dM-n2v" customClass="BaseNavigationController" customModule="WidgetsCollection" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Random" image="pencil" catalog="system" id="kkd-Cd-Ukc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wd9-2E-Noo">

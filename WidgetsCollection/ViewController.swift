@@ -49,6 +49,10 @@ class ViewController: BaseViewController {
         let image = [UIColor(hexString: "#E969C0"), .systemCyan, UIColor(hexString: "#F763A5")].icg.linearGradient(button.bounds.size, direction: .vertical)
         button.setTitleColor(UIColor(patternImage: image), for: .normal)
     }
+    
+    override func getNavigatorConfig() -> NavigatorConfig? {
+        return nil
+    }
 }
 
 // MARK: - Event

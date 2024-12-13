@@ -26,9 +26,8 @@ class BaseNavigationController: UINavigationController {
         self.modalPresentationStyle = .fullScreen
     }
     
-    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -49,7 +48,7 @@ class BaseNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        navigationBar.tintColor = nil
-        self.setTranslucent(false)
+        self.setTranslucent(true)
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
