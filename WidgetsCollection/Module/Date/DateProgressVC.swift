@@ -232,6 +232,7 @@ extension DateProgressVC {
         DispatchQueue.main.async {
             self.progressRing.startProgress(to: progress * 100, duration: 1)
         }
+        datePicker.date = "2024-12-25".toDate()?.date ?? Date()
     }
 
     @objc private func onDateValueChanged(_ datePicker: UIDatePicker) {
