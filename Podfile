@@ -15,7 +15,6 @@ target 'WidgetsCollection' do
   pod 'SnapKit'
   pod 'Tiercel'
   pod 'TZImagePickerController'
-# pod 'HandyJSON', :git => 'https://github.com/Miles-Matheson/HandyJSON.git'
   pod 'HandyJSON', :git => 'https://github.com/Miles-Matheson/HandyJSON.git'
   pod 'SDWebImage'
   pod 'MBProgressHUD'
@@ -40,6 +39,8 @@ target 'WidgetsCollection' do
   pod 'SwiftDate'
   # UserDefaults
   pod 'DefaultsKit'
+  # 网络状态检测
+  pod 'ReachabilitySwift'
   
 end
 

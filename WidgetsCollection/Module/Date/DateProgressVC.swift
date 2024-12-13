@@ -19,6 +19,12 @@ class DateProgressVC: BaseViewController {
     private var fourDollarConstranit: Constraint?
     private var isShowFourDollar: Bool = false
     private var notiGroup: LocalNotificationsGroup?
+    private var currentDate = DateInRegion(Date(), region: .current) {
+        didSet {
+            initData()
+            refreshUI()
+        }
+    }
 
     let menuArr: [PopMenu] = [
         PopMenu(title: "打开通知", icon: "app.badge"),
@@ -37,7 +43,7 @@ class DateProgressVC: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupData()
+        refreshUI()
     }
 
     override func getNavigatorConfig() -> NavigatorConfig? {
@@ -88,7 +94,7 @@ class DateProgressVC: BaseViewController {
     lazy var fourDollarView: FourDollarView = {
         let view = FourDollarView()
         view.updateBlock = { [weak self] in
-            self?.jumpBtnAction()
+            self?.fourDollarTimeAction()
         }
         view.clipsToBounds = true
         return view
@@ -161,7 +167,7 @@ extension DateProgressVC {
         menuView.pop()
     }
 
-    private func jumpBtnAction() {
+    private func fourDollarTimeAction() {
         let comeDate = "2024-10-12".toDate() ?? DateInRegion(Date(), region: .current)
         let currentDate = "2024-12-25".toDate() ?? DateInRegion(Date(), region: .current)
         pastDay = currentDate.difference(in: .day, from: comeDate) ?? 0
@@ -180,6 +186,7 @@ extension DateProgressVC {
         } completion: { _ in
             self.presentedViewController?.dismiss(animated: true, completion: nil)
             self.updateProgress(withData: datePicker.date)
+            self.currentDate = DateInRegion(datePicker.date, region: .current)
         }
     }
 
@@ -228,14 +235,23 @@ extension DateProgressVC {
     private func initData() {
         let comeDate = "2024-10-12".toDate() ?? DateInRegion(Date(), region: .current)
         let goDate = "2025-04-16".toDate() ?? DateInRegion(Date(), region: .current)
-        let currentDate = DateInRegion(Date(), region: .current)
-        pastDay = currentDate.difference(in: .day, from: comeDate) ?? 0
-        remainDay = goDate.difference(in: .day, from: currentDate) ?? 0
+        if currentDate > comeDate {
+            pastDay = currentDate.difference(in: .day, from: comeDate) ?? 0
+            if currentDate > goDate {
+                remainDay = 0
+            } else {
+                remainDay = goDate.difference(in: .day, from: currentDate) ?? 0
+            }
+        } else {
+            pastDay = 0
+            remainDay = goDate.difference(in: .day, from: comeDate) ?? 0
+        }
+
         totalDay = goDate.difference(in: .day, from: comeDate) ?? 0
         Log.info("Time past: \(pastDay)")
     }
 
-    private func setupData() {
+    private func refreshUI() {
         totalDayLabel.text = "总共待：\(totalDay)天"
         pastDayLabel.text = "已经待：\(pastDay)天"
         remainDayLabel.text = "剩余待：\(remainDay)天"
@@ -243,10 +259,15 @@ extension DateProgressVC {
         DispatchQueue.main.async {
             self.progressRing.startProgress(to: progress * 100, duration: 1)
         }
-        let currentDate = DateInRegion(Date(), region: .current)
+
         let fourDollarComeDate = "2024-12-25".toDate() ?? DateInRegion(Date(), region: .current)
-        let remainDay = fourDollarComeDate.difference(in: .day, from: currentDate) ?? 0
-        fourDollarView.setupContent("距离李思源来广州还有：\(remainDay)天")
+        var fourDollarComeRemainDay = 0
+        if currentDate > fourDollarComeDate {
+            let fourDollarComeRemainDay = 0
+        } else {
+            let fourDollarComeRemainDay = fourDollarComeDate.difference(in: .day, from: currentDate) ?? 0
+        }
+        fourDollarView.setupContent("距离李思源来广州还有：\(fourDollarComeRemainDay)天")
     }
 }
 
