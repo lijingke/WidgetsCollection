@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5400309D2D0C33A700F56D75 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5400309C2D0C33A700F56D75 /* FirebaseAnalytics */; };
 		54A3BDED2D004318004FB071 /* SFSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 54A3BDEC2D004318004FB071 /* SFSymbols */; };
 		EFF3A6DBD1C9AE6F52890546 /* Pods_WidgetsCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE0870E5B0344C379332D2AE /* Pods_WidgetsCollection.framework */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54A3BDED2D004318004FB071 /* SFSymbols in Frameworks */,
+				5400309D2D0C33A700F56D75 /* FirebaseAnalytics in Frameworks */,
 				EFF3A6DBD1C9AE6F52890546 /* Pods_WidgetsCollection.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +145,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				54A3BDEB2D004318004FB071 /* XCRemoteSwiftPackageReference "SFSymbols" */,
+				5400309B2D0C33A700F56D75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5480DE8B2CF9653A00C21D67 /* Products */;
@@ -475,6 +478,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5400309B2D0C33A700F56D75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
 		54A3BDEB2D004318004FB071 /* XCRemoteSwiftPackageReference "SFSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Rspoon3/SFSymbols";
@@ -486,6 +497,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5400309C2D0C33A700F56D75 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5400309B2D0C33A700F56D75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
 		54A3BDEC2D004318004FB071 /* SFSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 54A3BDEB2D004318004FB071 /* XCRemoteSwiftPackageReference "SFSymbols" */;

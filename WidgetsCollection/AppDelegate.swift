@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 //        requestNoti()
 //        niceNoti()
+//        cancelNoti()
+        FirebaseApp.configure()
         return true
     }
 
@@ -65,6 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return NotificationContent(title: "", subtitle: nil, body: "", sound: .default)
     }
     
+    func cancelNoti() {
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+    }
+    
     func requestNoti() {
         // 请求权限
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
@@ -73,7 +80,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // 创建通知内容
             let content = UNMutableNotificationContent()
             content.title = "My Notification"
-            content.body = "Hello, this is a local notification!"
+            let time = DateUtil.getDateStr(interval: Date().timeIntervalSince1970, format: "yyyy-MM-dd HH:mm:ss")
+            content.body = "Hello, this is a local notification!\nTime is \(time)"
             content.sound = UNNotificationSound.default
          
             // 创建触发器

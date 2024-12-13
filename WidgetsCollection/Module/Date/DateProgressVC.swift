@@ -21,15 +21,16 @@ class DateProgressVC: BaseViewController {
     private var notiGroup: LocalNotificationsGroup?
     private var currentDate = DateInRegion(Date(), region: .current) {
         didSet {
-            initData()
+            setDate()
             refreshUI()
         }
     }
+
     private var offsetDat: Int {
         return containStartDay ? 1 : 0
     }
+
     private var containStartDay: Bool = false
-    
 
     let menuArr: [PopMenu] = [
         PopMenu(title: "打开通知", icon: "app.badge"),
@@ -43,8 +44,9 @@ class DateProgressVC: BaseViewController {
         edgesForExtendedLayout = .all
         view.layer.contents = R.image.bg()!.cgImage
         containStartDay = true
-        initData()
+        setDate()
         setupUI()
+//        requestNoti()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -147,6 +149,55 @@ extension DateProgressVC {
                 .schedule(with: content(forTriggerDate:))
         }
     }
+    
+    func requestNoti() {
+        // 请求权限
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            guard granted else { return }
+      
+            var pastDay = 0
+            var totalDay = 0
+            var remainDay = 0
+            var currentDate = DateInRegion(Date(), region: .current)
+            let comeDate = "2024-10-12".toDate() ?? DateInRegion(Date(), region: .current)
+            let goDate = "2025-04-16".toDate() ?? DateInRegion(Date(), region: .current)
+            if currentDate > comeDate {
+                pastDay = (currentDate.difference(in: .day, from: comeDate) ?? 0) + 1
+                if currentDate > goDate {
+                    remainDay = 0
+                } else {
+                    remainDay = (goDate.difference(in: .day, from: currentDate) ?? 0) + 1
+                }
+            } else {
+                pastDay = 0
+                remainDay = (goDate.difference(in: .day, from: comeDate) ?? 0) + 1
+            }
+
+            totalDay = (goDate.difference(in: .day, from: comeDate) ?? 0) + 1
+            
+            // 创建通知内容
+            let content = UNMutableNotificationContent()
+            content.title = "这是一个倒计时"
+            let progress = CGFloat(pastDay) / CGFloat(totalDay)
+            content.subtitle = "已过去\(pastDay)天：\((progress * 100).roundToStr2(2))%"
+            let time = DateUtil.getDateStr(interval: Date().timeIntervalSince1970, format: "yyyy-MM-dd HH:mm:ss")
+            content.body = "Hello, this is a local notification!\nTime is \(time)\n还剩\(remainDay)天"
+            content.sound = .default
+         
+            // 创建触发器
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+         
+            // 创建请求
+            let request = UNNotificationRequest(identifier: "myLocalNotification", content: content, trigger: trigger)
+         
+            // 添加请求到通知中心
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
 
     func removeAllNoti() {
         if let group = notiGroup {
@@ -225,9 +276,7 @@ extension DateProgressVC: UICircularProgressRingDelegate {
 
     func didContinueProgress(for ring: UICircularProgressRing) {}
 
-    func didUpdateProgressValue(for ring: UICircularProgressRing, to newValue: CGFloat) {
-        LogUtil.log(newValue.description)
-    }
+    func didUpdateProgressValue(for ring: UICircularProgressRing, to newValue: CGFloat) {}
 
     func willDisplayLabel(for ring: UICircularProgressRing, _ label: UILabel) {
         label.font = UIFont.semibold(45)
@@ -238,7 +287,7 @@ extension DateProgressVC: UICircularProgressRingDelegate {
 // MARK: - Data
 
 extension DateProgressVC {
-    private func initData() {
+    private func setDate() {
         let comeDate = "2024-10-12".toDate() ?? DateInRegion(Date(), region: .current)
         let goDate = "2025-04-16".toDate() ?? DateInRegion(Date(), region: .current)
         if currentDate > comeDate {

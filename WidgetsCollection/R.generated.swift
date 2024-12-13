@@ -784,12 +784,15 @@ struct _R {
     }
   }
 
-  /// This `_R.file` struct is generated, and contains static references to 21 resource files.
+  /// This `_R.file` struct is generated, and contains static references to 22 resource files.
   struct file {
     let bundle: Foundation.Bundle
 
     /// Resource file `AllSymbols.txt`.
     var allSymbolsTxt: RswiftResources.FileResource { .init(name: "AllSymbols", pathExtension: "txt", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `GoogleService-Info.plist`.
+    var googleServiceInfoPlist: RswiftResources.FileResource { .init(name: "GoogleService-Info", pathExtension: "plist", bundle: bundle, locale: LocaleReference.none) }
 
     /// Resource file `MulticolorSymbols.txt`.
     var multicolorSymbolsTxt: RswiftResources.FileResource { .init(name: "MulticolorSymbols", pathExtension: "txt", bundle: bundle, locale: LocaleReference.none) }
