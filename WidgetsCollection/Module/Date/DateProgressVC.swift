@@ -25,6 +25,11 @@ class DateProgressVC: BaseViewController {
             refreshUI()
         }
     }
+    private var offsetDat: Int {
+        return containStartDay ? 1 : 0
+    }
+    private var containStartDay: Bool = false
+    
 
     let menuArr: [PopMenu] = [
         PopMenu(title: "打开通知", icon: "app.badge"),
@@ -37,6 +42,7 @@ class DateProgressVC: BaseViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = .all
         view.layer.contents = R.image.bg()!.cgImage
+        containStartDay = true
         initData()
         setupUI()
     }
@@ -236,18 +242,18 @@ extension DateProgressVC {
         let comeDate = "2024-10-12".toDate() ?? DateInRegion(Date(), region: .current)
         let goDate = "2025-04-16".toDate() ?? DateInRegion(Date(), region: .current)
         if currentDate > comeDate {
-            pastDay = (currentDate.difference(in: .day, from: comeDate) ?? 0) + 1
+            pastDay = (currentDate.difference(in: .day, from: comeDate) ?? 0) + offsetDat
             if currentDate > goDate {
                 remainDay = 0
             } else {
-                remainDay = (goDate.difference(in: .day, from: currentDate) ?? 0) + 1
+                remainDay = (goDate.difference(in: .day, from: currentDate) ?? 0) + offsetDat
             }
         } else {
             pastDay = 0
-            remainDay = (goDate.difference(in: .day, from: comeDate) ?? 0) + 1
+            remainDay = (goDate.difference(in: .day, from: comeDate) ?? 0) + offsetDat
         }
 
-        totalDay = (goDate.difference(in: .day, from: comeDate) ?? 0) + 1
+        totalDay = (goDate.difference(in: .day, from: comeDate) ?? 0) + offsetDat
         Log.info("Time past: \(pastDay)")
     }
 
