@@ -30,11 +30,12 @@ extension SMImageManager {
     public func getUserInfo(_ closure: @escaping ((_ model: UserInfoModel?) -> Void)) {
         let urlStr = SMDomainURL + ProfileAPI
         let headers: HTTPHeaders = [.authorization("uU0SeGTlcGYzasZixa5d0RNYuVv7zy0U"), .contentType("application/x-www-form-urlencoded")]
-        AF.request(urlStr, method: .post, headers: headers).responseJSON { response in
+        AF.request(urlStr, method: .post, headers: headers).responseData { response in
             switch response.result {
-            case let .success(json):
-                if let dict = json as? [String: AnyObject], let data = dict["data"] as? [String: AnyObject] {
-                    if let model = JSONDeserializer<UserInfoModel>.deserializeFrom(dict: data) {
+            case let .success(data):
+                let asJSON = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+                if let dict = asJSON, let responseData = dict["data"] as? [String: AnyObject] {
+                    if let model = JSONDeserializer<UserInfoModel>.deserializeFrom(dict: responseData) {
                         closure(model)
                     }
                 }
@@ -48,11 +49,12 @@ extension SMImageManager {
     public func getUploadHistory(_ closure: @escaping ((_ models: [UploadHistoryModel?]) -> Void)) {
         let urlStr = SMDomainURL + UploadHistoryAPI
         let headers: HTTPHeaders = [.authorization("uU0SeGTlcGYzasZixa5d0RNYuVv7zy0U"), .contentType("application/x-www-form-urlencoded")]
-        AF.request(urlStr, headers: headers).responseJSON { response in
+        AF.request(urlStr, headers: headers).responseData { response in
             switch response.result {
-            case let .success(json):
-                if let dict = json as? [String: AnyObject], let data = dict["data"] as? [Any] {
-                    if let models = JSONDeserializer<UploadHistoryModel>.deserializeModelArrayFrom(array: data) {
+            case let .success(data):
+                let asJSON = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+                if let dict = asJSON, let responseData = dict["data"] as? [Any] {
+                    if let models = JSONDeserializer<UploadHistoryModel>.deserializeModelArrayFrom(array: responseData) {
                         closure(models)
                     }
                 }
@@ -67,8 +69,17 @@ extension SMImageManager {
         let headers: HTTPHeaders = [.authorization("uU0SeGTlcGYzasZixa5d0RNYuVv7zy0U"), .contentType("application/x-www-form-urlencoded")]
         let parameters = ["username": "lijingke", "password": "7F7ru6wNrfbL4wVv"]
 
-        AF.request(urlStr, method: .post, parameters: parameters, encoder: URLEncodedFormParameterEncoder.default, headers: headers).responseJSON { data in
-            print(data)
+        AF.request(urlStr, method: .post, parameters: parameters, encoder: URLEncodedFormParameterEncoder.default, headers: headers).responseData { response in
+            print(response)
+            switch response.result {
+            case let .success(data):
+                let asJSON = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+                if let dict = asJSON, let responseData = dict["data"] as? [Any] {
+                    Log.info(dict.description)
+                }
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
         }
     }
 
@@ -80,7 +91,7 @@ extension SMImageManager {
             let imageData = image.jpegData(compressionQuality: 0.5)
             let parameterName = "smfile"
             data.append(imageData!, withName: parameterName, fileName: fileName, mimeType: "image/jpg")
-        }, to: urlStr, method: .post, headers: headers).responseJSON { _ in
+        }, to: urlStr, method: .post, headers: headers).responseData { _ in
             closure()
         }
     }
