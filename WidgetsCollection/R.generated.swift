@@ -753,6 +753,7 @@ struct _R {
 
   /// This `_R.entitlements` struct is generated, and contains static references to 1 properties.
   struct entitlements {
+    let apsEnvironment: String = "development"
     let comAppleDeveloperHealthkit: Bool = true
     let comAppleDeveloperHealthkitAccess = comAppleDeveloperHealthkitAccess()
     let comAppleDeveloperHealthkitBackgroundDelivery: Bool = true
