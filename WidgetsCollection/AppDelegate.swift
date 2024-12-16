@@ -11,7 +11,7 @@ import UserNotifications
 import FirebaseCore
 import FirebaseMessaging
 
-@main
+@main @MainActor
 class AppDelegate: UIResponder, UIApplicationDelegate {
     let gcmMessageIDKey = "gcm.message_id"
 
@@ -29,9 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             options: authOptions,
             completionHandler: { _, _ in }
         )
-        
+
         application.registerForRemoteNotifications()
-        
+
         return true
     }
 
@@ -90,7 +90,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return UIBackgroundFetchResult.newData
     }
-
     // [END receive_message]
 
     func application(_ application: UIApplication,
@@ -202,7 +201,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print(userInfo)
 
         // Change this to your preferred presentation option
-        return [[.alert, .sound]]
+//        return [[.alert, .sound]]
+        return [[.list, .banner, .sound]]
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -229,7 +229,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
 extension AppDelegate: MessagingDelegate {
     // [START refresh_token]
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+    nonisolated func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("Firebase registration token: \(String(describing: fcmToken))")
 
         let dataDict: [String: String] = ["token": fcmToken ?? ""]
