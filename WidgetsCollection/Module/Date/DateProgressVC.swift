@@ -158,7 +158,7 @@ extension DateProgressVC {
             var pastDay = 0
             var totalDay = 0
             var remainDay = 0
-            var currentDate = DateInRegion(Date(), region: .current)
+            let currentDate = DateInRegion(Date(), region: .current)
             let comeDate = "2024-10-12".toDate() ?? DateInRegion(Date(), region: .current)
             let goDate = "2025-04-16".toDate() ?? DateInRegion(Date(), region: .current)
             if currentDate > comeDate {

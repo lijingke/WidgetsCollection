@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5400309D2D0C33A700F56D75 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5400309C2D0C33A700F56D75 /* FirebaseAnalytics */; };
-		541ABEFF2D0D349A006C74AD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 541ABEFE2D0D349A006C74AD /* FirebaseAnalytics */; };
-		541ABF012D0D349A006C74AD /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 541ABF002D0D349A006C74AD /* FirebaseCore */; };
-		541ABF032D0D349A006C74AD /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 541ABF022D0D349A006C74AD /* FirebaseMessaging */; };
 		54A3BDED2D004318004FB071 /* SFSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 54A3BDEC2D004318004FB071 /* SFSymbols */; };
 		EFF3A6DBD1C9AE6F52890546 /* Pods_WidgetsCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE0870E5B0344C379332D2AE /* Pods_WidgetsCollection.framework */; };
 /* End PBXBuildFile section */
@@ -49,10 +45,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				54A3BDED2D004318004FB071 /* SFSymbols in Frameworks */,
-				5400309D2D0C33A700F56D75 /* FirebaseAnalytics in Frameworks */,
-				541ABF032D0D349A006C74AD /* FirebaseMessaging in Frameworks */,
-				541ABEFF2D0D349A006C74AD /* FirebaseAnalytics in Frameworks */,
-				541ABF012D0D349A006C74AD /* FirebaseCore in Frameworks */,
 				EFF3A6DBD1C9AE6F52890546 /* Pods_WidgetsCollection.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,6 +100,7 @@
 				5480DE872CF9653A00C21D67 /* Frameworks */,
 				5480DE882CF9653A00C21D67 /* Resources */,
 				7C064C196B7B818235613402 /* [CP] Embed Pods Frameworks */,
+				54A440482D0FE267004276F9 /* FirebaseCrashlytics */,
 			);
 			buildRules = (
 			);
@@ -151,7 +144,6 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				54A3BDEB2D004318004FB071 /* XCRemoteSwiftPackageReference "SFSymbols" */,
-				5400309B2D0C33A700F56D75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5480DE8B2CF9653A00C21D67 /* Products */;
@@ -213,6 +205,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/WidgetsCollection/R.generated.swift\"\n";
+		};
+		54A440482D0FE267004276F9 /* FirebaseCrashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = FirebaseCrashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		7C064C196B7B818235613402 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -285,11 +300,15 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lijingke.WidgetsCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WidgetsCollection/WidgetsCollection-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -334,10 +353,14 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lijingke.WidgetsCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WidgetsCollection/WidgetsCollection-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -486,14 +509,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5400309B2D0C33A700F56D75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.6.0;
-			};
-		};
 		54A3BDEB2D004318004FB071 /* XCRemoteSwiftPackageReference "SFSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Rspoon3/SFSymbols";
@@ -505,26 +520,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5400309C2D0C33A700F56D75 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5400309B2D0C33A700F56D75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		541ABEFE2D0D349A006C74AD /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5400309B2D0C33A700F56D75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		541ABF002D0D349A006C74AD /* FirebaseCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5400309B2D0C33A700F56D75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCore;
-		};
-		541ABF022D0D349A006C74AD /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5400309B2D0C33A700F56D75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMessaging;
-		};
 		54A3BDEC2D004318004FB071 /* SFSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 54A3BDEB2D004318004FB071 /* XCRemoteSwiftPackageReference "SFSymbols" */;

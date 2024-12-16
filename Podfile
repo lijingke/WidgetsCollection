@@ -41,6 +41,9 @@ target 'WidgetsCollection' do
   pod 'DefaultsKit'
   # 网络状态检测
   pod 'ReachabilitySwift'
+  # Firebase
+  pod 'FirebaseCrashlytics'
+  pod 'FirebaseMessaging'	
   
 end
 
