@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--FCM Example-->
+        <scene sceneID="LBm-g9-hDc">
+            <objects>
+                <viewController storyboardIdentifier="MessagingVC" id="RwF-Y1-lIo" customClass="MessagingVC" customModule="WidgetsCollection" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5O5-wd-ycF"/>
+                        <viewControllerLayoutGuide type="bottom" id="ClY-Wz-UK6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7Eu-nE-EVL">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ue2-9V-bzV">
+                                <rect key="frame" x="116.66666666666669" y="404" width="160" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Nez-bo-7LS"/>
+                                    <constraint firstAttribute="width" constant="160" id="Zqn-sP-r3b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Log Token"/>
+                                <connections>
+                                    <action selector="handleLogTokenTouch:" destination="RwF-Y1-lIo" eventType="touchUpInside" id="5BZ-M5-oEo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQK-Ro-73H">
+                                <rect key="frame" x="100.66666666666669" y="352" width="192" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.56078431370000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="192" id="dq6-FT-SHE"/>
+                                    <constraint firstAttribute="height" constant="44" id="p5K-di-dKy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Subscribe To Weather">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleSubscribeTouch:" destination="RwF-Y1-lIo" eventType="touchUpInside" id="tmc-X1-WSg"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No FCM token" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g10-lt-Q16">
+                                <rect key="frame" x="76.666666666666686" y="551.66666666666663" width="240" height="72.333333333333371"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="VF6-qf-zwC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No FCM Registration token" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6s-uj-U4J">
+                                <rect key="frame" x="76.666666666666686" y="716.33333333333337" width="240" height="13.333333333333371"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="x8v-3k-NIt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7RG-em-KAT"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="g10-lt-Q16" firstAttribute="centerX" secondItem="7Eu-nE-EVL" secondAttribute="centerX" id="1ni-yB-R4N"/>
+                            <constraint firstItem="ClY-Wz-UK6" firstAttribute="top" secondItem="g10-lt-Q16" secondAttribute="bottom" constant="194" id="72I-Q5-oYT"/>
+                            <constraint firstItem="ue2-9V-bzV" firstAttribute="centerX" secondItem="7Eu-nE-EVL" secondAttribute="centerX" id="LbU-vk-pGw"/>
+                            <constraint firstItem="g10-lt-Q16" firstAttribute="top" secondItem="ue2-9V-bzV" secondAttribute="bottom" constant="103.5" id="OBe-MY-CES"/>
+                            <constraint firstItem="ue2-9V-bzV" firstAttribute="top" secondItem="bQK-Ro-73H" secondAttribute="bottom" constant="8" id="QI2-Hp-A0X"/>
+                            <constraint firstItem="ue2-9V-bzV" firstAttribute="centerY" secondItem="7Eu-nE-EVL" secondAttribute="centerY" id="TNg-Mi-QuB"/>
+                            <constraint firstItem="bQK-Ro-73H" firstAttribute="centerX" secondItem="7Eu-nE-EVL" secondAttribute="centerX" id="rNe-NY-mbr"/>
+                            <constraint firstItem="ClY-Wz-UK6" firstAttribute="top" secondItem="s6s-uj-U4J" secondAttribute="bottom" constant="88.5" id="rtV-ci-JzY"/>
+                            <constraint firstItem="s6s-uj-U4J" firstAttribute="centerX" secondItem="7Eu-nE-EVL" secondAttribute="centerX" id="wbX-3d-S93"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="FCM Example" id="HtV-lm-dAE"/>
+                    <connections>
+                        <outlet property="fcmTokenMessage" destination="g10-lt-Q16" id="ego-qJ-Zre"/>
+                        <outlet property="remoteFCMTokenMessage" destination="s6s-uj-U4J" id="MDQ-lD-JeS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="whH-AF-lBO" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="311.19999999999999" y="445.72713643178412"/>
+        </scene>
+    </scenes>
+</document>

@@ -884,11 +884,12 @@ struct _R {
     var cell: RswiftResources.ReuseIdentifier<ExpandableCell> { .init(identifier: "cell") }
   }
 
-  /// This `_R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  /// This `_R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
     let bundle: Foundation.Bundle
     var launchScreen: launchScreen { .init(bundle: bundle) }
     var main: main { .init(bundle: bundle) }
+    var messagingVC: messagingVC { .init(bundle: bundle) }
     var swiftAsciiArtVC: swiftAsciiArtVC { .init(bundle: bundle) }
 
     func launchScreen(bundle: Foundation.Bundle) -> launchScreen {
@@ -897,12 +898,16 @@ struct _R {
     func main(bundle: Foundation.Bundle) -> main {
       .init(bundle: bundle)
     }
+    func messagingVC(bundle: Foundation.Bundle) -> messagingVC {
+      .init(bundle: bundle)
+    }
     func swiftAsciiArtVC(bundle: Foundation.Bundle) -> swiftAsciiArtVC {
       .init(bundle: bundle)
     }
     func validate() throws {
       try self.launchScreen.validate()
       try self.main.validate()
+      try self.messagingVC.validate()
       try self.swiftAsciiArtVC.validate()
     }
 
@@ -928,6 +933,19 @@ struct _R {
       let name = "Main"
       func validate() throws {
         if #available(iOS 13.0, *) { if UIKit.UIImage(systemName: "pencil") == nil { throw RswiftResources.ValidationError("[R.swift] System image named 'pencil' is used in storyboard 'Main', but couldn't be loaded.") } }
+      }
+    }
+
+    /// Storyboard `MessagingVC`.
+    struct messagingVC: RswiftResources.StoryboardReference {
+      let bundle: Foundation.Bundle
+
+      let name = "MessagingVC"
+
+      var messagingVC: RswiftResources.StoryboardViewControllerIdentifier<MessagingVC> { .init(identifier: "MessagingVC", storyboard: name, bundle: bundle) }
+
+      func validate() throws {
+        if messagingVC() == nil { throw RswiftResources.ValidationError("[R.swift] ViewController with identifier 'messagingVC' could not be loaded from storyboard 'MessagingVC' as 'MessagingVC'.") }
       }
     }
 

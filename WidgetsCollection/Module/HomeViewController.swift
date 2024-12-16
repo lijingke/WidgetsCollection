@@ -49,6 +49,7 @@ class HomeViewController: BaseViewController {
                     [.cellName: "RPlus", .className: "ProcessProgressVC"],
                     [.cellName: "富文本点击", .className: "AttributedStringViewController"],
                     [.cellName: "SwiftAsciiArt", .className: "SwiftAsciiArtVC", .pushType: PushType.storyboard],
+                    [.cellName: "MessagingVC", .className: "MessagingVC", .pushType: PushType.storyboard],
                 ]
             case "Sound&Vibrate":
                 dicArray = [
