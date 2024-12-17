@@ -254,3 +254,25 @@ extension AppDelegate: MessagingDelegate {
 
     // [END refresh_token]
 }
+// MARK: - JPUSHRegisterDelegate
+
+extension AppDelegate: @preconcurrency JPUSHRegisterDelegate {
+    
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> Int {
+        return 0
+    }
+    
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        
+    }
+    
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification) {
+        
+    }
+    
+    func jpushNotificationAuthorization(_ status: JPAuthorizationStatus, withInfo info: [AnyHashable : Any]?) {
+        
+    }
+    
+    
+}

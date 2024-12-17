@@ -43,8 +43,9 @@ target 'WidgetsCollection' do
   pod 'ReachabilitySwift'
   # Firebase
   pod 'FirebaseCrashlytics'
-  pod 'FirebaseMessaging'	
-  
+  pod 'FirebaseMessaging'
+  # 极光推送
+  pod 'JPush'
 end
 
 post_install do |installer|
