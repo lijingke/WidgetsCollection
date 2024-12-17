@@ -226,7 +226,7 @@ extension DateProgressVC {
 
     private func fourDollarTimeAction() {
         let comeDate = "2024-10-12".toDate() ?? DateInRegion(Date(), region: .current)
-        let currentDate = "2024-12-25".toDate() ?? DateInRegion(Date(), region: .current)
+        currentDate = "2024-12-25".toDate() ?? DateInRegion(Date(), region: .current)
         pastDay = currentDate.difference(in: .day, from: comeDate) ?? 0
         let progress = CGFloat(pastDay) / CGFloat(totalDay)
         DispatchQueue.main.async {
