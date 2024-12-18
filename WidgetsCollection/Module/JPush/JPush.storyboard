@@ -408,7 +408,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DJp-P2-Jnj">
-                                <rect key="frame" x="336" y="140.66666666666666" width="32" height="34"/>
+                                <rect key="frame" x="55.666666666666657" y="140.66666666666666" width="312.33333333333337" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
@@ -488,8 +488,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKN-Hd-GKr">
-                                <rect key="frame" x="220.33333333333337" y="466.66666666666669" width="72" height="28"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKN-Hd-GKr">
+                                <rect key="frame" x="228.33333333333337" y="461" width="72" height="40.333333333333258"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="timeInterval">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -498,8 +498,8 @@
                                     <action selector="addNotificationWithTimeintervalTrigger:" destination="BpL-Ua-rRL" eventType="touchUpInside" id="w7S-4u-puM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfJ-1j-TFF">
-                                <rect key="frame" x="145.33333333333334" y="466.66666666666669" width="39" height="28"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfJ-1j-TFF">
+                                <rect key="frame" x="149.33333333333334" y="467" width="39" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="region">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -508,8 +508,8 @@
                                     <action selector="addNotificationWithRegionTrigger:" destination="BpL-Ua-rRL" eventType="touchUpInside" id="VE9-Fs-P8Q"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJc-Ki-FFg">
-                                <rect key="frame" x="75.333333333333329" y="466.66666666666669" width="30" height="28"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJc-Ki-FFg">
+                                <rect key="frame" x="79.333333333333329" y="467" width="30" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="date">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -641,8 +641,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="add" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAh-eH-Rop">
-                                <rect key="frame" x="16" y="470" width="29" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="add" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAh-eH-Rop">
+                                <rect key="frame" x="16" y="470" width="33" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -652,7 +652,7 @@
                         <constraints>
                             <constraint firstItem="dXo-Gh-NVa" firstAttribute="centerY" secondItem="eBv-Xh-cyl" secondAttribute="centerY" id="0Ln-YP-7B6"/>
                             <constraint firstItem="OfJ-1j-TFF" firstAttribute="leading" secondItem="bJc-Ki-FFg" secondAttribute="trailing" constant="40.000000000000014" id="0rm-Ld-gDf"/>
-                            <constraint firstItem="DJp-P2-Jnj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Xjy-ld-zCm" secondAttribute="trailing" id="0yd-eW-ntF"/>
+                            <constraint firstItem="DJp-P2-Jnj" firstAttribute="leading" secondItem="Xjy-ld-zCm" secondAttribute="trailing" constant="10" id="0yd-eW-ntF"/>
                             <constraint firstItem="8lZ-9C-EXU" firstAttribute="centerY" secondItem="3s2-6t-KuB" secondAttribute="centerY" id="2ti-no-PWk"/>
                             <constraint firstItem="jVN-hk-9pJ" firstAttribute="top" secondItem="DJp-P2-Jnj" secondAttribute="bottom" constant="3" id="4ll-c4-23U"/>
                             <constraint firstItem="GPJ-xo-4Iw" firstAttribute="trailing" secondItem="Wuh-cg-gBB" secondAttribute="trailing" constant="-25" id="6Hf-hI-YBc"/>
@@ -701,12 +701,11 @@
                             <constraint firstItem="gfm-fe-iWq" firstAttribute="centerY" secondItem="XQ9-a7-igO" secondAttribute="centerY" id="a4g-qj-T6T"/>
                             <constraint firstItem="KpB-nl-DcJ" firstAttribute="centerY" secondItem="834-9W-zgn" secondAttribute="centerY" id="aT6-5O-itQ"/>
                             <constraint firstItem="jWN-Mb-0tR" firstAttribute="leading" secondItem="Wuh-cg-gBB" secondAttribute="leading" constant="5" id="aXS-ap-Qcr"/>
-                            <constraint firstItem="DKN-Hd-GKr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OfJ-1j-TFF" secondAttribute="trailing" symbolic="YES" id="b3K-Qt-Yqt"/>
+                            <constraint firstItem="DKN-Hd-GKr" firstAttribute="leading" secondItem="OfJ-1j-TFF" secondAttribute="trailing" constant="40.000000000000028" id="b3K-Qt-Yqt"/>
                             <constraint firstItem="Xjy-ld-zCm" firstAttribute="baseline" secondItem="DJp-P2-Jnj" secondAttribute="firstBaseline" id="bQH-q4-DZg"/>
                             <constraint firstItem="bJc-Ki-FFg" firstAttribute="centerY" secondItem="RAh-eH-Rop" secondAttribute="centerY" id="bi2-IF-W6m"/>
                             <constraint firstItem="ibj-iy-yNM" firstAttribute="top" secondItem="Wuh-cg-gBB" secondAttribute="top" constant="425.33333333333331" id="c1e-js-WEf"/>
                             <constraint firstItem="eSY-Zs-7UO" firstAttribute="leading" secondItem="Wuh-cg-gBB" secondAttribute="leading" constant="8" id="cEV-In-bUh"/>
-                            <constraint firstAttribute="trailing" secondItem="DKN-Hd-GKr" secondAttribute="trailing" constant="100.66666666666663" id="cIT-Sv-HNo"/>
                             <constraint firstItem="E2j-Fg-LRr" firstAttribute="centerY" secondItem="ibj-iy-yNM" secondAttribute="centerY" id="ccO-8U-dAK"/>
                             <constraint firstItem="RAh-eH-Rop" firstAttribute="top" secondItem="KDR-zT-5Sk" secondAttribute="bottom" constant="44.666666666666686" id="cf3-Eu-JwI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DJp-P2-Jnj" secondAttribute="trailing" constant="9" id="dNz-6z-Z43"/>
