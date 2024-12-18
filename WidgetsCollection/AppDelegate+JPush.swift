@@ -57,7 +57,7 @@ extension AppDelegate: @preconcurrency JPUSHRegisterDelegate {
             print("iOS10 收到本地通知:\(userInfo)")
         }
 
-        completionHandler(Int(UNNotificationPresentationOptions.badge.rawValue | UNNotificationPresentationOptions.sound.rawValue | UNNotificationPresentationOptions.alert.rawValue))
+        completionHandler(Int(UNNotificationPresentationOptions.badge.rawValue | UNNotificationPresentationOptions.sound.rawValue | UNNotificationPresentationOptions.banner.rawValue))
     }
 
     func jpushNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification) {}

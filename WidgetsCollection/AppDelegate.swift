@@ -97,26 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - Notification
 
 extension AppDelegate {
-    func application(_ application: UIApplication,
-                     didReceiveRemoteNotification userInfo: [AnyHashable: Any])
-    {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-
-        // MARK: Firebase
-
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-        // Log.info message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            Log.info("Message ID: \(messageID)")
-        }
-
-        // Log.info full message.
-        print(userInfo)
-    }
 
     // [START receive_message]
     func application(_ application: UIApplication,
@@ -137,11 +117,41 @@ extension AppDelegate {
 
         // Log.info full message.
         print(userInfo)
+        
+        // MARK: JPush
+        // 注意调用
+        JPUSHService.handleRemoteNotification(userInfo)
+        Log.info("收到通知:\(userInfo)")
 
         return UIBackgroundFetchResult.newData
     }
 
     // [END receive_message]
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+
+        // MARK: Firebase
+
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+
+        // Log.info message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            Log.info("Message ID: \(messageID)")
+        }
+
+        // Log.info full message.
+        print(userInfo)
+        
+        // MARK: JPush
+        // 注意调用
+        JPUSHService.handleRemoteNotification(userInfo)
+        Log.info("收到通知:\(userInfo)")
+        completionHandler(.newData)
+    }
 
     func application(_ application: UIApplication,
                      didFailToRegisterForRemoteNotificationsWithError error: Error)
@@ -164,13 +174,6 @@ extension AppDelegate {
         NotificationCenter.default.post(name: Notification.Name(rawValue: "DidRegisterRemoteNotification"), object: deviceToken)
         // 注册devicetoken
         JPUSHService.registerDeviceToken(deviceToken)
-    }
-
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // 注意调用
-        JPUSHService.handleRemoteNotification(userInfo)
-        print("iOS7及以上系统，收到通知:\(userInfo)")
-        completionHandler(.newData)
     }
 }
 
