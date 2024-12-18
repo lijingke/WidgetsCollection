@@ -8,10 +8,6 @@
 
 import UIKit
 
-let appKey = "4fcc3e237eec4c4fb804ad49"
-let channel = "Publish channel"
-let isProduction = false
-
 class RootViewController: UIViewController {
     @IBOutlet var netWorkStateLabel: UILabel!
     @IBOutlet var deviceTokenValue: UILabel!
@@ -127,11 +123,11 @@ class RootViewController: UIViewController {
     @objc func serviceError(_ notification: Notification) {
         let userInfo = (notification as NSNotification).userInfo as? [String: String]
         let error = userInfo!["error"]
-        print(error)
+        Log.info(error)
     }
     
     @objc func didRegisterRemoteNotification(_ notification: Notification) {
-        let deviceTokenStr = notification.object
+        let deviceTokenStr = notification.object ?? ""
         deviceTokenValue.text = "\(deviceTokenStr)"
     }
     

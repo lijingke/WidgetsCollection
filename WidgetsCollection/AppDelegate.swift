@@ -5,6 +5,7 @@
 //  Created by 李京珂 on 2024/11/29.
 //
 
+import CoreLocation
 import FirebaseCore
 import FirebaseMessaging
 import UIKit
@@ -13,6 +14,7 @@ import UserNotifications
 @main @MainActor
 class AppDelegate: UIResponder, UIApplicationDelegate {
     let gcmMessageIDKey = "gcm.message_id"
+    var locationManager: CLLocationManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         // Override point for customization after application launch.
@@ -40,6 +42,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
 
         // [END register_for_notifications]
+
+        // MARK: JPush
+
+        getLocationAuthority()
+
+        let entity = JPUSHRegisterEntity()
+        if #available(iOS 12, *) {
+            entity.types = NSInteger(UNAuthorizationOptions.alert.rawValue) |
+                NSInteger(UNAuthorizationOptions.sound.rawValue) |
+                NSInteger(UNAuthorizationOptions.badge.rawValue) |
+                NSInteger(UNAuthorizationOptions.provisional.rawValue)
+        } else {
+            entity.types = NSInteger(UNAuthorizationOptions.alert.rawValue) |
+                NSInteger(UNAuthorizationOptions.sound.rawValue) |
+                NSInteger(UNAuthorizationOptions.badge.rawValue)
+        }
+
+        JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
+        // 如果使用地理围栏功能，需要注册地理围栏代理
+        JPUSHService.registerLbsGeofenceDelegate(self, withLaunchOptions: launchOptions)
+        // 如果使用应用内消息功能，需要配置pageEnterTo:和pageLeave:接口，且可以通过设置该代理获取应用内消息的展示和点击事件
+        JPUSHService.setInAppMessageDelegate(self)
+        // 如不需要使用IDFA，advertisingIdentifier 可为nil
+        JPUSHService.setup(withOption: launchOptions, appKey: appKey, channel: channel, apsForProduction: isProduction, advertisingIdentifier: nil)
+
+        // 2.1.9版本新增获取registration id block接口。
+        JPUSHService.registrationIDCompletionHandler { resCode, registrationID in
+            if resCode == 0 {
+                Log.info("registrationID获取成功：\(String(describing: registrationID))")
+            } else {
+                Log.info("registrationID获取失败，code：\(String(describing: registrationID))")
+            }
+        }
 
         return true
     }
@@ -69,15 +104,17 @@ extension AppDelegate {
         // this callback will not be fired till the user taps on the notification launching the application.
         // TODO: Handle data of notification
 
+        // MARK: Firebase
+
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         // Messaging.messaging().appDidReceiveMessage(userInfo)
 
-        // Print message ID.
+        // Log.info message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            Log.info("Message ID: \(messageID)")
         }
 
-        // Print full message.
+        // Log.info full message.
         print(userInfo)
     }
 
@@ -93,12 +130,12 @@ extension AppDelegate {
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         // Messaging.messaging().appDidReceiveMessage(userInfo)
 
-        // Print message ID.
+        // Log.info message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            Log.info("Message ID: \(messageID)")
         }
 
-        // Print full message.
+        // Log.info full message.
         print(userInfo)
 
         return UIBackgroundFetchResult.newData
@@ -109,7 +146,7 @@ extension AppDelegate {
     func application(_ application: UIApplication,
                      didFailToRegisterForRemoteNotificationsWithError error: Error)
     {
-        print("Unable to register for remote notifications: \(error.localizedDescription)")
+        Log.info("Unable to register for remote notifications: \(error.localizedDescription)")
     }
 
     // This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
@@ -118,10 +155,22 @@ extension AppDelegate {
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
-        print("APNs token retrieved: \(deviceToken)")
+        Log.info("APNs token retrieved: \(deviceToken)")
 
         // With swizzling disabled you must set the APNs token here.
         // Messaging.messaging().apnsToken = deviceToken
+        
+        // MARK: JPush
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "DidRegisterRemoteNotification"), object: deviceToken)
+        // 注册devicetoken
+        JPUSHService.registerDeviceToken(deviceToken)
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // 注意调用
+        JPUSHService.handleRemoteNotification(userInfo)
+        print("iOS7及以上系统，收到通知:\(userInfo)")
+        completionHandler(.newData)
     }
 }
 
@@ -188,7 +237,7 @@ extension AppDelegate {
             // 添加请求到通知中心
             UNUserNotificationCenter.current().add(request) { error in
                 if let error = error {
-                    print(error.localizedDescription)
+                    Log.info(error.localizedDescription)
                 }
             }
         }

@@ -17,7 +17,7 @@ class JPushUtils: NSObject {
                     // Handler for close action
                 }
                 alertController.addAction(closeAction)
-                let vc = UIApplication.shared.keyWindow?.rootViewController
+                let vc = kWindow?.rootViewController
                 vc?.present(alertController, animated: true, completion: nil)
 
             } else {
