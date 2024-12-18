@@ -33,11 +33,15 @@ class HomeViewController: BaseViewController {
     var dataSource: [[HomeDataEntity]] = []
 
     private func getDataSource() {
-        headViewTitles = ["Semantic UI", "WorkSpace", "Sound&Vibrate", "Picker", "TableView", "Core Animation", "Date Playgounds", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CollectionView Custom Layout", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
+        headViewTitles = ["JPush", "Semantic UI", "WorkSpace", "Sound&Vibrate", "Picker", "TableView", "Core Animation", "Date Playgounds", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CollectionView Custom Layout", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
 
         for title in headViewTitles {
             var dicArray: [[CellInfoEnum: Any]] = []
             switch title {
+            case "JPush":
+                dicArray = [
+                    [.cellName: "JPush", .className: "JPush", .pushType: PushType.storyboard],
+                ]
             case "Semantic UI":
                 dicArray = [
                     [.cellName: "Semantic UI", .className: "DemosController", .pushType: PushType.nib],
@@ -174,6 +178,8 @@ class HomeViewController: BaseViewController {
     }()
 }
 
+// MARK: - UITableViewDelegate
+
 extension HomeViewController: UITableViewDelegate {
     func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let head = UITableViewHeaderFooterView()
@@ -216,6 +222,8 @@ extension HomeViewController: UITableViewDelegate {
         }
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension HomeViewController: UITableViewDataSource {
     func numberOfSections(in _: UITableView) -> Int {

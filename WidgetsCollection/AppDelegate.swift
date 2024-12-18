@@ -5,11 +5,10 @@
 //  Created by 李京珂 on 2024/11/29.
 //
 
-import UIKit
-import UserNotifications
-
 import FirebaseCore
 import FirebaseMessaging
+import UIKit
+import UserNotifications
 
 @main @MainActor
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,8 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(
-          options: authOptions,
-          completionHandler: { _, _ in }
+            options: authOptions,
+            completionHandler: { _, _ in }
         )
 
         application.registerForRemoteNotifications()
@@ -44,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
-    
+
     // MARK: UISceneSession Lifecycle
 
     func application(_: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options _: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -58,7 +57,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+}
 
+// MARK: - Notification
+
+extension AppDelegate {
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any])
     {
@@ -100,6 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return UIBackgroundFetchResult.newData
     }
+
     // [END receive_message]
 
     func application(_ application: UIApplication,
@@ -119,7 +123,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // With swizzling disabled you must set the APNs token here.
         // Messaging.messaging().apnsToken = deviceToken
     }
+}
 
+// MARK: - Event
+
+extension AppDelegate {
     func niceNoti() {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
 
@@ -185,94 +193,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-}
-
-// MARK: - UNUserNotificationCenterDelegate
-
-extension AppDelegate: UNUserNotificationCenterDelegate {
-    // Receive displayed notifications for iOS 10 devices.
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification) async
-        -> UNNotificationPresentationOptions
-    {
-        let userInfo = notification.request.content.userInfo
-
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-        // [START_EXCLUDE]
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        // [END_EXCLUDE]
-
-        // Print full message.
-        print(userInfo)
-
-        // Change this to your preferred presentation option
-//        return [[.alert, .sound]]
-        return [[.list, .banner, .sound]]
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse) async
-    {
-        let userInfo = response.notification.request.content.userInfo
-
-        // [START_EXCLUDE]
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        // [END_EXCLUDE]
-
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-        // Print full message.
-        print(userInfo)
-    }
-}
-
-// MARK: - MessagingDelegate
-
-extension AppDelegate: MessagingDelegate {
-    // [START refresh_token]
-    nonisolated func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("Firebase registration token: \(String(describing: fcmToken))")
-
-        let dataDict: [String: String] = ["token": fcmToken ?? ""]
-        NotificationCenter.default.post(
-            name: Notification.Name("FCMToken"),
-            object: nil,
-            userInfo: dataDict
-        )
-        // TODO: If necessary send token to application server.
-        // Note: This callback is fired at each app startup and whenever a new token is generated.
-    }
-
-    // [END refresh_token]
-}
-// MARK: - JPUSHRegisterDelegate
-
-extension AppDelegate: @preconcurrency JPUSHRegisterDelegate {
-    
-    func jpushNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> Int {
-        return 0
-    }
-    
-    func jpushNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
-        
-    }
-    
-    func jpushNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification) {
-        
-    }
-    
-    func jpushNotificationAuthorization(_ status: JPAuthorizationStatus, withInfo info: [AnyHashable : Any]?) {
-        
-    }
-    
-    
 }

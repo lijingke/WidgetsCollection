@@ -328,7 +328,7 @@ struct _R {
     var textColor: RswiftResources.ColorResource { .init(name: "textColor", path: [], bundle: bundle) }
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 123 images.
+  /// This `_R.image` struct is generated, and contains static references to 127 images.
   struct image {
     let bundle: Foundation.Bundle
 
@@ -614,6 +614,9 @@ struct _R {
     /// Image `img_05`.
     var img_05: RswiftResources.ImageResource { .init(name: "img_05", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
 
+    /// Image `index`.
+    var index: RswiftResources.ImageResource { .init(name: "index", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `kermit`.
     var kermit: RswiftResources.ImageResource { .init(name: "kermit", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
@@ -625,6 +628,9 @@ struct _R {
 
     /// Image `loading.gif`.
     var loadingGif: RswiftResources.ImageResource { .init(name: "loading.gif", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `localNotification`.
+    var localNotification: RswiftResources.ImageResource { .init(name: "localNotification", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `member_add`.
     var member_add: RswiftResources.ImageResource { .init(name: "member_add", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -649,6 +655,12 @@ struct _R {
 
     /// Image `rabbit`.
     var rabbit: RswiftResources.ImageResource { .init(name: "rabbit", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `report`.
+    var report: RswiftResources.ImageResource { .init(name: "report", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `setTags`.
+    var setTags: RswiftResources.ImageResource { .init(name: "setTags", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `setting_add`.
     var setting_add: RswiftResources.ImageResource { .init(name: "setting_add", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -884,14 +896,18 @@ struct _R {
     var cell: RswiftResources.ReuseIdentifier<ExpandableCell> { .init(identifier: "cell") }
   }
 
-  /// This `_R.storyboard` struct is generated, and contains static references to 4 storyboards.
+  /// This `_R.storyboard` struct is generated, and contains static references to 5 storyboards.
   struct storyboard {
     let bundle: Foundation.Bundle
+    var jPush: jPush { .init(bundle: bundle) }
     var launchScreen: launchScreen { .init(bundle: bundle) }
     var main: main { .init(bundle: bundle) }
     var messagingVC: messagingVC { .init(bundle: bundle) }
     var swiftAsciiArtVC: swiftAsciiArtVC { .init(bundle: bundle) }
 
+    func jPush(bundle: Foundation.Bundle) -> jPush {
+      .init(bundle: bundle)
+    }
     func launchScreen(bundle: Foundation.Bundle) -> launchScreen {
       .init(bundle: bundle)
     }
@@ -905,12 +921,32 @@ struct _R {
       .init(bundle: bundle)
     }
     func validate() throws {
+      try self.jPush.validate()
       try self.launchScreen.validate()
       try self.main.validate()
       try self.messagingVC.validate()
       try self.swiftAsciiArtVC.validate()
     }
 
+
+    /// Storyboard `JPush`.
+    struct jPush: RswiftResources.StoryboardReference, RswiftResources.InitialControllerContainer {
+      typealias InitialController = UIKit.UITabBarController
+
+      let bundle: Foundation.Bundle
+
+      let name = "JPush"
+
+      var jPush: RswiftResources.StoryboardViewControllerIdentifier<UIKit.UITabBarController> { .init(identifier: "JPush", storyboard: name, bundle: bundle) }
+
+      func validate() throws {
+        if UIKit.UIImage(named: "index.png", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'index.png' is used in storyboard 'JPush', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "localNotification.png", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'localNotification.png' is used in storyboard 'JPush', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "report.png", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'report.png' is used in storyboard 'JPush', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "setTags.png", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'setTags.png' is used in storyboard 'JPush', but couldn't be loaded.") }
+        if jPush() == nil { throw RswiftResources.ValidationError("[R.swift] ViewController with identifier 'jPush' could not be loaded from storyboard 'JPush' as 'UIKit.UITabBarController'.") }
+      }
+    }
 
     /// Storyboard `Launch Screen`.
     struct launchScreen: RswiftResources.StoryboardReference, RswiftResources.InitialControllerContainer {
