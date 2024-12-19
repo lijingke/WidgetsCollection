@@ -149,12 +149,12 @@ extension DateProgressVC {
                 .schedule(with: content(forTriggerDate:))
         }
     }
-    
+
     func requestNoti() {
         // 请求权限
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             guard granted else { return }
-      
+
             var pastDay = 0
             var totalDay = 0
             var remainDay = 0
@@ -174,7 +174,7 @@ extension DateProgressVC {
             }
 
             totalDay = (goDate.difference(in: .day, from: comeDate) ?? 0) + 1
-            
+
             // 创建通知内容
             let content = UNMutableNotificationContent()
             content.title = "这是一个倒计时"
@@ -183,13 +183,13 @@ extension DateProgressVC {
             let time = DateUtil.getDateStr(interval: Date().timeIntervalSince1970, format: "yyyy-MM-dd HH:mm:ss")
             content.body = "Hello, this is a local notification!\nTime is \(time)\n还剩\(remainDay)天"
             content.sound = .default
-         
+
             // 创建触发器
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
-         
+
             // 创建请求
             let request = UNNotificationRequest(identifier: "myLocalNotification", content: content, trigger: trigger)
-         
+
             // 添加请求到通知中心
             UNUserNotificationCenter.current().add(request) { error in
                 if let error = error {
@@ -254,10 +254,15 @@ extension DateProgressVC {
 
     @objc private func showFourDollar() {
         isShowFourDollar.toggle()
+
         if isShowFourDollar {
             fourDollarConstranit?.deactivate()
         } else {
             fourDollarConstranit?.activate()
+        }
+
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
         }
     }
 }
@@ -317,7 +322,7 @@ extension DateProgressVC {
         } else {
             fourDollarComeRemainDay = fourDollarComeDate.difference(in: .day, from: currentDate) ?? 0
         }
-        fourDollarView.setupContent("距离李思源来广州还有：\(fourDollarComeRemainDay)天")
+        fourDollarView.setupContent(fourDollarComeRemainDay)
     }
 }
 
@@ -326,10 +331,12 @@ extension DateProgressVC {
 extension DateProgressVC {
     private func setupUI() {
         view.backgroundColor = .white
-        let tapGes = UITapGestureRecognizer()
-        tapGes.numberOfTapsRequired = 2
-        tapGes.addTarget(self, action: #selector(showFourDollar))
-        view.addGestureRecognizer(tapGes)
+        if isDebug {
+            let tapGes = UITapGestureRecognizer()
+            tapGes.numberOfTapsRequired = 2
+            tapGes.addTarget(self, action: #selector(showFourDollar))
+            view.addGestureRecognizer(tapGes)
+        }
         view.addSubviews([progressRing, totalDayLabel, pastDayLabel, remainDayLabel, fourDollarView, datePicker])
         progressRing.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(150)
@@ -351,7 +358,7 @@ extension DateProgressVC {
         }
         fourDollarView.snp.makeConstraints { make in
             make.top.equalTo(remainDayLabel.snp.bottom).offset(20)
-            make.left.right.equalToSuperview()
+            make.centerX.equalToSuperview()
             fourDollarConstranit = make.height.equalTo(0).constraint
         }
         datePicker.snp.makeConstraints { make in
