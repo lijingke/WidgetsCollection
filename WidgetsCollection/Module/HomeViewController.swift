@@ -33,11 +33,15 @@ class HomeViewController: BaseViewController {
     var dataSource: [[HomeDataEntity]] = []
 
     private func getDataSource() {
-        headViewTitles = ["JPush", "Semantic UI", "WorkSpace", "Sound&Vibrate", "Picker", "TableView", "Core Animation", "Date Playgounds", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CollectionView Custom Layout", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
+        headViewTitles = ["UIBezierPath", "JPush", "Semantic UI", "WorkSpace", "Sound&Vibrate", "Picker", "TableView", "Core Animation", "Date Playgounds", "Playgrounds", "UI Components", "Toolbox", "CollectionView Basics", "CollectionView Custom Layout", "UIScrollView", "UIView Animations", "CALYER", "UIView Refresh", "Location", "NotificationCenter", "Download", "Safe", "Health Kit"]
 
         for title in headViewTitles {
             var dicArray: [[CellInfoEnum: Any]] = []
             switch title {
+            case "UIBezierPath":
+                dicArray = [
+                    [.cellName: "BezierPath", .className: "BezierPathVC"],
+                ]
             case "JPush":
                 dicArray = [
                     [.cellName: "JPush", .className: "JPush", .pushType: PushType.storyboard],
