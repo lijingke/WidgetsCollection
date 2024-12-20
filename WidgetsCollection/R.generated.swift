@@ -328,7 +328,7 @@ struct _R {
     var textColor: RswiftResources.ColorResource { .init(name: "textColor", path: [], bundle: bundle) }
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 127 images.
+  /// This `_R.image` struct is generated, and contains static references to 130 images.
   struct image {
     let bundle: Foundation.Bundle
 
@@ -586,6 +586,15 @@ struct _R {
 
     /// Image `giftEmpty`.
     var giftEmpty: RswiftResources.ImageResource { .init(name: "giftEmpty", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `hudError`.
+    var hudError: RswiftResources.ImageResource { .init(name: "hudError", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `hudInfo`.
+    var hudInfo: RswiftResources.ImageResource { .init(name: "hudInfo", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `hudSuccess`.
+    var hudSuccess: RswiftResources.ImageResource { .init(name: "hudSuccess", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `icon_download`.
     var icon_download: RswiftResources.ImageResource { .init(name: "icon_download", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
